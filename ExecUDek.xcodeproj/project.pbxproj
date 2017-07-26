@@ -12,6 +12,7 @@
 		188F23231F290F80007B9F20 /* CardsSceneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */; };
 		188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23241F2914F7007B9F20 /* CardsViewController.swift */; };
 		188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23261F291607007B9F20 /* CardTableViewCell.swift */; };
+		188F23291F293B84007B9F20 /* TabBarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188F23281F293B84007B9F20 /* TabBarController.storyboard */; };
 		18B2832E1F27EED5007EADA6 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2832D1F27EED5007EADA6 /* Card.swift */; };
 		18B283301F27F2E1007EADA6 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2832F1F27F2E1007EADA6 /* Template.swift */; };
 		B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A611F27DF4300786B97 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 		188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardsSceneStoryboard.storyboard; sourceTree = "<group>"; };
 		188F23241F2914F7007B9F20 /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		188F23261F291607007B9F20 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		188F23281F293B84007B9F20 /* TabBarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBarController.storyboard; sourceTree = "<group>"; };
 		18B2832D1F27EED5007EADA6 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		18B2832F1F27F2E1007EADA6 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		B6A28A5E1F27DF4300786B97 /* ExecUDek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecUDek.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 				F06281A61F28F15800106424 /* CardTemplate.storyboard */,
 				B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */,
 				188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */,
+				188F23281F293B84007B9F20 /* TabBarController.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188F23291F293B84007B9F20 /* TabBarController.storyboard in Resources */,
 				F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */,
 				B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */,
 				B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */,
