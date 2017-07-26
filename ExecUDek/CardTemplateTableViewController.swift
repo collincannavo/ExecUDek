@@ -33,7 +33,7 @@ class CardTemplateTableViewController: UITableViewController {
     //View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Update views
     }
 
     // MARK: - Table view data source
