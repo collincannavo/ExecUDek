@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardTemplateTableViewController: UITableViewController {
+class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // TableView textFields
     @IBOutlet weak var nameTextField: UITextField!
@@ -29,23 +29,61 @@ class CardTemplateTableViewController: UITableViewController {
     @IBOutlet weak var faxLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
+    @IBOutlet weak var photoButton: UIButton!
     
-    //View Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    @IBAction func saveTapped(_ sender: UIButton) {
+        guard let name = nameTextField.text, !name.isEmpty, let job = jobTextfield.text, let address = addressTextField.text, let city = cityTextField.text, let phone = phoneTextField.text, let fax = faxTextField.text, let email = emailTextField.text, let website = websiteTextField.text else {return}
+        
+        nameLabel.text = name
+        jobLabel.text = job
+        addressLabel.text = address
+        cityLabel.text = city
+        phoneLabel.text = phone
+        faxLabel.text = fax
+        emailLabel.text = email
+        websiteLabel.text = website
     }
-
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return 8
+    
+    @IBAction func selectPhotoTapped(_ sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let alert = UIAlertController(title: "Select Photo Location", message: nil, preferredStyle: .actionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
+                imagePicker.sourceType = .photoLibrary
+                self.present(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) -> Void in
+                imagePicker.sourceType = .camera
+                self.present(imagePicker, animated: true, completion: nil)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-
-        return cell
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            delegate?.photoSelectViewControllerSelected(image)
+            photoButton.setTitle("", for: UIControlState())
+            photoButton.setBackgroundImage(image, for: UIControlState())
+        }
     }
+    
+    weak var delegate: PhotoSelectViewControllerDelegate?
+}
+
+// MARK: -
+protocol PhotoSelectViewControllerDelegate: class {
+    func photoSelectViewControllerSelected(_ image: UIImage)
 }
