@@ -20,6 +20,9 @@ class MPC : NSObject {
     
     override init() {
         super.init()
+        setupPeer(with: UIDevice.current.name)
+        setupSession()
+        advertiseSelf(shouldAdvertise: true)
         
     }
     
