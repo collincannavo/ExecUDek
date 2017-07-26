@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		188F231F1F28F176007B9F20 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F231E1F28F176007B9F20 /* CardController.swift */; };
 		188F23211F28F30B007B9F20 /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23201F28F30B007B9F20 /* PersonController.swift */; };
+		188F23231F290F80007B9F20 /* CardsSceneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */; };
+		188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23241F2914F7007B9F20 /* CardsViewController.swift */; };
+		188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23261F291607007B9F20 /* CardTableViewCell.swift */; };
 		18B2832E1F27EED5007EADA6 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2832D1F27EED5007EADA6 /* Card.swift */; };
 		18B283301F27F2E1007EADA6 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2832F1F27F2E1007EADA6 /* Template.swift */; };
 		B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A611F27DF4300786B97 /* AppDelegate.swift */; };
@@ -24,6 +27,9 @@
 /* Begin PBXFileReference section */
 		188F231E1F28F176007B9F20 /* CardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
 		188F23201F28F30B007B9F20 /* PersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
+		188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardsSceneStoryboard.storyboard; sourceTree = "<group>"; };
+		188F23241F2914F7007B9F20 /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		188F23261F291607007B9F20 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		18B2832D1F27EED5007EADA6 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		18B2832F1F27F2E1007EADA6 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		B6A28A5E1F27DF4300786B97 /* ExecUDek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecUDek.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +90,7 @@
 				B6A28A651F27DF4300786B97 /* Main.storyboard */,
 				F06281A61F28F15800106424 /* CardTemplate.storyboard */,
 				B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */,
+				188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -122,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */,
+				188F23241F2914F7007B9F20 /* CardsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -129,6 +137,7 @@
 		B6A28A9E1F290D9000786B97 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				188F23261F291607007B9F20 /* CardTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -196,6 +205,7 @@
 				F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */,
 				B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */,
 				B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */,
+				188F23231F290F80007B9F20 /* CardsSceneStoryboard.storyboard in Resources */,
 				B6A28A671F27DF4300786B97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,8 +219,10 @@
 			files = (
 				18B283301F27F2E1007EADA6 /* Template.swift in Sources */,
 				B6A28A6A1F27DF4300786B97 /* ExecUDek.xcdatamodeld in Sources */,
+				188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */,
 				F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */,
 				F0A553091F27ED25001F8B8F /* Person.swift in Sources */,
+				188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */,
 				188F23211F28F30B007B9F20 /* PersonController.swift in Sources */,
 				188F231F1F28F176007B9F20 /* CardController.swift in Sources */,
 				B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */,
