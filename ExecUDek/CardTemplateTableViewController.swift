@@ -30,22 +30,29 @@ class CardTemplateTableViewController: UITableViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
     
+    
+    @IBAction func saveTapped(_ sender: UIButton) {
+        guard let name = nameTextField.text, !name.isEmpty, let job = jobTextfield.text, let address = addressTextField.text, let city = cityTextField.text, let phone = phoneTextField.text, let fax = faxTextField.text, let email = emailTextField.text, let website = websiteTextField.text else {return}
+        
+        nameLabel.text = name
+        jobLabel.text = job
+        addressLabel.text = address
+        cityLabel.text = city
+        phoneLabel.text = phone
+        faxLabel.text = fax
+        emailLabel.text = email
+        websiteLabel.text = website
+    }
+    
+    
     //View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Update views
+        updateView()
     }
-
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return 8
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-
-        return cell
+    
+    //Private function
+    fileprivate func updateView(){
+        // Update view
     }
 }
