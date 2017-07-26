@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CardController {
     
@@ -23,8 +24,18 @@ class CardController {
         PersonController.shared.addPersonalCard(card, to: person)
     }
     
-    func updateCard(_ card: Card, withName name: String, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    func createCardWith(image: UIImage, name: String, cell: Int?, officeNumber: Int?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
         
+        let template = Template.one
+        
+        let card = Card(name: name, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
+        
+        card.cardImage = image
+    }
+    
+    func updateCard(_ card: Card, withImage image: UIImage, name: String, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+        
+        card.cardImage = image
         card.name = name
         card.cell = cell
         card.officeNumber = officeNumber
@@ -37,6 +48,4 @@ class CardController {
         card.logoData = logoData
         card.other = other
     }
-    
-    func deleteCard(_ card)
 }
