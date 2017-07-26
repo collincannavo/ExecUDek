@@ -15,6 +15,7 @@
 		B6A28A6A1F27DF4300786B97 /* ExecUDek.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A681F27DF4300786B97 /* ExecUDek.xcdatamodeld */; };
 		B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
+		F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06281A61F28F15800106424 /* CardTemplate.storyboard */; };
 		F0A553091F27ED25001F8B8F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A553081F27ED25001F8B8F /* Person.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		B6A28A6B1F27DF4300786B97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6A28A6E1F27DF4300786B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6A28A701F27DF4300786B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F06281A61F28F15800106424 /* CardTemplate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardTemplate.storyboard; sourceTree = "<group>"; };
 		F0A553081F27ED25001F8B8F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 				B6A28A631F27DF4300786B97 /* ViewController.swift */,
 				B6A28A651F27DF4300786B97 /* Main.storyboard */,
 				F0A553081F27ED25001F8B8F /* Person.swift */,
+				F06281A61F28F15800106424 /* CardTemplate.storyboard */,
 				B6A28A6B1F27DF4300786B97 /* Assets.xcassets */,
 				B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */,
 				B6A28A701F27DF4300786B97 /* Info.plist */,
@@ -136,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */,
 				B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */,
 				B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */,
 				B6A28A671F27DF4300786B97 /* Main.storyboard in Resources */,
