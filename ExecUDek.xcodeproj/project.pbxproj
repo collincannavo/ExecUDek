@@ -16,6 +16,7 @@
 		B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
 		F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06281A61F28F15800106424 /* CardTemplate.storyboard */; };
+		F06281A91F28F28A00106424 /* CardTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06281A81F28F28A00106424 /* CardTemplateViewController.swift */; };
 		F0A553091F27ED25001F8B8F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A553081F27ED25001F8B8F /* Person.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		B6A28A6E1F27DF4300786B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6A28A701F27DF4300786B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F06281A61F28F15800106424 /* CardTemplate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardTemplate.storyboard; sourceTree = "<group>"; };
+		F06281A81F28F28A00106424 /* CardTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTemplateViewController.swift; sourceTree = "<group>"; };
 		F0A553081F27ED25001F8B8F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 				B6A28A651F27DF4300786B97 /* Main.storyboard */,
 				F0A553081F27ED25001F8B8F /* Person.swift */,
 				F06281A61F28F15800106424 /* CardTemplate.storyboard */,
+				F06281A81F28F28A00106424 /* CardTemplateViewController.swift */,
 				B6A28A6B1F27DF4300786B97 /* Assets.xcassets */,
 				B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */,
 				B6A28A701F27DF4300786B97 /* Info.plist */,
@@ -158,6 +161,7 @@
 				B6A28A641F27DF4300786B97 /* ViewController.swift in Sources */,
 				F0A553091F27ED25001F8B8F /* Person.swift in Sources */,
 				B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */,
+				F06281A91F28F28A00106424 /* CardTemplateViewController.swift in Sources */,
 				18B2832E1F27EED5007EADA6 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
