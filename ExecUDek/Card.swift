@@ -40,21 +40,21 @@ class Card {
     
     var parentCKReference: CKReference?
     
-    let name: String
-    let cell: String?
-    let officeNumber: String?
-    let email: String?
-    let template: Template
-    let companyName: String?
-    let note: String?
-    let address: String?
-    let avatarData: Data?
-    let logoData: Data?
-    let other: String?
+    var name: String
+    var cell: Int?
+    var officeNumber: Int?
+    var email: String?
+    var template: Template
+    var companyName: String?
+    var note: String?
+    var address: String?
+    var avatarData: Data?
+    var logoData: Data?
+    var other: String?
     
     init(name: String,
-         cell: String? = nil,
-         officeNumber: String? = nil,
+         cell: Int? = nil,
+         officeNumber: Int? = nil,
          email: String? = nil,
          template: Template,
          companyName: String? = nil,

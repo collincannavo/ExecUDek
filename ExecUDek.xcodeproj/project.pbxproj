@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		188F231F1F28F176007B9F20 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F231E1F28F176007B9F20 /* CardController.swift */; };
+		188F23211F28F30B007B9F20 /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23201F28F30B007B9F20 /* PersonController.swift */; };
 		18B2832E1F27EED5007EADA6 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2832D1F27EED5007EADA6 /* Card.swift */; };
 		18B283301F27F2E1007EADA6 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2832F1F27F2E1007EADA6 /* Template.swift */; };
 		B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A611F27DF4300786B97 /* AppDelegate.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		188F231E1F28F176007B9F20 /* CardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
+		188F23201F28F30B007B9F20 /* PersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 		18B2832D1F27EED5007EADA6 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		18B2832F1F27F2E1007EADA6 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		B6A28A5E1F27DF4300786B97 /* ExecUDek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecUDek.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +76,8 @@
 				B6A28A681F27DF4300786B97 /* ExecUDek.xcdatamodeld */,
 				18B2832D1F27EED5007EADA6 /* Card.swift */,
 				18B2832F1F27F2E1007EADA6 /* Template.swift */,
+				188F231E1F28F176007B9F20 /* CardController.swift */,
+				188F23201F28F30B007B9F20 /* PersonController.swift */,
 			);
 			path = ExecUDek;
 			sourceTree = "<group>";
@@ -153,6 +159,8 @@
 				B6A28A6A1F27DF4300786B97 /* ExecUDek.xcdatamodeld in Sources */,
 				B6A28A641F27DF4300786B97 /* ViewController.swift in Sources */,
 				F0A553091F27ED25001F8B8F /* Person.swift in Sources */,
+				188F23211F28F30B007B9F20 /* PersonController.swift in Sources */,
+				188F231F1F28F176007B9F20 /* CardController.swift in Sources */,
 				B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */,
 				18B2832E1F27EED5007EADA6 /* Card.swift in Sources */,
 			);
