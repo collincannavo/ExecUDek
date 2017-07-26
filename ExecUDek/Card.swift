@@ -13,7 +13,6 @@ import UIKit
 class Card {
     
     static let recordTypeKey = "Card"
-    
     static let nameKey = "name"
     static let cellKey = "cell"
     static let officeNumberKey = "officeNumber"
@@ -32,7 +31,9 @@ class Card {
     var ckRecordID: CKRecordID?
     
     var ckReference: CKReference? {
-        guard let ckRecordID = ckRecordID else { return nil }
+        
+        guard let ckRecordID = ckRecordID else { return nil}
+        
         return CKReference(recordID: ckRecordID, action: .none)
     }
     
@@ -79,6 +80,24 @@ class Card {
         self.avatarData = avatarData
         self.logoData = logoData
         self.other = other
+    }
+    
+    var ckRecord: CKRecord {
+        
+        let record = CKRecord(recordType: Card.recordTypeKey)
+        record.setValue(name, forKey: Card.nameKey)
+        record.setValue(cell, forKey: Card.cellKey)
+        record.setValue(officeNumber, forKey: Card.officeNumberKey)
+        record.setValue(email, forKey: Card.emailKey)
+        record.setValue(template, forKey: Card.templateKey)
+        record.setValue(companyName, forKey: Card.companyNameKey)
+        record.setValue(note, forKey: Card.noteKey)
+        record.setValue(address, forKey: Card.addressKey)
+        record.setValue(avatarData, forKey: Card.avatarDataKey)
+        record.setValue(logoData, forKey: Card.logoDataKey)
+        record.setValue(other, forKey: Card.otherKey)
+        
+        return record
     }
     
     convenience init?(ckRecord: CKRecord) {
