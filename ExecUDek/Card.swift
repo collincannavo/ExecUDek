@@ -8,6 +8,7 @@
 
 import Foundation
 import CloudKit
+import UIKit
 
 class Card {
     
@@ -25,6 +26,7 @@ class Card {
     static let logoDataKey = "logoData"
     static let otherKey = "other"
     static let parentKey = "parent"
+    static let imageKey = "image"
     
     // Cloud kit syncable
     var ckRecordID: CKRecordID?
@@ -40,21 +42,23 @@ class Card {
     
     var parentCKReference: CKReference?
     
-    let name: String
-    let cell: String?
-    let officeNumber: String?
-    let email: String?
-    let template: Template
-    let companyName: String?
-    let note: String?
-    let address: String?
-    let avatarData: Data?
-    let logoData: Data?
-    let other: String?
+    var name: String
+    var cell: Int?
+    var officeNumber: Int?
+    var email: String?
+    var template: Template
+    var companyName: String?
+    var note: String?
+    var address: String?
+    var avatarData: Data?
+    var logoData: Data?
+    var other: String?
+    
+    var cardImage: UIImage?
     
     init(name: String,
-         cell: String? = nil,
-         officeNumber: String? = nil,
+         cell: Int? = nil,
+         officeNumber: Int? = nil,
          email: String? = nil,
          template: Template,
          companyName: String? = nil,
@@ -82,8 +86,8 @@ class Card {
             let templateRawValue = ckRecord[Card.templateKey] as? String,
             let template = Template(rawValue: templateRawValue) else { return nil }
         
-        let cell = ckRecord[Card.cellKey] as? String
-        let officeNumber = ckRecord[Card.officeNumberKey] as? String
+        let cell = ckRecord[Card.cellKey] as? Int
+        let officeNumber = ckRecord[Card.officeNumberKey] as? Int
         let email = ckRecord[Card.emailKey] as? String
         let companyName = ckRecord[Card.companyNameKey] as? String
         let note = ckRecord[Card.noteKey] as? String
@@ -92,46 +96,35 @@ class Card {
         let logoData = ckRecord[Card.logoDataKey] as? Data
         let other = ckRecord[Card.otherKey] as? String
         let parentCKReference = ckRecord[Card.parentKey] as? CKReference
+        let imageData = ckRecord[Card.imageKey] as? Data
         
         self.init(name: name, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
+        
+        if let imageDataUnwrapped = imageData {
+            let image = UIImage(data: imageDataUnwrapped)
+            self.cardImage = image
+        }
         
         self.ckRecordID = ckRecord.recordID
         self.parentCKReference = parentCKReference
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension Card: Equatable {
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        if lhs.name != rhs.name { return false }
+        if lhs.cell != rhs.cell { return false }
+        if lhs.officeNumber != rhs.officeNumber { return false }
+        if lhs.email != rhs.email { return false }
+        if lhs.template != rhs.template { return false }
+        if lhs.companyName != rhs.companyName { return false }
+        if lhs.note != rhs.note { return false }
+        if lhs.address != rhs.address { return false }
+        if lhs.avatarData != rhs.avatarData { return false }
+        if lhs.logoData != rhs.logoData { return false }
+        if lhs.other != rhs.other { return false }
+        if lhs.cardImage != rhs.cardImage { return false }
+        
+        return true
+    }
+}
