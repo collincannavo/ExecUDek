@@ -19,6 +19,8 @@ class Person {
     let name: String
     var blockedUsers: [CKReference?] = []
     var receivedCards: [CKReference?] = []
+    var personalCards: [Card] = []
+    var cards: [Card] = []
     
     var CKrecord: CKRecord {
         let recordID = self.cKRecordID ?? CKRecordID(recordName: UUID().uuidString)
