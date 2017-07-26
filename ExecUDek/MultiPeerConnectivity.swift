@@ -49,6 +49,11 @@ class MPC : NSObject {
     
     }
     
+    func send(data: Data, peerID: MCPeerID, session: MCSessionSendDataMode) {
+        
+        
+    }
+    
 }
     
 
