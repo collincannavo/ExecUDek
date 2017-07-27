@@ -10,6 +10,8 @@ import UIKit
 
 class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let cardImages = ["businessCard1", "businessCard2", "businessCard3"]
+    
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,26 +24,14 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return cardImages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "extCardCell", for: indexPath) as? EXTCardTableViewCell else { return EXTCardTableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "extCardCell", for: indexPath) as? EXTCardTableViewCell,
+            let cardImage = UIImage(named: cardImages[indexPath.row]) else { return EXTCardTableViewCell() }
         
-        switch indexPath.row {
-        case 0:
-            guard let image = UIImage(named: "businessCard1") else { return cell }
-            cell.updateCell(with: image)
-        case 1:
-            guard let image = UIImage(named: "businessCard2") else { return cell }
-            cell.updateCell(with: image)
-        case 2:
-            guard let image = UIImage(named: "businessCard3") else { return cell }
-            cell.updateCell(with: image)
-        default:
-            return cell
-        }
-        
+        cell.updateCell(with: cardImage)
         return cell
     }
     

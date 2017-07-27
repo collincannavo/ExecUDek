@@ -40,25 +40,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ez9-1K-2Mq">
-                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ez9-1K-2Mq">
+                                <rect key="frame" x="48" y="0.0" width="279" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="extCardCell" id="WXk-Q4-pGR" customClass="EXTCardTableViewCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="200"/>
+                                        <rect key="frame" x="0.0" y="28" width="279" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WXk-Q4-pGR" id="6cs-jx-ZDK">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="199.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="279" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UK1-Qu-EUT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="199.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="279" height="144"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="UK1-Qu-EUT" secondAttribute="trailing" id="87Y-a8-LdV"/>
-                                                <constraint firstAttribute="bottom" secondItem="UK1-Qu-EUT" secondAttribute="bottom" id="Bac-Fa-2En"/>
-                                                <constraint firstItem="UK1-Qu-EUT" firstAttribute="top" secondItem="6cs-jx-ZDK" secondAttribute="top" id="Gb7-pg-Lpx"/>
+                                                <constraint firstAttribute="bottom" secondItem="UK1-Qu-EUT" secondAttribute="bottom" constant="8" id="Bac-Fa-2En"/>
+                                                <constraint firstItem="UK1-Qu-EUT" firstAttribute="top" secondItem="6cs-jx-ZDK" secondAttribute="top" constant="8" id="Gb7-pg-Lpx"/>
                                                 <constraint firstItem="UK1-Qu-EUT" firstAttribute="leading" secondItem="6cs-jx-ZDK" secondAttribute="leading" id="e4m-yb-m5E"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -72,8 +72,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="v6c-hU-mcY" firstAttribute="top" secondItem="ez9-1K-2Mq" secondAttribute="bottom" id="86z-jv-hiz"/>
-                            <constraint firstItem="ez9-1K-2Mq" firstAttribute="leading" secondItem="xnY-Az-yrT" secondAttribute="leading" constant="16" id="Aqu-I5-uiS"/>
-                            <constraint firstAttribute="trailing" secondItem="ez9-1K-2Mq" secondAttribute="trailing" constant="16" id="CIB-zh-83S"/>
+                            <constraint firstItem="ez9-1K-2Mq" firstAttribute="leading" secondItem="xnY-Az-yrT" secondAttribute="leading" constant="48" id="Aqu-I5-uiS"/>
+                            <constraint firstAttribute="trailing" secondItem="ez9-1K-2Mq" secondAttribute="trailing" constant="48" id="CIB-zh-83S"/>
                             <constraint firstItem="ez9-1K-2Mq" firstAttribute="top" secondItem="xnY-Az-yrT" secondAttribute="top" id="dQF-NZ-dxH"/>
                         </constraints>
                     </view>
