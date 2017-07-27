@@ -26,63 +26,63 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rUG-hB-lnM">
-                                            <rect key="frame" x="83" y="34" width="234" height="168"/>
+                                            <rect key="frame" x="83" y="34" width="234" height="162.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HoD-aL-FxJ">
-                                                    <rect key="frame" x="0.0" y="69" width="112" height="30"/>
+                                                    <rect key="frame" x="0.0" y="66.333333333333329" width="112" height="30"/>
                                                     <state key="normal" title="Add Photo"/>
                                                     <connections>
                                                         <action selector="selectPhotoTapped:" destination="b4I-kL-vHe" eventType="touchUpInside" id="pSR-gw-Ypc"/>
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="jU4-DO-uT9">
-                                                    <rect key="frame" x="122" y="0.0" width="112" height="168"/>
+                                                    <rect key="frame" x="122" y="0.0" width="112" height="162.66666666666666"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwO-y3-KlM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Job title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sx-Fg-sZo">
-                                                            <rect key="frame" x="0.0" y="21" width="62" height="21"/>
+                                                            <rect key="frame" x="0.0" y="20.333333333333329" width="61.666666666666657" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oH-5y-7gh">
-                                                            <rect key="frame" x="0.0" y="42" width="63" height="21"/>
+                                                            <rect key="frame" x="0.0" y="40.666666666666657" width="63" height="20.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2x-m3-ocu">
-                                                            <rect key="frame" x="0.0" y="63" width="31" height="21"/>
+                                                            <rect key="frame" x="0.0" y="60.999999999999993" width="30.333333333333343" height="20.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vk-Ik-O3Y">
-                                                            <rect key="frame" x="0.0" y="84" width="112" height="21"/>
+                                                            <rect key="frame" x="0.0" y="81.333333333333329" width="112" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxG-Gx-zcg">
-                                                            <rect key="frame" x="0.0" y="105" width="27" height="21"/>
+                                                            <rect key="frame" x="0.0" y="101.66666666666666" width="26.333333333333343" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c71-4K-iLI">
-                                                            <rect key="frame" x="0.0" y="126" width="41" height="21"/>
+                                                            <rect key="frame" x="0.0" y="121.99999999999999" width="41" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERx-us-HZG">
-                                                            <rect key="frame" x="0.0" y="147" width="62" height="21"/>
+                                                            <rect key="frame" x="0.0" y="142.33333333333331" width="62" height="20.333333333333314"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -340,25 +340,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="addressLabel" destination="7oH-5y-7gh" id="syd-ix-165"/>
-                        <outlet property="addressTextField" destination="LeG-j7-YNc" id="Z72-G5-Ym5"/>
-                        <outlet property="cityLabel" destination="H2x-m3-ocu" id="3hg-z9-nKC"/>
-                        <outlet property="cityTextField" destination="wqP-m0-hnn" id="rT0-5G-2Ga"/>
-                        <outlet property="emailLabel" destination="c71-4K-iLI" id="X9X-7u-xG1"/>
-                        <outlet property="emailTextField" destination="u1t-VR-nb7" id="QgK-kq-Uh1"/>
-                        <outlet property="faxLabel" destination="pxG-Gx-zcg" id="oaB-wy-ghk"/>
-                        <outlet property="faxTextField" destination="w8o-DA-FKg" id="HTh-SQ-0BZ"/>
-                        <outlet property="jobLabel" destination="2sx-Fg-sZo" id="tjf-lE-Yz4"/>
-                        <outlet property="jobTextfield" destination="TN2-jy-8pl" id="iAj-EC-qlx"/>
-                        <outlet property="nameLabel" destination="bwO-y3-KlM" id="MwO-ri-C4L"/>
-                        <outlet property="nameTextField" destination="ebf-tk-oba" id="iOd-hf-grb"/>
-                        <outlet property="phoneLabel" destination="6vk-Ik-O3Y" id="VuB-kw-TVn"/>
-                        <outlet property="phoneTextField" destination="Ca7-eg-vzt" id="ZP2-bn-EaV"/>
-                        <outlet property="photoButton" destination="HoD-aL-FxJ" id="gfx-zm-dAq"/>
-                        <outlet property="websiteLabel" destination="ERx-us-HZG" id="yVe-Q5-BGM"/>
-                        <outlet property="websiteTextField" destination="DeU-5s-coa" id="irN-e6-5o8"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCQ-1I-eyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
