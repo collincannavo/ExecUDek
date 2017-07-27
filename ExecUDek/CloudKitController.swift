@@ -17,33 +17,27 @@ class CloudKitContoller {
     
     var currentUser: Person?
     
-    func create(card: Card) {
+    func create(card: Card, withCompletion completion: @escaping (CKRecord?, Error?) -> Void) {
         
         CKContainer.default().publicCloudDatabase.save(card.ckRecord) { (record, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            } else {
-                self.cards.append(card)
-            }
+            completion(record, error)
         }
     }
     
-    func fetchCards() {
-        
-        let predicate = NSPredicate(value: true)
+    func fetchCards(with predicate: NSPredicate, completion: @escaping ([CKRecord]?, Error?) -> Void) {
         
         let query = CKQuery(recordType: Card.recordTypeKey, predicate: predicate)
         
         CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+            completion(records, error)
             
-            guard let records = records else { return }
             
-            self.cards = records.flatMap { Card(ckRecord: $0) }
+//            if let error = error {
+//                NSLog(error.localizedDescription)
+//                return
+//            }
+//            
+//            guard let records = records else { return }
         }
     }
     
@@ -110,9 +104,9 @@ class CloudKitContoller {
                 
                 guard let currentUserRecord = records?.first else { completion(false); return }
                 
-                let currentUser = Person(CKRecord: currentUserRecord)
+                let currentPerson = Person(CKRecord: currentUserRecord)
                 
-                self.currentUser = currentUser
+                PersonController.shared.currentPerson = currentPerson
                 
                 completion(true)
             })

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CloudKit
 
 class CardController {
     
@@ -22,6 +23,13 @@ class CardController {
         let card = Card(name: name, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
         PersonController.shared.addPersonalCard(card, to: person)
+        
+        CloudKitContoller.shared.create(card: card) { (record, error) in
+            if let error = error {
+                NSLog("Error encountered while saving personal card to CK: \(error.localizedDescription)")
+                return
+            }
+        }
     }
     
     func createCardWith(image: UIImage, name: String, cell: Int?, officeNumber: Int?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
@@ -31,6 +39,13 @@ class CardController {
         let card = Card(name: name, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
         card.cardImage = image
+        
+        CloudKitContoller.shared.create(card: card) { (record, error) in
+            if let error = error {
+                NSLog("Error encountered while saving card to CK: \(error.localizedDescription)")
+                return
+            }
+        }
     }
     
     func updateCard(_ card: Card, withImage image: UIImage, name: String, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
@@ -47,5 +62,24 @@ class CardController {
         card.avatarData = avatarData
         card.logoData = logoData
         card.other = other
+        
+        //CloudKitContoller.shared.updateRecord(record: <#T##CKRecord#>)
+    }
+    
+    func fetchPersonalCards() {
+        guard let currentPersonCKRecordID = PersonController.shared.currentPerson?.cKRecordID else { return }
+        let currentPersonCKReference = CKReference(recordID: currentPersonCKRecordID, action: .none)
+        let predicate = NSPredicate(format: "%@ == %@", Card.parentKey, currentPersonCKReference)
+        
+        CloudKitContoller.shared.fetchCards(with: predicate, completion: { (records, error) in
+            if let error = error {
+                NSLog("Error encountered while fetching profile cards: \(error.localizedDescription)"); return }
+            
+            guard let records = records else { NSLog("Returned profile cards are nil"); return }
+            guard let currentPerson = PersonController.shared.currentPerson else { return }
+            
+            let cards = records.flatMap { Card(ckRecord: $0) }
+            cards.forEach { PersonController.shared.addPersonalCard($0, to: currentPerson) }
+        })
     }
 }
