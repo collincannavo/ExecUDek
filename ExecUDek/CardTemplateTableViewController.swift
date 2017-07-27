@@ -10,7 +10,7 @@ import UIKit
 
 class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    // TableView textFields
+    // TableView TextFields
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var jobTextfield: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
@@ -20,7 +20,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
     
-    // UIView labels
+    // UIView Labels
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var jobLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -83,7 +83,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     weak var delegate: PhotoSelectViewControllerDelegate?
 }
 
-// MARK: -
+// MARK:
 protocol PhotoSelectViewControllerDelegate: class {
     func photoSelectViewControllerSelected(_ image: UIImage)
 }

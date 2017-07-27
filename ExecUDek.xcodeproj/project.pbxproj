@@ -21,6 +21,8 @@
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
 		B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
+		F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05962611F299C65002C967B /* UserProfileTableViewController.swift */; };
+		F05962641F299D18002C967B /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F05962631F299D18002C967B /* UserProfile.storyboard */; };
 		F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06281A61F28F15800106424 /* CardTemplate.storyboard */; };
 		F0A553091F27ED25001F8B8F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A553081F27ED25001F8B8F /* Person.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		B6A28A701F27DF4300786B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerConnectivity.swift; sourceTree = "<group>"; };
 		F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTemplateTableViewController.swift; sourceTree = "<group>"; };
+		F05962611F299C65002C967B /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
+		F05962631F299D18002C967B /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		F06281A61F28F15800106424 /* CardTemplate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardTemplate.storyboard; sourceTree = "<group>"; };
 		F0A553081F27ED25001F8B8F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +97,7 @@
 				F06281A61F28F15800106424 /* CardTemplate.storyboard */,
 				B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */,
 				188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */,
+				F05962631F299D18002C967B /* UserProfile.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 				F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */,
 				188F23241F2914F7007B9F20 /* CardsViewController.swift */,
 				B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */,
+				F05962611F299C65002C967B /* UserProfileTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 				F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */,
 				B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */,
 				B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */,
+				F05962641F299D18002C967B /* UserProfile.storyboard in Resources */,
 				188F23231F290F80007B9F20 /* CardsSceneStoryboard.storyboard in Resources */,
 				B6A28A671F27DF4300786B97 /* Main.storyboard in Resources */,
 			);
@@ -226,6 +233,7 @@
 				F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */,
 				F0A553091F27ED25001F8B8F /* Person.swift in Sources */,
 				188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */,
+				F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */,
 				188F23211F28F30B007B9F20 /* PersonController.swift in Sources */,
 				B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */,
 				188F231F1F28F176007B9F20 /* CardController.swift in Sources */,
