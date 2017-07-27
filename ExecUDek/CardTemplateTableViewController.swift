@@ -31,7 +31,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var websiteLabel: UILabel!
     @IBOutlet weak var photoButton: UIButton!
     
-    @IBAction func saveTapped(_ sender: UIButton) {
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+    
         guard let name = nameTextField.text, !name.isEmpty, let job = jobTextfield.text, let address = addressTextField.text, let city = cityTextField.text, let phone = phoneTextField.text, let fax = faxTextField.text, let email = emailTextField.text, let website = websiteTextField.text else {return}
         
         nameLabel.text = name

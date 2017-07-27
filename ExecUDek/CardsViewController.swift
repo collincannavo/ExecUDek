@@ -13,6 +13,12 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cardSearchBar: UISearchBar!
+    
+    @IBAction func profileIconTapped(_ sender: Any) {
+    }
+    
+    @IBAction func addCardButtonTapped(_ sender: Any) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
