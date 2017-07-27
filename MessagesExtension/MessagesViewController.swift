@@ -16,18 +16,12 @@ class MessagesViewController: MSMessagesAppViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Conversation Handling
     
     override func willBecomeActive(with conversation: MSConversation) {
-        // Called when the extension is about to move from the inactive to active state.
-        // This will happen when the extension is about to present UI.
+        super.willBecomeActive(with: conversation)
         
-        // Use this method to configure the extension and restore previously stored state.
+        presentViewController(for: conversation, with: presentationStyle)
     }
     
     override func didResignActive(with conversation: MSConversation) {
@@ -68,5 +62,61 @@ class MessagesViewController: MSMessagesAppViewController {
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
+    
+    // MARK: - Child view controller presentation
+    private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
+        
+        removeAllChildViewControllers()
+        
+        guard let childController = storyboard?.instantiateViewController(withIdentifier: "extCardsCompactVC") as? EXTCardsCompactViewController else { fatalError("Could not instantiate cards compact view controller") }
+        
+        addChildViewController(childController)
+        childController.view.frame = view.bounds
+        childController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(childController.view)
+        
+        NSLayoutConstraint.activate([
+                childController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                childController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                childController.view.topAnchor.constraint(equalTo: view.topAnchor),
+                childController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        
+        childController.didMove(toParentViewController: self)
+    }
+    
+    func removeAllChildViewControllers() {
+        for child in childViewControllers {
+            child.willMove(toParentViewController: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParentViewController()
+        }
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

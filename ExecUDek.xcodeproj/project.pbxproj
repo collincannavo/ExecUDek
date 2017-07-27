@@ -17,8 +17,11 @@
 		188F23391F2957F8007B9F20 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188F23371F2957F8007B9F20 /* MainInterface.storyboard */; };
 		188F233B1F2957F8007B9F20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188F233A1F2957F8007B9F20 /* Assets.xcassets */; };
 		188F233F1F2957F8007B9F20 /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 188F23301F2957F8007B9F20 /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		188F23441F2959F7007B9F20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		18B2832E1F27EED5007EADA6 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2832D1F27EED5007EADA6 /* Card.swift */; };
 		18B283301F27F2E1007EADA6 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2832F1F27F2E1007EADA6 /* Template.swift */; };
+		18B709F71F296F60002DDB17 /* EXTCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */; };
+		18B709F91F296FA0002DDB17 /* EXTCardsCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B709F81F296FA0002DDB17 /* EXTCardsCompactViewController.swift */; };
 		B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A611F27DF4300786B97 /* AppDelegate.swift */; };
 		B6A28A671F27DF4300786B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A651F27DF4300786B97 /* Main.storyboard */; };
 		B6A28A6A1F27DF4300786B97 /* ExecUDek.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A681F27DF4300786B97 /* ExecUDek.xcdatamodeld */; };
@@ -68,6 +71,8 @@
 		188F233C1F2957F8007B9F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B2832D1F27EED5007EADA6 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		18B2832F1F27F2E1007EADA6 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTCardTableViewCell.swift; sourceTree = "<group>"; };
+		18B709F81F296FA0002DDB17 /* EXTCardsCompactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTCardsCompactViewController.swift; sourceTree = "<group>"; };
 		B6A28A5E1F27DF4300786B97 /* ExecUDek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecUDek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A28A611F27DF4300786B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6A28A661F27DF4300786B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +120,8 @@
 				188F23371F2957F8007B9F20 /* MainInterface.storyboard */,
 				188F233A1F2957F8007B9F20 /* Assets.xcassets */,
 				188F233C1F2957F8007B9F20 /* Info.plist */,
+				18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */,
+				18B709F81F296FA0002DDB17 /* EXTCardsCompactViewController.swift */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -296,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				188F233B1F2957F8007B9F20 /* Assets.xcassets in Resources */,
+				188F23441F2959F7007B9F20 /* Assets.xcassets in Resources */,
 				188F23391F2957F8007B9F20 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +328,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				188F23361F2957F8007B9F20 /* MessagesViewController.swift in Sources */,
+				18B709F71F296F60002DDB17 /* EXTCardTableViewCell.swift in Sources */,
+				18B709F91F296FA0002DDB17 /* EXTCardsCompactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +550,7 @@
 				188F23411F2957F8007B9F20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B6A28A591F27DF4300786B97 /* Build configuration list for PBXProject "ExecUDek" */ = {
 			isa = XCConfigurationList;
