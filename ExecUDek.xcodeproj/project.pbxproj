@@ -25,6 +25,7 @@
 		F05962641F299D18002C967B /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F05962631F299D18002C967B /* UserProfile.storyboard */; };
 		F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06281A61F28F15800106424 /* CardTemplate.storyboard */; };
 		F0A553091F27ED25001F8B8F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A553081F27ED25001F8B8F /* Person.swift */; };
+		F0C8BA8B1F2A383F00B9E0DA /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8BA8A1F2A383F00B9E0DA /* UserProfileTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		F05962631F299D18002C967B /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		F06281A61F28F15800106424 /* CardTemplate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardTemplate.storyboard; sourceTree = "<group>"; };
 		F0A553081F27ED25001F8B8F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		F0C8BA8A1F2A383F00B9E0DA /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		B6A28A9E1F290D9000786B97 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F0C8BA8A1F2A383F00B9E0DA /* UserProfileTableViewCell.swift */,
 				188F23261F291607007B9F20 /* CardTableViewCell.swift */,
 			);
 			name = View;
@@ -239,6 +242,7 @@
 				188F231F1F28F176007B9F20 /* CardController.swift in Sources */,
 				B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */,
 				18B2832E1F27EED5007EADA6 /* Card.swift in Sources */,
+				F0C8BA8B1F2A383F00B9E0DA /* UserProfileTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

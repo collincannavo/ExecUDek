@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userProfileCell" rowHeight="152" id="irc-GK-zt4">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userProfileCell" rowHeight="152" id="irc-GK-zt4" customClass="UserProfileTableViewCell" customModule="ExecUDek" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="irc-GK-zt4" id="CgF-im-mQl">
@@ -94,6 +94,16 @@
                                         <constraint firstAttribute="trailing" secondItem="A8E-ap-9UJ" secondAttribute="trailing" id="w4f-FH-e6r"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addressLabel" destination="Elj-Vn-y8J" id="Wqz-bz-F4Q"/>
+                                    <outlet property="cityLabel" destination="Vis-AT-rOl" id="sIY-mx-aON"/>
+                                    <outlet property="emailLabel" destination="tTV-2c-rNx" id="sZj-wE-afL"/>
+                                    <outlet property="faxLabel" destination="w8c-tu-ZLJ" id="IzJ-u8-ULw"/>
+                                    <outlet property="jobLabel" destination="sxW-FJ-z7D" id="hdV-Bv-dMs"/>
+                                    <outlet property="nameLabel" destination="2T6-ZO-hlY" id="ZmJ-1W-29q"/>
+                                    <outlet property="phoneLabel" destination="bk6-Fj-vPx" id="mrJ-9e-ZKW"/>
+                                    <outlet property="websiteLabel" destination="F45-R8-Tpw" id="Skx-uE-oDF"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

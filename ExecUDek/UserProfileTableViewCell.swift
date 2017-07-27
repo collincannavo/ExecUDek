@@ -2,23 +2,39 @@
 //  UserProfileTableViewCell.swift
 //  ExecUDek
 //
-//  Created by Arnold Mukasa on 7/26/17.
+//  Created by Arnold Mukasa on 7/27/17.
 //  Copyright © 2017 Collin Cannavo. All rights reserved.
 //
 
 import UIKit
 
 class UserProfileTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    var card: Card? {
+        didSet {
+            updateView()
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var jobLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var faxLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var websiteLabel: UILabel!
+    
+    func updateView(){
+        guard let card = card else {return}
+        nameLabel.text = card.name
+        jobLabel.text = "Job title"
+        addressLabel.text = card.address
+        cityLabel.text = "City"
+        phoneLabel.text = "\(String(describing: card.officeNumber))"
+        faxLabel.text = "Fax"
+        emailLabel.text = card.email
+        websiteLabel.text = "Website"
+        
     }
-
 }
