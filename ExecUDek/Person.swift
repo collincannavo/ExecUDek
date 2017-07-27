@@ -33,8 +33,9 @@ class Person {
         return record
     }
     
-    init(name: String) {
+    init(name: String, userCKReference: CKReference) {
         self.name = name
+        self.userCKReference = userCKReference
     }
     
     init?(CKRecord: CKRecord) {

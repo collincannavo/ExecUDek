@@ -15,6 +15,8 @@ class CloudKitContoller {
     
     var cards: [Card] = []
     
+    var currentUser: Person?
+    
     func create(card: Card) {
         
         CKContainer.default().publicCloudDatabase.save(card.ckRecord) { (record, error) in
@@ -63,6 +65,58 @@ class CloudKitContoller {
         operation.qualityOfService = .userInteractive
         
         CKContainer.default().publicCloudDatabase.add(operation)
+    }
+    
+    func createUserWith(name: String, completion: @escaping (_ success: Bool) -> Void) {
+        
+        CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
+            
+            if let error = error { print(error.localizedDescription) }
+            
+            guard let appleUserRecordID = appleUserRecordID else { completion(false); return }
+            
+            let userCKReference = CKReference(recordID: appleUserRecordID, action: .none)
+            
+            let user = Person(name: name, userCKReference: userCKReference)
+            
+            CKContainer.default().publicCloudDatabase.save(user.CKrecord, completionHandler: { (_, error) in
+                
+                if let error = error { print(error.localizedDescription); completion(false); return }
+                
+                self.currentUser = user
+                
+                completion(true)
+                
+            })
+            
+        }
+    }
+    
+    func fetchCurrentUser(completion: @escaping (Bool) -> Void) {
+        
+        CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
+            if let error = error { print(error.localizedDescription) }
+            
+            guard let appleUserRecordID = appleUserRecordID else { completion(false); return }
+            
+            let appleUserReference = CKReference(recordID: appleUserRecordID, action: .none)
+            
+            let predicate = NSPredicate(format: "appleUserReference == %@", appleUserReference)
+            
+            let query = CKQuery(recordType: Person.recordType, predicate: predicate)
+            
+            CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil, completionHandler: { (records, error) in
+                if let error = error { print(error.localizedDescription) }
+                
+                guard let currentUserRecord = records?.first else { completion(false); return }
+                
+                let currentUser = Person(CKRecord: currentUserRecord)
+                
+                self.currentUser = currentUser
+                
+                completion(true)
+            })
+        }
     }
     
 }
