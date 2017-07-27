@@ -17,8 +17,8 @@ class Person {
     var cKRecordID: CKRecordID?
     var userCKReference: CKReference?
     let name: String
-    var blockedUsers: [CKReference?] = []
-    var receivedCards: [CKReference?] = []
+    var blockedUsers: [CKReference] = []
+    var receivedCards: [CKReference] = []
     var personalCards: [Card] = []
     var cards: [Card] = []
     

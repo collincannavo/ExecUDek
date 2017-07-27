@@ -66,6 +66,19 @@ class CardController {
         //CloudKitContoller.shared.updateRecord(record: <#T##CKRecord#>)
     }
     
+    func fetchCards() {
+        guard let currentPerson = PersonController.shared.currentPerson else { return }
+        currentPerson.receivedCards.forEach { receivedCardReference in
+            CloudKitContoller.shared.fetchRecord(with: receivedCardReference.recordID, completion: { (record, error) in
+                if let error = error { NSLog("Error encountered while fetching a referenced card: \(error.localizedDescription)"); return }
+                guard let record = record else { NSLog("Returned card record is nil"); return }
+                guard let card = Card(ckRecord: record) else { NSLog("Could not create card object from CKRecord"); return }
+                
+                PersonController.shared.addCard(card, to: currentPerson)
+            })
+        }
+    }
+    
     func fetchPersonalCards() {
         guard let currentPersonCKRecordID = PersonController.shared.currentPerson?.cKRecordID else { return }
         let currentPersonCKReference = CKReference(recordID: currentPersonCKRecordID, action: .none)

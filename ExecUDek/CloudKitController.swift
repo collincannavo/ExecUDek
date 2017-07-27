@@ -41,6 +41,12 @@ class CloudKitContoller {
         }
     }
     
+    func fetchRecord(with recordID: CKRecordID, completion: (CKRecord?, Error?) -> Void) {
+        CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+            completion(record, error)
+        }
+    }
+    
     func updateRecord(record: CKRecord) {
         
         let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
