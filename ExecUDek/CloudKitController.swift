@@ -41,7 +41,7 @@ class CloudKitContoller {
         }
     }
     
-    func fetchRecord(with recordID: CKRecordID, completion: (CKRecord?, Error?) -> Void) {
+    func fetchRecord(with recordID: CKRecordID, completion: @escaping (CKRecord?, Error?) -> Void) {
         CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
             completion(record, error)
         }

@@ -12,24 +12,24 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     
     // TableView TextFields
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var cellTextField: UITextField!
     @IBOutlet weak var officeNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var companyTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
     
     // UIView Labels
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var officeNumberLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var companyLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var noteLabel: UILabel!
-    @IBOutlet weak var websiteLabel: UILabel!
     @IBOutlet weak var photoButton: UIButton!
+    
+    // MARK: - Properties
+    var cardSenderIsMainScene: Bool = true
+    var card: Card?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
     }
@@ -37,25 +37,25 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBAction func saveButtonTapped(_ sender: Any) {
     }
     
-    @IBAction func deleteButtonTapped(_ sender: Any) {
-        guard let name = nameTextField.text, !name.isEmpty,
-            let cell = cellTextField.text,
-            let officeNumber = officeNumberTextField.text,
-            let email = emailTextField.text,
-            let company = companyTextField.text,
-            let address = addressTextField.text,
-            let note = noteTextField.text,
-            let website = websiteTextField.text else {return}
-        
-        nameLabel.text = name
-        cellLabel.text = cell
-        officeNumberLabel.text = officeNumber
-        emailLabel.text = email
-        companyLabel.text = company
-        addressLabel.text = address
-        noteLabel.text = note
-        websiteLabel.text = website
-    }
+//    @IBAction func deleteButtonTapped(_ sender: Any) {
+//        guard let name = nameTextField.text, !name.isEmpty,
+//            let cell = cellTextField.text,
+//            let officeNumber = officeNumberTextField.text,
+//            let email = emailTextField.text,
+//            let company = companyTextField.text,
+//            let address = addressTextField.text,
+//            let note = noteTextField.text,
+//            let website = websiteTextField.text else {return}
+//        
+//        nameLabel.text = name
+//        cellLabel.text = cell
+//        officeNumberLabel.text = officeNumber
+//        emailLabel.text = email
+//        companyLabel.text = company
+//        addressLabel.text = address
+//        noteLabel.text = note
+//        websiteLabel.text = website
+//    }
     
     @IBAction func selectPhotoTapped(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
