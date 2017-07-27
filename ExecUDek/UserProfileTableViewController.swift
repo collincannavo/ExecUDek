@@ -10,6 +10,12 @@ import UIKit
 
 class UserProfileTableViewController: UITableViewController {
 
+    @IBAction func addNewCardButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
