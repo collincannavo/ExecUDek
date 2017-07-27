@@ -21,6 +21,8 @@
 		B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
 		B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */; };
+		B6A28AA51F2A662000786B97 /* CommonCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28AA31F2A662000786B97 /* CommonCardTableViewCell.swift */; };
+		B6A28AA61F2A662000786B97 /* CommonCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A28AA41F2A662000786B97 /* CommonCardTableViewCell.xib */; };
 		CA641D621F290F3F003D9B0D /* CloudKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641D611F290F3F003D9B0D /* CloudKitController.swift */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
 		F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05962611F299C65002C967B /* UserProfileTableViewController.swift */; };
@@ -47,6 +49,8 @@
 		B6A28A6E1F27DF4300786B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6A28A701F27DF4300786B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerConnectivity.swift; sourceTree = "<group>"; };
+		B6A28AA31F2A662000786B97 /* CommonCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCardTableViewCell.swift; sourceTree = "<group>"; };
+		B6A28AA41F2A662000786B97 /* CommonCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonCardTableViewCell.xib; sourceTree = "<group>"; };
 		CA641D611F290F3F003D9B0D /* CloudKitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitController.swift; sourceTree = "<group>"; };
 		F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTemplateTableViewController.swift; sourceTree = "<group>"; };
 		F05962611F299C65002C967B /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 		B6A28A9E1F290D9000786B97 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B6A28AA31F2A662000786B97 /* CommonCardTableViewCell.swift */,
+				B6A28AA41F2A662000786B97 /* CommonCardTableViewCell.xib */,
 				F0C8BA8A1F2A383F00B9E0DA /* UserProfileTableViewCell.swift */,
 				188F23261F291607007B9F20 /* CardTableViewCell.swift */,
 			);
@@ -224,6 +230,7 @@
 				B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */,
 				B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */,
 				F05962641F299D18002C967B /* UserProfile.storyboard in Resources */,
+				B6A28AA61F2A662000786B97 /* CommonCardTableViewCell.xib in Resources */,
 				188F23231F290F80007B9F20 /* CardsSceneStoryboard.storyboard in Resources */,
 				B6A28A671F27DF4300786B97 /* Main.storyboard in Resources */,
 			);
@@ -242,6 +249,7 @@
 				188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */,
 				F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */,
 				F0A553091F27ED25001F8B8F /* Person.swift in Sources */,
+				B6A28AA51F2A662000786B97 /* CommonCardTableViewCell.swift in Sources */,
 				188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */,
 				182143181F2A5B4400CCF3B5 /* CardTemplateTableViewController+CKSave.swift in Sources */,
 				F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */,
