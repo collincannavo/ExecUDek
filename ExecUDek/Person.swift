@@ -61,6 +61,15 @@ class Person {
         
         self.cKRecordID = CKRecord.recordID
     }
+    
+    func updateCKRecord(record: inout CKRecord) {
+        record[Person.nameKey] = name as CKRecordValue?
+        record[Person.appleUserReferenceKey] = userCKReference as CKRecordValue?
+        
+        if !receivedCards.isEmpty {
+            record[Person.receivedCardsKey] = receivedCards as CKRecordValue?
+        }
+    }
 }
 
 extension Person: Equatable {
