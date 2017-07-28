@@ -43,7 +43,9 @@ class CloudKitContoller {
         
         fetchRecord(with: recordID) { (record, error) in
             if let error = error { NSLog("Error encountered while fetching record to update: \(error.localizedDescription)"); return }
-            guard let record = record else { NSLog("Record returned for update operation is nil"); return }
+            guard var record = record else { NSLog("Record returned for update operation is nil"); return }
+            guard let person = PersonController.shared.currentPerson else { return }
+            person.updateCKRecord(record: &record)
             
             let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
             operation.savePolicy = .changedKeys
