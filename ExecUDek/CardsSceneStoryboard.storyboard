@@ -57,7 +57,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cardImageView" destination="Uwn-fy-eWq" id="QJv-J3-pfz"/>
-                                            <segue destination="Cae-fc-eRE" kind="presentation" id="Eda-7Q-YbK"/>
+                                            <segue destination="Cae-fc-eRE" kind="presentation" identifier="editCardFromMain" id="Eda-7Q-YbK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -81,7 +81,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2JZ-n0-JOG">
                             <connections>
                                 <action selector="addCardButtonTapped:" destination="hTB-Na-Z53" id="QlL-jz-RW3"/>
-                                <segue destination="Cae-fc-eRE" kind="presentation" id="wN2-1Z-zdg"/>
+                                <segue destination="Cae-fc-eRE" kind="presentation" identifier="addCardFromMain" id="wN2-1Z-zdg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -133,6 +133,6 @@
         <image name="profileIcon" width="15" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wN2-1Z-zdg"/>
+        <segue reference="Eda-7Q-YbK"/>
     </inferredMetricsTieBreakers>
 </document>

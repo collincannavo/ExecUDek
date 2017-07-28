@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZV9-Qh-vwd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZV9-Qh-vwd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +26,7 @@
                                     <state key="normal" title="Add New Card"/>
                                     <connections>
                                         <action selector="addNewCardButtonTapped:" destination="1tB-em-BzF" eventType="touchUpInside" id="0No-82-xcL"/>
-                                        <segue destination="eHL-w7-I70" kind="presentation" id="CjT-1f-hJq"/>
+                                        <segue destination="eHL-w7-I70" kind="presentation" identifier="addCardFromUser" id="CjT-1f-hJq"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -125,6 +125,7 @@
                                     <outlet property="nameLabel" destination="2T6-ZO-hlY" id="ZmJ-1W-29q"/>
                                     <outlet property="phoneLabel" destination="bk6-Fj-vPx" id="mrJ-9e-ZKW"/>
                                     <outlet property="websiteLabel" destination="F45-R8-Tpw" id="Skx-uE-oDF"/>
+                                    <segue destination="MJq-Qh-r93" kind="presentation" identifier="editCardFromUser" id="o9Q-Fh-pVW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -152,6 +153,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K8B-X9-Xws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1446" y="77"/>
+        </scene>
+        <!--CardTemplate-->
+        <scene sceneID="24q-j7-Tor">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CardTemplate" id="MJq-Qh-r93" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hm0-Ta-eQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="172"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y71-aG-2BU">

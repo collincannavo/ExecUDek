@@ -85,7 +85,17 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addCardFromMain" {
+            if let destinationVC = segue.destination as? CardTemplateTableViewController {
+                destinationVC.cardSenderIsMainScene = true
+            }
+        }
         
+        if segue.identifier == "editCardFromMain" {
+            if let destinationVC = segue.destination as? CardTemplateTableViewController {
+                destinationVC.cardSenderIsMainScene = true
+            }
+        }
     }
     
     // MARK: - Helper methods

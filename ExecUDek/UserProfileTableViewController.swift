@@ -36,4 +36,17 @@ class UserProfileTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addCardFromUser" {
+            if let destinationVC = segue.destination as? CardTemplateTableViewController {
+                destinationVC.cardSenderIsMainScene = false
+            }
+        }
+        if segue.identifier == "editCardFromUser" {
+            if let destinationVC = segue.destination as? CardTemplateTableViewController {
+                destinationVC.cardSenderIsMainScene = false
+            }
+        }
+    }
 }
