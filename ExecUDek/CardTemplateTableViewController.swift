@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -49,25 +50,15 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         dismiss(animated: true, completion: nil)
     }
     
-//    @IBAction func deleteButtonTapped(_ sender: Any) {
-//        guard let name = nameTextField.text, !name.isEmpty,
-//            let cell = cellTextField.text,
-//            let officeNumber = officeNumberTextField.text,
-//            let email = emailTextField.text,
-//            let company = companyTextField.text,
-//            let address = addressTextField.text,
-//            let note = noteTextField.text,
-//            let website = websiteTextField.text else {return}
-//        
-//        nameLabel.text = name
-//        cellLabel.text = cell
-//        officeNumberLabel.text = officeNumber
-//        emailLabel.text = email
-//        companyLabel.text = company
-//        addressLabel.text = address
-//        noteLabel.text = note
-//        websiteLabel.text = website
-//    }
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        
+        if let card = card,
+            let recordID = card.ckRecordID {
+            
+            CloudKitContoller.shared.deleteRecord(recordID: recordID)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func selectPhotoTapped(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
@@ -176,3 +167,5 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
 protocol PhotoSelectViewControllerDelegate: class {
     func photoSelectViewControllerSelected(_ image: UIImage)
 }
+
+
