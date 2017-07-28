@@ -37,6 +37,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         saveCardToCloudKit()
+        dismiss(animated: true, completion: nil)
     }
     
 //    @IBAction func deleteButtonTapped(_ sender: Any) {
