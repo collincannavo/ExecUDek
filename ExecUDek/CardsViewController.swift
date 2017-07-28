@@ -24,11 +24,31 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        cardSearchBar.delegate = self
+        cardSearchBar.returnKeyType = UIReturnKeyType.done
     }
     
     // MARK: - Search bar delegate
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+    
+    var inSearchMode = false
+    var filteredData = [String]()
+    var data = [String]()
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            inSearchMode = false
+            view.endEditing(true)
+            tableView.reloadData()
+        } else {
+            inSearchMode = true
+            filteredData = data.filter({$0 == searchBar.text})
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
     }
     
     // MARK: - Table view data source
@@ -45,12 +65,15 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         case 0:
             guard let cardImage = UIImage(named: "businessCard1") else { return cell }
             cell.updateCell(withCardImage: cardImage)
+            data.append("businessCard1")
         case 1:
             guard let cardImage = UIImage(named: "businessCard2") else { return cell }
             cell.updateCell(withCardImage: cardImage)
+            data.append("businessCard2")
         case 2:
             guard let cardImage = UIImage(named: "businessCard3") else { return cell }
             cell.updateCell(withCardImage: cardImage)
+            data.append("businessCard3")
         default:
             return cell
         }
