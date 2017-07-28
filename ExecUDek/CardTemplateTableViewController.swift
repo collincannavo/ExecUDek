@@ -8,7 +8,16 @@
 
 import UIKit
 
-class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameTextField.delegate = self
+        titleTextField.delegate = self
+        cellTextField.delegate = self
+        emailTextField.delegate = self
+    }
+
     
     // TableView TextFields
     @IBOutlet weak var nameTextField: UITextField!
@@ -89,11 +98,37 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         picker.dismiss(animated: true, completion: nil)
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
             delegate?.photoSelectViewControllerSelected(image)
             photoButton.setTitle("", for: UIControlState())
             photoButton.setBackgroundImage(image, for: UIControlState())
         }
+    }
+    
+    // MARK: UITextfieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let name = nameTextField.text, !name.isEmpty,
+                    let cell = cellTextField.text,
+                    let title = titleTextField.text,
+                    let email = emailTextField.text else {return false}
+        nameLabel.text = name
+        titleLabel.text = title
+        cellLabel.text = cell
+        emailLabel.text = email
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let name = nameTextField.text, !name.isEmpty,
+            let cell = cellTextField.text,
+            let title = titleTextField.text,
+            let email = emailTextField.text else {return}
+        nameLabel.text = name
+        titleLabel.text = title
+        cellLabel.text = cell
+        emailLabel.text = email
+        textField.resignFirstResponder()
     }
     
     // MARK: - Helper methods
@@ -110,16 +145,18 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         let template = Template.one
         //let note = noteTextField.text
         let address = addressTextField.text
+        let logoImage = photoButton.backgroundImage(for: UIControlState()) ?? UIImage()
+        let logoData = UIImagePNGRepresentation(logoImage)
         
         switch (cardSenderIsMainScene, card == nil) {
         case (true, true):
-            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: nil, other: nil)
+            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
         case (false, true):
-            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: nil, other: nil)
+            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
         case (_, false):
             guard let card = card else { return }
             
-            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: nil, other: nil)
+            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
         }
     }
     
