@@ -24,6 +24,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1S-43-c4h">
                                 <rect key="frame" x="0.0" y="0.0" width="142" height="158.5"/>
                                 <state key="normal" title="Add Company Logo"/>
+                                <connections>
+                                    <action selector="addCompanyLogoButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pLB-qD-cVK"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqs-qn-iwO">
                                 <rect key="frame" x="142" y="0.0" width="142" height="158.5"/>
@@ -80,6 +83,12 @@
                     <constraint firstAttribute="bottom" secondItem="0Qy-AE-vIF" secondAttribute="bottom" constant="8" id="p0R-Ok-Avd"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="cellLabel" destination="3r6-ew-FHx" id="Zc9-L3-gMq"/>
+                <outlet property="emailLabel" destination="b2m-TL-hc4" id="DOD-ak-PGy"/>
+                <outlet property="nameLabel" destination="ykn-xQ-34K" id="7fh-0w-Cvl"/>
+                <outlet property="titleLabel" destination="1o9-aP-z0X" id="AIE-kG-HZm"/>
+            </connections>
             <point key="canvasLocation" x="19" y="36"/>
         </tableViewCell>
     </objects>

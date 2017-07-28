@@ -12,12 +12,16 @@ import UIKit
 class CommonCardTableViewCell: UITableViewCell {
 
     var card: Card?
-    
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
+
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var cellLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBAction func addCompanyLogoButtonTapped(_ sender: Any) {
+        
+        
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

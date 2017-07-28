@@ -17,6 +17,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         titleTextField.delegate = self
         cellTextField.delegate = self
         emailTextField.delegate = self
+        
+        if let customView = Bundle.main.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
+            cardContentView.addSubview(customView)
+            commonCardXIB = customView
+            
+        }
     }
 
     
@@ -28,6 +34,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     //@IBOutlet weak var noteTextField: UITextField!
+    @IBOutlet weak var cardContentView: UIView!
     @IBOutlet weak var websiteTextField: UITextField!
     
     // UIView Labels
@@ -40,6 +47,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     // MARK: - Properties
     var cardSenderIsMainScene: Bool = false
     var card: Card?
+    var commonCardXIB: CommonCardTableViewCell?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -110,15 +118,18 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         return true
     }
     
+
     func textFieldDidEndEditing(_ textField: UITextField) {
+    
+        
         guard let name = nameTextField.text, !name.isEmpty,
             let cell = cellTextField.text,
             let title = titleTextField.text,
             let email = emailTextField.text else {return}
-        nameLabel.text = name
-        titleLabel.text = title
-        cellLabel.text = cell
-        emailLabel.text = email
+        commonCardXIB?.nameLabel.text = name
+        commonCardXIB?.titleLabel.text = title
+        commonCardXIB?.cellLabel.text = cell
+        commonCardXIB?.emailLabel.text = email
         textField.resignFirstResponder()
     }
     
@@ -159,6 +170,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         //noteTextField.text = card?.note
         addressTextField.text = card?.address
     }
+    
+
     
     weak var delegate: PhotoSelectViewControllerDelegate?
 }
