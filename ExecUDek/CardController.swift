@@ -37,8 +37,11 @@ class CardController {
         
         let template = Template.one
         
+        guard let person = PersonController.shared.currentPerson else { return }
+        
         let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
+        PersonController.shared.addCard(card, to: person)
         card.cardData = cardData
         
         CloudKitContoller.shared.create(card: card) { (record, error) in
@@ -46,6 +49,14 @@ class CardController {
                 NSLog("Error encountered while saving card to CK: \(error.localizedDescription)")
                 return
             }
+            
+            guard let personCKRecordID = person.cKRecordID,
+                let record = record else { return }
+            
+            let reference = CKReference(recordID: record.recordID, action: .none)
+            
+            PersonController.shared.addCardReference(reference, to: person)
+            CloudKitContoller.shared.updateRecord(recordID: personCKRecordID)
         }
     }
     
