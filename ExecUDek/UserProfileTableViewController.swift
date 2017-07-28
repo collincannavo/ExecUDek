@@ -25,12 +25,15 @@ class UserProfileTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 0
+        return PersonController.shared.currentPerson?.personalCards.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "userProfileCell", for: indexPath) as? UserProfileTableViewCell else {return UITableViewCell()}
-
+        
+        let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+        cell.card = card
+        
         return cell
     }
 }
