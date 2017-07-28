@@ -28,7 +28,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var photoButton: UIButton!
     
     // MARK: - Properties
-    var cardSenderIsMainScene: Bool = true
+    var cardSenderIsMainScene: Bool = false
     var card: Card?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

@@ -93,7 +93,7 @@ class CloudKitContoller {
             
             let appleUserReference = CKReference(recordID: appleUserRecordID, action: .none)
             
-            let predicate = NSPredicate(format: "appleUserReference == %@", appleUserReference)
+            let predicate = NSPredicate(format: "\(Person.appleUserReferenceKey) == %@", appleUserReference)
             
             let query = CKQuery(recordType: Person.recordType, predicate: predicate)
             

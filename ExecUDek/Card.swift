@@ -102,6 +102,8 @@ class Card {
         record.setValue(logoData, forKey: Card.logoDataKey)
         record.setValue(other, forKey: Card.otherKey)
         
+        record.setValue(parentCKReference, forKey: Card.parentKey)
+        
         return record
     }
     

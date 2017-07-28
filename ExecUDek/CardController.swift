@@ -23,6 +23,7 @@ class CardController {
         let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
         PersonController.shared.addPersonalCard(card, to: person)
+        card.parentCKReference = PersonController.shared.currentPerson?.ckReference
         
         CloudKitContoller.shared.create(card: card) { (record, error) in
             if let error = error {
@@ -83,7 +84,7 @@ class CardController {
     func fetchPersonalCards() {
         guard let currentPersonCKRecordID = PersonController.shared.currentPerson?.cKRecordID else { return }
         let currentPersonCKReference = CKReference(recordID: currentPersonCKRecordID, action: .none)
-        let predicate = NSPredicate(format: "%@ == %@", Card.parentKey, currentPersonCKReference)
+        let predicate = NSPredicate(format: "\(Card.parentKey) == %@", currentPersonCKReference)
         
         CloudKitContoller.shared.fetchCards(with: predicate, completion: { (records, error) in
             if let error = error {

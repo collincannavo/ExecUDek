@@ -13,6 +13,7 @@ class Person {
     
     static let nameKey = "name"
     static let recordType = "Person"
+    static let appleUserReferenceKey = "appleUserReference"
     
     var cKRecordID: CKRecordID?
     var userCKReference: CKReference?
@@ -22,11 +23,17 @@ class Person {
     var personalCards: [Card] = []
     var cards: [Card] = []
     
+    var ckReference: CKReference? {
+        guard let ckRecordID = cKRecordID else { return nil }
+        return CKReference(recordID: ckRecordID, action: .none)
+    }
+    
     var CKrecord: CKRecord {
         let recordID = self.cKRecordID ?? CKRecordID(recordName: UUID().uuidString)
         
         let record = CKRecord(recordType: Person.recordType, recordID: recordID)
         record[Person.nameKey] = name as CKRecordValue?
+        record[Person.appleUserReferenceKey] = userCKReference as CKRecordValue?
         
         self.cKRecordID = recordID
         
