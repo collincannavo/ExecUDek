@@ -103,8 +103,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             delegate?.photoSelectViewControllerSelected(image)
-            photoButton.setTitle("", for: UIControlState())
-            photoButton.setBackgroundImage(image, for: UIControlState())
+            commonCardXIB?.photoButton.setTitle("", for: UIControlState())
+            commonCardXIB?.photoButton.setBackgroundImage(image, for: UIControlState())
         }
     }
     
