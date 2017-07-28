@@ -14,6 +14,7 @@ class Person {
     static let nameKey = "name"
     static let recordType = "Person"
     static let appleUserReferenceKey = "appleUserReference"
+    static let receivedCardsKey = "receivedCards"
     
     var cKRecordID: CKRecordID?
     var userCKReference: CKReference?
@@ -35,6 +36,10 @@ class Person {
         record[Person.nameKey] = name as CKRecordValue?
         record[Person.appleUserReferenceKey] = userCKReference as CKRecordValue?
         
+        if !receivedCards.isEmpty {
+            record[Person.receivedCardsKey] = receivedCards as CKRecordValue?
+        }
+        
         self.cKRecordID = recordID
         
         return record
@@ -46,10 +51,15 @@ class Person {
     }
     
     init?(CKRecord: CKRecord) {
-        guard let name = CKRecord[Person.nameKey] as? String else {return nil}
+        guard let name = CKRecord[Person.nameKey] as? String else { return nil }
         self.name = name
-        self.cKRecordID = CKRecord.recordID
         
+        self.userCKReference = CKRecord[Person.appleUserReferenceKey] as? CKReference
+        
+        let receivedCards = CKRecord[Person.receivedCardsKey] as? [CKReference] ?? []
+        self.receivedCards = receivedCards
+        
+        self.cKRecordID = CKRecord.recordID
     }
 }
 
