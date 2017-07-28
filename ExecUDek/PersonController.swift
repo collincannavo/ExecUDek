@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CloudKit
 
 class PersonController {
     
@@ -20,6 +21,10 @@ class PersonController {
     
     func addCard(_ card: Card, to person: Person) {
         person.cards.append(card)
+    }
+    
+    func addCardReference(_ reference : CKReference, to person: Person) {
+        person.receivedCards.append(reference)
     }
     
     func deleteCard(_ card: Card, from person: Person) {

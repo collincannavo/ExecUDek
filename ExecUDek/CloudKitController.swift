@@ -39,14 +39,19 @@ class CloudKitContoller {
         }
     }
     
-    func updateRecord(record: CKRecord) {
+    func updateRecord(recordID: CKRecordID) {
         
-        let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
-        operation.savePolicy = .changedKeys
-        operation.queuePriority = .high
-        operation.qualityOfService = .userInteractive
-        
-        CKContainer.default().publicCloudDatabase.add(operation)
+        fetchRecord(with: recordID) { (record, error) in
+            if let error = error { NSLog("Error encountered while fetching record to update: \(error.localizedDescription)"); return }
+            guard let record = record else { NSLog("Record returned for update operation is nil"); return }
+            
+            let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
+            operation.savePolicy = .changedKeys
+            operation.queuePriority = .high
+            operation.qualityOfService = .userInteractive
+            
+            CKContainer.default().publicCloudDatabase.add(operation)
+        }
     }
     
     func deleteRecord(recordID: CKRecordID) {
