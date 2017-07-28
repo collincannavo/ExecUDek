@@ -20,6 +20,8 @@ class UserProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
     }
     
     // MARK: - Table view data source
@@ -29,10 +31,12 @@ class UserProfileTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userProfileCell", for: indexPath) as? UserProfileTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userProfileCell", for: indexPath) as? CommonCardTableViewCell else {return UITableViewCell()}
         
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
         cell.card = card
+        
+        
         
         return cell
     }

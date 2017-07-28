@@ -36,7 +36,7 @@ class CommonCardTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func update() {
+    func updateCell(withCardImage: UIImage) {
         guard let name = nameLabel.text,
             let title = titleLabel.text,
             let cell = cellLabel.text,
