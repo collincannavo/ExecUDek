@@ -31,7 +31,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         cardSearchBar.delegate = self
         cardSearchBar.returnKeyType = UIReturnKeyType.done
         
-        tableView.register(CommonCardTableViewCell.self, forCellReuseIdentifier: "cardCell")
+        let yourXIBName = UINib(nibName: "CommonCardTableViewCell", bundle: nil)
+        tableView.register(yourXIBName, forCellReuseIdentifier: "cardCell")
     }
     
     // MARK: - Search bar delegate
