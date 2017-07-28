@@ -24,6 +24,7 @@ class UserProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var faxLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
+    @IBOutlet weak var logoPhotoImageView: UIImageView!
     
     func updateView(){
         guard let card = card else {return}
@@ -35,6 +36,6 @@ class UserProfileTableViewCell: UITableViewCell {
         faxLabel.text = "Fax"
         emailLabel.text = card.email
         websiteLabel.text = "Website"
-        
+        if let logoData = card.logoData { logoPhotoImageView.image = UIImage(data: logoData) }        
     }
 }

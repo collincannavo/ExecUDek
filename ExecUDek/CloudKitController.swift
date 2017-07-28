@@ -49,9 +49,9 @@ class CloudKitContoller {
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-    func deleteRecord(record: CKRecord) {
+    func deleteRecord(recordID: CKRecordID) {
         
-        let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [record.recordID])
+        let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [recordID])
         operation.savePolicy = .changedKeys
         operation.queuePriority = .high
         operation.qualityOfService = .userInteractive

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qiv-AY-TNN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qiv-AY-TNN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -389,6 +389,7 @@
                         <outlet property="nameLabel" destination="bwO-y3-KlM" id="mQz-VW-XUQ"/>
                         <outlet property="nameTextField" destination="ebf-tk-oba" id="4i7-d7-cNg"/>
                         <outlet property="officeNumberTextField" destination="w8o-DA-FKg" id="laJ-8G-Wi7"/>
+                        <outlet property="photoButton" destination="HoD-aL-FxJ" id="eKj-vf-WJ7"/>
                         <outlet property="titleLabel" destination="pxG-Gx-zcg" id="gXw-zZ-sjx"/>
                         <outlet property="titleTextField" destination="TN2-jy-8pl" id="8tt-zM-fp3"/>
                         <outlet property="websiteTextField" destination="DeU-5s-coa" id="1Ar-ft-Bes"/>
