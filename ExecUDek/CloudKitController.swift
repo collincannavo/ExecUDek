@@ -30,14 +30,6 @@ class CloudKitContoller {
         
         CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
             completion(records, error)
-            
-            
-//            if let error = error {
-//                NSLog(error.localizedDescription)
-//                return
-//            }
-//            
-//            guard let records = records else { return }
         }
     }
     
@@ -71,7 +63,7 @@ class CloudKitContoller {
         
         CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
             
-            if let error = error { print(error.localizedDescription) }
+            if let error = error { print(error.localizedDescription); completion(false); return }
             
             guard let appleUserRecordID = appleUserRecordID else { completion(false); return }
             
@@ -92,12 +84,12 @@ class CloudKitContoller {
         }
     }
     
-    func fetchCurrentUser(completion: @escaping (Bool) -> Void) {
+    func fetchCurrentUser(completion: @escaping (Bool, Person?) -> Void) {
         
         CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
-            if let error = error { print(error.localizedDescription) }
+            if let error = error { print(error.localizedDescription); completion(false, nil); return }
             
-            guard let appleUserRecordID = appleUserRecordID else { completion(false); return }
+            guard let appleUserRecordID = appleUserRecordID else { completion(false, nil); return }
             
             let appleUserReference = CKReference(recordID: appleUserRecordID, action: .none)
             
@@ -106,15 +98,15 @@ class CloudKitContoller {
             let query = CKQuery(recordType: Person.recordType, predicate: predicate)
             
             CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil, completionHandler: { (records, error) in
-                if let error = error { print(error.localizedDescription) }
+                if let error = error { print(error.localizedDescription); completion(false, nil); return }
                 
-                guard let currentUserRecord = records?.first else { completion(false); return }
+                guard let currentUserRecord = records?.first else { completion(true, nil); return }
                 
                 let currentPerson = Person(CKRecord: currentUserRecord)
                 
                 PersonController.shared.currentPerson = currentPerson
                 
-                completion(true)
+                completion(true, currentPerson)
             })
         }
     }

@@ -12,7 +12,7 @@ import CloudKit
 class Person {
     
     static let nameKey = "name"
-    static let recordType = "User"
+    static let recordType = "Person"
     
     var cKRecordID: CKRecordID?
     var userCKReference: CKReference?

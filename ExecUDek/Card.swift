@@ -94,7 +94,7 @@ class Card {
         record.setValue(cell, forKey: Card.cellKey)
         record.setValue(officeNumber, forKey: Card.officeNumberKey)
         record.setValue(email, forKey: Card.emailKey)
-        record.setValue(template, forKey: Card.templateKey)
+        record.setValue(template.rawValue, forKey: Card.templateKey)
         record.setValue(companyName, forKey: Card.companyNameKey)
         record.setValue(note, forKey: Card.noteKey)
         record.setValue(address, forKey: Card.addressKey)

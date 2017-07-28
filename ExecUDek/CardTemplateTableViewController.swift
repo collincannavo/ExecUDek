@@ -17,7 +17,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var officeNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
-    @IBOutlet weak var noteTextField: UITextField!
+    //@IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
     
     // UIView Labels
@@ -107,18 +107,18 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         let officeNumber = Int(officeNumberTextField.text ?? "")
         let template = Template.one
-        let note = noteTextField.text
+        //let note = noteTextField.text
         let address = addressTextField.text
         
         switch (cardSenderIsMainScene, card == nil) {
         case (true, true):
             CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: nil, other: nil)
         case (false, true):
-            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: note, address: address, avatarData: nil, logoData: nil, other: nil)
+            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: nil, other: nil)
         case (_, false):
             guard let card = card else { return }
             
-            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: note, address: address, avatarData: nil, logoData: nil, other: nil)
+            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: nil, other: nil)
         }
     }
     
@@ -127,7 +127,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         titleTextField.text = card?.title
         emailTextField.text = card?.email
         if let officeNumber = card?.officeNumber { officeNumberTextField.text = "\(officeNumber)" }
-        noteTextField.text = card?.note
+        //noteTextField.text = card?.note
         addressTextField.text = card?.address
     }
     

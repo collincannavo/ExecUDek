@@ -14,6 +14,7 @@ class UserProfileTableViewController: UITableViewController {
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

@@ -17,9 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        CloudKitContoller.shared.fetchCurrentUser { (success) in
+        CloudKitContoller.shared.fetchCurrentUser { (success, person) in
             if success {
-                CardController.shared.fetchPersonalCards()
+                if person != nil {
+                    CardController.shared.fetchPersonalCards()
+                } else {
+                    CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in } )
+                }
             }
         }
 
