@@ -11,15 +11,17 @@ import UIKit
 
 class CommonCardTableViewCell: UITableViewCell {
 
+
     var card: Card?
 
+    @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBAction func addCompanyLogoButtonTapped(_ sender: Any) {
-        
-        
+        guard let buttonTapped = sender as? UIButton else { return }
+        delegate?.photoSelectCellSelected(cellButtonTapped: buttonTapped)
     }
     
     
@@ -52,6 +54,7 @@ class CommonCardTableViewCell: UITableViewCell {
         
         
     }
+
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -98,7 +101,11 @@ class CommonCardTableViewCell: UITableViewCell {
             return true
         }
     }
-
+    
+    weak var delegate: PhotoSelctorCellDelegate?
 }
 
 
+protocol PhotoSelctorCellDelegate : class {
+    func photoSelectCellSelected(cellButtonTapped: UIButton)
+}

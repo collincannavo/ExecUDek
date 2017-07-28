@@ -9,7 +9,7 @@
 import UIKit
 import CloudKit
 
-class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,13 +18,13 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         cellTextField.delegate = self
         emailTextField.delegate = self
         
+        
         if let customView = Bundle.main.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
             cardContentView.addSubview(customView)
             commonCardXIB = customView
-            
+            commonCardXIB?.delegate = self
         }
     }
-
     
     // TableView TextFields
     @IBOutlet weak var nameTextField: UITextField!
@@ -49,6 +49,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     var card: Card?
     var commonCardXIB: CommonCardTableViewCell?
     
+    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -68,7 +69,11 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func selectPhotoTapped(_ sender: UIButton) {
+    func photoSelectCellSelected(cellButtonTapped: UIButton) {
+        selectPhotoTapped(sender: cellButtonTapped)
+    }
+    
+    func selectPhotoTapped(sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
@@ -120,7 +125,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-    
         
         guard let name = nameTextField.text, !name.isEmpty,
             let cell = cellTextField.text,
@@ -170,8 +174,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         //noteTextField.text = card?.note
         addressTextField.text = card?.address
     }
-    
-
     
     weak var delegate: PhotoSelectViewControllerDelegate?
 }

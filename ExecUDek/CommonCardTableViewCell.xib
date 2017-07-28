@@ -87,6 +87,7 @@
                 <outlet property="cellLabel" destination="3r6-ew-FHx" id="Zc9-L3-gMq"/>
                 <outlet property="emailLabel" destination="b2m-TL-hc4" id="DOD-ak-PGy"/>
                 <outlet property="nameLabel" destination="ykn-xQ-34K" id="7fh-0w-Cvl"/>
+                <outlet property="photoButton" destination="J1S-43-c4h" id="OSG-k4-MM3"/>
                 <outlet property="titleLabel" destination="1o9-aP-z0X" id="AIE-kG-HZm"/>
             </connections>
             <point key="canvasLocation" x="19" y="36"/>
