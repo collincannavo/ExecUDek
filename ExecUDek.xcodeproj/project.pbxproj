@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		182143181F2A5B4400CCF3B5 /* CardTemplateTableViewController+CKSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182143171F2A5B4400CCF3B5 /* CardTemplateTableViewController+CKSave.swift */; };
+		1821431C1F2AB90900CCF3B5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821431B1F2AB90900CCF3B5 /* CloudKit.framework */; };
 		188F231F1F28F176007B9F20 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F231E1F28F176007B9F20 /* CardController.swift */; };
 		188F23211F28F30B007B9F20 /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23201F28F30B007B9F20 /* PersonController.swift */; };
 		188F23231F290F80007B9F20 /* CardsSceneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */; };
@@ -33,7 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		182143171F2A5B4400CCF3B5 /* CardTemplateTableViewController+CKSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardTemplateTableViewController+CKSave.swift"; sourceTree = "<group>"; };
+		182143191F2AB89200CCF3B5 /* ExecUDek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExecUDek.entitlements; sourceTree = "<group>"; };
+		1821431B1F2AB90900CCF3B5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		188F231E1F28F176007B9F20 /* CardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
 		188F23201F28F30B007B9F20 /* PersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 		188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardsSceneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -65,17 +66,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1821431C1F2AB90900CCF3B5 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1821431A1F2AB90900CCF3B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1821431B1F2AB90900CCF3B5 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B6A28A551F27DF4300786B97 = {
 			isa = PBXGroup;
 			children = (
 				B6A28A601F27DF4300786B97 /* ExecUDek */,
 				B6A28A5F1F27DF4300786B97 /* Products */,
+				1821431A1F2AB90900CCF3B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +101,7 @@
 		B6A28A601F27DF4300786B97 /* ExecUDek */ = {
 			isa = PBXGroup;
 			children = (
+				182143191F2AB89200CCF3B5 /* ExecUDek.entitlements */,
 				B6A28A9E1F290D9000786B97 /* View */,
 				B6A28A991F290D4000786B97 /* Storyboards */,
 				B6A28A9A1F290D5200786B97 /* Models */,
@@ -150,7 +162,6 @@
 				188F23241F2914F7007B9F20 /* CardsViewController.swift */,
 				B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */,
 				F05962611F299C65002C967B /* UserProfileTableViewController.swift */,
-				182143171F2A5B4400CCF3B5 /* CardTemplateTableViewController+CKSave.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -198,8 +209,16 @@
 				TargetAttributes = {
 					B6A28A5D1F27DF4300786B97 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = X458A5BXZ4;
+						DevelopmentTeam = QFVJ6KY7E2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -251,7 +270,6 @@
 				F0A553091F27ED25001F8B8F /* Person.swift in Sources */,
 				B6A28AA51F2A662000786B97 /* CommonCardTableViewCell.swift in Sources */,
 				188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */,
-				182143181F2A5B4400CCF3B5 /* CardTemplateTableViewController+CKSave.swift in Sources */,
 				F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */,
 				188F23211F28F30B007B9F20 /* PersonController.swift in Sources */,
 				B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */,
@@ -383,10 +401,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X458A5BXZ4;
+				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
+				DEVELOPMENT_TEAM = QFVJ6KY7E2;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.collincannavo.ExecUDek;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -396,10 +415,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X458A5BXZ4;
+				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
+				DEVELOPMENT_TEAM = QFVJ6KY7E2;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.collincannavo.ExecUDek;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

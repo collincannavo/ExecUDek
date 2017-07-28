@@ -32,9 +32,11 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     var card: Card?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        saveCardToCloudKit()
     }
     
 //    @IBAction func deleteButtonTapped(_ sender: Any) {
@@ -91,6 +93,42 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             photoButton.setTitle("", for: UIControlState())
             photoButton.setBackgroundImage(image, for: UIControlState())
         }
+    }
+    
+    // MARK: - Helper methods
+    
+    func saveCardToCloudKit() {
+        
+        guard let name = nameTextField.text else { return }
+        
+        let title = titleTextField.text
+        let cell = Int(cellTextField.text ?? "")
+        let email = emailTextField.text
+        
+        let officeNumber = Int(officeNumberTextField.text ?? "")
+        let template = Template.one
+        let note = noteTextField.text
+        let address = addressTextField.text
+        
+        switch (cardSenderIsMainScene, card == nil) {
+        case (true, true):
+            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: nil, other: nil)
+        case (false, true):
+            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: note, address: address, avatarData: nil, logoData: nil, other: nil)
+        case (_, false):
+            guard let card = card else { return }
+            
+            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: note, address: address, avatarData: nil, logoData: nil, other: nil)
+        }
+    }
+    
+    func updateViews() {
+        nameTextField.text = card?.name
+        titleTextField.text = card?.title
+        emailTextField.text = card?.email
+        if let officeNumber = card?.officeNumber { officeNumberTextField.text = "\(officeNumber)" }
+        noteTextField.text = card?.note
+        addressTextField.text = card?.address
     }
     
     weak var delegate: PhotoSelectViewControllerDelegate?
