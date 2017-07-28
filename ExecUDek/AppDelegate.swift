@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if success {
                 if person != nil {
                     CardController.shared.fetchPersonalCards()
+                    CardController.shared.fetchReceivedCards()
                 } else {
                     CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in } )
                 }
