@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SharedExecUDek
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

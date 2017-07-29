@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import CloudKit
 
-class CardController {
+public class CardController {
     
-    static let shared = CardController()
+    public static let shared = CardController()
     
     // CRUD
     
-    func createPersonalCardWith(name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func createPersonalCardWith(name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
         
         guard let person = PersonController.shared.currentPerson else { return }
         
@@ -33,7 +33,7 @@ class CardController {
         }
     }
     
-    func createCardWith(cardData: Data?, name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func createCardWith(cardData: Data?, name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
         
         let template = Template.one
         
@@ -60,7 +60,7 @@ class CardController {
         }
     }
     
-    func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
         
         card.cardData = cardData
         card.name = name
@@ -79,7 +79,7 @@ class CardController {
         //CloudKitContoller.shared.updateRecord(record: <#T##CKRecord#>)
     }
     
-    func fetchCards() {
+    public func fetchCards() {
         guard let currentPerson = PersonController.shared.currentPerson else { return }
         currentPerson.receivedCards.forEach { receivedCardReference in
             CloudKitContoller.shared.fetchRecord(with: receivedCardReference.recordID, completion: { (record, error) in
@@ -92,7 +92,7 @@ class CardController {
         }
     }
     
-    func fetchPersonalCards() {
+    public func fetchPersonalCards() {
         guard let currentPersonCKRecordID = PersonController.shared.currentPerson?.cKRecordID else { return }
         let currentPersonCKReference = CKReference(recordID: currentPersonCKRecordID, action: .none)
         let predicate = NSPredicate(format: "\(Card.parentKey) == %@", currentPersonCKReference)
@@ -109,7 +109,7 @@ class CardController {
         })
     }
     
-    func fetchReceivedCards() {
+    public func fetchReceivedCards() {
         
         guard let currentPerson = PersonController.shared.currentPerson else { return }
         
