@@ -163,6 +163,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1881BBF31F2CFE010070C1F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1881BBF41F2CFE0E0070C1F4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1881BBF51F2CFE180070C1F4 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ModelControllers;
+			sourceTree = "<group>";
+		};
+		1881BBF61F2CFE220070C1F4 /* SharedResources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SharedResources;
+			sourceTree = "<group>";
+		};
 		188F23311F2957F8007B9F20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +216,10 @@
 		18B70A021F2985B5002DDB17 /* SharedExecUDek */ = {
 			isa = PBXGroup;
 			children = (
+				1881BBF61F2CFE220070C1F4 /* SharedResources */,
+				1881BBF31F2CFE010070C1F4 /* View */,
+				1881BBF41F2CFE0E0070C1F4 /* Models */,
+				1881BBF51F2CFE180070C1F4 /* ModelControllers */,
 				18B70A031F2985B5002DDB17 /* SharedExecUDek.h */,
 				18B70A041F2985B5002DDB17 /* Info.plist */,
 			);
