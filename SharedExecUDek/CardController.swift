@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import CloudKit
-import SharedExecUDek
 
 class CardController {
     
@@ -18,9 +17,9 @@ class CardController {
     // CRUD
     
     func createPersonalCardWith(name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
-
+        
         guard let person = PersonController.shared.currentPerson else { return }
-
+        
         let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
         PersonController.shared.addPersonalCard(card, to: person)
