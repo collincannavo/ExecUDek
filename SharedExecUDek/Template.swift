@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum Template: String {
+public enum Template: String {
     case one
 }

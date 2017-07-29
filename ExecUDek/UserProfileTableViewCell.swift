@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SharedExecUDek
 
 class UserProfileTableViewCell: UITableViewCell {
     

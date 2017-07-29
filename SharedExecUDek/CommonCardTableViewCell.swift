@@ -8,40 +8,27 @@
 
 import UIKit
 
-
-class CommonCardTableViewCell: UITableViewCell {
-
-
-    var card: Card?
-
-    @IBOutlet weak var photoButton: UIButton!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBAction func addCompanyLogoButtonTapped(_ sender: Any) {
+public class CommonCardTableViewCell: UITableViewCell {
+    
+    
+    public var card: Card?
+    
+    @IBOutlet public weak var photoButton: UIButton!
+    @IBOutlet public weak var nameLabel: UILabel!
+    @IBOutlet public weak var titleLabel: UILabel!
+    @IBOutlet public weak var cellLabel: UILabel!
+    @IBOutlet public weak var emailLabel: UILabel!
+    @IBAction public func addCompanyLogoButtonTapped(_ sender: Any) {
         guard let buttonTapped = sender as? UIButton else { return }
         delegate?.photoSelectCellSelected(cellButtonTapped: buttonTapped)
     }
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    func updateCell(withCardImage: UIImage) {
+    public func updateCell(withCardImage: UIImage) {
         guard let name = nameLabel.text,
             let title = titleLabel.text,
             let cell = cellLabel.text,
             let email = emailLabel.text
-        else { return }
+            else { return }
         
         let numberFormatter = NumberFormatter()
         let cellphone = numberFormatter.number(from: cell)
@@ -54,7 +41,7 @@ class CommonCardTableViewCell: UITableViewCell {
         
         
     }
-
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -102,10 +89,10 @@ class CommonCardTableViewCell: UITableViewCell {
         }
     }
     
-    weak var delegate: PhotoSelctorCellDelegate?
+    public weak var delegate: PhotoSelctorCellDelegate?
 }
 
 
-protocol PhotoSelctorCellDelegate : class {
+public protocol PhotoSelctorCellDelegate : class {
     func photoSelectCellSelected(cellButtonTapped: UIButton)
 }

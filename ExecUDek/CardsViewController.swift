@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SharedExecUDek
 
 class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -31,7 +32,9 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         cardSearchBar.delegate = self
         cardSearchBar.returnKeyType = UIReturnKeyType.done
         
-        let yourXIBName = UINib(nibName: "CommonCardTableViewCell", bundle: nil)
+        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let yourXIBName = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
+        
         tableView.register(yourXIBName, forCellReuseIdentifier: "cardCell")
     }
     

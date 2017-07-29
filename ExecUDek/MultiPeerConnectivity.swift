@@ -8,6 +8,7 @@
 
 import Foundation
 import MultipeerConnectivity
+import SharedExecUDek
 
 class MPC : NSObject {
     static var shared = MPC()

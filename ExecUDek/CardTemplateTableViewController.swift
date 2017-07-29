@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import SharedExecUDek
 
 class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate {
     
@@ -18,8 +19,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         cellTextField.delegate = self
         emailTextField.delegate = self
         
-        
-        if let customView = Bundle.main.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
+        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
             cardContentView.addSubview(customView)
             commonCardXIB = customView
             commonCardXIB?.delegate = self

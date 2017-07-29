@@ -10,56 +10,56 @@ import Foundation
 import CloudKit
 import UIKit
 
-class Card {
+public class Card {
     
-    static let recordTypeKey = "Card"
-    static let nameKey = "name"
-    static let titleKey = "title"
-    static let cellKey = "cell"
-    static let officeNumberKey = "officeNumber"
-    static let emailKey = "email"
-    static let templateKey = "template"
-    static let companyNameKey = "companyName"
-    static let noteKey = "note"
-    static let addressKey = "address"
-    static let avatarDataKey = "avatarData"
-    static let logoDataKey = "logoData"
-    static let otherKey = "other"
-    static let parentKey = "parent"
-    static let imageKey = "image"
+    public static let recordTypeKey = "Card"
+    public static let nameKey = "name"
+    public static let titleKey = "title"
+    public static let cellKey = "cell"
+    public static let officeNumberKey = "officeNumber"
+    public static let emailKey = "email"
+    public static let templateKey = "template"
+    public static let companyNameKey = "companyName"
+    public static let noteKey = "note"
+    public static let addressKey = "address"
+    public static let avatarDataKey = "avatarData"
+    public static let logoDataKey = "logoData"
+    public static let otherKey = "other"
+    public static let parentKey = "parent"
+    public static let imageKey = "image"
     
     // Cloud kit syncable
-    var ckRecordID: CKRecordID?
+    public var ckRecordID: CKRecordID?
     
-    var ckReference: CKReference? {
+    public var ckReference: CKReference? {
         
         guard let ckRecordID = ckRecordID else { return nil }
         
         return CKReference(recordID: ckRecordID, action: .none)
     }
     
-    var parentCKRecordID: CKRecordID? {
+    public var parentCKRecordID: CKRecordID? {
         return parentCKReference?.recordID
     }
     
-    var parentCKReference: CKReference?
+    public var parentCKReference: CKReference?
     
-    var name: String
-    var title: String?
-    var cell: Int?
-    var officeNumber: Int?
-    var email: String?
-    var template: Template
-    var companyName: String?
-    var note: String?
-    var address: String?
-    var avatarData: Data?
-    var logoData: Data?
-    var other: String?
+    public var name: String
+    public var title: String?
+    public var cell: Int?
+    public var officeNumber: Int?
+    public var email: String?
+    public var template: Template
+    public var companyName: String?
+    public var note: String?
+    public var address: String?
+    public var avatarData: Data?
+    public var logoData: Data?
+    public var other: String?
     
-    var cardData: Data?
+    public var cardData: Data?
     
-    init(name: String,
+    public init(name: String,
          title: String? = nil,
          cell: Int? = nil,
          officeNumber: Int? = nil,
@@ -86,7 +86,7 @@ class Card {
         self.other = other
     }
     
-    var ckRecord: CKRecord {
+    public var ckRecord: CKRecord {
         
         let record = CKRecord(recordType: Card.recordTypeKey)
         record.setValue(name, forKey: Card.nameKey)
@@ -107,7 +107,7 @@ class Card {
         return record
     }
     
-    convenience init?(ckRecord: CKRecord) {
+    public convenience init?(ckRecord: CKRecord) {
         guard let name = ckRecord[Card.nameKey] as? String,
             let templateRawValue = ckRecord[Card.templateKey] as? String,
             let template = Template(rawValue: templateRawValue) else { return nil }
@@ -137,7 +137,7 @@ class Card {
 }
 
 extension Card: Equatable {
-    static func ==(lhs: Card, rhs: Card) -> Bool {
+    public static func ==(lhs: Card, rhs: Card) -> Bool {
         if lhs.name != rhs.name { return false }
         if lhs.title != rhs.title { return false }
         if lhs.cell != rhs.cell { return false }
