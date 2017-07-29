@@ -53,13 +53,25 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UK1-Qu-EUT">
                                                     <rect key="frame" x="0.0" y="8" width="279" height="144"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgR-mM-Zhp">
+                                                    <rect key="frame" x="-0.5" y="8" width="279" height="144"/>
+                                                    <connections>
+                                                        <action selector="cardPhotoImageViewTapped:" destination="WXk-Q4-pGR" eventType="touchUpInside" id="yEe-Pa-uXF"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="UK1-Qu-EUT" secondAttribute="trailing" id="87Y-a8-LdV"/>
                                                 <constraint firstAttribute="bottom" secondItem="UK1-Qu-EUT" secondAttribute="bottom" constant="8" id="Bac-Fa-2En"/>
                                                 <constraint firstItem="UK1-Qu-EUT" firstAttribute="top" secondItem="6cs-jx-ZDK" secondAttribute="top" constant="8" id="Gb7-pg-Lpx"/>
+                                                <constraint firstItem="GgR-mM-Zhp" firstAttribute="centerY" secondItem="6cs-jx-ZDK" secondAttribute="centerY" id="bcj-2D-E4j"/>
+                                                <constraint firstItem="GgR-mM-Zhp" firstAttribute="width" secondItem="UK1-Qu-EUT" secondAttribute="width" id="bph-NX-6DJ"/>
                                                 <constraint firstItem="UK1-Qu-EUT" firstAttribute="leading" secondItem="6cs-jx-ZDK" secondAttribute="leading" id="e4m-yb-m5E"/>
+                                                <constraint firstItem="GgR-mM-Zhp" firstAttribute="centerX" secondItem="6cs-jx-ZDK" secondAttribute="centerX" id="ikq-NR-yml"/>
+                                                <constraint firstItem="GgR-mM-Zhp" firstAttribute="height" secondItem="UK1-Qu-EUT" secondAttribute="height" id="p23-ND-HKc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Messages
+import CloudKit
 
-class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EXTCardTableViewCellDelegate {
+    
+    var conversation: MSConversation?
 
     let cardImages = ["businessCard1", "businessCard2", "businessCard3"]
     
@@ -31,8 +35,16 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "extCardCell", for: indexPath) as? EXTCardTableViewCell,
             let cardImage = UIImage(named: cardImages[indexPath.row]) else { return EXTCardTableViewCell() }
         
+        cell.delegate = self
         cell.updateCell(with: cardImage)
         return cell
+    }
+    
+    // MARK: - EXT card table view cell delegate
+    func extCardPhotoWasTapped(photoData: Data) {
+        guard let conversation = conversation else { return }
+        //MessageController.prepareToSendPNG(with: photoData, in: conversation)
+        MessageController.prepardToSendCard(with: CKRecord(recordType: "Test").recordID, in: conversation)
     }
     
     /*

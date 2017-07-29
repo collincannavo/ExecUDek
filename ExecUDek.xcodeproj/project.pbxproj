@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1821431C1F2AB90900CCF3B5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821431B1F2AB90900CCF3B5 /* CloudKit.framework */; };
+		1881BBF21F2CE7410070C1F4 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BBF11F2CE7410070C1F4 /* MessageController.swift */; };
 		188F231F1F28F176007B9F20 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F231E1F28F176007B9F20 /* CardController.swift */; };
 		188F23211F28F30B007B9F20 /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23201F28F30B007B9F20 /* PersonController.swift */; };
 		188F23231F290F80007B9F20 /* CardsSceneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */; };
@@ -88,6 +89,7 @@
 /* Begin PBXFileReference section */
 		182143191F2AB89200CCF3B5 /* ExecUDek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExecUDek.entitlements; sourceTree = "<group>"; };
 		1821431B1F2AB90900CCF3B5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		1881BBF11F2CE7410070C1F4 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		188F231E1F28F176007B9F20 /* CardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
 		188F23201F28F30B007B9F20 /* PersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 		188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardsSceneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1821431A1F2AB90900CCF3B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1821431B1F2AB90900CCF3B5 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		188F23311F2957F8007B9F20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +180,7 @@
 				188F233C1F2957F8007B9F20 /* Info.plist */,
 				18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */,
 				18B709F81F296FA0002DDB17 /* EXTCardsCompactViewController.swift */,
+				1881BBF11F2CE7410070C1F4 /* MessageController.swift */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -181,14 +192,6 @@
 				18B70A041F2985B5002DDB17 /* Info.plist */,
 			);
 			path = SharedExecUDek;
-			sourceTree = "<group>";
-		};
-		1821431A1F2AB90900CCF3B5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1821431B1F2AB90900CCF3B5 /* CloudKit.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B6A28A551F27DF4300786B97 = {
@@ -374,7 +377,7 @@
 				TargetAttributes = {
 					188F232F1F2957F8007B9F20 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = X458A5BXZ4;
+						DevelopmentTeam = QFVJ6KY7E2;
 						ProvisioningStyle = Automatic;
 					};
 					18B70A001F2985B5002DDB17 = {
@@ -460,6 +463,7 @@
 				188F23361F2957F8007B9F20 /* MessagesViewController.swift in Sources */,
 				18B709F71F296F60002DDB17 /* EXTCardTableViewCell.swift in Sources */,
 				18B709F91F296FA0002DDB17 /* EXTCardsCompactViewController.swift in Sources */,
+				1881BBF21F2CE7410070C1F4 /* MessageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,10 +543,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = X458A5BXZ4;
+				DEVELOPMENT_TEAM = QFVJ6KY7E2;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.collincannavo.ExecUDek.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -553,10 +557,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = X458A5BXZ4;
+				DEVELOPMENT_TEAM = QFVJ6KY7E2;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.collincannavo.ExecUDek.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;

@@ -83,6 +83,7 @@ class MessagesViewController: MSMessagesAppViewController {
             ])
         
         childController.didMove(toParentViewController: self)
+        childController.conversation = conversation
     }
     
     func removeAllChildViewControllers() {
