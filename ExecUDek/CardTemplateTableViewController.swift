@@ -7,44 +7,73 @@
 //
 
 import UIKit
+import CloudKit
 
-class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate {
     
-    // TableView textFields
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var jobTextfield: UITextField!
-    @IBOutlet weak var addressTextField: UITextField!
-    @IBOutlet weak var cityTextField: UITextField!
-    @IBOutlet weak var phoneTextField: UITextField!
-    @IBOutlet weak var faxTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var websiteTextField: UITextField!
-    
-    // UIView labels
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var jobLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var faxLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var websiteLabel: UILabel!
-    @IBOutlet weak var photoButton: UIButton!
-    
-    @IBAction func saveTapped(_ sender: UIButton) {
-        guard let name = nameTextField.text, !name.isEmpty, let job = jobTextfield.text, let address = addressTextField.text, let city = cityTextField.text, let phone = phoneTextField.text, let fax = faxTextField.text, let email = emailTextField.text, let website = websiteTextField.text else {return}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameTextField.delegate = self
+        titleTextField.delegate = self
+        cellTextField.delegate = self
+        emailTextField.delegate = self
         
-        nameLabel.text = name
-        jobLabel.text = job
-        addressLabel.text = address
-        cityLabel.text = city
-        phoneLabel.text = phone
-        faxLabel.text = fax
-        emailLabel.text = email
-        websiteLabel.text = website
+        
+        if let customView = Bundle.main.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
+            cardContentView.addSubview(customView)
+            commonCardXIB = customView
+            commonCardXIB?.delegate = self
+        }
     }
     
-    @IBAction func selectPhotoTapped(_ sender: UIButton) {
+    // TableView TextFields
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var cellTextField: UITextField!
+    @IBOutlet weak var officeNumberTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    //@IBOutlet weak var noteTextField: UITextField!
+    @IBOutlet weak var cardContentView: UIView!
+    @IBOutlet weak var websiteTextField: UITextField!
+    
+    // UIView Labels
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var cellLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var photoButton: UIButton!
+    
+    // MARK: - Properties
+    var cardSenderIsMainScene: Bool = false
+    var card: Card?
+    var commonCardXIB: CommonCardTableViewCell?
+    
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        saveCardToCloudKit()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        
+        if let card = card,
+            let recordID = card.ckRecordID {
+            
+            CloudKitContoller.shared.deleteRecord(recordID: recordID)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func photoSelectCellSelected(cellButtonTapped: UIButton) {
+        selectPhotoTapped(sender: cellButtonTapped)
+    }
+    
+    func selectPhotoTapped(sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
@@ -73,17 +102,85 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         picker.dismiss(animated: true, completion: nil)
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
             delegate?.photoSelectViewControllerSelected(image)
-            photoButton.setTitle("", for: UIControlState())
-            photoButton.setBackgroundImage(image, for: UIControlState())
+            commonCardXIB?.photoButton.setTitle("", for: UIControlState())
+            commonCardXIB?.photoButton.setBackgroundImage(image, for: UIControlState())
         }
+    }
+    
+    // MARK: UITextfieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let name = nameTextField.text, !name.isEmpty,
+                    let cell = cellTextField.text,
+                    let title = titleTextField.text,
+                    let email = emailTextField.text else {return false}
+        nameLabel.text = name
+        titleLabel.text = title
+        cellLabel.text = cell
+        emailLabel.text = email
+        textField.resignFirstResponder()
+        return true
+    }
+    
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        guard let name = nameTextField.text, !name.isEmpty,
+            let cell = cellTextField.text,
+            let title = titleTextField.text,
+            let email = emailTextField.text else {return}
+        commonCardXIB?.nameLabel.text = name
+        commonCardXIB?.titleLabel.text = title
+        commonCardXIB?.cellLabel.text = cell
+        commonCardXIB?.emailLabel.text = email
+        textField.resignFirstResponder()
+    }
+    
+    // MARK: - Helper methods
+    
+    func saveCardToCloudKit() {
+        
+        guard let name = nameTextField.text else { return }
+        
+        let title = titleTextField.text
+        let cell = Int(cellTextField.text ?? "")
+        let email = emailTextField.text
+        
+        let officeNumber = Int(officeNumberTextField.text ?? "")
+        let template = Template.one
+        //let note = noteTextField.text
+        let address = addressTextField.text
+        let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState()) ?? UIImage()
+        let logoData = UIImagePNGRepresentation(logoImage)
+        
+        switch (cardSenderIsMainScene, card == nil) {
+        case (true, true):
+            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
+        case (false, true):
+            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
+        case (_, false):
+            guard let card = card else { return }
+            
+            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
+        }
+    }
+    
+    func updateViews() {
+        nameTextField.text = card?.name
+        titleTextField.text = card?.title
+        emailTextField.text = card?.email
+        if let officeNumber = card?.officeNumber { officeNumberTextField.text = "\(officeNumber)" }
+        //noteTextField.text = card?.note
+        addressTextField.text = card?.address
     }
     
     weak var delegate: PhotoSelectViewControllerDelegate?
 }
 
-// MARK: -
+// MARK:
 protocol PhotoSelectViewControllerDelegate: class {
     func photoSelectViewControllerSelected(_ image: UIImage)
 }
+
+

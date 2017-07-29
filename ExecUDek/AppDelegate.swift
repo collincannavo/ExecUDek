@@ -16,7 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        CloudKitContoller.shared.fetchCurrentUser { (success, person) in
+            if success {
+                if person != nil {
+                    CardController.shared.fetchPersonalCards()
+                    CardController.shared.fetchReceivedCards()
+                } else {
+                    CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in } )
+                }
+            }
+        }
+
         return true
     }
 

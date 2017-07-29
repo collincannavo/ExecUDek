@@ -13,8 +13,8 @@ import UIKit
 class Card {
     
     static let recordTypeKey = "Card"
-    
     static let nameKey = "name"
+    static let titleKey = "title"
     static let cellKey = "cell"
     static let officeNumberKey = "officeNumber"
     static let emailKey = "email"
@@ -32,7 +32,9 @@ class Card {
     var ckRecordID: CKRecordID?
     
     var ckReference: CKReference? {
+        
         guard let ckRecordID = ckRecordID else { return nil }
+        
         return CKReference(recordID: ckRecordID, action: .none)
     }
     
@@ -43,6 +45,7 @@ class Card {
     var parentCKReference: CKReference?
     
     var name: String
+    var title: String?
     var cell: Int?
     var officeNumber: Int?
     var email: String?
@@ -54,9 +57,10 @@ class Card {
     var logoData: Data?
     var other: String?
     
-    var cardImage: UIImage?
+    var cardData: Data?
     
     init(name: String,
+         title: String? = nil,
          cell: Int? = nil,
          officeNumber: Int? = nil,
          email: String? = nil,
@@ -69,6 +73,7 @@ class Card {
          other: String? = nil) {
         
         self.name = name
+        self.title = title
         self.cell = cell
         self.officeNumber = officeNumber
         self.email = email
@@ -81,11 +86,33 @@ class Card {
         self.other = other
     }
     
+    var ckRecord: CKRecord {
+        
+        let record = CKRecord(recordType: Card.recordTypeKey)
+        record.setValue(name, forKey: Card.nameKey)
+        record.setValue(title, forKey: Card.titleKey)
+        record.setValue(cell, forKey: Card.cellKey)
+        record.setValue(officeNumber, forKey: Card.officeNumberKey)
+        record.setValue(email, forKey: Card.emailKey)
+        record.setValue(template.rawValue, forKey: Card.templateKey)
+        record.setValue(companyName, forKey: Card.companyNameKey)
+        record.setValue(note, forKey: Card.noteKey)
+        record.setValue(address, forKey: Card.addressKey)
+        record.setValue(avatarData, forKey: Card.avatarDataKey)
+        record.setValue(logoData, forKey: Card.logoDataKey)
+        record.setValue(other, forKey: Card.otherKey)
+        
+        record.setValue(parentCKReference, forKey: Card.parentKey)
+        
+        return record
+    }
+    
     convenience init?(ckRecord: CKRecord) {
         guard let name = ckRecord[Card.nameKey] as? String,
             let templateRawValue = ckRecord[Card.templateKey] as? String,
             let template = Template(rawValue: templateRawValue) else { return nil }
         
+        let title = ckRecord[Card.titleKey] as? String
         let cell = ckRecord[Card.cellKey] as? Int
         let officeNumber = ckRecord[Card.officeNumberKey] as? Int
         let email = ckRecord[Card.emailKey] as? String
@@ -98,11 +125,10 @@ class Card {
         let parentCKReference = ckRecord[Card.parentKey] as? CKReference
         let imageData = ckRecord[Card.imageKey] as? Data
         
-        self.init(name: name, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
+        self.init(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
         if let imageDataUnwrapped = imageData {
-            let image = UIImage(data: imageDataUnwrapped)
-            self.cardImage = image
+            self.cardData = imageDataUnwrapped
         }
         
         self.ckRecordID = ckRecord.recordID
@@ -113,6 +139,7 @@ class Card {
 extension Card: Equatable {
     static func ==(lhs: Card, rhs: Card) -> Bool {
         if lhs.name != rhs.name { return false }
+        if lhs.title != rhs.title { return false }
         if lhs.cell != rhs.cell { return false }
         if lhs.officeNumber != rhs.officeNumber { return false }
         if lhs.email != rhs.email { return false }
@@ -123,7 +150,7 @@ extension Card: Equatable {
         if lhs.avatarData != rhs.avatarData { return false }
         if lhs.logoData != rhs.logoData { return false }
         if lhs.other != rhs.other { return false }
-        if lhs.cardImage != rhs.cardImage { return false }
+        if lhs.cardData != rhs.cardData { return false }
         
         return true
     }
