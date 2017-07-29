@@ -8,6 +8,7 @@
 
 import UIKit
 import Messages
+import SharedExecUDek
 
 class MessagesViewController: MSMessagesAppViewController {
     
@@ -20,6 +21,12 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
+        
+        CloudKitContoller.shared.fetchCurrentUser { (success, person) in
+            if success && person != nil {
+                CardController.shared.fetchPersonalCards()
+            }
+        }
         
         presentViewController(for: conversation, with: presentationStyle)
     }
@@ -95,29 +102,3 @@ class MessagesViewController: MSMessagesAppViewController {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

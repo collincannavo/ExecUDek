@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 import CloudKit
+import UserNotifications
 
 public class CardController {
+    
+    public static let personalCardsFetchedNotification: Notification.Name = Notification.Name(rawValue: "personalCardsFetched")
     
     public static let shared = CardController()
     
@@ -106,6 +109,9 @@ public class CardController {
             
             let cards = records.flatMap { Card(ckRecord: $0) }
             cards.forEach { PersonController.shared.addPersonalCard($0, to: currentPerson) }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: CardController.personalCardsFetchedNotification, object: self)
+            }
         })
     }
     
