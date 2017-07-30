@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1821431C1F2AB90900CCF3B5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821431B1F2AB90900CCF3B5 /* CloudKit.framework */; };
+		182B5AC51F2E7ABE00C901E8 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188F23321F2957F8007B9F20 /* Messages.framework */; };
+		182B5AC81F2E835500C901E8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182B5AC71F2E835500C901E8 /* CloudKit.framework */; };
 		1881BBF21F2CE7410070C1F4 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BBF11F2CE7410070C1F4 /* MessageController.swift */; };
 		1881BC001F2D015B0070C1F4 /* CommonCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1881BBFF1F2D015B0070C1F4 /* CommonCardTableViewCell.xib */; };
 		1881BC021F2D016C0070C1F4 /* CommonCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BC011F2D016C0070C1F4 /* CommonCardTableViewCell.swift */; };
 		1881BC041F2D028D0070C1F4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BC031F2D028D0070C1F4 /* Card.swift */; };
 		1881BC061F2D03890070C1F4 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BC051F2D03890070C1F4 /* Template.swift */; };
-		18826A771F2D38820019BFE7 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1821431B1F2AB90900CCF3B5 /* CloudKit.framework */; };
 		188F23231F290F80007B9F20 /* CardsSceneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */; };
 		188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23241F2914F7007B9F20 /* CardsViewController.swift */; };
 		188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23261F291607007B9F20 /* CardTableViewCell.swift */; };
-		188F23331F2957F8007B9F20 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188F23321F2957F8007B9F20 /* Messages.framework */; };
 		188F23361F2957F8007B9F20 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23351F2957F8007B9F20 /* MessagesViewController.swift */; };
 		188F23391F2957F8007B9F20 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188F23371F2957F8007B9F20 /* MainInterface.storyboard */; };
 		188F233B1F2957F8007B9F20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188F233A1F2957F8007B9F20 /* Assets.xcassets */; };
@@ -91,13 +90,13 @@
 
 /* Begin PBXFileReference section */
 		182143191F2AB89200CCF3B5 /* ExecUDek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExecUDek.entitlements; sourceTree = "<group>"; };
-		1821431B1F2AB90900CCF3B5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		182B5AC61F2E834900C901E8 /* MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesExtension.entitlements; sourceTree = "<group>"; };
+		182B5AC71F2E835500C901E8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		1881BBF11F2CE7410070C1F4 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		1881BBFF1F2D015B0070C1F4 /* CommonCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonCardTableViewCell.xib; sourceTree = "<group>"; };
 		1881BC011F2D016C0070C1F4 /* CommonCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCardTableViewCell.swift; sourceTree = "<group>"; };
 		1881BC031F2D028D0070C1F4 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		1881BC051F2D03890070C1F4 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
-		18826A761F2D387F0019BFE7 /* MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesExtension.entitlements; sourceTree = "<group>"; };
 		188F23221F290F80007B9F20 /* CardsSceneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardsSceneStoryboard.storyboard; sourceTree = "<group>"; };
 		188F23241F2914F7007B9F20 /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		188F23261F291607007B9F20 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
@@ -137,9 +136,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182B5AC81F2E835500C901E8 /* CloudKit.framework in Frameworks */,
+				182B5AC51F2E7ABE00C901E8 /* Messages.framework in Frameworks */,
 				18B376FB1F2D499100FC6A91 /* SharedExecUDek.framework in Frameworks */,
-				188F23331F2957F8007B9F20 /* Messages.framework in Frameworks */,
-				18826A771F2D38820019BFE7 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +154,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B70A081F2985B5002DDB17 /* SharedExecUDek.framework in Frameworks */,
-				1821431C1F2AB90900CCF3B5 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +163,6 @@
 		1821431A1F2AB90900CCF3B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1821431B1F2AB90900CCF3B5 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -210,6 +207,7 @@
 		188F23311F2957F8007B9F20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				182B5AC71F2E835500C901E8 /* CloudKit.framework */,
 				188F23321F2957F8007B9F20 /* Messages.framework */,
 			);
 			name = Frameworks;
@@ -218,7 +216,7 @@
 		188F23341F2957F8007B9F20 /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
-				18826A761F2D387F0019BFE7 /* MessagesExtension.entitlements */,
+				182B5AC61F2E834900C901E8 /* MessagesExtension.entitlements */,
 				18B9C6BC1F2D307C00F7BB03 /* Storyboards */,
 				18B9C6B81F2D304300F7BB03 /* View */,
 				18B9C6B91F2D304F00F7BB03 /* ViewControllers */,

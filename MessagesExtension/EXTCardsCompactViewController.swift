@@ -12,11 +12,9 @@ import CloudKit
 import SharedExecUDek
 import NotificationCenter
 
-class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PhotoSelctorCellDelegate {
     
     var conversation: MSConversation?
-
-    let cardImages = ["businessCard1", "businessCard2", "businessCard3"]
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -36,22 +34,32 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PersonController.shared.currentPerson?.personalCards.count ?? 0
+        //return PersonController.shared.currentPerson?.personalCards.count ?? 0
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell else { return CommonCardTableViewCell() }
         
-        let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
-        
-        cell.nameLabel.text = card?.name
-        
-        guard let logoData = card?.logoData,
+        //let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+        let card = Card(name: "Tom", template: .one)
+        cell.card = card
+        cell.nameLabel.text = card.name
+        cell.enableEntireCardButton()
+        cell.delegate = self
+        guard let logoData = card.logoData,
             let logoImage = UIImage(data: logoData) else { return cell }
         
         cell.photoButton.setImage(logoImage, for: UIControlState())
         
         return cell
+    }
+    
+    // MARK: - Photo selector cell delegate
+    func entireCardWasTapped(card: Card, cell: CommonCardTableViewCell) {
+        guard let conversation = conversation,
+            let data = UIViewToPNG.uiViewToPNG(for: cell) else { return }
+        MessageController.prepareToSendPNG(with: data, in: conversation)
     }
     
     // MARK: - Helper methods

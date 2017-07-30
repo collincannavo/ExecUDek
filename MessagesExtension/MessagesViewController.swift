@@ -23,8 +23,12 @@ class MessagesViewController: MSMessagesAppViewController {
         super.willBecomeActive(with: conversation)
         
         CloudKitContoller.shared.fetchCurrentUser { (success, person) in
-            if success && person != nil {
-                CardController.shared.fetchPersonalCards()
+            if success {
+                if person != nil {
+                    CardController.shared.fetchPersonalCards()
+                } else {
+                    CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in } )
+                }
             }
         }
         

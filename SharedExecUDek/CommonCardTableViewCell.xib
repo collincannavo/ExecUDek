@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -75,10 +76,20 @@
                             <constraint firstItem="PwR-mW-3ks" firstAttribute="width" secondItem="lhf-2H-V58" secondAttribute="width" id="kjX-dv-TSH"/>
                         </constraints>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuW-PK-Op5">
+                        <rect key="frame" x="8" y="8" width="284" height="158.5"/>
+                        <connections>
+                            <action selector="entireCardButtonTapped:" destination="xnY-0e-eA4" eventType="touchUpInside" id="sJv-AX-4TS"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7nQ-ak-6FJ" firstAttribute="top" secondItem="ncN-ZN-ooy" secondAttribute="top" constant="8" id="3pA-GG-h36"/>
                     <constraint firstAttribute="bottom" secondItem="7nQ-ak-6FJ" secondAttribute="bottom" constant="8" id="AJp-yb-Osx"/>
+                    <constraint firstItem="CuW-PK-Op5" firstAttribute="top" secondItem="ncN-ZN-ooy" secondAttribute="topMargin" id="EHo-bS-LiJ"/>
+                    <constraint firstItem="CuW-PK-Op5" firstAttribute="leading" secondItem="ncN-ZN-ooy" secondAttribute="leadingMargin" id="TbJ-ev-V1S"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="CuW-PK-Op5" secondAttribute="bottom" id="eHY-i1-7sa"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="CuW-PK-Op5" secondAttribute="trailing" id="esr-P2-yij"/>
                     <constraint firstAttribute="trailing" secondItem="7nQ-ak-6FJ" secondAttribute="trailing" constant="8" id="sfc-1q-aA1"/>
                     <constraint firstItem="7nQ-ak-6FJ" firstAttribute="leading" secondItem="ncN-ZN-ooy" secondAttribute="leading" constant="8" id="yaE-n3-mMX"/>
                 </constraints>
@@ -86,6 +97,7 @@
             <connections>
                 <outlet property="cellLabel" destination="q6z-oH-1cN" id="2Lh-0I-afo"/>
                 <outlet property="emailLabel" destination="c3E-iq-ycJ" id="8n9-4E-WOi"/>
+                <outlet property="entireCardButton" destination="CuW-PK-Op5" id="Kz8-L2-YnZ"/>
                 <outlet property="nameLabel" destination="2fG-Nc-NzR" id="ZSt-GR-gpO"/>
                 <outlet property="photoButton" destination="lhf-2H-V58" id="Ebm-7H-rl9"/>
                 <outlet property="titleLabel" destination="Dno-Lw-jOi" id="xHU-ht-Eyv"/>
