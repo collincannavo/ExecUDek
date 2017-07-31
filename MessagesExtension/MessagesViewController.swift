@@ -9,6 +9,7 @@
 import UIKit
 import Messages
 import SharedExecUDek
+import NotificationCenter
 
 class MessagesViewController: MSMessagesAppViewController {
     
@@ -25,7 +26,11 @@ class MessagesViewController: MSMessagesAppViewController {
         CloudKitContoller.shared.fetchCurrentUser { (success, person) in
             if success {
                 if person != nil {
-                    CardController.shared.fetchPersonalCards()
+                    CardController.shared.fetchPersonalCards(with: { (success) in
+                        if success {
+                            NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
+                        }
+                    })
                 } else {
                     CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in } )
                 }

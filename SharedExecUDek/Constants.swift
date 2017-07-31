@@ -10,4 +10,8 @@ import Foundation
 
 public struct Constants {
     public static let receivedCardRecordIDKey = "receivedCardRecordID"
+    
+    // Notification center notification names
+    public static let cardsFetchedNotification: Notification.Name = Notification.Name(rawValue: "cardsFetched")
+    public static let personalCardsFetchedNotification: Notification.Name = Notification.Name(rawValue: "personalCardsFetched")
 }
