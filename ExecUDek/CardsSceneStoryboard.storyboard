@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tfc-dc-0Rk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tfc-dc-0Rk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -41,12 +41,9 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="220"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Evh-K6-CAE" id="wEU-pI-QHl">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="219.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Cae-fc-eRE" kind="presentation" identifier="editCardFromMain" id="Eda-7Q-YbK"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -76,6 +73,7 @@
                     <connections>
                         <outlet property="cardSearchBar" destination="EDT-hj-MDs" id="zfa-WY-tPA"/>
                         <outlet property="tableView" destination="kg8-08-Y7X" id="R15-7Q-VxN"/>
+                        <segue destination="Cae-fc-eRE" kind="presentation" identifier="editCardFromMain" id="7jU-Ne-aOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGx-5k-C37" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -121,6 +119,6 @@
         <image name="profileIcon" width="15" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Eda-7Q-YbK"/>
+        <segue reference="7jU-Ne-aOc"/>
     </inferredMetricsTieBreakers>
 </document>

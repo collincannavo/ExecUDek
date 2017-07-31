@@ -82,6 +82,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
         cell.emailLabel.text = newCard.email
+        cell.card = newCard
         
         if let data = card?.logoData {
             let image = UIImage(data: data)
@@ -102,6 +103,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         
         if let card = cell.card {
             selectedCard = card
+            
+            performSegue(withIdentifier: "editCardFromMain", sender: nil)
         }
         
     }

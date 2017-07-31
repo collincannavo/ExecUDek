@@ -25,6 +25,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             commonCardXIB = customView
             commonCardXIB?.delegate = self
         }
+        
+        guard let card = card else { return }
+            updateViews()
     }
     
     // TableView TextFields
