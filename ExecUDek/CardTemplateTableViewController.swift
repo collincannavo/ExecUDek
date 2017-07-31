@@ -118,10 +118,10 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
                     let cell = cellTextField.text,
                     let title = titleTextField.text,
                     let email = emailTextField.text else {return false}
-        nameLabel.text = name
-        titleLabel.text = title
-        cellLabel.text = cell
-        emailLabel.text = email
+        commonCardXIB?.nameLabel.text = name
+        commonCardXIB?.titleLabel.text = title
+        commonCardXIB?.cellLabel.text = cell
+        commonCardXIB?.emailLabel.text = email
         textField.resignFirstResponder()
         return true
     }
