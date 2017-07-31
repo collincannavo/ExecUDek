@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		182B5AC51F2E7ABE00C901E8 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188F23321F2957F8007B9F20 /* Messages.framework */; };
 		182B5AC81F2E835500C901E8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182B5AC71F2E835500C901E8 /* CloudKit.framework */; };
+		187EC0A21F2EBBA400F326E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EC0A11F2EBBA400F326E3 /* Constants.swift */; };
 		1881BBF21F2CE7410070C1F4 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BBF11F2CE7410070C1F4 /* MessageController.swift */; };
 		1881BC001F2D015B0070C1F4 /* CommonCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1881BBFF1F2D015B0070C1F4 /* CommonCardTableViewCell.xib */; };
 		1881BC021F2D016C0070C1F4 /* CommonCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BC011F2D016C0070C1F4 /* CommonCardTableViewCell.swift */; };
@@ -92,6 +93,7 @@
 		182143191F2AB89200CCF3B5 /* ExecUDek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExecUDek.entitlements; sourceTree = "<group>"; };
 		182B5AC61F2E834900C901E8 /* MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesExtension.entitlements; sourceTree = "<group>"; };
 		182B5AC71F2E835500C901E8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		187EC0A11F2EBBA400F326E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1881BBF11F2CE7410070C1F4 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		1881BBFF1F2D015B0070C1F4 /* CommonCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonCardTableViewCell.xib; sourceTree = "<group>"; };
 		1881BC011F2D016C0070C1F4 /* CommonCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCardTableViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				18B9C6AE1F2D2CAC00F7BB03 /* UIViewToPNG.swift */,
+				187EC0A11F2EBBA400F326E3 /* Constants.swift */,
 			);
 			name = SharedResources;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				18B9C6B31F2D2CC100F7BB03 /* PersonController.swift in Sources */,
 				18B9C6B71F2D2CF500F7BB03 /* Person.swift in Sources */,
 				1881BC041F2D028D0070C1F4 /* Card.swift in Sources */,
+				187EC0A21F2EBBA400F326E3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

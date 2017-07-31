@@ -9,6 +9,7 @@
 import Foundation
 import Messages
 import CloudKit
+import SharedExecUDek
 
 class MessageController {
     
@@ -22,13 +23,15 @@ class MessageController {
         conversation.insertAttachment(URL(fileURLWithPath: path), withAlternateFilename: nil, completionHandler: nil)
     }
     
-    static func prepardToSendCard(with recordID: CKRecordID, in conversation: MSConversation) {
+    static func prepareToSendCard(with recordID: CKRecordID, from cell: CommonCardTableViewCell, in conversation: MSConversation) {
         guard let messageURL = urlForMessage(with: recordID) else { return }
         
         let message = MSMessage()
         let layout = MSMessageTemplateLayout()
         layout.caption = "You've receieved a business card!"
-        layout.image = #imageLiteral(resourceName: "businessCard1")
+        if let data = UIViewToPNG.uiViewToPNG(for: cell) {
+            layout.image = UIImage(data: data)
+        }
         
         message.layout = layout
         message.url = messageURL
@@ -41,10 +44,27 @@ class MessageController {
     static func urlForMessage(with recordID: CKRecordID) -> URL? {
         var urlComponents = URLComponents()
         
-        let queryItems = [URLQueryItem(name: "receivedCardRecordID", value: "\(recordID)")]
+        let queryItems = [URLQueryItem(name: Constants.receivedCardRecordIDKey, value: "\(recordID)")]
         urlComponents.queryItems = queryItems
         
         guard let url = urlComponents.url else { return nil }
         return url
+    }
+    
+    static func receiveAndParseMessage(_ message: MSMessage) {
+        guard let url = message.url,
+            let urlComponents = URLComponents(string: url.absoluteString),
+            let recordIDQueryItem = urlComponents.queryItems?.first,
+            let recordIDString = recordIDQueryItem.value else { return }
+        
+        let recordID = CKRecordID(recordName: recordIDString)
+        CloudKitContoller.shared.fetchRecord(with: recordID) { (record, error) in
+            if let error = error { NSLog("Error encountered fetching received Card record: \(error.localizedDescription)"); return }
+            guard let record = record else { NSLog("The returned received Card record from the extension is nil"); return }
+            guard let card = Card(ckRecord: record) else { NSLog("Could not create Card object from received record"); return }
+            guard let currentPerson = PersonController.shared.currentPerson else { NSLog("Current person object is nil"); return }
+            
+            PersonController.shared.addCard(card, to: currentPerson)
+        }
     }
 }

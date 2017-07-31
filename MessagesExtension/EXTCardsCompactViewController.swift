@@ -58,8 +58,8 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
     // MARK: - Photo selector cell delegate
     func entireCardWasTapped(card: Card, cell: CommonCardTableViewCell) {
         guard let conversation = conversation,
-            let data = UIViewToPNG.uiViewToPNG(for: cell) else { return }
-        MessageController.prepareToSendPNG(with: data, in: conversation)
+            let cardRecordID = card.ckRecordID else { return }
+        MessageController.prepareToSendCard(with: cardRecordID, from: cell, in: conversation)
     }
     
     // MARK: - Helper methods
