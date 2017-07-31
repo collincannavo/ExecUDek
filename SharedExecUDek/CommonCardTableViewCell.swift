@@ -18,6 +18,8 @@ public class CommonCardTableViewCell: UITableViewCell {
     @IBOutlet public weak var cellLabel: UILabel!
     @IBOutlet public weak var emailLabel: UILabel!
     @IBOutlet public weak var entireCardButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var view: UIView!
     
     @IBAction public func addCompanyLogoButtonTapped(_ sender: Any) {
         guard let buttonTapped = sender as? UIButton else { return }
@@ -39,6 +41,7 @@ public class CommonCardTableViewCell: UITableViewCell {
         alert.addAction(addButton)
         
         
+        
     }
     
     public func updateCell(withCardImage: UIImage) {
@@ -55,6 +58,16 @@ public class CommonCardTableViewCell: UITableViewCell {
         card?.email = email
         card?.cell = cellphone as? Int
         card?.title = title
+        
+        layer.cornerRadius = 20.0
+        
+//         view.bringSubview(toFront: shareButton)
+//        view.insertSubview(photoButton, aboveSubview: shareButton)
+        shareButton.superview?.bringSubview(toFront: view)
+    }
+    
+    public func updateViews() {
+        
     }
     
     public override func prepareForReuse() {
