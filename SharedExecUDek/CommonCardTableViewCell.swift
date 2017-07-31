@@ -40,8 +40,7 @@ public class CommonCardTableViewCell: UITableViewCell {
         
         alert.addAction(addButton)
         
-        
-        
+        // present alert
     }
     
     public func updateCell(withCardImage: UIImage) {
