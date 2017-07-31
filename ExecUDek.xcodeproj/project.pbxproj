@@ -41,6 +41,8 @@
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
 		B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
+		F04EDF081F2FC9CD00E8DB82 /* StringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04EDF071F2FC9CD00E8DB82 /* StringFormatter.swift */; };
+		F04EDF091F2FCA3C00E8DB82 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182B5AC71F2E835500C901E8 /* CloudKit.framework */; };
 		F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05962611F299C65002C967B /* UserProfileTableViewController.swift */; };
 		F05962641F299D18002C967B /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F05962631F299D18002C967B /* UserProfile.storyboard */; };
 		F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06281A61F28F15800106424 /* CardTemplate.storyboard */; };
@@ -127,6 +129,7 @@
 		B6A28A701F27DF4300786B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerConnectivity.swift; sourceTree = "<group>"; };
 		F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTemplateTableViewController.swift; sourceTree = "<group>"; };
+		F04EDF071F2FC9CD00E8DB82 /* StringFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFormatter.swift; sourceTree = "<group>"; };
 		F05962611F299C65002C967B /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		F05962631F299D18002C967B /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		F06281A61F28F15800106424 /* CardTemplate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardTemplate.storyboard; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B70A081F2985B5002DDB17 /* SharedExecUDek.framework in Frameworks */,
+				F04EDF091F2FCA3C00E8DB82 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +347,7 @@
 		B6A28A9B1F290D6600786B97 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F04EDF071F2FC9CD00E8DB82 /* StringFormatter.swift */,
 				B6A28A611F27DF4300786B97 /* AppDelegate.swift */,
 				B6A28A6B1F27DF4300786B97 /* Assets.xcassets */,
 				B6A28A701F27DF4300786B97 /* Info.plist */,
@@ -478,7 +483,7 @@
 					};
 					B6A28A5D1F27DF4300786B97 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = QFVJ6KY7E2;
+						DevelopmentTeam = U862ZMG3CM;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -581,6 +586,7 @@
 				188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */,
 				F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */,
 				188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */,
+				F04EDF081F2FC9CD00E8DB82 /* StringFormatter.swift in Sources */,
 				F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */,
 				B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */,
 				B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */,
@@ -811,7 +817,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
-				DEVELOPMENT_TEAM = QFVJ6KY7E2;
+				DEVELOPMENT_TEAM = U862ZMG3CM;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
@@ -826,7 +832,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
-				DEVELOPMENT_TEAM = QFVJ6KY7E2;
+				DEVELOPMENT_TEAM = U862ZMG3CM;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
