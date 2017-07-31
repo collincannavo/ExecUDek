@@ -9,11 +9,8 @@
 import Foundation
 import UIKit
 import CloudKit
-import UserNotifications
 
 public class CardController {
-    
-    public static let personalCardsFetchedNotification: Notification.Name = Notification.Name(rawValue: "personalCardsFetched")
     
     public static let shared = CardController()
     
@@ -82,51 +79,51 @@ public class CardController {
         //CloudKitContoller.shared.updateRecord(record: <#T##CKRecord#>)
     }
     
-    public func fetchCards() {
-        guard let currentPerson = PersonController.shared.currentPerson else { return }
+    public func fetchCards(with completion: @escaping (Bool) -> Void) {
+        guard let currentPerson = PersonController.shared.currentPerson else { completion(false); return }
         currentPerson.receivedCards.forEach { receivedCardReference in
             CloudKitContoller.shared.fetchRecord(with: receivedCardReference.recordID, completion: { (record, error) in
-                if let error = error { NSLog("Error encountered while fetching a referenced card: \(error.localizedDescription)"); return }
-                guard let record = record else { NSLog("Returned card record is nil"); return }
-                guard let card = Card(ckRecord: record) else { NSLog("Could not create card object from CKRecord"); return }
+                if let error = error { NSLog("Error encountered while fetching a referenced card: \(error.localizedDescription)"); completion(false); return }
+                guard let record = record else { NSLog("Returned card record is nil"); completion(false); return }
+                guard let card = Card(ckRecord: record) else { NSLog("Could not create card object from CKRecord"); completion(false); return }
                 
                 PersonController.shared.addCard(card, to: currentPerson)
+                completion(true)
             })
         }
     }
     
-    public func fetchPersonalCards() {
-        guard let currentPersonCKRecordID = PersonController.shared.currentPerson?.cKRecordID else { return }
+    public func fetchPersonalCards(with completion: @escaping (Bool) -> Void) {
+        guard let currentPersonCKRecordID = PersonController.shared.currentPerson?.cKRecordID else { completion(false); return }
         let currentPersonCKReference = CKReference(recordID: currentPersonCKRecordID, action: .none)
         let predicate = NSPredicate(format: "\(Card.parentKey) == %@", currentPersonCKReference)
         
         CloudKitContoller.shared.fetchCards(with: predicate, completion: { (records, error) in
             if let error = error {
-                NSLog("Error encountered while fetching profile cards: \(error.localizedDescription)"); return }
+                NSLog("Error encountered while fetching profile cards: \(error.localizedDescription)"); completion(false); return }
             
-            guard let records = records else { NSLog("Returned profile cards are nil"); return }
-            guard let currentPerson = PersonController.shared.currentPerson else { return }
+            guard let records = records else { NSLog("Returned profile cards are nil"); completion(false); return }
+            guard let currentPerson = PersonController.shared.currentPerson else { completion(false); return }
             
             let cards = records.flatMap { Card(ckRecord: $0) }
             cards.forEach { PersonController.shared.addPersonalCard($0, to: currentPerson) }
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: CardController.personalCardsFetchedNotification, object: self)
-            }
+            completion(true)
         })
     }
     
-    public func fetchReceivedCards() {
+    public func fetchReceivedCards(with completion: @escaping (Bool) -> Void) {
         
-        guard let currentPerson = PersonController.shared.currentPerson else { return }
+        guard let currentPerson = PersonController.shared.currentPerson else { completion(false); return }
         
         currentPerson.receivedCards.forEach { (receivedCardReference) in
             
             CloudKitContoller.shared.fetchRecord(with: receivedCardReference.recordID, completion: { (record, error) in
-                if let error = error { NSLog("Error encountered fetching a received card record: \(error.localizedDescription)"); return }
-                guard let record = record else { NSLog("Record returned for received card fetch is nil"); return }
-                guard let card = Card(ckRecord: record) else { NSLog("Could not construct Card object from received card record"); return }
+                if let error = error { NSLog("Error encountered fetching a received card record: \(error.localizedDescription)"); completion(false); return }
+                guard let record = record else { NSLog("Record returned for received card fetch is nil"); completion(false); return }
+                guard let card = Card(ckRecord: record) else { NSLog("Could not construct Card object from received card record"); completion(false); return }
                 
                 PersonController.shared.addCard(card, to: currentPerson)
+                completion(true)
             })
         }
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import SharedExecUDek
+import NotificationCenter
 
 class UserProfileTableViewController: UITableViewController {
 
@@ -20,6 +21,8 @@ class UserProfileTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
 
         let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
@@ -73,5 +76,9 @@ class UserProfileTableViewController: UITableViewController {
     
     func setupCardTableViewCell(_ cell: CommonCardTableViewCell) {
         cell.layer.cornerRadius = 20.0
+    }
+    
+    func refresh() {
+        tableView.reloadData()
     }
 }

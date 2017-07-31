@@ -8,6 +8,7 @@
 
 import UIKit
 import SharedExecUDek
+import NotificationCenter
 
 class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -33,6 +34,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         tableView.delegate = self
         cardSearchBar.delegate = self
         cardSearchBar.returnKeyType = UIReturnKeyType.done
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.cardsFetchedNotification, object: nil)
         
         let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
@@ -131,5 +134,9 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     // MARK: - Helper methods
     func setupCardTableViewCell(_ cell: CommonCardTableViewCell) {
         cell.layer.cornerRadius = 20.0
+    }
+    
+    func refresh() {
+        tableView.reloadData()
     }
 }
