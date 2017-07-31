@@ -49,6 +49,10 @@ class MessagesViewController: MSMessagesAppViewController {
         MessageController.receiveAndParseMessage(message)
     }
     
+    override func didSelect(_ message: MSMessage, conversation: MSConversation) {
+        MessageController.receiveAndParseMessage(message)
+    }
+    
     override func didStartSending(_ message: MSMessage, conversation: MSConversation) {
         // Called when the user taps the send button.
     }
