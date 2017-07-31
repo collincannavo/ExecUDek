@@ -21,6 +21,10 @@ class UserProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
+        
+        tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
         
         
     }
@@ -32,12 +36,18 @@ class UserProfileTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userProfileCell", for: indexPath) as? CommonCardTableViewCell else {return UITableViewCell()}
-        
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
-        cell.card = card
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell, let newCard = card else {
+            return CommonCardTableViewCell()
+        }
         
+        cell.nameLabel.text = newCard.name
+        cell.titleLabel.text = newCard.title
+        cell.cellLabel.text = "\(newCard.cell)"
+        cell.emailLabel.text = newCard.email
+        cell.photoButton.backgroundImage(for: UIControlState())
         
+        setupCardTableViewCell(cell)
         
         return cell
     }
@@ -55,5 +65,9 @@ class UserProfileTableViewController: UITableViewController {
                 destinationVC.cardSenderIsMainScene = false
             }
         }
+    }
+    
+    func setupCardTableViewCell(_ cell: CommonCardTableViewCell) {
+        cell.layer.cornerRadius = 20.0
     }
 }
