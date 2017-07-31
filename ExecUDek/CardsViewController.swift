@@ -60,27 +60,6 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
     }
     
-    // MARK: Present action sheet
-    func presentAction() {
-        let selectMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
-        let shareAction = UIAlertAction(title: "Share", style: .default, handler:{
-            (alert: UIAlertAction!) -> Void in
-            print("Share")
-        })
-        let editAction = UIAlertAction(title: "Edit", style: .default, handler:{
-            (alert: UIAlertAction!) -> Void in
-            print("Edit")
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:{
-            (alert: UIAlertAction!) -> Void in
-            print("Cancel")
-        })
-        selectMenu.addAction(shareAction)
-        selectMenu.addAction(editAction)
-        selectMenu.addAction(cancelAction)
-        self.present(selectMenu, animated: true, completion: nil)
-    }
-    
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return PersonController.shared.currentPerson?.cards.count ?? 0
@@ -89,20 +68,26 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let card = PersonController.shared.currentPerson?.cards[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell,
-            let newCard = card,
-            let data = card?.cardData
+            let newCard = card
+          
             else { return CommonCardTableViewCell()
+        }
+        
+        if let cellPhone = newCard.cell {
+            cell.cellLabel.text = "\(cellPhone)"
         }
         
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
-        cell.cellLabel.text = "\(String(describing: newCard.cell))"
         cell.emailLabel.text = newCard.email
         
-        let image = UIImage(data: data)
-        
-        cell.photoButton.setBackgroundImage(image, for: .normal)
-        
+        if let data = card?.logoData {
+            let image = UIImage(data: data)
+            
+            cell.photoButton.setBackgroundImage(image, for: .normal)
+            cell.photoButton.setTitle("", for: .normal)
+            
+        }
         setupCardTableViewCell(cell)
         
         return cell
@@ -110,7 +95,6 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        presentAction()
         if segue.identifier == "addCardFromMain" {
             if let destinationNavController = segue.destination as? UINavigationController,
                 let destinationVC = destinationNavController.viewControllers.first as? CardTemplateTableViewController {
