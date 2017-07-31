@@ -9,12 +9,12 @@
 import UIKit
 import Messages
 import CloudKit
+import SharedExecUDek
+import NotificationCenter
 
-class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EXTCardTableViewCellDelegate {
+class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PhotoSelctorCellDelegate {
     
     var conversation: MSConversation?
-
-    let cardImages = ["businessCard1", "businessCard2", "businessCard3"]
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -24,37 +24,46 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
 
         tableView.delegate = self
         tableView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: CardController.personalCardsFetchedNotification, object: nil)
+        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let yourXIBName = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
+        
+        tableView.register(yourXIBName, forCellReuseIdentifier: "cardCell")
     }
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardImages.count
+        //return PersonController.shared.currentPerson?.personalCards.count ?? 0
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "extCardCell", for: indexPath) as? EXTCardTableViewCell,
-            let cardImage = UIImage(named: cardImages[indexPath.row]) else { return EXTCardTableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell else { return CommonCardTableViewCell() }
         
+        //let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+        let card = Card(name: "Tom", template: .one)
+        cell.card = card
+        cell.nameLabel.text = card.name
+        cell.enableEntireCardButton()
         cell.delegate = self
-        cell.updateCell(with: cardImage)
+        guard let logoData = card.logoData,
+            let logoImage = UIImage(data: logoData) else { return cell }
+        
+        cell.photoButton.setImage(logoImage, for: UIControlState())
+        
         return cell
     }
     
-    // MARK: - EXT card table view cell delegate
-    func extCardPhotoWasTapped(photoData: Data) {
-        guard let conversation = conversation else { return }
-        //MessageController.prepareToSendPNG(with: photoData, in: conversation)
-        MessageController.prepardToSendCard(with: CKRecord(recordType: "Test").recordID, in: conversation)
+    // MARK: - Photo selector cell delegate
+    func entireCardWasTapped(card: Card, cell: CommonCardTableViewCell) {
+        guard let conversation = conversation,
+            let cardRecordID = card.ckRecordID else { return }
+        MessageController.prepareToSendCard(with: cardRecordID, from: cell, in: conversation)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Helper methods
+    func refresh() {
+        tableView.reloadData()
     }
-    */
-
 }

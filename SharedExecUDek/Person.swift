@@ -8,29 +8,28 @@
 
 import Foundation
 import CloudKit
-import SharedExecUDek
 
-class Person {
+public class Person {
     
-    static let nameKey = "name"
-    static let recordType = "Person"
-    static let appleUserReferenceKey = "appleUserReference"
-    static let receivedCardsKey = "receivedCards"
+    public static let nameKey = "name"
+    public static let recordType = "Person"
+    public static let appleUserReferenceKey = "appleUserReference"
+    public static let receivedCardsKey = "receivedCards"
     
-    var cKRecordID: CKRecordID?
-    var userCKReference: CKReference?
-    let name: String
-    var blockedUsers: [CKReference] = []
-    var receivedCards: [CKReference] = []
-    var personalCards: [Card] = []
-    var cards: [Card] = []
+    public var cKRecordID: CKRecordID?
+    public var userCKReference: CKReference?
+    public let name: String
+    public var blockedUsers: [CKReference] = []
+    public var receivedCards: [CKReference] = []
+    public var personalCards: [Card] = []
+    public var cards: [Card] = []
     
-    var ckReference: CKReference? {
+    public var ckReference: CKReference? {
         guard let ckRecordID = cKRecordID else { return nil }
         return CKReference(recordID: ckRecordID, action: .none)
     }
     
-    var CKrecord: CKRecord {
+    public var CKrecord: CKRecord {
         let recordID = self.cKRecordID ?? CKRecordID(recordName: UUID().uuidString)
         
         let record = CKRecord(recordType: Person.recordType, recordID: recordID)
@@ -46,12 +45,12 @@ class Person {
         return record
     }
     
-    init(name: String, userCKReference: CKReference) {
+    public init(name: String, userCKReference: CKReference) {
         self.name = name
         self.userCKReference = userCKReference
     }
     
-    init?(CKRecord: CKRecord) {
+    public init?(CKRecord: CKRecord) {
         guard let name = CKRecord[Person.nameKey] as? String else { return nil }
         self.name = name
         
@@ -63,7 +62,7 @@ class Person {
         self.cKRecordID = CKRecord.recordID
     }
     
-    func updateCKRecord(record: inout CKRecord) {
+    public func updateCKRecord(record: inout CKRecord) {
         record[Person.nameKey] = name as CKRecordValue?
         record[Person.appleUserReferenceKey] = userCKReference as CKRecordValue?
         
@@ -74,7 +73,7 @@ class Person {
 }
 
 extension Person: Equatable {
-    static func ==(lhs: Person, rhs: Person) -> Bool {
+    public static func ==(lhs: Person, rhs: Person) -> Bool {
         return lhs.name == rhs.name && lhs.cKRecordID == rhs.cKRecordID
     }
 }

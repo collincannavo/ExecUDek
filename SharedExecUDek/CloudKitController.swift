@@ -8,24 +8,23 @@
 
 import Foundation
 import CloudKit
-import SharedExecUDek
 
-class CloudKitContoller {
+public class CloudKitContoller {
     
-    static let shared = CloudKitContoller()
+    public static let shared = CloudKitContoller()
     
-    var cards: [Card] = []
+    public var cards: [Card] = []
     
-    var currentUser: Person?
+    public var currentUser: Person?
     
-    func create(card: Card, withCompletion completion: @escaping (CKRecord?, Error?) -> Void) {
+    public func create(card: Card, withCompletion completion: @escaping (CKRecord?, Error?) -> Void) {
         
         CKContainer.default().publicCloudDatabase.save(card.ckRecord) { (record, error) in
             completion(record, error)
         }
     }
     
-    func fetchCards(with predicate: NSPredicate, completion: @escaping ([CKRecord]?, Error?) -> Void) {
+    public func fetchCards(with predicate: NSPredicate, completion: @escaping ([CKRecord]?, Error?) -> Void) {
         
         let query = CKQuery(recordType: Card.recordTypeKey, predicate: predicate)
         
@@ -34,13 +33,13 @@ class CloudKitContoller {
         }
     }
     
-    func fetchRecord(with recordID: CKRecordID, completion: @escaping (CKRecord?, Error?) -> Void) {
+    public func fetchRecord(with recordID: CKRecordID, completion: @escaping (CKRecord?, Error?) -> Void) {
         CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
             completion(record, error)
         }
     }
     
-    func updateRecord(recordID: CKRecordID) {
+    public func updateRecord(recordID: CKRecordID) {
         
         fetchRecord(with: recordID) { (record, error) in
             if let error = error { NSLog("Error encountered while fetching record to update: \(error.localizedDescription)"); return }
@@ -57,7 +56,7 @@ class CloudKitContoller {
         }
     }
     
-    func deleteRecord(recordID: CKRecordID) {
+    public func deleteRecord(recordID: CKRecordID) {
         
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [recordID])
         operation.savePolicy = .changedKeys
@@ -67,7 +66,7 @@ class CloudKitContoller {
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-    func createUserWith(name: String, completion: @escaping (_ success: Bool) -> Void) {
+    public func createUserWith(name: String, completion: @escaping (_ success: Bool) -> Void) {
         
         CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
             
@@ -86,13 +85,11 @@ class CloudKitContoller {
                 self.currentUser = user
                 
                 completion(true)
-                
             })
-            
         }
     }
     
-    func fetchCurrentUser(completion: @escaping (Bool, Person?) -> Void) {
+    public func fetchCurrentUser(completion: @escaping (Bool, Person?) -> Void) {
         
         CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
             if let error = error { print(error.localizedDescription); completion(false, nil); return }
@@ -118,6 +115,4 @@ class CloudKitContoller {
             })
         }
     }
-    
 }
-

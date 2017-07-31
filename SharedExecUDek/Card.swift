@@ -10,7 +10,7 @@ import Foundation
 import CloudKit
 import UIKit
 
-public class Card {
+public class Card: NSObject {
     
     public static let recordTypeKey = "Card"
     public static let nameKey = "name"
@@ -136,22 +136,20 @@ public class Card {
     }
 }
 
-extension Card: Equatable {
-    public static func ==(lhs: Card, rhs: Card) -> Bool {
-        if lhs.name != rhs.name { return false }
-        if lhs.title != rhs.title { return false }
-        if lhs.cell != rhs.cell { return false }
-        if lhs.officeNumber != rhs.officeNumber { return false }
-        if lhs.email != rhs.email { return false }
-        if lhs.template != rhs.template { return false }
-        if lhs.companyName != rhs.companyName { return false }
-        if lhs.note != rhs.note { return false }
-        if lhs.address != rhs.address { return false }
-        if lhs.avatarData != rhs.avatarData { return false }
-        if lhs.logoData != rhs.logoData { return false }
-        if lhs.other != rhs.other { return false }
-        if lhs.cardData != rhs.cardData { return false }
-        
-        return true
-    }
+func ==(lhs: Card, rhs: Card) -> Bool {
+    if lhs.name != rhs.name { return false }
+    if lhs.title != rhs.title { return false }
+    if lhs.cell != rhs.cell { return false }
+    if lhs.officeNumber != rhs.officeNumber { return false }
+    if lhs.email != rhs.email { return false }
+    if lhs.template != rhs.template { return false }
+    if lhs.companyName != rhs.companyName { return false }
+    if lhs.note != rhs.note { return false }
+    if lhs.address != rhs.address { return false }
+    if lhs.avatarData != rhs.avatarData { return false }
+    if lhs.logoData != rhs.logoData { return false }
+    if lhs.other != rhs.other { return false }
+    if lhs.cardData != rhs.cardData { return false }
+    
+    return true
 }

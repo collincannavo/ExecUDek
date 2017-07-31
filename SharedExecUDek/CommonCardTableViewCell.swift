@@ -10,7 +10,6 @@ import UIKit
 
 public class CommonCardTableViewCell: UITableViewCell {
     
-    
     public var card: Card?
     
     @IBOutlet public weak var photoButton: UIButton!
@@ -18,9 +17,16 @@ public class CommonCardTableViewCell: UITableViewCell {
     @IBOutlet public weak var titleLabel: UILabel!
     @IBOutlet public weak var cellLabel: UILabel!
     @IBOutlet public weak var emailLabel: UILabel!
+    @IBOutlet public weak var entireCardButton: UIButton!
+    
     @IBAction public func addCompanyLogoButtonTapped(_ sender: Any) {
         guard let buttonTapped = sender as? UIButton else { return }
-        delegate?.photoSelectCellSelected(cellButtonTapped: buttonTapped)
+        delegate?.photoSelectCellSelected?(cellButtonTapped: buttonTapped)
+    }
+    
+    @IBAction public func entireCardButtonTapped(_ sender: UIButton) {
+        guard let card = card else { return }
+        delegate?.entireCardWasTapped?(card: card, cell: self)
     }
     
     public func updateCell(withCardImage: UIImage) {
@@ -37,15 +43,9 @@ public class CommonCardTableViewCell: UITableViewCell {
         card?.email = email
         card?.cell = cellphone as? Int
         card?.title = title
-        
-        
-        
     }
     
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        
         
         if textField == cellLabel {
             let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
@@ -89,10 +89,14 @@ public class CommonCardTableViewCell: UITableViewCell {
         }
     }
     
+    public func enableEntireCardButton() {
+        entireCardButton.isEnabled = true
+    }
+    
     public weak var delegate: PhotoSelctorCellDelegate?
 }
 
-
-public protocol PhotoSelctorCellDelegate : class {
-    func photoSelectCellSelected(cellButtonTapped: UIButton)
+@objc public protocol PhotoSelctorCellDelegate : class, NSObjectProtocol {
+    @objc optional func photoSelectCellSelected(cellButtonTapped: UIButton)
+    @objc optional func entireCardWasTapped(card: Card, cell: CommonCardTableViewCell)
 }

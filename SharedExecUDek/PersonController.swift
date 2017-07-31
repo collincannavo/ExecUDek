@@ -8,27 +8,27 @@
 
 import Foundation
 import CloudKit
-import SharedExecUDek
 
-class PersonController {
+
+public class PersonController {
     
-    static let shared = PersonController()
+    public static let shared = PersonController()
     
-    var currentPerson: Person?
+    public var currentPerson: Person?
     
-    func addPersonalCard(_ card: Card, to person: Person) {
+    public func addPersonalCard(_ card: Card, to person: Person) {
         person.personalCards.append(card)
     }
     
-    func addCard(_ card: Card, to person: Person) {
+    public func addCard(_ card: Card, to person: Person) {
         person.cards.append(card)
     }
     
-    func addCardReference(_ reference : CKReference, to person: Person) {
+    public func addCardReference(_ reference : CKReference, to person: Person) {
         person.receivedCards.append(reference)
     }
     
-    func deleteCard(_ card: Card, from person: Person) {
+    public func deleteCard(_ card: Card, from person: Person) {
         if let index = person.cards.index(where: { $0 == card }) {
             person.cards.remove(at: index)
         }
