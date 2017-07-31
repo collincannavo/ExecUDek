@@ -127,7 +127,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        // Text
         guard let name = nameTextField.text, !name.isEmpty,
             let cell = cellTextField.text,
             let title = titleTextField.text,
