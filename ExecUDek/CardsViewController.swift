@@ -41,7 +41,6 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     // MARK: - Search bar delegate
-    
     var inSearchMode = false
     var filteredData = [String]()
     var data = [String]()
@@ -71,20 +70,26 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let card = PersonController.shared.currentPerson?.cards[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell,
-            let newCard = card,
-            let data = card?.cardData
+            let newCard = card
+          
             else { return CommonCardTableViewCell()
+        }
+        
+        if let cellPhone = newCard.cell {
+            cell.cellLabel.text = "\(cellPhone)"
         }
         
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
-        cell.cellLabel.text = "\(newCard.cell)"
         cell.emailLabel.text = newCard.email
         
-        let image = UIImage(data: data)
-        
-        cell.photoButton.setBackgroundImage(image, for: .normal)
-        
+        if let data = card?.logoData {
+            let image = UIImage(data: data)
+            
+            cell.photoButton.setBackgroundImage(image, for: .normal)
+            cell.photoButton.setTitle("", for: .normal)
+            
+        }
         setupCardTableViewCell(cell)
         
         return cell
