@@ -33,9 +33,9 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         cardSearchBar.returnKeyType = UIReturnKeyType.done
         
         let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
-        let yourXIBName = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
+        let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
-        tableView.register(yourXIBName, forCellReuseIdentifier: "cardCell")
+        tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
     }
     
     // MARK: - Search bar delegate
@@ -67,11 +67,16 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell else {
+        let card = PersonController.shared.currentPerson?.cards[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell, let newCard = card else {
             return CommonCardTableViewCell()
         }
-        let card = PersonController.shared.currentPerson?.cards[indexPath.row]
-        cell.nameLabel.text = card?.name
+        
+        cell.nameLabel.text = newCard.name
+        cell.titleLabel.text = newCard.title
+        cell.cellLabel.text = "\(newCard.cell)"
+        cell.emailLabel.text = newCard.email
+        cell.photoButton.backgroundImage(for: UIControlState())
         
         setupCardTableViewCell(cell)
         
