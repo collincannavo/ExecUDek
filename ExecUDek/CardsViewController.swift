@@ -25,6 +25,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         tableView.reloadData()
     }
     
+    var selectedCard: Card?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -88,6 +90,18 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell tapped! \n\n\n\n\n")
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? CommonCardTableViewCell else { return }
+        
+        if let card = cell.card {
+            selectedCard = card
+        }
+        
+    }
+    
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCardFromMain" {
@@ -101,6 +115,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
             if let destinationNavController = segue.destination as? UINavigationController,
                 let destinationVC = destinationNavController.viewControllers.first as? CardTemplateTableViewController {
                 destinationVC.cardSenderIsMainScene = true
+                destinationVC.card = selectedCard
             }
         }
     }
