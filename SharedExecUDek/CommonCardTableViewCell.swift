@@ -28,6 +28,18 @@ public class CommonCardTableViewCell: UITableViewCell {
         guard let card = card else { return }
         delegate?.entireCardWasTapped?(card: card, cell: self)
     }
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
+        
+        let addButton = UIAlertAction(title: "Share", style: .default) { (_) in
+            //Add code
+        }
+        
+        alert.addAction(addButton)
+        
+        
+    }
     
     public func updateCell(withCardImage: UIImage) {
         guard let name = nameLabel.text,
