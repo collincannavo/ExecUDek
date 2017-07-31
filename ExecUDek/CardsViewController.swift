@@ -39,7 +39,6 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     // MARK: - Search bar delegate
-    
     var inSearchMode = false
     var filteredData = [String]()
     var data = [String]()
@@ -61,6 +60,27 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
     }
     
+    // MARK: Present action sheet
+    func presentAction() {
+        let selectMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let shareAction = UIAlertAction(title: "Share", style: .default, handler:{
+            (alert: UIAlertAction!) -> Void in
+            print("Share")
+        })
+        let editAction = UIAlertAction(title: "Edit", style: .default, handler:{
+            (alert: UIAlertAction!) -> Void in
+            print("Edit")
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:{
+            (alert: UIAlertAction!) -> Void in
+            print("Cancel")
+        })
+        selectMenu.addAction(shareAction)
+        selectMenu.addAction(editAction)
+        selectMenu.addAction(cancelAction)
+        self.present(selectMenu, animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return PersonController.shared.currentPerson?.cards.count ?? 0
@@ -74,7 +94,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
-        cell.cellLabel.text = "\(newCard.cell)"
+        cell.cellLabel.text = "\(String(describing: newCard.cell))"
         cell.emailLabel.text = newCard.email
         cell.photoButton.backgroundImage(for: UIControlState())
         
@@ -85,6 +105,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        presentAction()
         if segue.identifier == "addCardFromMain" {
             if let destinationNavController = segue.destination as? UINavigationController,
                 let destinationVC = destinationNavController.viewControllers.first as? CardTemplateTableViewController {
