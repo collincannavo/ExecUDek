@@ -12,6 +12,7 @@ import CloudKit
 public class CloudKitContoller {
     
     public static let shared = CloudKitContoller()
+    private let container = CKContainer(identifier: "iCloud.com.ganleyApps.ExecUDek")
     
     public var cards: [Card] = []
     
@@ -28,13 +29,13 @@ public class CloudKitContoller {
         
         let query = CKQuery(recordType: Card.recordTypeKey, predicate: predicate)
         
-        CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
+        container.publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
             completion(records, error)
         }
     }
     
     public func fetchRecord(with recordID: CKRecordID, completion: @escaping (CKRecord?, Error?) -> Void) {
-        CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
+        container.publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
             completion(record, error)
         }
     }
@@ -52,7 +53,7 @@ public class CloudKitContoller {
             operation.queuePriority = .high
             operation.qualityOfService = .userInteractive
             
-            CKContainer.default().publicCloudDatabase.add(operation)
+            self.container.publicCloudDatabase.add(operation)
         }
     }
     
@@ -63,12 +64,12 @@ public class CloudKitContoller {
         operation.queuePriority = .high
         operation.qualityOfService = .userInteractive
         
-        CKContainer.default().publicCloudDatabase.add(operation)
+        self.container.publicCloudDatabase.add(operation)
     }
     
     public func createUserWith(name: String, completion: @escaping (_ success: Bool) -> Void) {
         
-        CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
+        container.fetchUserRecordID { (appleUserRecordID, error) in
             
             if let error = error { print(error.localizedDescription); completion(false); return }
             
@@ -78,7 +79,7 @@ public class CloudKitContoller {
             
             let user = Person(name: name, userCKReference: userCKReference)
             
-            CKContainer.default().publicCloudDatabase.save(user.CKrecord, completionHandler: { (_, error) in
+            self.container.publicCloudDatabase.save(user.CKrecord, completionHandler: { (_, error) in
                 
                 if let error = error { print(error.localizedDescription); completion(false); return }
                 
@@ -91,7 +92,7 @@ public class CloudKitContoller {
     
     public func fetchCurrentUser(completion: @escaping (Bool, Person?) -> Void) {
         
-        CKContainer.default().fetchUserRecordID { (appleUserRecordID, error) in
+        container.fetchUserRecordID { (appleUserRecordID, error) in
             if let error = error { print(error.localizedDescription); completion(false, nil); return }
             
             guard let appleUserRecordID = appleUserRecordID else { completion(false, nil); return }
@@ -102,7 +103,7 @@ public class CloudKitContoller {
             
             let query = CKQuery(recordType: Person.recordType, predicate: predicate)
             
-            CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil, completionHandler: { (records, error) in
+            self.container.publicCloudDatabase.perform(query, inZoneWith: nil, completionHandler: { (records, error) in
                 if let error = error { print(error.localizedDescription); completion(false, nil); return }
                 
                 guard let currentUserRecord = records?.first else { completion(true, nil); return }
