@@ -25,6 +25,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         tableView.reloadData()
     }
     
+    var selectedCard: Card?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -80,6 +82,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
         cell.emailLabel.text = newCard.email
+        cell.card = newCard
         
         if let data = card?.logoData {
             let image = UIImage(data: data)
@@ -92,6 +95,20 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell tapped! \n\n\n\n\n")
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? CommonCardTableViewCell else { return }
+        
+        if let card = cell.card {
+            selectedCard = card
+            
+            performSegue(withIdentifier: "editCardFromMain", sender: nil)
+        }
+        
+    }
+    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,6 +123,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
             if let destinationNavController = segue.destination as? UINavigationController,
                 let destinationVC = destinationNavController.viewControllers.first as? CardTemplateTableViewController {
                 destinationVC.cardSenderIsMainScene = true
+                destinationVC.card = selectedCard
             }
         }
     }

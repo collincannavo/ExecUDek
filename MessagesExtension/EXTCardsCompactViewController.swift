@@ -34,20 +34,19 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return PersonController.shared.currentPerson?.personalCards.count ?? 0
-        return 3
+        return PersonController.shared.currentPerson?.personalCards.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell else { return CommonCardTableViewCell() }
         
-        //let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
-        let card = Card(name: "Tom", template: .one)
+        let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+        
         cell.card = card
-        cell.nameLabel.text = card.name
+        cell.nameLabel.text = card?.name
         cell.enableEntireCardButton()
         cell.delegate = self
-        guard let logoData = card.logoData,
+        guard let logoData = card?.logoData,
             let logoImage = UIImage(data: logoData) else { return cell }
         
         cell.photoButton.setImage(logoImage, for: UIControlState())

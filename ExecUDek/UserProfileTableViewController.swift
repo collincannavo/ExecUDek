@@ -52,6 +52,10 @@ class UserProfileTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell tapped! \n\n\n\n\n")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCardFromUser" {
             if let destinationNavController = segue.destination as? UINavigationController,

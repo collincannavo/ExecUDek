@@ -25,6 +25,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             commonCardXIB = customView
             commonCardXIB?.delegate = self
         }
+        
+        guard let card = card else { return }
+            updateViews()
     }
     
     // TableView TextFields
@@ -110,7 +113,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     // MARK: UITextfieldDelegate
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let name = nameTextField.text, !name.isEmpty,
                     let cell = cellTextField.text,
@@ -124,7 +126,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         return true
     }
     
-
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         guard let name = nameTextField.text, !name.isEmpty,
@@ -136,6 +137,20 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         commonCardXIB?.cellLabel.text = cell
         commonCardXIB?.emailLabel.text = email
         textField.resignFirstResponder()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else {return true}
+        let lastText = (text as NSString).replacingCharacters(in: range, with: string) as String
+        if cellTextField == textField {
+            textField.text = lastText.format("(NNN) NNN-NNNN", oldString: text)
+            return false
+        }
+        if officeNumberTextField == textField {
+            textField.text = lastText.format("(NNN) NNN-NNNN", oldString: text)
+            return false
+        }
+        return true
     }
     
     // MARK: - Helper methods

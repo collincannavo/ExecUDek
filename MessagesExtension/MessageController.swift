@@ -28,7 +28,7 @@ class MessageController {
         
         let message = MSMessage()
         let layout = MSMessageTemplateLayout()
-        layout.caption = "You've receieved a business card!"
+        layout.caption = "You've received a business card!"
         if let data = UIViewToPNG.uiViewToPNG(for: cell) {
             layout.image = UIImage(data: data)
         }
@@ -44,7 +44,7 @@ class MessageController {
     static func urlForMessage(with recordID: CKRecordID) -> URL? {
         var urlComponents = URLComponents()
         
-        let queryItems = [URLQueryItem(name: Constants.receivedCardRecordIDKey, value: "\(recordID)")]
+        let queryItems = [URLQueryItem(name: Constants.receivedCardRecordIDKey, value: "\(recordID.recordName)")]
         urlComponents.queryItems = queryItems
         
         guard let url = urlComponents.url else { return nil }
@@ -65,6 +65,12 @@ class MessageController {
             guard let currentPerson = PersonController.shared.currentPerson else { NSLog("Current person object is nil"); return }
             
             PersonController.shared.addCard(card, to: currentPerson)
+            let reference = CKReference(recordID: recordID, action: .none)
+            PersonController.shared.addCardReference(reference, to: currentPerson)
+            
+            guard let personRecordID = currentPerson.cKRecordID else { return }
+            
+            CloudKitContoller.shared.updateRecord(recordID: personRecordID)
         }
     }
 }
