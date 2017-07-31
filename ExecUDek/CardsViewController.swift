@@ -88,15 +88,20 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let card = PersonController.shared.currentPerson?.cards[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell, let newCard = card else {
-            return CommonCardTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell,
+            let newCard = card,
+            let data = card?.cardData
+            else { return CommonCardTableViewCell()
         }
         
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
         cell.cellLabel.text = "\(String(describing: newCard.cell))"
         cell.emailLabel.text = newCard.email
-        cell.photoButton.backgroundImage(for: UIControlState())
+        
+        let image = UIImage(data: data)
+        
+        cell.photoButton.setBackgroundImage(image, for: .normal)
         
         setupCardTableViewCell(cell)
         
