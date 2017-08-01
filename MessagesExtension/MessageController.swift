@@ -51,26 +51,37 @@ class MessageController {
         return url
     }
     
-    static func receiveAndParseMessage(_ message: MSMessage) {
+    static func receiveAndParseMessage(_ message: MSMessage, with completion: @escaping (Card?) -> Void) {
         guard let url = message.url,
             let urlComponents = URLComponents(string: url.absoluteString),
             let recordIDQueryItem = urlComponents.queryItems?.first,
-            let recordIDString = recordIDQueryItem.value else { return }
+            let recordIDString = recordIDQueryItem.value else { completion(nil); return }
         
         let recordID = CKRecordID(recordName: recordIDString)
         CloudKitContoller.shared.fetchRecord(with: recordID) { (record, error) in
+            
+            var receivedCard: Card? = nil
+            defer { completion(receivedCard) }
+            
             if let error = error { NSLog("Error encountered fetching received Card record: \(error.localizedDescription)"); return }
             guard let record = record else { NSLog("The returned received Card record from the extension is nil"); return }
             guard let card = Card(ckRecord: record) else { NSLog("Could not create Card object from received record"); return }
-            guard let currentPerson = PersonController.shared.currentPerson else { NSLog("Current person object is nil"); return }
             
-            PersonController.shared.addCard(card, to: currentPerson)
-            let reference = CKReference(recordID: recordID, action: .none)
-            PersonController.shared.addCardReference(reference, to: currentPerson)
-            
-            guard let personRecordID = currentPerson.cKRecordID else { return }
-            
-            CloudKitContoller.shared.updateRecord(recordID: personRecordID)
+            card.ckRecordID = recordID
+            receivedCard = card
         }
+    }
+    
+    static func save(_ card: Card) {
+        guard let currentPerson = PersonController.shared.currentPerson else { NSLog("Current person object is nil"); return }
+        
+        PersonController.shared.addCard(card, to: currentPerson)
+        
+        guard let reference = card.ckReference else { return }
+        PersonController.shared.addCardReference(reference, to: currentPerson)
+        
+        guard let personRecordID = currentPerson.cKRecordID else { return }
+        
+        CloudKitContoller.shared.updateRecord(recordID: personRecordID)
     }
 }

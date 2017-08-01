@@ -11,12 +11,10 @@ import Messages
 import SharedExecUDek
 import NotificationCenter
 
-class MessagesViewController: MSMessagesAppViewController {
+class MessagesViewController: MSMessagesAppViewController, CardReceivedViewControllerDelegate {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    var currentCard: Card?
+    var currentMessage: MSMessage?
     
     // MARK: - Conversation Handling
     
@@ -28,7 +26,9 @@ class MessagesViewController: MSMessagesAppViewController {
                 if person != nil {
                     CardController.shared.fetchPersonalCards(with: { (success) in
                         if success {
-                            NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
+                            }
                         }
                     })
                 } else {
@@ -37,55 +37,57 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         }
         
-        presentViewController(for: conversation, with: presentationStyle)
-    }
-    
-    override func didResignActive(with conversation: MSConversation) {
-        // Called when the extension is about to move from the active to inactive state.
-        // This will happen when the user dissmises the extension, changes to a different
-        // conversation or quits Messages.
+        currentMessage = conversation.selectedMessage
         
-        // Use this method to release shared resources, save user data, invalidate timers,
-        // and store enough state information to restore your extension to its current state
-        // in case it is terminated later.
+        if let currentMessage = currentMessage {
+            MessageController.receiveAndParseMessage(currentMessage) { (card) in
+                self.currentCard = card
+                
+                DispatchQueue.main.async {
+                    self.presentViewController(for: conversation, with: .expanded, forReceivedMessage: true)
+                }
+            }
+        } else {
+            presentViewController(for: conversation, with: presentationStyle, forReceivedMessage: false)
+        }
     }
-   
-    override func didReceive(_ message: MSMessage, conversation: MSConversation) {
-        MessageController.receiveAndParseMessage(message)
-    }
-    
+
     override func didSelect(_ message: MSMessage, conversation: MSConversation) {
-        MessageController.receiveAndParseMessage(message)
+        super.didSelect(message, conversation: conversation)
+        
+        MessageController.receiveAndParseMessage(message) { (card) in
+            self.currentCard = card
+            
+            DispatchQueue.main.async {
+                self.presentViewController(for: conversation, with: .expanded, forReceivedMessage: true)
+            }
+        }
     }
     
-    override func didStartSending(_ message: MSMessage, conversation: MSConversation) {
-        // Called when the user taps the send button.
-    }
-    
-    override func didCancelSending(_ message: MSMessage, conversation: MSConversation) {
-        // Called when the user deletes the message without sending it.
-    
-        // Use this to clean up state related to the deleted message.
-    }
-    
-    override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        // Called before the extension transitions to a new presentation style.
-    
-        // Use this method to prepare for the change in presentation style.
-    }
-    
-    override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        // Called after the extension transitions to a new presentation style.
-    
-        // Use this method to finalize any behaviors associated with the change in presentation style.
+    // MARK: - Card received view controller delegate
+    func userDidHandleReceivedCard() {
+        dismiss()
     }
     
     // MARK: - Child view controller presentation
-    private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
+    private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle, forReceivedMessage: Bool) {
         
         removeAllChildViewControllers()
         
-        guard let childController = storyboard?.instantiateViewController(withIdentifier: "extCardsCompactVC") as? EXTCardsCompactViewController else { fatalError("Could not instantiate cards compact view controller") }
+        let childController: UIViewController
+        
+        if forReceivedMessage {
+            guard let childControllerReceiveMessage = storyboard?.instantiateViewController(withIdentifier: "receivedCardViewController") as? CardReceivedViewController else { fatalError("Could not instantiate card received view controller") }
+            
+            childControllerReceiveMessage.card = currentCard
+            childControllerReceiveMessage.delegate = self
+            childController = childControllerReceiveMessage
+        } else {
+            guard let childControllerCompactView = storyboard?.instantiateViewController(withIdentifier: "extCardsCompactVC") as? EXTCardsCompactViewController else { fatalError("Could not instantiate cards compact view controller") }
+            
+            childControllerCompactView.conversation = conversation
+            childController = childControllerCompactView
+        }
         
         addChildViewController(childController)
         childController.view.frame = view.bounds
@@ -100,7 +102,6 @@ class MessagesViewController: MSMessagesAppViewController {
             ])
         
         childController.didMove(toParentViewController: self)
-        childController.conversation = conversation
     }
     
     func removeAllChildViewControllers() {
