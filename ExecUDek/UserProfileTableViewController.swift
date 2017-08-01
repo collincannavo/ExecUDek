@@ -10,13 +10,7 @@ import UIKit
 import SharedExecUDek
 import NotificationCenter
 
-<<<<<<< HEAD
-class UserProfileTableViewController: UITableViewController {
-    
-    var selectedCard: Card?
-=======
 class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate {
->>>>>>> develop
 
     var card = CommonCardTableViewCell()
     
