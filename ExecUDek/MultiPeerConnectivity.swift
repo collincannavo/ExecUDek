@@ -26,17 +26,8 @@ extension UserProfileTableViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    func disconnectAction(_ sender: UIBarButtonItem) {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Disconnect", style: .default) { action in
-            if !self.session.connectedPeers.isEmpty {
-                self.session.disconnect()
-             //   self.messages.removeAll()
-                self.tableView.reloadData()
-            }
-        })
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(actionSheet, animated: true, completion: nil)
+    func disconnectAction() {
+        self.session.disconnect()
     }
     
     // MARK:- Private

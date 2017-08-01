@@ -12,7 +12,7 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
+class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
     
     let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name))
     var browser: MCNearbyServiceBrowser?
@@ -23,7 +23,6 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
     var card = CommonCardTableViewCell()
     var selectedCard: Card?
 
-    
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
     }
     
