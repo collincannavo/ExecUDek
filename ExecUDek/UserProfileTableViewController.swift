@@ -13,6 +13,7 @@ import NotificationCenter
 class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate {
 
     var card = CommonCardTableViewCell()
+    var selectedCard: Card?
     
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
     }
