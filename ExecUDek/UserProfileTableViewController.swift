@@ -9,13 +9,20 @@
 import UIKit
 import SharedExecUDek
 import NotificationCenter
+import MultipeerConnectivity
 import MessageUI
 
-class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate {
-
+class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
+    
+    let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name))
+    var browser: MCNearbyServiceBrowser?
+    var advertiser: MCNearbyServiceAdvertiser?
+    
+    var searchButton: UIBarButtonItem?
+    var disconnectButton: UIBarButtonItem?
     var card = CommonCardTableViewCell()
     var selectedCard: Card?
-    
+
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
     }
     
@@ -44,6 +51,8 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
+        
+        self.session.delegate = self
     }
     
     // MARK: - Table view data source
@@ -63,9 +72,9 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
         cell.actionSheetDelegate = self
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
+        cell.cellLabel.text = "\(String(describing: newCard.cell))"
         cell.emailLabel.text = newCard.email
         cell.card = newCard
-        
         if let data = card?.logoData {
             let image = UIImage(data: data)
             
@@ -117,9 +126,16 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
             self.presentSMSInterface(for: card, with: cell)
         }
         
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
+//            guard let indexPath = self.tableView.indexPath(for: cell),
+//                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
+//            self.presentSMSInterface(for: card, with: cell)
+            self.searchAction()
+        }
         
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(iMessagesButton)
+        alertController.addAction(multiShareButton)
         alertController.addAction(cancelButton)
         
         present(alertController, animated: true, completion: nil)
@@ -143,3 +159,4 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
         self.present(composeVC, animated: true, completion: nil)
     }
 }
+
