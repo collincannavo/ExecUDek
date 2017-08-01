@@ -9,20 +9,20 @@
 import UIKit
 import SharedExecUDek
 import NotificationCenter
-import MultipeerConnectivity
-import MessageUI
 
-class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
+<<<<<<< HEAD
+<<<<<<< HEAD
+class UserProfileTableViewController: UITableViewController {
     
-    let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name))
-    var browser: MCNearbyServiceBrowser?
-    var advertiser: MCNearbyServiceAdvertiser?
-    
-    var searchButton: UIBarButtonItem?
-    var disconnectButton: UIBarButtonItem?
-    var card = CommonCardTableViewCell()
     var selectedCard: Card?
+=======
+class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate {
+>>>>>>> develop
+=======
+class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate {
+>>>>>>> develop
 
+    var card = CommonCardTableViewCell()
     
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
     }
@@ -41,6 +41,7 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
             
             performSegue(withIdentifier: "editCardFromUser", sender: nil)
         }
+        
     }
     
     override func viewDidLoad() {
@@ -52,8 +53,6 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
-        
-        self.session.delegate = self
     }
     
     // MARK: - Table view data source
@@ -64,35 +63,33 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+<<<<<<< HEAD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell,
             let newCard = card else { return CommonCardTableViewCell() }
         
         if let cellPhone = newCard.cell {
             cell.cellLabel.text = "\(cellPhone)"
+=======
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell, let newCard = card else {
+            return CommonCardTableViewCell()
+>>>>>>> develop
         }
         cell.actionSheetDelegate = self
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
-        cell.cellLabel.text = "\(String(describing: newCard.cell))"
         cell.emailLabel.text = newCard.email
         cell.card = newCard
+        
         if let data = card?.logoData {
             let image = UIImage(data: data)
             
-            cell.photoButton.setBackgroundImage(image, for: .disabled)
-            cell.photoButton.setTitle("", for: .disabled)
+            cell.photoButton.setBackgroundImage(image, for: .normal)
+            cell.photoButton.setTitle("", for: .normal)
+            
         }
-        
-        cell.disablePhotoButton()
-        
         setupCardTableViewCell(cell)
         
         return cell
-    }
-    
-    // MARK: - MF message view controller delegate
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        controller.dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -118,46 +115,23 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
     func refresh() {
         tableView.reloadData()
     }
-    func actionSheetSelected(cellButtonTapped: UIButton, cell: CommonCardTableViewCell) {
+    func actionSheetSelected(cellButtonTapped: UIButton) {
         let alertController = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
         
         let iMessagesButton = UIAlertAction(title: "iMessage", style: .default) { (_) in
-            guard let indexPath = self.tableView.indexPath(for: cell),
-                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
-            self.presentSMSInterface(for: card, with: cell)
+            // Add Code here
         }
         
-        let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
-//            guard let indexPath = self.tableView.indexPath(for: cell),
-//                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
-//            self.presentSMSInterface(for: card, with: cell)
-            self.searchAction()
+        let textButton = UIAlertAction(title: "Text", style: .default) { (_) in
+            // Add text code here
         }
-        
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
         alertController.addAction(iMessagesButton)
-        alertController.addAction(multiShareButton)
+        alertController.addAction(textButton)
         alertController.addAction(cancelButton)
         
         present(alertController, animated: true, completion: nil)
     }
     
-    func presentSMSUnavailableAlert() {
-        let alertController = UIAlertController(title: "SMS Services Unavailable", message: "Download iMessages and try again", preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-        alertController.addAction(dismissAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func presentSMSInterface(for card: Card, with cell: CommonCardTableViewCell) {
-        guard MFMessageComposeViewController.canSendText(),
-            let cardRecordID = card.ckRecordID,
-            let message = MessageController.createMessage(with: cardRecordID, from: cell) else { presentSMSUnavailableAlert(); return }
-    
-        let composeVC = MFMessageComposeViewController()
-        composeVC.messageComposeDelegate = self
-        composeVC.message = message
-        self.present(composeVC, animated: true, completion: nil)
-    }
 }
-

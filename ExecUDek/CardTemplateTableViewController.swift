@@ -24,10 +24,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             cardContentView.addSubview(customView)
             commonCardXIB = customView
             commonCardXIB?.delegate = self
+            commonCardXIB?.card = card
+            commonCardXIB?.updateViews()
         }
         
         guard let card = card else { return }
-            updateViews()
+        updateViews()
     }
     
     // TableView TextFields
@@ -67,10 +69,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         if let card = card,
             let recordID = card.ckRecordID {
-            
             CloudKitContoller.shared.deleteRecord(recordID: recordID)
+            guard let person = PersonController.shared.currentPerson else { return }
+            PersonController.shared.deleteCard(card, from: person)
         }
         self.dismiss(animated: true, completion: nil)
+        
     }
     
     func photoSelectCellSelected(cellButtonTapped: UIButton) {
@@ -160,10 +164,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         guard let name = nameTextField.text else { return }
         
         let title = titleTextField.text
-        let cell = Int(cellTextField.text ?? "")
+//        let cell = Int(cellTextField.text ?? "")
+        let cell = cellTextField.text
         let email = emailTextField.text
         
-        let officeNumber = Int(officeNumberTextField.text ?? "")
+//        let officeNumber = Int(officeNumberTextField.text ?? "")
+        let officeNumber = officeNumberTextField.text
         let template = Template.one
         //let note = noteTextField.text
         let address = addressTextField.text

@@ -9,11 +9,10 @@
 import Foundation
 import Messages
 import CloudKit
-import SharedExecUDek
 
-class MessageController {
+public class MessageController {
     
-    static func prepareToSendPNG(with data: Data, in conversation: MSConversation) {
+    public static func prepareToSendPNG(with data: Data, in conversation: MSConversation) {
         let directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         guard let directory = directories.first else { return }
         let directoryNSString = directory as NSString
@@ -23,7 +22,7 @@ class MessageController {
         conversation.insertAttachment(URL(fileURLWithPath: path), withAlternateFilename: nil, completionHandler: nil)
     }
     
-    static func prepareToSendCard(with recordID: CKRecordID, from cell: CommonCardTableViewCell, in conversation: MSConversation) {
+    public static func prepareToSendCard(with recordID: CKRecordID, from cell: CommonCardTableViewCell, in conversation: MSConversation) {
         guard let messageURL = urlForMessage(with: recordID) else { return }
         
         let message = MSMessage()
@@ -41,7 +40,23 @@ class MessageController {
         }
     }
     
-    static func urlForMessage(with recordID: CKRecordID) -> URL? {
+    public static func createMessage(with recordID: CKRecordID, from cell: CommonCardTableViewCell) -> MSMessage? {
+        guard let messageURL = urlForMessage(with: recordID) else { return nil }
+        
+        let message = MSMessage()
+        let layout = MSMessageTemplateLayout()
+        layout.caption = "You've received a business card!"
+        if let data = UIViewToPNG.uiViewToPNG(for: cell) {
+            layout.image = UIImage(data: data)
+        }
+        
+        message.layout = layout
+        message.url = messageURL
+        
+        return message
+    }
+    
+    public static func urlForMessage(with recordID: CKRecordID) -> URL? {
         var urlComponents = URLComponents()
         
         let queryItems = [URLQueryItem(name: Constants.receivedCardRecordIDKey, value: "\(recordID.recordName)")]
@@ -51,26 +66,37 @@ class MessageController {
         return url
     }
     
-    static func receiveAndParseMessage(_ message: MSMessage) {
+    public static func receiveAndParseMessage(_ message: MSMessage, with completion: @escaping (Card?) -> Void) {
         guard let url = message.url,
             let urlComponents = URLComponents(string: url.absoluteString),
             let recordIDQueryItem = urlComponents.queryItems?.first,
-            let recordIDString = recordIDQueryItem.value else { return }
+            let recordIDString = recordIDQueryItem.value else { completion(nil); return }
         
         let recordID = CKRecordID(recordName: recordIDString)
         CloudKitContoller.shared.fetchRecord(with: recordID) { (record, error) in
+            
+            var receivedCard: Card? = nil
+            defer { completion(receivedCard) }
+            
             if let error = error { NSLog("Error encountered fetching received Card record: \(error.localizedDescription)"); return }
             guard let record = record else { NSLog("The returned received Card record from the extension is nil"); return }
             guard let card = Card(ckRecord: record) else { NSLog("Could not create Card object from received record"); return }
-            guard let currentPerson = PersonController.shared.currentPerson else { NSLog("Current person object is nil"); return }
             
-            PersonController.shared.addCard(card, to: currentPerson)
-            let reference = CKReference(recordID: recordID, action: .none)
-            PersonController.shared.addCardReference(reference, to: currentPerson)
-            
-            guard let personRecordID = currentPerson.cKRecordID else { return }
-            
-            CloudKitContoller.shared.updateRecord(recordID: personRecordID)
+            card.ckRecordID = recordID
+            receivedCard = card
         }
+    }
+    
+    public static func save(_ card: Card) {
+        guard let currentPerson = PersonController.shared.currentPerson else { NSLog("Current person object is nil"); return }
+        
+        PersonController.shared.addCard(card, to: currentPerson)
+        
+        guard let reference = card.ckReference else { return }
+        PersonController.shared.addCardReference(reference, to: currentPerson)
+        
+        guard let personRecordID = currentPerson.cKRecordID else { return }
+        
+        CloudKitContoller.shared.updateRecord(recordID: personRecordID)
     }
 }

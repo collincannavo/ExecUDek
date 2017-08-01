@@ -14,7 +14,7 @@ import SharedExecUDek
 extension UserProfileTableViewController {
     
     // MARK:- Action
-    func searchAction(_ sender: UIBarButtonItem) {
+    func searchAction() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Browse", style: .default) { action in
             self.startBrowsing()
