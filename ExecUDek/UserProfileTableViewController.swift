@@ -33,7 +33,6 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
             
             performSegue(withIdentifier: "editCardFromUser", sender: nil)
         }
-        
     }
     
     override func viewDidLoad() {
@@ -70,10 +69,12 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
         if let data = card?.logoData {
             let image = UIImage(data: data)
             
-            cell.photoButton.setBackgroundImage(image, for: .normal)
-            cell.photoButton.setTitle("", for: .normal)
-            
+            cell.photoButton.setBackgroundImage(image, for: .disabled)
+            cell.photoButton.setTitle("", for: .disabled)
         }
+        
+        cell.disablePhotoButton()
+        
         setupCardTableViewCell(cell)
         
         return cell

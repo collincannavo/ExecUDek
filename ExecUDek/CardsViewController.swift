@@ -91,9 +91,14 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
             let image = UIImage(data: data)
             
             cell.photoButton.setBackgroundImage(image, for: .normal)
+            cell.photoButton.setBackgroundImage(image, for: .disabled)
             cell.photoButton.setTitle("", for: .normal)
             
         }
+        
+        cell.hideShareButton()
+        cell.disablePhotoButton()
+        
         setupCardTableViewCell(cell)
         
         return cell

@@ -41,18 +41,13 @@ public class CommonCardTableViewCell: UITableViewCell {
             let email = emailLabel.text
             else { return }
         
-//        let numberFormatter = NumberFormatter()
-//        let cellphone = numberFormatter.number(from: cell)
-        
         card?.name = name
         card?.email = email
         card?.cell = cell
         card?.title = title
         
         layer.cornerRadius = 20.0
-        
-//         view.bringSubview(toFront: shareButton)
-//        view.insertSubview(photoButton, aboveSubview: shareButton)
+
         shareButton.superview?.bringSubview(toFront: view)
     }
     
@@ -61,28 +56,33 @@ public class CommonCardTableViewCell: UITableViewCell {
         
         nameLabel.text = card.name
         titleLabel.text = card.title
-        //        cellLabel.text = String(describing: card.cell)
-        //        if let cellNumber = card.cell {
-        //            cellLabel.text = "\(cellNumber)"
-        //        } else {
-        //            cellLabel.text = ""
-        //        }
         emailLabel.text = card.email
         
         if let data = card.logoData {
             let image = UIImage(data: data)
             
             photoButton.setBackgroundImage(image, for: .normal)
+            photoButton.setBackgroundImage(image, for: .disabled)
             photoButton.setTitle("", for: .normal)
         }
     }
     
     public override func prepareForReuse() {
         entireCardButton.isEnabled = false
+        shareButton.isHidden = false
+        photoButton.isEnabled = true
     }
     
     public func enableEntireCardButton() {
         entireCardButton.isEnabled = true
+    }
+    
+    public func hideShareButton() {
+        shareButton.isHidden = true
+    }
+    
+    public func disablePhotoButton() {
+        photoButton.isEnabled = false
     }
     
     // MARK: - Delegate properties
