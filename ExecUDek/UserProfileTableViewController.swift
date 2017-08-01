@@ -11,12 +11,27 @@ import SharedExecUDek
 import NotificationCenter
 
 class UserProfileTableViewController: UITableViewController {
+    
+    var selectedCard: Card?
 
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell tapped! \n\n\n\n\n")
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? CommonCardTableViewCell else { return }
+        
+        if let card = cell.card {
+            selectedCard = card
+            
+            performSegue(withIdentifier: "editCardFromUser", sender: nil)
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -40,23 +55,28 @@ class UserProfileTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell, let newCard = card else {
-            return CommonCardTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell,
+            let newCard = card else { return CommonCardTableViewCell() }
+        
+        if let cellPhone = newCard.cell {
+            cell.cellLabel.text = "\(cellPhone)"
         }
         
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
-        cell.cellLabel.text = "\(newCard.cell)"
         cell.emailLabel.text = newCard.email
-        cell.photoButton.backgroundImage(for: UIControlState())
+        cell.card = newCard
         
+        if let data = card?.logoData {
+            let image = UIImage(data: data)
+            
+            cell.photoButton.setBackgroundImage(image, for: .normal)
+            cell.photoButton.setTitle("", for: .normal)
+            
+        }
         setupCardTableViewCell(cell)
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Cell tapped! \n\n\n\n\n")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,6 +90,7 @@ class UserProfileTableViewController: UITableViewController {
             if let destinationNavController = segue.destination as? UINavigationController,
                 let destinationVC = destinationNavController.viewControllers.first as? CardTemplateTableViewController {
                 destinationVC.cardSenderIsMainScene = false
+                destinationVC.card = selectedCard
             }
         }
     }

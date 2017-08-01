@@ -46,9 +46,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="195.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="MJq-Qh-r93" kind="presentation" identifier="editCardFromUser" id="o9Q-Fh-pVW"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -63,6 +60,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="eHL-w7-I70" kind="presentation" identifier="editCardFromUser" id="keZ-q2-XV8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bI-sv-WsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -75,14 +75,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K8B-X9-Xws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1446" y="77"/>
-        </scene>
-        <!--CardTemplate-->
-        <scene sceneID="24q-j7-Tor">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CardTemplate" id="MJq-Qh-r93" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hm0-Ta-eQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1562" y="172"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y71-aG-2BU">
@@ -103,4 +95,7 @@
             <point key="canvasLocation" x="-74.400000000000006" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="keZ-q2-XV8"/>
+    </inferredMetricsTieBreakers>
 </document>
