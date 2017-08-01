@@ -69,15 +69,12 @@ public class CommonCardTableViewCell: UITableViewCell {
         //        }
         emailLabel.text = card.email
         
-        
-        //        if let data = card?.logoData {
-        //            let image = UIImage(data: data)
-        //
-        //            cell.photoButton.setBackgroundImage(image, for: .normal)
-        //            cell.photoButton.setTitle("", for: .normal)
-        //            
-        //        }
-        
+        if let data = card.logoData {
+            let image = UIImage(data: data)
+            
+            photoButton.setBackgroundImage(image, for: .normal)
+            photoButton.setTitle("", for: .normal)
+        }
     }
     
     public override func prepareForReuse() {
