@@ -9,9 +9,17 @@
 import UIKit
 import SharedExecUDek
 import NotificationCenter
+import MultipeerConnectivity
 
-class UserProfileTableViewController: UITableViewController {
-
+class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
+    
+    let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name))
+    var browser: MCNearbyServiceBrowser?
+    var advertiser: MCNearbyServiceAdvertiser?
+    
+    var searchButton: UIBarButtonItem?
+    var disconnectButton: UIBarButtonItem?
+    
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
     }
     
@@ -29,6 +37,11 @@ class UserProfileTableViewController: UITableViewController {
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
         
+        self.session.delegate = self
+        self.searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(self.searchAction))
+        self.disconnectButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.disconnectAction))
+        
+        self.updateState(.notConnected)
         
     }
     
@@ -46,7 +59,7 @@ class UserProfileTableViewController: UITableViewController {
         
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
-        cell.cellLabel.text = "\(newCard.cell)"
+        cell.cellLabel.text = "\(String(describing: newCard.cell))"
         cell.emailLabel.text = newCard.email
         cell.photoButton.backgroundImage(for: UIControlState())
         
@@ -82,3 +95,4 @@ class UserProfileTableViewController: UITableViewController {
         tableView.reloadData()
     }
 }
+
