@@ -100,8 +100,6 @@ extension UserProfileTableViewController {
     
     // MARK:- MCSessionDelegate
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        print("[MCSessionDelegate] session:peerID:didChangeState:")
-        print("  + peerID = \(peerID.displayName)")
         switch state {
         case .notConnected:
             self.updateState(.notConnected)
@@ -113,15 +111,7 @@ extension UserProfileTableViewController {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("[MCSessionDelegate] session:didReceiveData:fromPeer:")
-        print("  + peerID = \(peerID.displayName)")
-        guard let text = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String? else { return }
-        guard !text.isEmpty else { return }
-        print("  + data = \(text)")
-        // self.messages.append((text: text, mine: false))
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        print("Received the data: ",data)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -143,7 +133,7 @@ extension UserProfileTableViewController {
     
     // MARK:- MCNearbyServiceAdvertiserDelegate
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        let alert = UIAlertController(title: "Invitation", message: "from \(peerID.displayName)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Invitation for a business card", message: "from \(peerID.displayName)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Accept", style: .default) { action in
             invitationHandler(true, self.session)
         })
