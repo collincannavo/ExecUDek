@@ -31,8 +31,7 @@ public class CommonCardTableViewCell: UITableViewCell {
         delegate?.entireCardWasTapped?(card: card, cell: self)
     }
     @IBAction func shareButtonTapped(_ sender: UIButton) {
-        actionSheetDelegate?.actionSheetSelected(cellButtonTapped: sender)
-       
+        actionSheetDelegate?.actionSheetSelected(cellButtonTapped: sender, cell: self)
     }
     
     public func updateCell(withCardImage: UIImage) {
@@ -83,5 +82,5 @@ public class CommonCardTableViewCell: UITableViewCell {
 }
 
 public protocol ActionSheetDelegate : class {
-    func actionSheetSelected(cellButtonTapped: UIButton)
+    func actionSheetSelected(cellButtonTapped: UIButton, cell: CommonCardTableViewCell)
 }

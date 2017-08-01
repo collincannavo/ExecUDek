@@ -9,8 +9,9 @@
 import UIKit
 import SharedExecUDek
 import NotificationCenter
+import MessageUI
 
-class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate {
+class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate {
 
     var card = CommonCardTableViewCell()
     var selectedCard: Card?
@@ -78,6 +79,11 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
         return cell
     }
     
+    // MARK: - MF message view controller delegate
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCardFromUser" {
             if let destinationNavController = segue.destination as? UINavigationController,
@@ -101,23 +107,38 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
     func refresh() {
         tableView.reloadData()
     }
-    func actionSheetSelected(cellButtonTapped: UIButton) {
+    func actionSheetSelected(cellButtonTapped: UIButton, cell: CommonCardTableViewCell) {
         let alertController = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
         
         let iMessagesButton = UIAlertAction(title: "iMessage", style: .default) { (_) in
-            // Add Code here
+            guard let indexPath = self.tableView.indexPath(for: cell),
+                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
+            self.presentSMSInterface(for: card, with: cell)
         }
         
-        let textButton = UIAlertAction(title: "Text", style: .default) { (_) in
-            // Add text code here
-        }
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alertController.addAction(iMessagesButton)
-        alertController.addAction(textButton)
         alertController.addAction(cancelButton)
         
         present(alertController, animated: true, completion: nil)
     }
     
+    func presentSMSUnavailableAlert() {
+        let alertController = UIAlertController(title: "SMS Services Unavailable", message: "Download iMessages and try again", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentSMSInterface(for card: Card, with cell: CommonCardTableViewCell) {
+        guard MFMessageComposeViewController.canSendText(),
+            let cardRecordID = card.ckRecordID,
+            let message = MessageController.createMessage(with: cardRecordID, from: cell) else { presentSMSUnavailableAlert(); return }
+    
+        let composeVC = MFMessageComposeViewController()
+        composeVC.messageComposeDelegate = self
+        composeVC.message = message
+        self.present(composeVC, animated: true, completion: nil)
+    }
 }
