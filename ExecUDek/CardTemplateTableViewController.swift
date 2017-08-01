@@ -164,10 +164,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         guard let name = nameTextField.text else { return }
         
         let title = titleTextField.text
-        let cell = Int(cellTextField.text ?? "")
+//        let cell = Int(cellTextField.text ?? "")
+        let cell = cellTextField.text
         let email = emailTextField.text
         
-        let officeNumber = Int(officeNumberTextField.text ?? "")
+//        let officeNumber = Int(officeNumberTextField.text ?? "")
+        let officeNumber = officeNumberTextField.text
         let template = Template.one
         //let note = noteTextField.text
         let address = addressTextField.text

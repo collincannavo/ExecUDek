@@ -16,7 +16,7 @@ public class CardController {
     
     // CRUD
     
-    public func createPersonalCardWith(name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func createPersonalCardWith(name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
         
         guard let person = PersonController.shared.currentPerson else { return }
         
@@ -33,7 +33,7 @@ public class CardController {
         }
     }
     
-    public func createCardWith(cardData: Data?, name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func createCardWith(cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
         
         let template = Template.one
         
@@ -60,7 +60,7 @@ public class CardController {
         }
     }
     
-    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: Int?, officeNumber: Int?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
         
         card.cardData = cardData
         card.name = name

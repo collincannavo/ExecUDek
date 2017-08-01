@@ -41,12 +41,12 @@ public class CommonCardTableViewCell: UITableViewCell {
             let email = emailLabel.text
             else { return }
         
-        let numberFormatter = NumberFormatter()
-        let cellphone = numberFormatter.number(from: cell)
+//        let numberFormatter = NumberFormatter()
+//        let cellphone = numberFormatter.number(from: cell)
         
         card?.name = name
         card?.email = email
-        card?.cell = cellphone as? Int
+        card?.cell = cell
         card?.title = title
         
         layer.cornerRadius = 20.0

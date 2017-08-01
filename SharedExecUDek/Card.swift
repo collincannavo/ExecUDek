@@ -46,8 +46,8 @@ public class Card: NSObject {
     
     public var name: String
     public var title: String?
-    public var cell: Int?
-    public var officeNumber: Int?
+    public var cell: String?
+    public var officeNumber: String?
     public var email: String?
     public var template: Template
     public var companyName: String?
@@ -61,8 +61,8 @@ public class Card: NSObject {
     
     public init(name: String,
          title: String? = nil,
-         cell: Int? = nil,
-         officeNumber: Int? = nil,
+         cell: String? = nil,
+         officeNumber: String? = nil,
          email: String? = nil,
          template: Template,
          companyName: String? = nil,
@@ -113,8 +113,8 @@ public class Card: NSObject {
             let template = Template(rawValue: templateRawValue) else { return nil }
         
         let title = ckRecord[Card.titleKey] as? String
-        let cell = ckRecord[Card.cellKey] as? Int
-        let officeNumber = ckRecord[Card.officeNumberKey] as? Int
+        let cell = ckRecord[Card.cellKey] as? String
+        let officeNumber = ckRecord[Card.officeNumberKey] as? String
         let email = ckRecord[Card.emailKey] as? String
         let companyName = ckRecord[Card.companyNameKey] as? String
         let note = ckRecord[Card.noteKey] as? String
