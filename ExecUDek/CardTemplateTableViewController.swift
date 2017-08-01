@@ -24,10 +24,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             cardContentView.addSubview(customView)
             commonCardXIB = customView
             commonCardXIB?.delegate = self
+            commonCardXIB?.card = card
+            commonCardXIB?.updateViews()
         }
         
         guard let card = card else { return }
-            updateViews()
+        updateViews()
     }
     
     // TableView TextFields

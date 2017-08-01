@@ -57,6 +57,26 @@ public class CommonCardTableViewCell: UITableViewCell {
     }
     
     public func updateViews() {
+        guard let card = card else { return }
+        
+        nameLabel.text = card.name
+        titleLabel.text = card.title
+        //        cellLabel.text = String(describing: card.cell)
+        //        if let cellNumber = card.cell {
+        //            cellLabel.text = "\(cellNumber)"
+        //        } else {
+        //            cellLabel.text = ""
+        //        }
+        emailLabel.text = card.email
+        
+        
+        //        if let data = card?.logoData {
+        //            let image = UIImage(data: data)
+        //
+        //            cell.photoButton.setBackgroundImage(image, for: .normal)
+        //            cell.photoButton.setTitle("", for: .normal)
+        //            
+        //        }
         
     }
     
