@@ -10,16 +10,15 @@ import Foundation
 import MultipeerConnectivity
 import SharedExecUDek
 
-
 extension UserProfileTableViewController {
     
     // MARK:- Action
     func searchAction() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Browse", style: .default) { action in
+        actionSheet.addAction(UIAlertAction(title: "Look for devices", style: .default) { action in
             self.startBrowsing()
         })
-        actionSheet.addAction(UIAlertAction(title: "Advertise", style: .default) { action in
+        actionSheet.addAction(UIAlertAction(title: "Make device available", style: .default) { action in
             self.startAdvertising()
         })
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
