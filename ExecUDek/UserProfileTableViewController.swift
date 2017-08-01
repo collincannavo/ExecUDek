@@ -10,8 +10,10 @@ import UIKit
 import SharedExecUDek
 import NotificationCenter
 
-class UserProfileTableViewController: UITableViewController {
+class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate {
 
+    var card = CommonCardTableViewCell()
+    
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
     }
     
@@ -28,8 +30,6 @@ class UserProfileTableViewController: UITableViewController {
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
-        
-        
     }
     
     // MARK: - Table view data source
@@ -43,7 +43,7 @@ class UserProfileTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell, let newCard = card else {
             return CommonCardTableViewCell()
         }
-        
+        cell.actionSheetDelegate = self
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
         cell.cellLabel.text = "\(newCard.cell)"
@@ -81,4 +81,23 @@ class UserProfileTableViewController: UITableViewController {
     func refresh() {
         tableView.reloadData()
     }
+    func actionSheetSelected(cellButtonTapped: UIButton) {
+        let alertController = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
+        
+        let iMessagesButton = UIAlertAction(title: "iMessage", style: .default) { (_) in
+            // Add Code here
+        }
+        
+        let textButton = UIAlertAction(title: "Text", style: .default) { (_) in
+            // Add text code here
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(iMessagesButton)
+        alertController.addAction(textButton)
+        alertController.addAction(cancelButton)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
