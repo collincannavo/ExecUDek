@@ -67,10 +67,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         if let card = card,
             let recordID = card.ckRecordID {
-            
             CloudKitContoller.shared.deleteRecord(recordID: recordID)
+            guard let person = PersonController.shared.currentPerson else { return }
+            PersonController.shared.deleteCard(card, from: person)
         }
         self.dismiss(animated: true, completion: nil)
+        
     }
     
     func photoSelectCellSelected(cellButtonTapped: UIButton) {
