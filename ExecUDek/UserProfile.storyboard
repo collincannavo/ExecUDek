@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZV9-Qh-vwd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZV9-Qh-vwd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,16 +13,16 @@
         <scene sceneID="UPw-CF-FPm">
             <objects>
                 <tableViewController id="1tB-em-BzF" customClass="UserProfileTableViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="152" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ih6-E8-oGd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="196" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ih6-E8-oGd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="RrC-14-1sA">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiJ-in-rNE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="148"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                     <state key="normal" title="Add New Card"/>
                                     <connections>
                                         <action selector="addNewCardButtonTapped:" destination="1tB-em-BzF" eventType="touchUpInside" id="0No-82-xcL"/>
@@ -39,16 +39,13 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userProfileCell" rowHeight="152" id="irc-GK-zt4" customClass="CommonCardTableViewCell" customModule="ExecUDek" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="176" width="375" height="152"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userProfileCell" rowHeight="196" id="irc-GK-zt4" customClass="CommonCardTableViewCell" customModule="ExecUDek" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="203" width="375" height="196"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="irc-GK-zt4" id="CgF-im-mQl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="152"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="195.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="MJq-Qh-r93" kind="presentation" identifier="editCardFromUser" id="o9Q-Fh-pVW"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -63,6 +60,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="eHL-w7-I70" kind="presentation" identifier="editCardFromUser" id="keZ-q2-XV8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bI-sv-WsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -75,14 +75,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K8B-X9-Xws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1446" y="77"/>
-        </scene>
-        <!--CardTemplate-->
-        <scene sceneID="24q-j7-Tor">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CardTemplate" id="MJq-Qh-r93" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hm0-Ta-eQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1562" y="172"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y71-aG-2BU">
@@ -103,4 +95,7 @@
             <point key="canvasLocation" x="-74.400000000000006" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="keZ-q2-XV8"/>
+    </inferredMetricsTieBreakers>
 </document>

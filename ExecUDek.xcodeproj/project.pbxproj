@@ -42,6 +42,7 @@
 		B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
 		B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */; };
+		CA641D651F2FE081003D9B0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
 		F04EDF081F2FC9CD00E8DB82 /* StringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04EDF071F2FC9CD00E8DB82 /* StringFormatter.swift */; };
 		F04EDF091F2FCA3C00E8DB82 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182B5AC71F2E835500C901E8 /* CloudKit.framework */; };

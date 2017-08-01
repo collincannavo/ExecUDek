@@ -10,10 +10,19 @@ import UIKit
 import SharedExecUDek
 import NotificationCenter
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+class UserProfileTableViewController: UITableViewController {
+    
+    var selectedCard: Card?
+=======
 class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate {
+>>>>>>> develop
+=======
+class UserProfileTableViewController: UITableViewController, UIActionSheetDelegate, ActionSheetDelegate {
+>>>>>>> develop
 
     var card = CommonCardTableViewCell()
-    var selectedCard: Card?
     
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
     }
@@ -54,11 +63,16 @@ class UserProfileTableViewController: UITableViewController, UIActionSheetDelega
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+<<<<<<< HEAD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell,
             let newCard = card else { return CommonCardTableViewCell() }
         
         if let cellPhone = newCard.cell {
             cell.cellLabel.text = "\(cellPhone)"
+=======
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell, let newCard = card else {
+            return CommonCardTableViewCell()
+>>>>>>> develop
         }
         cell.actionSheetDelegate = self
         cell.nameLabel.text = newCard.name
