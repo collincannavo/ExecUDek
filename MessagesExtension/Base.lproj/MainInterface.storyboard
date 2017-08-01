@@ -6,6 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -71,6 +74,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBe-DK-gR6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="925.60000000000002" y="137.18140929535232"/>
+        </scene>
+        <!--Card Received View Controller-->
+        <scene sceneID="ghU-hq-49D">
+            <objects>
+                <viewController storyboardIdentifier="receivedCardViewController" id="eCe-TH-cHp" customClass="CardReceivedViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W1g-9G-jhx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Phr-Ia-COK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tLC-SM-Oe4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kn7-8A-yPX">
+                                <rect key="frame" x="0.0" y="80" width="375" height="175"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="nU9-2M-DNn"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've received the above Card. Would you like to accept it?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xM-FY-HrF">
+                                <rect key="frame" x="16" y="263" width="343" height="57.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="45e-Uu-Ges">
+                                <rect key="frame" x="71" y="360" width="233" height="56.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR3-tw-W63">
+                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="56.5"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="HR3-tw-W63" secondAttribute="height" multiplier="2:1" id="Mcb-AQ-BqL"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Reject"/>
+                                        <connections>
+                                            <action selector="rejectButtonTapped:" destination="eCe-TH-cHp" eventType="touchUpInside" id="EzH-lH-CFG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wan-PN-cQI">
+                                        <rect key="frame" x="120.5" y="0.0" width="112.5" height="56.5"/>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Wan-PN-cQI" secondAttribute="height" multiplier="2:1" id="68p-6X-aUp"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Accept"/>
+                                        <connections>
+                                            <action selector="acceptButtonTapped:" destination="eCe-TH-cHp" eventType="touchUpInside" id="SN9-4d-Ebm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Wan-PN-cQI" firstAttribute="width" secondItem="HR3-tw-W63" secondAttribute="width" id="H7o-SJ-czY"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8xM-FY-HrF" firstAttribute="leading" secondItem="tLC-SM-Oe4" secondAttribute="leadingMargin" id="08c-sZ-wsj"/>
+                            <constraint firstItem="8xM-FY-HrF" firstAttribute="trailing" secondItem="tLC-SM-Oe4" secondAttribute="trailingMargin" id="Lb0-J0-Cj0"/>
+                            <constraint firstItem="45e-Uu-Ges" firstAttribute="centerX" secondItem="tLC-SM-Oe4" secondAttribute="centerX" id="PHq-vv-3gg"/>
+                            <constraint firstItem="kn7-8A-yPX" firstAttribute="leading" secondItem="tLC-SM-Oe4" secondAttribute="leading" id="PIX-9H-waQ"/>
+                            <constraint firstItem="kn7-8A-yPX" firstAttribute="top" secondItem="W1g-9G-jhx" secondAttribute="bottom" constant="60" id="cI4-a5-tPB"/>
+                            <constraint firstAttribute="trailing" secondItem="kn7-8A-yPX" secondAttribute="trailing" id="m12-kB-ZCT"/>
+                            <constraint firstItem="45e-Uu-Ges" firstAttribute="top" secondItem="8xM-FY-HrF" secondAttribute="bottom" constant="40" id="woD-Bj-2Mr"/>
+                            <constraint firstItem="8xM-FY-HrF" firstAttribute="top" secondItem="kn7-8A-yPX" secondAttribute="bottom" constant="8" id="y7i-zB-9b9"/>
+                            <constraint firstItem="Wan-PN-cQI" firstAttribute="width" secondItem="tLC-SM-Oe4" secondAttribute="width" multiplier="0.3" id="zo6-Uz-LTw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="receivedCardPlaceholder" destination="kn7-8A-yPX" id="3nO-dU-Li3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jr8-ZX-KDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2018.4000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
 </document>

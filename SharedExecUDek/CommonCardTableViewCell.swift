@@ -32,7 +32,7 @@ public class CommonCardTableViewCell: UITableViewCell {
     }
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         actionSheetDelegate?.actionSheetSelected(cellButtonTapped: sender)
-        print("Button tapped")
+       
     }
     
     public func updateCell(withCardImage: UIImage) {
