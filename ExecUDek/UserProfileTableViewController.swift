@@ -12,7 +12,7 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
+class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate {
     
     let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name))
     var browser: MCNearbyServiceBrowser?
@@ -53,6 +53,7 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
         
         self.session.delegate = self
+        
     }
     
     // MARK: - Table view data source
@@ -132,10 +133,16 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
             self.searchAction()
         }
         
+        let emailButton = UIAlertAction(title: "Email", style: .default) { (_) in
+            guard let card = UIViewToPNG.uiViewToPNG(for: cell) else { return }
+            self.sendEmail(attachment: card)
+        }
+        
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(iMessagesButton)
         alertController.addAction(multiShareButton)
         alertController.addAction(cancelButton)
+        alertController.addAction(emailButton)
         
         present(alertController, animated: true, completion: nil)
     }
@@ -157,5 +164,6 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         composeVC.message = message
         self.present(composeVC, animated: true, completion: nil)
     }
-}
+    
+   }
 
