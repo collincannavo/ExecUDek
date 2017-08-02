@@ -98,6 +98,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         }
         
         cell.hideShareButton()
+        cell.hideShareImage()
         cell.disablePhotoButton()
         
         setupCardTableViewCell(cell)

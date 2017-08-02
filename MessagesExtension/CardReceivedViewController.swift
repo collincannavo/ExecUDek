@@ -45,6 +45,7 @@ class CardReceivedViewController: UIViewController {
             let view = cardView.view else { return }
         
         cardView.hideShareButton()
+        cardView.hideShareImage()
         view.translatesAutoresizingMaskIntoConstraints = false
         receivedCardPlaceholder.addSubview(view)
         
