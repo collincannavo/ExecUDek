@@ -127,9 +127,8 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         }
         
         let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
-//            guard let indexPath = self.tableView.indexPath(for: cell),
-//                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
-//            self.presentSMSInterface(for: card, with: cell)
+            guard let indexPath = self.tableView.indexPath(for: cell),
+                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
             self.searchAction()
         }
         
