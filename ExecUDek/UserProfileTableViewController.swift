@@ -57,6 +57,12 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     // MARK: MCBrowserViewControllerDelegate
     
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
