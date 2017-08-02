@@ -70,13 +70,12 @@ extension UserProfileTableViewController {
         DispatchQueue.main.async {
             switch state {
             case .notConnected:
-                self.navigationItem.title = "Not Connected"
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             case .browsing:
-                self.navigationItem.title = "Browsing..."
+                self.navigationItem.title = "Looking..."
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .advertising:
-                self.navigationItem.title = "Advertising..."
+                self.navigationItem.title = "Available..."
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .connecting:
                 self.navigationItem.title = "Connecting..."
@@ -158,8 +157,6 @@ extension UserProfileTableViewController {
             let data = cardRecordID.recordName.data(using: .utf8) else { return }
 //        let cardData = NSKeyedArchiver.archivedData(withRootObject: selectedCard)
         
-        
-        
         do {
             try session.send(data, toPeers: [peerID], with: .reliable)
         } catch {
@@ -191,7 +188,6 @@ extension UserProfileTableViewController {
             if let error = error { NSLog("Error encountered while fetching received multipeer Card: \(error.localizedDescription)"); return }
             guard let record = record else { NSLog("Data fetched for received multipeer Card is nil"); return }
             guard let card = Card(ckRecord: record) else { NSLog("Could not construct Card object from received multipeer card record ID"); return }
-            
             MessageController.save(card)
         }
     }
