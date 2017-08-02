@@ -16,7 +16,7 @@ public struct UIViewToPNG {
             cardView.hideShareButton()
         }
         
-        UIGraphicsBeginImageContextWithOptions(uiView.layer.frame.size, true, 1.0)
+        UIGraphicsBeginImageContextWithOptions(uiView.layer.frame.size, false, 1.0)
         guard let currentContext = UIGraphicsGetCurrentContext() else { return nil }
         uiView.layer.render(in: currentContext)
         guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil }

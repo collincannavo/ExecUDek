@@ -20,12 +20,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="174.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuW-PK-Op5">
-                        <rect key="frame" x="8" y="8" width="284" height="138.5"/>
-                        <connections>
-                            <action selector="entireCardButtonTapped:" destination="xnY-0e-eA4" eventType="touchUpInside" id="sJv-AX-4TS"/>
-                        </connections>
-                    </button>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nQ-ak-6FJ">
                         <rect key="frame" x="8" y="8" width="284" height="136.5"/>
                         <subviews>
@@ -83,6 +77,12 @@
                             <constraint firstItem="PwR-mW-3ks" firstAttribute="width" secondItem="lhf-2H-V58" secondAttribute="width" id="kjX-dv-TSH"/>
                         </constraints>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuW-PK-Op5">
+                        <rect key="frame" x="8" y="8" width="284" height="138.5"/>
+                        <connections>
+                            <action selector="entireCardButtonTapped:" destination="xnY-0e-eA4" eventType="touchUpInside" id="sJv-AX-4TS"/>
+                        </connections>
+                    </button>
                     <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UkE-un-Zph">
                         <rect key="frame" x="139" y="147" width="21" height="28"/>
                         <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -490,7 +490,7 @@
 					};
 					B6A28A5D1F27DF4300786B97 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = F83BXD8Z2Y;
+						DevelopmentTeam = QFVJ6KY7E2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -827,7 +827,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
-				DEVELOPMENT_TEAM = F83BXD8Z2Y;
+				DEVELOPMENT_TEAM = QFVJ6KY7E2;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
@@ -842,7 +842,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
-				DEVELOPMENT_TEAM = F83BXD8Z2Y;
+				DEVELOPMENT_TEAM = QFVJ6KY7E2;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
