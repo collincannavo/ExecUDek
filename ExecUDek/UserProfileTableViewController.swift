@@ -85,12 +85,12 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
             let newCard = card else { return CommonCardTableViewCell() }
         
         if let cellPhone = newCard.cell {
-            cell.cellLabel.text = "\(cellPhone)"
+            cell.cellLabel.text = cellPhone
         }
         cell.actionSheetDelegate = self
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
-        cell.cellLabel.text = "\(String(describing: newCard.cell))"
+        cell.cellLabel.text = newCard.cell
         cell.emailLabel.text = newCard.email
         cell.card = newCard
         if let data = card?.logoData {

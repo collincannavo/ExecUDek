@@ -28,7 +28,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             commonCardXIB?.updateViews()
         }
         
-        guard let card = card else { return }
         updateViews()
     }
     
@@ -39,7 +38,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var officeNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
-    //@IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var cardContentView: UIView!
     @IBOutlet weak var websiteTextField: UITextField!
     
@@ -164,14 +162,11 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         guard let name = nameTextField.text else { return }
         
         let title = titleTextField.text
-//        let cell = Int(cellTextField.text ?? "")
         let cell = cellTextField.text
         let email = emailTextField.text
         
-//        let officeNumber = Int(officeNumberTextField.text ?? "")
         let officeNumber = officeNumberTextField.text
         let template = Template.one
-        //let note = noteTextField.text
         let address = addressTextField.text
         let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState()) ?? UIImage()
         let logoData = UIImagePNGRepresentation(logoImage)
@@ -193,7 +188,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         titleTextField.text = card?.title
         emailTextField.text = card?.email
         if let officeNumber = card?.officeNumber { officeNumberTextField.text = "\(officeNumber)" }
-        //noteTextField.text = card?.note
         addressTextField.text = card?.address
     }
     
