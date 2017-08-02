@@ -46,6 +46,7 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
         cell.nameLabel.text = card?.name
         cell.enableEntireCardButton()
         cell.hideShareButton()
+        cell.hideShareImage()
         cell.delegate = self
         guard let logoData = card?.logoData,
             let logoImage = UIImage(data: logoData) else { return cell }

@@ -20,6 +20,7 @@ public class CommonCardTableViewCell: UITableViewCell {
     @IBOutlet public weak var entireCardButton: UIButton!
     @IBOutlet public weak var shareButton: UIButton!
     @IBOutlet public weak var view: UIView!
+    @IBOutlet weak var shareImage: UIImageView!
     
     @IBAction public func addCompanyLogoButtonTapped(_ sender: Any) {
         guard let buttonTapped = sender as? UIButton else { return }
@@ -72,6 +73,7 @@ public class CommonCardTableViewCell: UITableViewCell {
         entireCardButton.isEnabled = false
         shareButton.isHidden = false
         photoButton.isEnabled = true
+        shareImage.isHidden = false
         
         photoButton.setBackgroundImage(nil, for: .normal)
         photoButton.setBackgroundImage(nil, for: .disabled)
@@ -87,6 +89,10 @@ public class CommonCardTableViewCell: UITableViewCell {
     
     public func hideShareButton() {
         shareButton.isHidden = true
+    }
+    
+    public func hideShareImage() {
+        shareImage.isHidden = true
     }
     
     public func disablePhotoButton() {
