@@ -12,14 +12,12 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
+class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate, MCBrowserViewControllerDelegate {
     
     let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name), securityIdentity: nil, encryptionPreference: .none)
     var browser: MCNearbyServiceBrowser?
     var advertiser: MCNearbyServiceAdvertiser?
-    
-    var searchButton: UIBarButtonItem?
-    var disconnectButton: UIBarButtonItem?
+    var browserView: MCBrowserViewController!
     var card = CommonCardTableViewCell()
     
     var selectedCard: Card?
@@ -54,12 +52,25 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
         
         self.session.delegate = self
+        browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
+        browserView.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
+    }
+    
+    // MARK: MCBrowserViewControllerDelegate
+    
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        browserView.dismiss(animated: true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        browserView.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -144,10 +155,16 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
             self.searchAction()
         }
         
+        let emailButton = UIAlertAction(title: "Email", style: .default) { (_) in
+            guard let card = UIViewToPNG.uiViewToPNG(for: cell) else { return }
+            self.sendEmail(attachment: card)
+        }
+        
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(iMessagesButton)
         alertController.addAction(multiShareButton)
         alertController.addAction(cancelButton)
+        alertController.addAction(emailButton)
         
         present(alertController, animated: true, completion: nil)
     }
@@ -169,5 +186,6 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         composeVC.message = message
         self.present(composeVC, animated: true, completion: nil)
     }
-}
+    
+   }
 

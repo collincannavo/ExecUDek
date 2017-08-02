@@ -24,6 +24,7 @@ extension UserProfileTableViewController {
         })
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
+        //self.present(browserView, animated: true, completion: nil)
     }
     
     func disconnectAction() {
@@ -69,31 +70,21 @@ extension UserProfileTableViewController {
         DispatchQueue.main.async {
             switch state {
             case .notConnected:
-                print("  + state = Not Connected")
                 self.navigationItem.title = "Not Connected"
-                self.navigationItem.rightBarButtonItem = self.searchButton
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             case .browsing:
-                print("  + state = Browsing")
                 self.navigationItem.title = "Browsing..."
-                self.navigationItem.rightBarButtonItem = self.searchButton
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .advertising:
-                print("  + state = Advertising")
                 self.navigationItem.title = "Advertising..."
-                self.navigationItem.rightBarButtonItem = self.searchButton
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .connecting:
-                print("  + state = Connecting")
                 self.navigationItem.title = "Connecting..."
-                self.navigationItem.rightBarButtonItem = nil
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .connected:
-                print("  + state = Connected")
                 self.stopBrowsing()
                 self.stopAdvertising()
                 self.navigationItem.title = peerName ?? "(Unknown Name)"
-                self.navigationItem.rightBarButtonItem = self.disconnectButton
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
         }
