@@ -27,6 +27,7 @@ public class Card: NSObject {
     public static let otherKey = "other"
     public static let parentKey = "parent"
     public static let imageKey = "image"
+    public static let ckRecordIDKey = "ckRecordID"
     
     // Cloud kit syncable
     public var ckRecordID: CKRecordID?
@@ -133,6 +134,42 @@ public class Card: NSObject {
         
         self.ckRecordID = ckRecord.recordID
         self.parentCKReference = parentCKReference
+    }
+    
+    public required convenience init?(coder aDecoder: NSCoder) {
+        guard let name = aDecoder.value(forKey: Card.nameKey) as? String else { return nil }
+        let title = aDecoder.value(forKey: Card.titleKey) as? String
+        let cellphone = aDecoder.value(forKey: Card.cellKey) as? String
+        let officeNumber = aDecoder.value(forKey: Card.officeNumberKey) as? String
+        let email = aDecoder.value(forKey: Card.emailKey) as? String
+        let companyName = aDecoder.value(forKey: Card.companyNameKey) as? String
+        let note = aDecoder.value(forKey: Card.noteKey) as? String
+        let address = aDecoder.value(forKey: Card.addressKey) as? String
+        let avatarData = aDecoder.value(forKey: Card.avatarDataKey) as? Data
+        let logoData = aDecoder.value(forKey: Card.logoDataKey) as? Data
+        let other = aDecoder.value(forKey: Card.otherKey) as? String
+        let cardData = aDecoder.value(forKey: Card.imageKey) as? Data
+        let ckRecordID = aDecoder.value(forKey: Card.ckRecordIDKey) as? CKRecordID
+        
+        self.init(name: name, title: title, cell: cellphone, officeNumber: officeNumber, email: email, template: Template.one, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
+        self.ckRecordID = ckRecordID
+        self.cardData = cardData
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.setValuesForKeys([Card.nameKey:name])
+        aCoder.setValue(avatarData, forKey: Card.avatarDataKey)
+        aCoder.setValue(cell, forKey: Card.cellKey)
+        aCoder.setValue(companyName, forKey: Card.companyNameKey)
+        aCoder.setValue(email, forKey: Card.emailKey)
+        aCoder.setValue(note, forKey: Card.noteKey)
+        aCoder.setValue(address, forKey: Card.addressKey)
+        aCoder.setValue(logoData, forKey: Card.logoDataKey)
+        aCoder.setValue(other, forKey: Card.otherKey)
+        aCoder.setValue(officeNumber, forKey: Card.officeNumberKey)
+        aCoder.setValue(title, forKey: Card.titleKey)
+        aCoder.setValue(ckRecordID, forKey: Card.ckRecordIDKey)
+        aCoder.setValue(cardData, forKey: Card.imageKey)
     }
 }
 
