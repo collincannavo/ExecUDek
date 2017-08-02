@@ -19,16 +19,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         cellTextField.delegate = self
         emailTextField.delegate = self
         
-        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
-        if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
-            cardContentView.addSubview(customView)
-            commonCardXIB = customView
-            commonCardXIB?.delegate = self
-            commonCardXIB?.card = card
-            commonCardXIB?.updateViews()
-        }
-        
         updateViews()
+        setupCardDisplay()
     }
     
     // TableView TextFields
@@ -38,8 +30,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var officeNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
-    @IBOutlet weak var cardContentView: UIView!
+    //@IBOutlet weak var cardContentView: UIView!
     @IBOutlet weak var websiteTextField: UITextField!
+    @IBOutlet weak var headerView: UIView!
     
     // UIView Labels
     @IBOutlet weak var nameLabel: UILabel!
@@ -189,6 +182,38 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         emailTextField.text = card?.email
         if let officeNumber = card?.officeNumber { officeNumberTextField.text = "\(officeNumber)" }
         addressTextField.text = card?.address
+    }
+    
+    func setupCardDisplay() {
+        if let windowWidth = UIApplication.shared.keyWindow?.frame.size.width {
+            let headerHeight = windowWidth * 175.0 / 300.0
+            headerView.frame = CGRect(x: 0.0, y: 0.0, width: windowWidth, height: headerHeight)
+        }
+        
+        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
+            commonCardXIB = customView
+            commonCardXIB?.delegate = self
+            commonCardXIB?.card = card
+            commonCardXIB?.updateViews()
+            
+            commonCardXIB?.bounds = headerView.bounds
+            
+            if let commonCardXIB = commonCardXIB, let view = commonCardXIB.view {
+                
+                view.translatesAutoresizingMaskIntoConstraints = false
+                headerView.addSubview(view)
+                
+                let leadingConstraint = NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: headerView, attribute: .leading, multiplier: 1.0, constant: 0.0)
+                
+                let trailingConstraint = NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: headerView, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+                
+                let topConstraint = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: headerView, attribute: .top, multiplier: 1.0, constant: 0.0)
+                let bottomConstraint = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: headerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+                
+                headerView.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+            }
+        }
     }
     
     weak var delegate: PhotoSelectViewControllerDelegate?

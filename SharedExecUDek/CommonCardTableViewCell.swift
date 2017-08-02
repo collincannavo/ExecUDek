@@ -19,7 +19,7 @@ public class CommonCardTableViewCell: UITableViewCell {
     @IBOutlet public weak var emailLabel: UILabel!
     @IBOutlet public weak var entireCardButton: UIButton!
     @IBOutlet public weak var shareButton: UIButton!
-    @IBOutlet weak var view: UIView!
+    @IBOutlet public weak var view: UIView!
     
     @IBAction public func addCompanyLogoButtonTapped(_ sender: Any) {
         guard let buttonTapped = sender as? UIButton else { return }
