@@ -190,6 +190,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         titleTextField.text = card?.title
         emailTextField.text = card?.email
         officeNumberTextField.text = card?.officeNumber
+        cellTextField.text = card?.cell
         addressTextField.text = card?.address
     }
     

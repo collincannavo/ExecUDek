@@ -56,6 +56,7 @@ public class CommonCardTableViewCell: UITableViewCell {
         
         nameLabel.text = card.name
         titleLabel.text = card.title
+        cellLabel.text = card.cell
         emailLabel.text = card.email
         
         if let data = card.logoData {

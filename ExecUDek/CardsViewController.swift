@@ -85,6 +85,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
         cell.emailLabel.text = newCard.email
+        
         cell.card = newCard
         
         if let data = card?.logoData {
