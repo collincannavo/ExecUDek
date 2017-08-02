@@ -18,7 +18,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         titleTextField.delegate = self
         cellTextField.delegate = self
         emailTextField.delegate = self
-        
+        officeNumberTextField.delegate = self
         updateViews()
         setupCardDisplay()
     }
