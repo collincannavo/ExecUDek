@@ -14,16 +14,16 @@ extension UserProfileTableViewController {
     
     // MARK:- Action
     func searchAction() {
-//        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//        actionSheet.addAction(UIAlertAction(title: "Look for devices", style: .default) { action in
-//            self.startBrowsing()
-//        })
-//        actionSheet.addAction(UIAlertAction(title: "Make device available", style: .default) { action in
-//            self.startAdvertising()
-//        })
-//        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//        self.present(actionSheet, animated: true, completion: nil)
-        self.present(browserView, animated: true, completion: nil)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Look for devices", style: .default) { action in
+            self.startBrowsing()
+        })
+        actionSheet.addAction(UIAlertAction(title: "Make device available", style: .default) { action in
+            self.startAdvertising()
+        })
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
+        //self.present(browserView, animated: true, completion: nil)
     }
     
     func disconnectAction() {
