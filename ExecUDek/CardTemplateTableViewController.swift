@@ -52,9 +52,21 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        saveCardToCloudKit()
-        dismiss(animated: true, completion: nil)
+        guard let email = emailTextField.text, !email.isEmpty else {
+            if emailTextField.text == "" {
+                saveCardToCloudKit()
+                dismiss(animated: true, completion: nil)
+            }
+            return
+        }
+        if isValidEmail(stringValue: email) == true {
+            saveCardToCloudKit()
+            dismiss(animated: true, completion: nil)
+        } else {
+                presentAlert()
+        }
     }
+    
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
         
@@ -147,8 +159,21 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         }
         return true
     }
-    
+ 
     // MARK: - Helper methods
+    
+    func presentAlert(){
+        let alertController = UIAlertController(title: "Invalid email", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func isValidEmail(stringValue: String) ->Bool {
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailTest.evaluate(with: stringValue)
+    }
     
     func saveCardToCloudKit() {
         
