@@ -36,7 +36,7 @@ class CardReceivedViewController: UIViewController {
     }
     
     func loadCardView() {
-        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.arnoldmukasa.SharedExecUDek")
         cardView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell
     }
     

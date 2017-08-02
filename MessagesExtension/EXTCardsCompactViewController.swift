@@ -26,7 +26,7 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
         tableView.dataSource = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
-        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.arnoldmukasa.SharedExecUDek")
         let yourXIBName = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(yourXIBName, forCellReuseIdentifier: "cardCell")

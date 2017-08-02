@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		182B5AC51F2E7ABE00C901E8 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188F23321F2957F8007B9F20 /* Messages.framework */; };
-		182B5AC81F2E835500C901E8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182B5AC71F2E835500C901E8 /* CloudKit.framework */; };
 		187EC0A21F2EBBA400F326E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EC0A11F2EBBA400F326E3 /* Constants.swift */; };
 		1881BC001F2D015B0070C1F4 /* CommonCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1881BBFF1F2D015B0070C1F4 /* CommonCardTableViewCell.xib */; };
 		1881BC021F2D016C0070C1F4 /* CommonCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BC011F2D016C0070C1F4 /* CommonCardTableViewCell.swift */; };
@@ -46,10 +45,10 @@
 		B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
 		F04EDF081F2FC9CD00E8DB82 /* StringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04EDF071F2FC9CD00E8DB82 /* StringFormatter.swift */; };
-		F04EDF091F2FCA3C00E8DB82 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182B5AC71F2E835500C901E8 /* CloudKit.framework */; };
 		F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05962611F299C65002C967B /* UserProfileTableViewController.swift */; };
 		F05962641F299D18002C967B /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F05962631F299D18002C967B /* UserProfile.storyboard */; };
 		F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06281A61F28F15800106424 /* CardTemplate.storyboard */; };
+		F0B3491F1F3227A2002D8163 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B3491E1F3227A2002D8163 /* CloudKit.framework */; };
 		F0C8BA8B1F2A383F00B9E0DA /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8BA8A1F2A383F00B9E0DA /* UserProfileTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,7 +97,6 @@
 /* Begin PBXFileReference section */
 		182143191F2AB89200CCF3B5 /* ExecUDek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExecUDek.entitlements; sourceTree = "<group>"; };
 		182B5AC61F2E834900C901E8 /* MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesExtension.entitlements; sourceTree = "<group>"; };
-		182B5AC71F2E835500C901E8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		187EC0A11F2EBBA400F326E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1881BBFF1F2D015B0070C1F4 /* CommonCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonCardTableViewCell.xib; sourceTree = "<group>"; };
 		1881BC011F2D016C0070C1F4 /* CommonCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCardTableViewCell.swift; sourceTree = "<group>"; };
@@ -139,6 +137,7 @@
 		F05962611F299C65002C967B /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		F05962631F299D18002C967B /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		F06281A61F28F15800106424 /* CardTemplate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardTemplate.storyboard; sourceTree = "<group>"; };
+		F0B3491E1F3227A2002D8163 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F0C8BA8A1F2A383F00B9E0DA /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,7 +146,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				182B5AC81F2E835500C901E8 /* CloudKit.framework in Frameworks */,
 				182B5AC51F2E7ABE00C901E8 /* Messages.framework in Frameworks */,
 				18B376FB1F2D499100FC6A91 /* SharedExecUDek.framework in Frameworks */,
 			);
@@ -165,7 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B70A081F2985B5002DDB17 /* SharedExecUDek.framework in Frameworks */,
-				F04EDF091F2FCA3C00E8DB82 /* CloudKit.framework in Frameworks */,
+				F0B3491F1F3227A2002D8163 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +219,7 @@
 		188F23311F2957F8007B9F20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				182B5AC71F2E835500C901E8 /* CloudKit.framework */,
+				F0B3491E1F3227A2002D8163 /* CloudKit.framework */,
 				188F23321F2957F8007B9F20 /* Messages.framework */,
 			);
 			name = Frameworks;
@@ -472,7 +470,7 @@
 				TargetAttributes = {
 					188F232F1F2957F8007B9F20 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = QFVJ6KY7E2;
+						DevelopmentTeam = U862ZMG3CM;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -485,12 +483,13 @@
 					};
 					18B70A001F2985B5002DDB17 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = QFVJ6KY7E2;
+						DevelopmentTeam = U862ZMG3CM;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					B6A28A5D1F27DF4300786B97 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = U862ZMG3CM;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -653,10 +652,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_ENTITLEMENTS = MessagesExtension/MessagesExtension.entitlements;
-				DEVELOPMENT_TEAM = QFVJ6KY7E2;
+				DEVELOPMENT_TEAM = U862ZMG3CM;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnoldmukasa.ExecUDek.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -668,10 +667,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_ENTITLEMENTS = MessagesExtension/MessagesExtension.entitlements;
-				DEVELOPMENT_TEAM = QFVJ6KY7E2;
+				DEVELOPMENT_TEAM = U862ZMG3CM;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnoldmukasa.ExecUDek.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -686,14 +685,14 @@
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = QFVJ6KY7E2;
+				DEVELOPMENT_TEAM = U862ZMG3CM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SharedExecUDek/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyapps.SharedExecUDek;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnoldmukasa.SharedExecUDek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -711,14 +710,14 @@
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = QFVJ6KY7E2;
+				DEVELOPMENT_TEAM = U862ZMG3CM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SharedExecUDek/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyapps.SharedExecUDek;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnoldmukasa.SharedExecUDek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -828,10 +827,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U862ZMG3CM;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnoldmukasa.ExecUDek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -843,10 +842,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U862ZMG3CM;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnoldmukasa.ExecUDek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

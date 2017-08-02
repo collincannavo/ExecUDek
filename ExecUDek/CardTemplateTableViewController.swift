@@ -19,7 +19,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         cellTextField.delegate = self
         emailTextField.delegate = self
         
-        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.arnoldmukasa.SharedExecUDek")
         if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
             cardContentView.addSubview(customView)
             commonCardXIB = customView
