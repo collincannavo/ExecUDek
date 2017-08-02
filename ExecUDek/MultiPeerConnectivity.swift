@@ -107,11 +107,13 @@ extension UserProfileTableViewController {
             self.updateState(.connecting)
         case .connected:
             self.updateState(.connected, peerName: peerID.displayName)
+            presentSendCardAlert(for: peerID)
+            
         }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("Received the data: ",data)
+        presentReceiveCardAlert(for: data, from: peerID)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -142,4 +144,68 @@ extension UserProfileTableViewController {
         })
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func presentSendCardAlert(for peerID: MCPeerID) {
+        let alertController = UIAlertController(title: "Send Card", message: "Would you like to send the selected Card?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            self.sendData(to: peerID)
+        }
+        let noAction = UIAlertAction(title: "No", style: .default) { (_) in
+            // Completion stuff
+        }
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true) { 
+            // Completion stuff
+        }
+    }
+    
+    func sendData(to peerID: MCPeerID) {
+        guard let selectedCard = selectedCard else { return }
+        let cardData = NSKeyedArchiver.archivedData(withRootObject: selectedCard)
+        do {
+            try session.send(cardData, toPeers: [peerID], with: .reliable)
+        } catch {
+            print("Error while sending data through multipeer: \(error.localizedDescription)")
+        }
+    }
+    
+    func presentReceiveCardAlert(for data: Data, from peerID: MCPeerID) {
+        let alertController = UIAlertController(title: "Received Card", message: "You've received a Card. Would you like to accept it?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            self.receiveData(data, from: peerID)
+        }
+        let noAction = UIAlertAction(title: "No", style: .default) { (_) in
+            // Completion stuff
+        }
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true) {
+            // Completion stuff
+        }
+    }
+    
+    func receiveData(_ data: Data, from peerID: MCPeerID) {
+        guard let card = NSKeyedUnarchiver.unarchiveObject(with: data) as? Card else { return }
+        print("\(card.name)")
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

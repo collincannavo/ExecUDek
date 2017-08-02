@@ -10,7 +10,7 @@ import Foundation
 import CloudKit
 import UIKit
 
-public class Card: NSObject {
+public class Card: NSObject, NSCoding {
     
     public static let recordTypeKey = "Card"
     public static let nameKey = "name"
@@ -157,7 +157,7 @@ public class Card: NSObject {
     }
     
     public func encode(with aCoder: NSCoder) {
-        aCoder.setValuesForKeys([Card.nameKey:name])
+        aCoder.setValue(name, forKey: Card.nameKey)
         aCoder.setValue(avatarData, forKey: Card.avatarDataKey)
         aCoder.setValue(cell, forKey: Card.cellKey)
         aCoder.setValue(companyName, forKey: Card.companyNameKey)

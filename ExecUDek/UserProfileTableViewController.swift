@@ -14,13 +14,14 @@ import MessageUI
 
 class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
     
-    let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name))
+    let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name), securityIdentity: nil, encryptionPreference: .none)
     var browser: MCNearbyServiceBrowser?
     var advertiser: MCNearbyServiceAdvertiser?
     
     var searchButton: UIBarButtonItem?
     var disconnectButton: UIBarButtonItem?
     var card = CommonCardTableViewCell()
+    
     var selectedCard: Card?
 
     @IBAction func addNewCardButtonTapped(_ sender: Any) {
@@ -118,17 +119,21 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         tableView.reloadData()
     }
     func actionSheetSelected(cellButtonTapped: UIButton, cell: CommonCardTableViewCell) {
+        
         let alertController = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
         
         let iMessagesButton = UIAlertAction(title: "iMessage", style: .default) { (_) in
             guard let indexPath = self.tableView.indexPath(for: cell),
                 let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
+            
             self.presentSMSInterface(for: card, with: cell)
         }
         
         let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
-//            guard let indexPath = self.tableView.indexPath(for: cell),
-//                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
+            guard let indexPath = self.tableView.indexPath(for: cell),
+                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
+            
+            self.selectedCard = card
 //            self.presentSMSInterface(for: card, with: cell)
             self.searchAction()
         }
