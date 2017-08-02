@@ -105,6 +105,8 @@ public class Card: NSObject, NSCoding {
         
         record.setValue(parentCKReference, forKey: Card.parentKey)
         
+        self.ckRecordID = record.recordID
+        
         return record
     }
     
