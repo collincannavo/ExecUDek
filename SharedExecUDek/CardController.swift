@@ -122,6 +122,10 @@ public class CardController {
                 guard let record = record else { NSLog("Record returned for received card fetch is nil"); completion(false); return }
                 guard let card = Card(ckRecord: record) else { NSLog("Could not construct Card object from received card record"); completion(false); return }
                 
+                if let index = currentPerson.cards.index(where: { card.ckRecordID?.recordName == $0.ckRecordID?.recordName }) {
+                    currentPerson.cards.remove(at: index)
+                }
+            
                 PersonController.shared.addCard(card, to: currentPerson)
                 completion(true)
             })

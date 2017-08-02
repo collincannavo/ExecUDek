@@ -221,6 +221,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             commonCardXIB?.delegate = self
             commonCardXIB?.card = card
             commonCardXIB?.updateViews()
+            commonCardXIB?.hideShareButton()
+            commonCardXIB?.hideShareImage()
             
             commonCardXIB?.bounds = headerView.bounds
             

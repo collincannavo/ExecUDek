@@ -41,8 +41,18 @@ class CardReceivedViewController: UIViewController {
     }
     
     func setupCardView() {
-        guard let cardView = cardView else { return }
-        receivedCardPlaceholder.addSubview(cardView)
+        guard let cardView = cardView,
+            let view = cardView.view else { return }
+        
+        cardView.hideShareButton()
+        cardView.hideShareImage()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        receivedCardPlaceholder.addSubview(view)
+        
+        view.leadingAnchor.constraint(equalTo: receivedCardPlaceholder.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: receivedCardPlaceholder.trailingAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: receivedCardPlaceholder.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: receivedCardPlaceholder.bottomAnchor).isActive = true
         
         cardView.nameLabel.text = card?.name
         cardView.titleLabel.text = card?.title

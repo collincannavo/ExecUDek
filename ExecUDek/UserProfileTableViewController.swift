@@ -55,6 +55,7 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
         browserView.delegate = self
         
+        //tableView.refreshControl?.addTarget(self, action: #selector(fetchPersonalCards), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -187,6 +188,19 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         composeVC.messageComposeDelegate = self
         composeVC.message = message
         self.present(composeVC, animated: true, completion: nil)
+    }
+    
+    func fetchPersonalCards() {
+        self.tableView.refreshControl?.beginRefreshing()
+        
+        CardController.shared.fetchPersonalCards { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+                }
+            }
+        }
     }
     
    }

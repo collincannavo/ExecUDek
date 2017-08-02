@@ -27,6 +27,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     var selectedCard: Card?
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
     }
     
     // MARK: - Search bar delegate
@@ -98,6 +101,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         }
         
         cell.hideShareButton()
+        cell.hideShareImage()
         cell.disablePhotoButton()
         
         setupCardTableViewCell(cell)
@@ -144,5 +148,18 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     
     func refresh() {
         tableView.reloadData()
+    }
+    
+    func fetchCards() {
+        //refreshControl.beginRefreshing()
+        
+        CardController.shared.fetchReceivedCards { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: Constants.cardsFetchedNotification, object: self)
+                    if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
+                }
+            }
+        }
     }
 }
