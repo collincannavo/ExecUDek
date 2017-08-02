@@ -12,6 +12,10 @@ import UIKit
 public struct UIViewToPNG {
     public static func uiViewToPNG(for uiView: UIView) -> Data? {
         
+        if let cardView = uiView as? CommonCardTableViewCell {
+            cardView.hideShareButton()
+        }
+        
         UIGraphicsBeginImageContextWithOptions(uiView.layer.frame.size, true, 1.0)
         guard let currentContext = UIGraphicsGetCurrentContext() else { return nil }
         uiView.layer.render(in: currentContext)
