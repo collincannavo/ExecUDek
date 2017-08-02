@@ -46,7 +46,7 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
 
-        let bundle = Bundle(identifier: "com.arnoldmukasa.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
