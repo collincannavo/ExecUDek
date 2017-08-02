@@ -9,6 +9,7 @@
 import Foundation
 import MultipeerConnectivity
 import SharedExecUDek
+import CloudKit
 
 extension UserProfileTableViewController {
     
@@ -161,10 +162,15 @@ extension UserProfileTableViewController {
     }
     
     func sendData(to peerID: MCPeerID) {
-        guard let selectedCard = selectedCard else { return }
-        let cardData = NSKeyedArchiver.archivedData(withRootObject: selectedCard)
+        guard let selectedCard = selectedCard,
+            let cardRecordID = selectedCard.ckRecordID,
+            let data = cardRecordID.recordName.data(using: .utf8) else { return }
+//        let cardData = NSKeyedArchiver.archivedData(withRootObject: selectedCard)
+        
+        
+        
         do {
-            try session.send(cardData, toPeers: [peerID], with: .reliable)
+            try session.send(data, toPeers: [peerID], with: .reliable)
         } catch {
             print("Error while sending data through multipeer: \(error.localizedDescription)")
         }
@@ -186,8 +192,24 @@ extension UserProfileTableViewController {
     }
     
     func receiveData(_ data: Data, from peerID: MCPeerID) {
-        guard let card = NSKeyedUnarchiver.unarchiveObject(with: data) as? Card else { return }
-        print("\(card.name)")
+        guard let cardRecordIDName = String(data: data, encoding: .utf8) else { presentFailedCardReceiveAlert(); return }
+        
+        let cardRecordID = CKRecordID(recordName: cardRecordIDName)
+        
+        CloudKitContoller.shared.fetchRecord(with: cardRecordID) { (record, error) in
+            if let error = error { NSLog("Error encountered while fetching received multipeer Card: \(error.localizedDescription)"); return }
+            guard let record = record else { NSLog("Data fetched for received multipeer Card is nil"); return }
+            guard let card = Card(ckRecord: record) else { NSLog("Could not construct Card object from received multipeer card record ID"); return }
+            
+            MessageController.save(card)
+        }
+    }
+    
+    func presentFailedCardReceiveAlert() {
+        let alertController = UIAlertController(title: "Failed to Receive Card", message: "The Card object could not be properly received", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
