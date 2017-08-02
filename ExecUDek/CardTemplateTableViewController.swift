@@ -190,7 +190,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             headerView.frame = CGRect(x: 0.0, y: 0.0, width: windowWidth, height: headerHeight)
         }
         
-        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.arnoldmukasa.SharedExecUDek")
         if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
             commonCardXIB = customView
             commonCardXIB?.delegate = self

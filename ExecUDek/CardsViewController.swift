@@ -37,7 +37,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.cardsFetchedNotification, object: nil)
         
-        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.arnoldmukasa.SharedExecUDek")
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
