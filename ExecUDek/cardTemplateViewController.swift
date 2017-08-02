@@ -1,8 +1,8 @@
 //
-//  CardTemplateTableViewController.swift
+//  cardTemplateViewController.swift
 //  ExecUDek
 //
-//  Created by Arnold Mukasa on 7/26/17.
+//  Created by Austin Money on 8/2/17.
 //  Copyright © 2017 Collin Cannavo. All rights reserved.
 //
 
@@ -10,19 +10,28 @@ import UIKit
 import CloudKit
 import SharedExecUDek
 
-class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate {
-    
+class cardTemplateViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.delegate = self
-        titleTextField.delegate = self
-        cellTextField.delegate = self
-        emailTextField.delegate = self
-        officeNumberTextField.delegate = self
+//        nameTextField.delegate = self
+//        titleTextField.delegate = self
+//        cellTextField.delegate = self
+//        emailTextField.delegate = self
+        
+        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
+            cardContentView.addSubview(customView)
+            commonCardXIB = customView
+            commonCardXIB?.delegate = self
+            commonCardXIB?.card = card
+            commonCardXIB?.updateViews()
+        }
+        
+        guard let card = card else { return }
         updateViews()
-        setupCardDisplay()
     }
-
+    
     // TableView TextFields
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
@@ -30,9 +39,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var officeNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
-    //@IBOutlet weak var cardContentView: UIView!
+    //@IBOutlet weak var noteTextField: UITextField!
+    @IBOutlet weak var cardContentView: UIView!
     @IBOutlet weak var websiteTextField: UITextField!
-    @IBOutlet weak var headerView: UIView!
     
     // UIView Labels
     @IBOutlet weak var nameLabel: UILabel!
@@ -52,33 +61,21 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let email = emailTextField.text, !email.isEmpty else {
-            if emailTextField.text == "" {
-                saveCardToCloudKit()
-                dismiss(animated: true, completion: nil)
-            }
-            return
-        }
-        if isValidEmail(stringValue: email) == true {
-            saveCardToCloudKit()
-            dismiss(animated: true, completion: nil)
-        } else {
-                presentAlert()
-        }
+        saveCardToCloudKit()
+        dismiss(animated: true, completion: nil)
     }
     
-    
-    @IBAction func deleteButtonTapped(_ sender: Any) {
-        
-        if let card = card,
-            let recordID = card.ckRecordID {
-            CloudKitContoller.shared.deleteRecord(recordID: recordID)
-            guard let person = PersonController.shared.currentPerson else { return }
-            PersonController.shared.deleteCard(card, from: person)
-        }
-        self.dismiss(animated: true, completion: nil)
-        
-    }
+//    @IBAction func deleteButtonTapped(_ sender: Any) {
+//        
+//        if let card = card,
+//            let recordID = card.ckRecordID {
+//            CloudKitContoller.shared.deleteRecord(recordID: recordID)
+//            guard let person = PersonController.shared.currentPerson else { return }
+//            PersonController.shared.deleteCard(card, from: person)
+//        }
+//        self.dismiss(animated: true, completion: nil)
+//        
+//    }
     
     func photoSelectCellSelected(cellButtonTapped: UIButton) {
         selectPhotoTapped(sender: cellButtonTapped)
@@ -122,9 +119,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     // MARK: UITextfieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let name = nameTextField.text, !name.isEmpty,
-                    let cell = cellTextField.text,
-                    let title = titleTextField.text,
-                    let email = emailTextField.text else {return false}
+            let cell = cellTextField.text,
+            let title = titleTextField.text,
+            let email = emailTextField.text else {return false}
         commonCardXIB?.nameLabel.text = name
         commonCardXIB?.titleLabel.text = title
         commonCardXIB?.cellLabel.text = cell
@@ -159,31 +156,22 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         }
         return true
     }
- 
+    
     // MARK: - Helper methods
-    
-    func presentAlert(){
-        let alertController = UIAlertController(title: "Invalid email", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func isValidEmail(stringValue: String) ->Bool {
-        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailFormat)
-        return emailTest.evaluate(with: stringValue)
-    }
     
     func saveCardToCloudKit() {
         
         guard let name = nameTextField.text else { return }
         
         let title = titleTextField.text
+        //        let cell = Int(cellTextField.text ?? "")
         let cell = cellTextField.text
         let email = emailTextField.text
+        
+        //        let officeNumber = Int(officeNumberTextField.text ?? "")
         let officeNumber = officeNumberTextField.text
         let template = Template.one
+        //let note = noteTextField.text
         let address = addressTextField.text
         let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState()) ?? UIImage()
         let logoData = UIImagePNGRepresentation(logoImage)
@@ -204,41 +192,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         nameTextField.text = card?.name
         titleTextField.text = card?.title
         emailTextField.text = card?.email
-        officeNumberTextField.text = card?.officeNumber
-        cellTextField.text = card?.cell
+        if let officeNumber = card?.officeNumber { officeNumberTextField.text = "\(officeNumber)" }
+        //noteTextField.text = card?.note
         addressTextField.text = card?.address
-    }
-    
-    func setupCardDisplay() {
-        if let windowWidth = UIApplication.shared.keyWindow?.frame.size.width {
-            let headerHeight = windowWidth * 175.0 / 300.0
-            headerView.frame = CGRect(x: 0.0, y: 0.0, width: windowWidth, height: headerHeight)
-        }
-        
-        let bundle = Bundle(identifier: "com.arnoldmukasa.SharedExecUDek")
-        if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
-            commonCardXIB = customView
-            commonCardXIB?.delegate = self
-            commonCardXIB?.card = card
-            commonCardXIB?.updateViews()
-            
-            commonCardXIB?.bounds = headerView.bounds
-            
-            if let commonCardXIB = commonCardXIB, let view = commonCardXIB.view {
-                
-                view.translatesAutoresizingMaskIntoConstraints = false
-                headerView.addSubview(view)
-                
-                let leadingConstraint = NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: headerView, attribute: .leading, multiplier: 1.0, constant: 0.0)
-                
-                let trailingConstraint = NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: headerView, attribute: .trailing, multiplier: 1.0, constant: 0.0)
-                
-                let topConstraint = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: headerView, attribute: .top, multiplier: 1.0, constant: 0.0)
-                let bottomConstraint = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: headerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-                
-                headerView.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
-            }
-        }
     }
     
     weak var delegate: PhotoSelectViewControllerDelegate?
