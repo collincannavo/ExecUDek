@@ -12,14 +12,12 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate {
+class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate, MCBrowserViewControllerDelegate {
     
     let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name))
     var browser: MCNearbyServiceBrowser?
     var advertiser: MCNearbyServiceAdvertiser?
-    
-    var searchButton: UIBarButtonItem?
-    var disconnectButton: UIBarButtonItem?
+    var browserView: MCBrowserViewController!
     var card = CommonCardTableViewCell()
     var selectedCard: Card?
 
@@ -53,7 +51,19 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
         
         self.session.delegate = self
+        browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
+        browserView.delegate = self
         
+    }
+    
+    // MARK: MCBrowserViewControllerDelegate
+    
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        browserView.dismiss(animated: true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        browserView.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -128,8 +138,6 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         }
         
         let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
-            guard let indexPath = self.tableView.indexPath(for: cell),
-                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
             self.searchAction()
         }
         
