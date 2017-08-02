@@ -71,6 +71,13 @@ public class CommonCardTableViewCell: UITableViewCell {
         entireCardButton.isEnabled = false
         shareButton.isHidden = false
         photoButton.isEnabled = true
+        
+        photoButton.setBackgroundImage(nil, for: .normal)
+        photoButton.setBackgroundImage(nil, for: .disabled)
+        nameLabel.text = ""
+        titleLabel.text = ""
+        cellLabel.text = ""
+        emailLabel.text = ""
     }
     
     public func enableEntireCardButton() {
