@@ -87,15 +87,25 @@ public class MessageController {
         }
     }
     
-    public static func save(_ card: Card) {
-        guard let currentPerson = PersonController.shared.currentPerson else { NSLog("Current person object is nil"); return }
+    public static func save(_ card: Card, with completion: @escaping (Bool) -> Void) {
+        
+        guard let currentPerson = PersonController.shared.currentPerson else {
+            NSLog("Current person object is nil")
+            completion(false)
+            return
+        }
+        
+        let currentReceivedCardsRecordIDs = currentPerson.receivedCards.map({ $0.recordID })
+        
+        guard let cardRecordID = card.ckRecordID,
+            !currentReceivedCardsRecordIDs.contains(cardRecordID) else { completion(false); return }
         
         PersonController.shared.addCard(card, to: currentPerson)
         
-        guard let reference = card.ckReference else { return }
+        guard let reference = card.ckReference else { completion(false); return }
         PersonController.shared.addCardReference(reference, to: currentPerson)
         
-        guard let personRecordID = currentPerson.cKRecordID else { return }
+        guard let personRecordID = currentPerson.cKRecordID else { completion(false); return }
         
         CloudKitContoller.shared.updateRecord(recordID: personRecordID)
     }

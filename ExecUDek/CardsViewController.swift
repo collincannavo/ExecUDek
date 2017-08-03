@@ -42,6 +42,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
+        
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
     }
@@ -169,7 +170,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     func fetchCards() {
-        if !refreshControl.isRefreshing { refreshControl.beginRefreshing() }
+//        if !refreshControl.isRefreshing { refreshControl.beginRefreshing() }
+        guard refreshControl.isRefreshing else { return }
         
         CloudKitContoller.shared.fetchCurrentUser { (success, currentPerson) in
             if success && (currentPerson != nil) {

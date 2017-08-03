@@ -192,8 +192,21 @@ extension UserProfileTableViewController {
             guard let record = record else { NSLog("Data fetched for received multipeer Card is nil"); return }
             guard let card = Card(ckRecord: record) else { NSLog("Could not construct Card object from received multipeer card record ID"); return }
             
-            MessageController.save(card)
+            MessageController.save(card) { (success) in
+                if !success {
+                    self.presentUnableToSaveAlert {}
+                }
+            }
         }
+    }
+    
+    func presentUnableToSaveAlert(with completion: @escaping () -> Void) {
+        let alertController = UIAlertController(title: "Unable to Save Card", message: "This card already exists in your wallet", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in
+            completion()
+        }
+        alertController.addAction(dismissAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func presentFailedCardReceiveAlert() {
@@ -203,22 +216,3 @@ extension UserProfileTableViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
