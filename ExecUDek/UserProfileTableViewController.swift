@@ -21,9 +21,6 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
     var card = CommonCardTableViewCell()
     
     var selectedCard: Card?
-
-    @IBAction func addNewCardButtonTapped(_ sender: Any) {
-    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
