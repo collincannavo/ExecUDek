@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--User Profile Table View Controller-->
+        <!--My Cards-->
         <scene sceneID="UPw-CF-FPm">
             <objects>
                 <tableViewController id="1tB-em-BzF" customClass="UserProfileTableViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
@@ -51,7 +51,7 @@
                             <outlet property="delegate" destination="1tB-em-BzF" id="lLh-zo-aZF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="d6f-fU-ngn">
+                    <navigationItem key="navigationItem" title="My Cards" id="d6f-fU-ngn">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eEe-ah-NZc">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="1tB-em-BzF" id="8z3-Xo-5jC"/>
