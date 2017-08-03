@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cards View Controller-->
+        <!--Contacts' Cards-->
         <scene sceneID="Njf-Gj-lyg">
             <objects>
                 <viewController id="hTB-Na-Z53" customClass="CardsViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
                             <constraint firstAttribute="trailing" secondItem="kg8-08-Y7X" secondAttribute="trailing" id="sFh-Dv-vjx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="FJt-d4-hrh">
+                    <navigationItem key="navigationItem" title="Contacts' Cards" id="FJt-d4-hrh">
                         <barButtonItem key="leftBarButtonItem" image="profileIcon" id="LR2-fi-hFl">
                             <connections>
                                 <action selector="profileIconTapped:" destination="hTB-Na-Z53" id="9ID-xh-6li"/>
