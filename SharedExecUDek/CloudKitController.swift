@@ -18,14 +18,14 @@ public class CloudKitContoller {
     
     public var currentUser: Person?
     
-    public func create(card: Card, withCompletion completion: @escaping (CKRecord?, Error?) -> Void) {
+    public func save(record: CKRecord, withCompletion completion: @escaping (CKRecord?, Error?) -> Void) {
         
-        CKContainer.default().publicCloudDatabase.save(card.ckRecord) { (record, error) in
+        CKContainer.default().publicCloudDatabase.save(record) { (record, error) in
             completion(record, error)
         }
     }
     
-    public func fetchCards(with predicate: NSPredicate, completion: @escaping ([CKRecord]?, Error?) -> Void) {
+    public func performQuery(with predicate: NSPredicate, completion: @escaping ([CKRecord]?, Error?) -> Void) {
         
         let query = CKQuery(recordType: Card.recordTypeKey, predicate: predicate)
         
@@ -34,7 +34,7 @@ public class CloudKitContoller {
         }
     }
     
-    public func performReceivedCardsFetch(for records: [CKRecordID], with completion: @escaping ([CKRecordID: CKRecord]?, Error?) -> Void) {
+    public func fetchRecords(for records: [CKRecordID], with completion: @escaping ([CKRecordID: CKRecord]?, Error?) -> Void) {
         let fetchOperation = CKFetchRecordsOperation(recordIDs: records)
         fetchOperation.qualityOfService = .userInitiated
         fetchOperation.queuePriority = .high

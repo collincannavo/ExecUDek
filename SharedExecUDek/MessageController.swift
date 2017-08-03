@@ -108,5 +108,6 @@ public class MessageController {
         guard let personRecordID = currentPerson.cKRecordID else { completion(false); return }
         
         CloudKitContoller.shared.updateRecord(recordID: personRecordID)
+        completion(true)
     }
 }

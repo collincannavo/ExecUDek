@@ -170,7 +170,6 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     func fetchCards() {
-//        if !refreshControl.isRefreshing { refreshControl.beginRefreshing() }
         guard refreshControl.isRefreshing else { return }
         
         CloudKitContoller.shared.fetchCurrentUser { (success, currentPerson) in
@@ -183,6 +182,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
                         }
                     }
                 }
+                
+                CardController.shared.fetchPersonalCards(with: { (_) in })
             }
         }
     }
