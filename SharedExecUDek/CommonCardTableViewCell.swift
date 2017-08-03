@@ -48,6 +48,7 @@ public class CommonCardTableViewCell: UITableViewCell {
         card?.title = title
         
         layer.cornerRadius = 20.0
+        
 
         shareButton.superview?.bringSubview(toFront: view)
     }
