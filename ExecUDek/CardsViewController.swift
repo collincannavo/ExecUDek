@@ -104,6 +104,9 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         cell.hideShareImage()
         cell.disablePhotoButton()
         
+        setupCardTableViewCellShadow(cell)
+        setupCardTableViewCellBorderColor(cell)
+        tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
         return cell
@@ -146,6 +149,23 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     
     func refresh() {
         tableView.reloadData()
+    }
+    
+    func setupCardTableViewCellShadow(_ cell: CommonCardTableViewCell) {
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.shadowRadius = 4
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+    }
+    
+    func setupCardTableViewCellBorderColor(_ cell: CommonCardTableViewCell) {
+        cell.layer.borderWidth = 10
+        cell.layer.borderColor = UIColor.clear.cgColor
+        
+    }
+    
+    func tableViewBackgroundColor() {
+        self.tableView.backgroundColor = UIColor.lightGray
     }
     
     func fetchCards() {
