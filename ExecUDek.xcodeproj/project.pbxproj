@@ -49,6 +49,7 @@
 		F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05962611F299C65002C967B /* UserProfileTableViewController.swift */; };
 		F05962641F299D18002C967B /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F05962631F299D18002C967B /* UserProfile.storyboard */; };
 		F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06281A61F28F15800106424 /* CardTemplate.storyboard */; };
+		F09DFFC21F33D25900D2AE23 /* AddToContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09DFFC11F33D25900D2AE23 /* AddToContacts.swift */; };
 		F0C8BA8B1F2A383F00B9E0DA /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C8BA8A1F2A383F00B9E0DA /* UserProfileTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +139,7 @@
 		F05962611F299C65002C967B /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		F05962631F299D18002C967B /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		F06281A61F28F15800106424 /* CardTemplate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardTemplate.storyboard; sourceTree = "<group>"; };
+		F09DFFC11F33D25900D2AE23 /* AddToContacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToContacts.swift; sourceTree = "<group>"; };
 		F0C8BA8A1F2A383F00B9E0DA /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -375,6 +377,7 @@
 				188F23241F2914F7007B9F20 /* CardsViewController.swift */,
 				B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */,
 				F05962611F299C65002C967B /* UserProfileTableViewController.swift */,
+				F09DFFC11F33D25900D2AE23 /* AddToContacts.swift */,
 				B6459F501F314C62000DD526 /* EmailViewController.swift */,
 			);
 			name = ViewControllers;
@@ -598,6 +601,7 @@
 				F04EDF081F2FC9CD00E8DB82 /* StringFormatter.swift in Sources */,
 				F05962621F299C65002C967B /* UserProfileTableViewController.swift in Sources */,
 				B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */,
+				F09DFFC21F33D25900D2AE23 /* AddToContacts.swift in Sources */,
 				B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */,
 				B6459F511F314C62000DD526 /* EmailViewController.swift in Sources */,
 				F0C8BA8B1F2A383F00B9E0DA /* UserProfileTableViewCell.swift in Sources */,
