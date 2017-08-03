@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZV9-Qh-vwd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZV9-Qh-vwd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,32 +18,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="RrC-14-1sA">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiJ-in-rNE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
-                                    <state key="normal" title="Add New Card"/>
-                                    <connections>
-                                        <action selector="addNewCardButtonTapped:" destination="1tB-em-BzF" eventType="touchUpInside" id="0No-82-xcL"/>
-                                        <segue destination="eHL-w7-I70" kind="presentation" identifier="addCardFromUser" id="CjT-1f-hJq"/>
-                                    </connections>
-                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2Y-aY-QVv">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="AiJ-in-rNE" secondAttribute="bottom" id="33H-8h-yd2"/>
-                                <constraint firstItem="AiJ-in-rNE" firstAttribute="top" secondItem="RrC-14-1sA" secondAttribute="top" id="JMn-NX-eKf"/>
-                                <constraint firstAttribute="trailing" secondItem="AiJ-in-rNE" secondAttribute="trailing" id="PPw-94-QuL"/>
-                                <constraint firstItem="AiJ-in-rNE" firstAttribute="leading" secondItem="RrC-14-1sA" secondAttribute="leading" id="yKG-gg-9x7"/>
+                                <constraint firstAttribute="bottom" secondItem="b2Y-aY-QVv" secondAttribute="bottom" id="MsJ-hG-z7H"/>
+                                <constraint firstAttribute="trailing" secondItem="b2Y-aY-QVv" secondAttribute="trailing" id="efv-sf-DkZ"/>
+                                <constraint firstItem="b2Y-aY-QVv" firstAttribute="top" secondItem="RrC-14-1sA" secondAttribute="top" id="nF9-pZ-bsc"/>
+                                <constraint firstItem="b2Y-aY-QVv" firstAttribute="leading" secondItem="RrC-14-1sA" secondAttribute="leading" id="zCZ-Ni-gOx"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userProfileCell" rowHeight="196" id="irc-GK-zt4" customClass="CommonCardTableViewCell" customModule="ExecUDek" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="203" width="375" height="196"/>
+                                <rect key="frame" x="0.0" y="115" width="375" height="196"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="irc-GK-zt4" id="CgF-im-mQl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="196"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="195.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -57,6 +55,11 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eEe-ah-NZc">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="1tB-em-BzF" id="8z3-Xo-5jC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vs1-Bu-KHi">
+                            <connections>
+                                <segue destination="eHL-w7-I70" kind="presentation" identifier="addCardFromUser" id="Ynt-sf-JnY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -96,6 +99,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="keZ-q2-XV8"/>
+        <segue reference="Ynt-sf-JnY"/>
     </inferredMetricsTieBreakers>
 </document>
