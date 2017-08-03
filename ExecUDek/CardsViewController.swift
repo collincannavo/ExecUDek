@@ -119,9 +119,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
             
             performSegue(withIdentifier: "editCardFromMain", sender: nil)
         }
-        
     }
-    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -153,11 +151,15 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     func fetchCards() {
         if !refreshControl.isRefreshing { refreshControl.beginRefreshing() }
         
-        CardController.shared.fetchReceivedCards { (success) in
-            if success {
-                DispatchQueue.main.async {
-                    self.refresh()
-                    if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
+        CloudKitContoller.shared.fetchCurrentUser { (success, currentPerson) in
+            if success && (currentPerson != nil) {
+                CardController.shared.fetchReceivedCards { (success) in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.refresh()
+                            if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
+                        }
+                    }
                 }
             }
         }
