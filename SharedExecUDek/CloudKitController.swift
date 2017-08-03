@@ -34,6 +34,15 @@ public class CloudKitContoller {
         }
     }
     
+    public func performReceivedCardsFetch(for records: [CKRecordID], with completion: @escaping ([CKRecordID: CKRecord]?, Error?) -> Void) {
+        let fetchOperation = CKFetchRecordsOperation(recordIDs: records)
+        fetchOperation.qualityOfService = .userInitiated
+        fetchOperation.queuePriority = .high
+        fetchOperation.fetchRecordsCompletionBlock = completion
+        
+        container.publicCloudDatabase.add(fetchOperation)
+    }
+    
     public func fetchRecord(with recordID: CKRecordID, completion: @escaping (CKRecord?, Error?) -> Void) {
         container.publicCloudDatabase.fetch(withRecordID: recordID) { (record, error) in
             completion(record, error)

@@ -151,12 +151,12 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     func fetchCards() {
-        //refreshControl.beginRefreshing()
+        if !refreshControl.isRefreshing { refreshControl.beginRefreshing() }
         
         CardController.shared.fetchReceivedCards { (success) in
             if success {
                 DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: Constants.cardsFetchedNotification, object: self)
+                    self.refresh()
                     if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
                 }
             }

@@ -115,20 +115,22 @@ public class CardController {
         
         guard let currentPerson = PersonController.shared.currentPerson else { completion(false); return }
         
-        currentPerson.receivedCards.forEach { (receivedCardReference) in
+        let receivedCardsRecordIDs = currentPerson.receivedCards.map({ $0.recordID })
+        
+        CloudKitContoller.shared.performReceivedCardsFetch(for: receivedCardsRecordIDs) { (recordsDictionary, error) in
             
-            CloudKitContoller.shared.fetchRecord(with: receivedCardReference.recordID, completion: { (record, error) in
-                if let error = error { NSLog("Error encountered fetching a received card record: \(error.localizedDescription)"); completion(false); return }
-                guard let record = record else { NSLog("Record returned for received card fetch is nil"); completion(false); return }
-                guard let card = Card(ckRecord: record) else { NSLog("Could not construct Card object from received card record"); completion(false); return }
-                
-                if let index = currentPerson.cards.index(where: { card.ckRecordID?.recordName == $0.ckRecordID?.recordName }) {
-                    currentPerson.cards.remove(at: index)
-                }
+            var success = false
+            defer { completion(success) }
             
-                PersonController.shared.addCard(card, to: currentPerson)
-                completion(true)
-            })
+            if let error = error { NSLog("Error encountered fetching received cards: \(error.localizedDescription)") }
+            guard let cardRecordsDictionary = recordsDictionary else { NSLog("Records returned for received card fetch is nil"); return }
+            let currentCardRecordIDs = currentPerson.cards.flatMap { $0.ckRecordID }
+            let newCardsDictionary = cardRecordsDictionary.filter { !currentCardRecordIDs.contains($0.key) }
+            let newCardRecords = newCardsDictionary.map({ $0.value })
+            let newCards = newCardRecords.flatMap({ Card(ckRecord: $0) })
+            
+            newCards.forEach({ PersonController.shared.addCard($0, to: currentPerson) })
+            success = true
         }
     }
 }
