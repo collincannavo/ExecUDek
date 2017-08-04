@@ -43,6 +43,8 @@
 		B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
 		B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */; };
+		CA641DA81F34DAAC003D9B0D /* CardReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641DA71F34DAAB003D9B0D /* CardReceived.swift */; };
+		CA641DAA1F34DD92003D9B0D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641DA91F34DD92003D9B0D /* Button.swift */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
 		F04EDF081F2FC9CD00E8DB82 /* StringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04EDF071F2FC9CD00E8DB82 /* StringFormatter.swift */; };
 		F04EDF091F2FCA3C00E8DB82 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182B5AC71F2E835500C901E8 /* CloudKit.framework */; };
@@ -133,6 +135,8 @@
 		B6A28A6E1F27DF4300786B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6A28A701F27DF4300786B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerConnectivity.swift; sourceTree = "<group>"; };
+		CA641DA71F34DAAB003D9B0D /* CardReceived.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardReceived.swift; sourceTree = "<group>"; };
+		CA641DA91F34DD92003D9B0D /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTemplateTableViewController.swift; sourceTree = "<group>"; };
 		F04EDF071F2FC9CD00E8DB82 /* StringFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFormatter.swift; sourceTree = "<group>"; };
 		F05962611F299C65002C967B /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 		18B9C6B81F2D304300F7BB03 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CA641DA71F34DAAB003D9B0D /* CardReceived.swift */,
+				CA641DA91F34DD92003D9B0D /* Button.swift */,
 				18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */,
 			);
 			name = View;
@@ -564,6 +570,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				188F23361F2957F8007B9F20 /* MessagesViewController.swift in Sources */,
+				CA641DAA1F34DD92003D9B0D /* Button.swift in Sources */,
+				CA641DA81F34DAAC003D9B0D /* CardReceived.swift in Sources */,
 				18B709F71F296F60002DDB17 /* EXTCardTableViewCell.swift in Sources */,
 				18B709F91F296FA0002DDB17 /* EXTCardsCompactViewController.swift in Sources */,
 				188E9E641F2FE23500598710 /* CardReceivedViewController.swift in Sources */,
