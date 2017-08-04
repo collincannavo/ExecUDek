@@ -78,8 +78,10 @@ public class CardController {
         card.avatarData = avatarData
         card.logoData = logoData
         card.other = other
-        
-        //CloudKitContoller.shared.updateRecord(record: <#T##CKRecord#>)
+    }
+    
+    public func removeParentFrom(card: Card) {
+        card.parentCKReference = nil
     }
     
     public func fetchPersonalCards(with completion: @escaping (Bool) -> Void) {
@@ -123,33 +125,26 @@ public class CardController {
         }
     }
     
-    public func removeParentReference(from card: Card, with completion: (Bool) -> Void) {
+    public func updateRecord(for card: Card, completion: @escaping (Bool) -> Void) {
         
+        guard let recordID = card.ckRecordID else { completion(false); return }
+        
+        CloudKitContoller.shared.fetchRecord(with: recordID) { (record, error) in
+            if let error = error { NSLog("Error encountered while fetching record to update: \(error.localizedDescription)"); completion(false); return }
+            guard var record = record else { NSLog("Record returned for update operation is nil"); completion(false); return }
+            card.updateCKRecordLocally(record: &record)
+            
+            CloudKitContoller.shared.updateRecord(record, with: { (records, recordIDs, error) in
+                if let error = error {
+                    NSLog("Error encountered fetching the Person record to modify: \(error.localizedDescription)")
+                    completion(false)
+                    return
+                }
+                
+                guard let record = records?.first else { NSLog("Did not successfully return the modified Card record"); completion(false); return }
+                
+                completion(true)
+            })
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

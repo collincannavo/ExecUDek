@@ -66,7 +66,9 @@ public class Person {
         record[Person.nameKey] = name as CKRecordValue?
         record[Person.appleUserReferenceKey] = userCKReference as CKRecordValue?
         
-        if !receivedCards.isEmpty {
+        if receivedCards.isEmpty {
+            record[Person.receivedCardsKey] = nil
+        } else {
             record[Person.receivedCardsKey] = receivedCards as CKRecordValue?
         }
     }

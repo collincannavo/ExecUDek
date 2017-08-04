@@ -28,21 +28,43 @@ public class PersonController {
         person.receivedCards.append(reference)
     }
     
+    public func removeCardReference(_ reference: CKReference, from person: Person) {
+        if let index = person.receivedCards.index(where: { $0 == reference }) {
+            person.receivedCards.remove(at: index)
+        }
+    }
+    
     public func deleteCard(_ card: Card, from person: Person, with completion: @escaping (Bool) -> Void) {
         if let index = person.cards.index(where: { $0 == card }) {
             person.cards.remove(at: index)
+            
+            if let reference = card.ckReference {
+                removeCardReference(reference, from: person)
+            }
+            
+            self.updateRecord(for: person) { (success) in
+                if success {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
         }
         
         if let index = person.personalCards.index(where: { $0 == card }) {
             person.personalCards.remove(at: index)
-        }
-        
-        updateRecord(for: person) { (success) in
-            if success {
-                completion(true)
-            } else {
-                completion(false)
-            }
+            CardController.shared.removeParentFrom(card: card)
+            CardController.shared.updateRecord(for: card, completion: { (success) in
+                if success {
+                    self.updateRecord(for: person) { (success) in
+                        if success {
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
+                    }
+                }
+            })
         }
     }
     
@@ -62,7 +84,8 @@ public class PersonController {
                     return
                 }
                 
-                guard let record = records?.first else { NSLog("Did not successfully return the modified Person record"); completion(false); return }
+                guard records?.first != nil else { NSLog("Did not successfully return the modified Person record"); completion(false); return }
+                
                 completion(true)
             })
         }
