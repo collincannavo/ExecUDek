@@ -41,7 +41,6 @@ public class CardController {
         
         let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
-        PersonController.shared.addCard(card, to: person)
         card.cardData = cardData
         
         CloudKitContoller.shared.save(record: card.ckRecord) { (record, error) in
@@ -51,6 +50,7 @@ public class CardController {
             
             let reference = CKReference(recordID: record.recordID, action: .none)
             
+            PersonController.shared.addCard(card, to: person)
             PersonController.shared.addCardReference(reference, to: person)
             
             PersonController.shared.updateRecord(for: person, completion: { (success) in
@@ -153,6 +153,17 @@ public class CardController {
                 
                 completion(true)
             })
+        }
+    }
+    
+    public func copyCard(_ card: Card, with completion: @escaping (Bool) -> Void) {
+        createCardWith(cardData: card.cardData, name: card.name, title: card.title, cell: card.cell, officeNumber: card.officeNumber, email: card.email, companyName: card.companyName, note: card.note, address: card.address, avatarData: card.avatarData, logoData: card.logoData, other: card.other) { (success) in
+        
+            if success {
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ public class CloudKitContoller {
     
     public func save(record: CKRecord, withCompletion completion: @escaping (CKRecord?, Error?) -> Void) {
         
-        CKContainer.default().publicCloudDatabase.save(record) { (record, error) in
+        container.publicCloudDatabase.save(record) { (record, error) in
             completion(record, error)
         }
     }

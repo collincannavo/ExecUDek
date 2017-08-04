@@ -100,16 +100,9 @@ public class MessageController {
         guard let cardRecordID = card.ckRecordID,
             !currentReceivedCardsRecordIDs.contains(cardRecordID) else { completion(false); return }
         
-        PersonController.shared.addCard(card, to: currentPerson)
-        
-        guard let reference = card.ckReference else { completion(false); return }
-        PersonController.shared.addCardReference(reference, to: currentPerson)
-        
-        PersonController.shared.updateRecord(for: currentPerson) { (success) in
+        CardController.shared.copyCard(card) { (success) in
             if success {
                 completion(true)
-            } else {
-                completion(false)
             }
         }
     }
