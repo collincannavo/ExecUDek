@@ -27,7 +27,6 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Cell tapped! \n\n\n\n\n")
         
         guard let cell = tableView.cellForRow(at: indexPath) as? CommonCardTableViewCell else { return }
         
@@ -153,19 +152,24 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
                 let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
             
             self.selectedCard = card
-//            self.presentSMSInterface(for: card, with: cell)
 
             self.searchAction()
         }
+        
         
         let emailButton = UIAlertAction(title: "Email", style: .default) { (_) in
             guard let card = UIViewToPNG.uiViewToPNG(for: cell) else { return }
             self.sendEmail(attachment: card)
         }
         
+        let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
+            self.addContact()
+        }
+        
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(iMessagesButton)
         alertController.addAction(multiShareButton)
+        alertController.addAction(contactButton)
         alertController.addAction(cancelButton)
         alertController.addAction(emailButton)
         

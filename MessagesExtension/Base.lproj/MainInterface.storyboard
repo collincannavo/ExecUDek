@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -83,10 +82,13 @@
                         <viewControllerLayoutGuide type="top" id="W1g-9G-jhx"/>
                         <viewControllerLayoutGuide type="bottom" id="Phr-Ia-COK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tLC-SM-Oe4">
+                    <view key="view" contentMode="scaleToFill" id="tLC-SM-Oe4" customClass="CardReceived">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="I9K-WK-0DK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kn7-8A-yPX">
                                 <rect key="frame" x="0.0" y="80" width="375" height="175"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,53 +99,72 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've received the above Card. Would you like to accept it?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xM-FY-HrF">
                                 <rect key="frame" x="16" y="263" width="343" height="57.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.98611479997634888" green="0.74874478578567505" blue="0.34585380554199219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="45e-Uu-Ges">
-                                <rect key="frame" x="71" y="360" width="233" height="56.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR3-tw-W63">
-                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="56.5"/>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="HR3-tw-W63" secondAttribute="height" multiplier="2:1" id="Mcb-AQ-BqL"/>
-                                        </constraints>
-                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Reject"/>
-                                        <connections>
-                                            <action selector="rejectButtonTapped:" destination="eCe-TH-cHp" eventType="touchUpInside" id="EzH-lH-CFG"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wan-PN-cQI">
-                                        <rect key="frame" x="120.5" y="0.0" width="112.5" height="56.5"/>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Wan-PN-cQI" secondAttribute="height" multiplier="2:1" id="68p-6X-aUp"/>
-                                        </constraints>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Accept"/>
-                                        <connections>
-                                            <action selector="acceptButtonTapped:" destination="eCe-TH-cHp" eventType="touchUpInside" id="SN9-4d-Ebm"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wan-PN-cQI" customClass="Button" customModule="MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="53" y="351" width="268" height="30"/>
+                                <color key="backgroundColor" red="0.123548083" green="0.76390588280000005" blue="0.8776798844" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Wan-PN-cQI" firstAttribute="width" secondItem="HR3-tw-W63" secondAttribute="width" id="H7o-SJ-czY"/>
+                                    <constraint firstAttribute="width" secondItem="Wan-PN-cQI" secondAttribute="height" multiplier="2:1" constant="208" id="68p-6X-aUp"/>
                                 </constraints>
-                            </stackView>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Accept"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="acceptButtonTapped:" destination="eCe-TH-cHp" eventType="touchUpInside" id="SN9-4d-Ebm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR3-tw-W63" customClass="Button" customModule="MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="120" y="409" width="134" height="30"/>
+                                <color key="backgroundColor" red="0.98611611127853394" green="0.39019757509231567" blue="0.44103625416755676" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HR3-tw-W63" secondAttribute="height" multiplier="2:1" constant="74" id="Mcb-AQ-BqL"/>
+                                </constraints>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Reject"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="rejectButtonTapped:" destination="eCe-TH-cHp" eventType="touchUpInside" id="EzH-lH-CFG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8xM-FY-HrF" firstAttribute="leading" secondItem="tLC-SM-Oe4" secondAttribute="leadingMargin" id="08c-sZ-wsj"/>
+                            <constraint firstItem="I9K-WK-0DK" firstAttribute="leading" secondItem="tLC-SM-Oe4" secondAttribute="leading" id="CIf-w1-F87"/>
+                            <constraint firstItem="Phr-Ia-COK" firstAttribute="top" secondItem="I9K-WK-0DK" secondAttribute="bottom" id="JqX-V4-8aq"/>
                             <constraint firstItem="8xM-FY-HrF" firstAttribute="trailing" secondItem="tLC-SM-Oe4" secondAttribute="trailingMargin" id="Lb0-J0-Cj0"/>
-                            <constraint firstItem="45e-Uu-Ges" firstAttribute="centerX" secondItem="tLC-SM-Oe4" secondAttribute="centerX" id="PHq-vv-3gg"/>
+                            <constraint firstItem="I9K-WK-0DK" firstAttribute="top" secondItem="tLC-SM-Oe4" secondAttribute="top" id="NSS-Wl-2Ll"/>
+                            <constraint firstAttribute="trailing" secondItem="I9K-WK-0DK" secondAttribute="trailing" id="OVW-qN-9vh"/>
                             <constraint firstItem="kn7-8A-yPX" firstAttribute="leading" secondItem="tLC-SM-Oe4" secondAttribute="leading" id="PIX-9H-waQ"/>
+                            <constraint firstItem="HR3-tw-W63" firstAttribute="top" secondItem="Wan-PN-cQI" secondAttribute="bottom" constant="28" id="ZXI-c9-bsY"/>
                             <constraint firstItem="kn7-8A-yPX" firstAttribute="top" secondItem="W1g-9G-jhx" secondAttribute="bottom" constant="60" id="cI4-a5-tPB"/>
+                            <constraint firstItem="HR3-tw-W63" firstAttribute="centerX" secondItem="tLC-SM-Oe4" secondAttribute="centerX" id="eZj-uY-wIK"/>
+                            <constraint firstItem="Wan-PN-cQI" firstAttribute="top" secondItem="8xM-FY-HrF" secondAttribute="bottom" constant="30.5" id="hHJ-LR-lkJ"/>
+                            <constraint firstItem="Wan-PN-cQI" firstAttribute="centerX" secondItem="tLC-SM-Oe4" secondAttribute="centerX" constant="-0.5" id="l1C-WA-Hp8"/>
                             <constraint firstAttribute="trailing" secondItem="kn7-8A-yPX" secondAttribute="trailing" id="m12-kB-ZCT"/>
-                            <constraint firstItem="45e-Uu-Ges" firstAttribute="top" secondItem="8xM-FY-HrF" secondAttribute="bottom" constant="40" id="woD-Bj-2Mr"/>
                             <constraint firstItem="8xM-FY-HrF" firstAttribute="top" secondItem="kn7-8A-yPX" secondAttribute="bottom" constant="8" id="y7i-zB-9b9"/>
-                            <constraint firstItem="Wan-PN-cQI" firstAttribute="width" secondItem="tLC-SM-Oe4" secondAttribute="width" multiplier="0.3" id="zo6-Uz-LTw"/>
                         </constraints>
                     </view>
                     <connections>
@@ -155,4 +176,7 @@
             <point key="canvasLocation" x="2018.4000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Rectangle" width="514" height="514"/>
+    </resources>
 </document>
