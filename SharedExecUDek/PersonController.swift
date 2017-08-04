@@ -28,13 +28,43 @@ public class PersonController {
         person.receivedCards.append(reference)
     }
     
-    public func deleteCard(_ card: Card, from person: Person) {
+    public func deleteCard(_ card: Card, from person: Person, with completion: @escaping (Bool) -> Void) {
         if let index = person.cards.index(where: { $0 == card }) {
             person.cards.remove(at: index)
         }
         
         if let index = person.personalCards.index(where: { $0 == card }) {
             person.personalCards.remove(at: index)
+        }
+        
+        updateRecord(for: person) { (success) in
+            if success {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
+    public func updateRecord(for person: Person, completion: @escaping (Bool) -> Void) {
+        
+        guard let recordID = person.cKRecordID else { completion(false); return }
+        
+        CloudKitContoller.shared.fetchRecord(with: recordID) { (record, error) in
+            if let error = error { NSLog("Error encountered while fetching record to update: \(error.localizedDescription)"); completion(false); return }
+            guard var record = record else { NSLog("Record returned for update operation is nil"); completion(false); return }
+            person.updateCKRecordLocally(record: &record)
+            
+            CloudKitContoller.shared.updateRecord(record, with: { (records, recordIDs, error) in
+                if let error = error {
+                    NSLog("Error encountered fetching the Person record to modify: \(error.localizedDescription)")
+                    completion(false)
+                    return
+                }
+                
+                guard let record = records?.first else { NSLog("Did not successfully return the modified Person record"); completion(false); return }
+                completion(true)
+            })
         }
     }
 }

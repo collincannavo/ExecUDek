@@ -70,14 +70,15 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
         
-        if let card = card,
-            let recordID = card.ckRecordID {
-            CloudKitContoller.shared.deleteRecord(recordID: recordID)
-            guard let person = PersonController.shared.currentPerson else { return }
-            PersonController.shared.deleteCard(card, from: person)
-        }
-        self.dismiss(animated: true, completion: nil)
+        guard let card = card, let person = PersonController.shared.currentPerson else { return }
         
+        PersonController.shared.deleteCard(card, from: person) { (success) in
+            if success {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                self.presentFailedDeleteAlert()
+            }
+        }
     }
     
     func photoSelectCellSelected(cellButtonTapped: UIButton) {
@@ -190,7 +191,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         switch (cardSenderIsMainScene, card == nil) {
         case (true, true):
-            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
+            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { _ in }
         case (false, true):
             CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
         case (_, false):
@@ -207,6 +208,13 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         officeNumberTextField.text = card?.officeNumber
         cellTextField.text = card?.cell
         addressTextField.text = card?.address
+    }
+    
+    func presentFailedDeleteAlert() {
+        let alertController = UIAlertController(title: "Failed to Delete Card", message: "Could not successfully remove card from your account", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     func setupCardDisplay() {

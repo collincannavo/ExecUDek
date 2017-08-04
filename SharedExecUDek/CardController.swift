@@ -33,11 +33,11 @@ public class CardController {
         }
     }
     
-    public func createCardWith(cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func createCardWith(cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
         let template = Template.one
         
-        guard let person = PersonController.shared.currentPerson else { return }
+        guard let person = PersonController.shared.currentPerson else { completion(false); return }
         
         let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
@@ -45,18 +45,21 @@ public class CardController {
         card.cardData = cardData
         
         CloudKitContoller.shared.save(record: card.ckRecord) { (record, error) in
-            if let error = error {
-                NSLog("Error encountered while saving card to CK: \(error.localizedDescription)")
-                return
-            }
+            if let error = error { NSLog("Error encountered while saving card to CK: \(error.localizedDescription)"); completion(false); return }
             
-            guard let personCKRecordID = person.cKRecordID,
-                let record = record else { return }
+            guard let record = record else { completion(false); return }
             
             let reference = CKReference(recordID: record.recordID, action: .none)
             
             PersonController.shared.addCardReference(reference, to: person)
-            CloudKitContoller.shared.updateRecord(recordID: personCKRecordID)
+            
+            PersonController.shared.updateRecord(for: person, completion: { (success) in
+                if !success {
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            })
         }
     }
     
@@ -119,4 +122,34 @@ public class CardController {
             success = true
         }
     }
+    
+    public func removeParentReference(from card: Card, with completion: (Bool) -> Void) {
+        
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

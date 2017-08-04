@@ -105,9 +105,12 @@ public class MessageController {
         guard let reference = card.ckReference else { completion(false); return }
         PersonController.shared.addCardReference(reference, to: currentPerson)
         
-        guard let personRecordID = currentPerson.cKRecordID else { completion(false); return }
-        
-        CloudKitContoller.shared.updateRecord(recordID: personRecordID)
-        completion(true)
+        PersonController.shared.updateRecord(for: currentPerson) { (success) in
+            if success {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
 }
