@@ -99,12 +99,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've received the above Card. Would you like to accept it?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xM-FY-HrF">
                                 <rect key="frame" x="16" y="263" width="343" height="57.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.98611479997634888" green="0.74874478578567505" blue="0.34585380554199219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wan-PN-cQI" customClass="Button" customModule="MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="53" y="351" width="268" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.123548083" green="0.76390588280000005" blue="0.8776798844" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Wan-PN-cQI" secondAttribute="height" multiplier="2:1" constant="208" id="68p-6X-aUp"/>
                                 </constraints>
@@ -121,7 +121,7 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.71035088118513334" green="0.78421128657931127" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -130,7 +130,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR3-tw-W63" customClass="Button" customModule="MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="120" y="409" width="134" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98611611127853394" green="0.39019757509231567" blue="0.44103625416755676" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="HR3-tw-W63" secondAttribute="height" multiplier="2:1" constant="74" id="Mcb-AQ-BqL"/>
                                 </constraints>
