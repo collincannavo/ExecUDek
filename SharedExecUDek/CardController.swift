@@ -63,7 +63,7 @@ public class CardController {
         }
     }
     
-    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
         card.cardData = cardData
         card.name = name
@@ -78,6 +78,14 @@ public class CardController {
         card.avatarData = avatarData
         card.logoData = logoData
         card.other = other
+        
+        updateRecord(for: card) { (success) in
+            if success {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
     
     public func removeParentFrom(card: Card) {
@@ -141,7 +149,7 @@ public class CardController {
                     return
                 }
                 
-                guard let record = records?.first else { NSLog("Did not successfully return the modified Card record"); completion(false); return }
+                guard (records?.first != nil) else { NSLog("Did not successfully return the modified Card record"); completion(false); return }
                 
                 completion(true)
             })
