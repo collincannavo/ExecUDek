@@ -12,21 +12,27 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate, MCBrowserViewControllerDelegate {
+class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
     
     let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name), securityIdentity: nil, encryptionPreference: .none)
     var browser: MCNearbyServiceBrowser?
     var advertiser: MCNearbyServiceAdvertiser?
-    var browserView: MCBrowserViewController!
+    
+    var searchButton: UIBarButtonItem?
+    var disconnectButton: UIBarButtonItem?
     var card = CommonCardTableViewCell()
     
     var selectedCard: Card?
+
+    @IBAction func addNewCardButtonTapped(_ sender: Any) {
+    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell tapped! \n\n\n\n\n")
         
         guard let cell = tableView.cellForRow(at: indexPath) as? CommonCardTableViewCell else { return }
         
@@ -42,32 +48,18 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
 
-        let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
         
         self.session.delegate = self
-        browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
-        browserView.delegate = self
-        
-        //tableView.refreshControl?.addTarget(self, action: #selector(fetchPersonalCards), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
-    }
-    
-    // MARK: MCBrowserViewControllerDelegate
-    
-    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
-        browserView.dismiss(animated: true, completion: nil)
-    }
-    
-    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
-        browserView.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -82,12 +74,12 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
             let newCard = card else { return CommonCardTableViewCell() }
         
         if let cellPhone = newCard.cell {
-            cell.cellLabel.text = cellPhone
+            cell.cellLabel.text = "\(cellPhone)"
         }
         cell.actionSheetDelegate = self
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
-        cell.cellLabel.text = newCard.cell
+        cell.cellLabel.text = "\(String(describing: newCard.cell))"
         cell.emailLabel.text = newCard.email
         cell.card = newCard
         if let data = card?.logoData {
@@ -99,9 +91,6 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         
         cell.disablePhotoButton()
         
-        setupCardTableViewCellShadow(cell)
-        setupCardTableViewCellBorderColor(cell)
-        tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
         return cell
@@ -147,31 +136,18 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         }
         
         let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
-
             guard let indexPath = self.tableView.indexPath(for: cell),
                 let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
             
             self.selectedCard = card
-
+//            self.presentSMSInterface(for: card, with: cell)
             self.searchAction()
-        }
-        
-        
-        let emailButton = UIAlertAction(title: "Email", style: .default) { (_) in
-            guard let card = UIViewToPNG.uiViewToPNG(for: cell) else { return }
-            self.sendEmail(attachment: card)
-        }
-        
-        let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
-            self.addContact()
         }
         
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(iMessagesButton)
         alertController.addAction(multiShareButton)
-        alertController.addAction(contactButton)
         alertController.addAction(cancelButton)
-        alertController.addAction(emailButton)
         
         present(alertController, animated: true, completion: nil)
     }
@@ -193,35 +169,5 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         composeVC.message = message
         self.present(composeVC, animated: true, completion: nil)
     }
-    
-    func fetchPersonalCards() {
-        self.tableView.refreshControl?.beginRefreshing()
-        
-        CardController.shared.fetchPersonalCards { (success) in
-            if success {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.tableView.refreshControl?.endRefreshing()
-                }
-            }
-        }
-    }
-    func setupCardTableViewCellShadow(_ cell: CommonCardTableViewCell) {
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.shadowRadius = 4
-        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
-        cell.layer.shadowColor = UIColor.darkGray.cgColor
-    }
-    
-    func setupCardTableViewCellBorderColor(_ cell: CommonCardTableViewCell) {
-        cell.layer.borderWidth = 10
-        cell.layer.borderColor = UIColor.clear.cgColor
-        
-    }
-    
-    func tableViewBackgroundColor() {
-        self.tableView.backgroundColor = UIColor.lightGray
-    }
-    
-   }
+}
 

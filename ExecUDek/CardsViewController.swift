@@ -27,6 +27,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     var selectedCard: Card?
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +38,13 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.cardsFetchedNotification, object: nil)
         
-        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
         
         tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
     }
     
     // MARK: - Search bar delegate
@@ -101,6 +105,9 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         cell.hideShareImage()
         cell.disablePhotoButton()
         
+        setupCardTableViewCellShadow(cell)
+        setupCardTableViewCellBorderColor(cell)
+        tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
         return cell
@@ -116,9 +123,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
             
             performSegue(withIdentifier: "editCardFromMain", sender: nil)
         }
-        
     }
-    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -145,5 +150,41 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     
     func refresh() {
         tableView.reloadData()
+    }
+    
+    func setupCardTableViewCellShadow(_ cell: CommonCardTableViewCell) {
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.shadowRadius = 4
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+    }
+    
+    func setupCardTableViewCellBorderColor(_ cell: CommonCardTableViewCell) {
+        cell.layer.borderWidth = 10
+        cell.layer.borderColor = UIColor.clear.cgColor
+        
+    }
+    
+    func tableViewBackgroundColor() {
+        self.tableView.backgroundColor = UIColor.lightGray
+    }
+    
+    func fetchCards() {
+        guard refreshControl.isRefreshing else { return }
+        
+        CloudKitContoller.shared.fetchCurrentUser { (success, currentPerson) in
+            if success && (currentPerson != nil) {
+                CardController.shared.fetchReceivedCards { (success) in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.refresh()
+                            if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
+                        }
+                    }
+                }
+                
+                CardController.shared.fetchPersonalCards(with: { (_) in })
+            }
+        }
     }
 }

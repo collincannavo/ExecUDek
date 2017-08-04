@@ -26,9 +26,15 @@ class CardReceivedViewController: UIViewController {
     
     @IBAction func acceptButtonTapped(_ sender: UIButton) {
         guard let card = card else { return }
-        MessageController.save(card)
-        
-        delegate?.userDidHandleReceivedCard()
+        MessageController.save(card) { (success) in
+            if success {
+                self.delegate?.userDidHandleReceivedCard()
+            } else {
+                self.presentUnableToSaveAlert {
+                    self.delegate?.userDidHandleReceivedCard()
+                }
+            }
+        }
     }
     
     @IBAction func rejectButtonTapped(_ sender: UIButton) {
@@ -36,7 +42,7 @@ class CardReceivedViewController: UIViewController {
     }
     
     func loadCardView() {
-        let bundle = Bundle(identifier: "com.ganleyapps.SharedExecUDek")
+        let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         cardView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell
     }
     
@@ -66,6 +72,15 @@ class CardReceivedViewController: UIViewController {
         }
         
         cardView.layer.cornerRadius = 20.0
+    }
+    
+    func presentUnableToSaveAlert(with completion: @escaping () -> Void) {
+        let alertController = UIAlertController(title: "Unable to Save Card", message: "This card already exists in your wallet", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in
+            completion()
+        }
+        alertController.addAction(dismissAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

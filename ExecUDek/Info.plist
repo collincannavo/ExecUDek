@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>ExecUDek needs access to your camera if you would like to post photos to your timeline.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -22,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>ExecUDek needs access to your camera if you would like to post photos to your timeline.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>ExecUDek needs access to your photo library if you would like to post photos to your timeline.</string>
 	<key>UILaunchStoryboardName</key>
@@ -36,5 +36,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSContactsUsageDescription</key>
+	<string>ExecUDek would like to add a new contact</string>
 </dict>
 </plist>
