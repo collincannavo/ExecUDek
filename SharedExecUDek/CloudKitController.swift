@@ -20,7 +20,7 @@ public class CloudKitContoller {
     
     public func save(record: CKRecord, withCompletion completion: @escaping (CKRecord?, Error?) -> Void) {
         
-        CKContainer.default().publicCloudDatabase.save(record) { (record, error) in
+        container.publicCloudDatabase.save(record) { (record, error) in
             completion(record, error)
         }
     }
@@ -49,21 +49,15 @@ public class CloudKitContoller {
         }
     }
     
-    public func updateRecord(recordID: CKRecordID) {
+    public func updateRecord(_ record: CKRecord, with completion: @escaping ([CKRecord]?, [CKRecordID]?, Error?) -> Void) {
+            
+        let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
+        operation.savePolicy = .changedKeys
+        operation.queuePriority = .high
+        operation.qualityOfService = .userInteractive
+        operation.modifyRecordsCompletionBlock = completion
         
-        fetchRecord(with: recordID) { (record, error) in
-            if let error = error { NSLog("Error encountered while fetching record to update: \(error.localizedDescription)"); return }
-            guard var record = record else { NSLog("Record returned for update operation is nil"); return }
-            guard let person = PersonController.shared.currentPerson else { return }
-            person.updateCKRecord(record: &record)
-            
-            let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
-            operation.savePolicy = .changedKeys
-            operation.queuePriority = .high
-            operation.qualityOfService = .userInteractive
-            
-            self.container.publicCloudDatabase.add(operation)
-        }
+        self.container.publicCloudDatabase.add(operation)
     }
     
     public func deleteRecord(recordID: CKRecordID) {

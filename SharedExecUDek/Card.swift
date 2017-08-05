@@ -10,7 +10,7 @@ import Foundation
 import CloudKit
 import UIKit
 
-public class Card: NSObject, NSCoding {
+public class Card: NSObject {
     
     public static let recordTypeKey = "Card"
     public static let nameKey = "name"
@@ -138,40 +138,23 @@ public class Card: NSObject, NSCoding {
         self.parentCKReference = parentCKReference
     }
     
-    public required convenience init?(coder aDecoder: NSCoder) {
-        guard let name = aDecoder.value(forKey: Card.nameKey) as? String else { return nil }
-        let title = aDecoder.value(forKey: Card.titleKey) as? String
-        let cellphone = aDecoder.value(forKey: Card.cellKey) as? String
-        let officeNumber = aDecoder.value(forKey: Card.officeNumberKey) as? String
-        let email = aDecoder.value(forKey: Card.emailKey) as? String
-        let companyName = aDecoder.value(forKey: Card.companyNameKey) as? String
-        let note = aDecoder.value(forKey: Card.noteKey) as? String
-        let address = aDecoder.value(forKey: Card.addressKey) as? String
-        let avatarData = aDecoder.value(forKey: Card.avatarDataKey) as? Data
-        let logoData = aDecoder.value(forKey: Card.logoDataKey) as? Data
-        let other = aDecoder.value(forKey: Card.otherKey) as? String
-        let cardData = aDecoder.value(forKey: Card.imageKey) as? Data
-        let ckRecordID = aDecoder.value(forKey: Card.ckRecordIDKey) as? CKRecordID
+    public func updateCKRecordLocally(record: inout CKRecord) {
+        record.setValue(name, forKey: Card.nameKey)
+        record.setValue(title, forKey: Card.titleKey)
+        record.setValue(cell, forKey: Card.cellKey)
+        record.setValue(officeNumber, forKey: Card.officeNumberKey)
+        record.setValue(email, forKey: Card.emailKey)
+        record.setValue(template.rawValue, forKey: Card.templateKey)
+        record.setValue(companyName, forKey: Card.companyNameKey)
+        record.setValue(note, forKey: Card.noteKey)
+        record.setValue(address, forKey: Card.addressKey)
+        record.setValue(avatarData, forKey: Card.avatarDataKey)
+        record.setValue(logoData, forKey: Card.logoDataKey)
+        record.setValue(other, forKey: Card.otherKey)
         
-        self.init(name: name, title: title, cell: cellphone, officeNumber: officeNumber, email: email, template: Template.one, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
-        self.ckRecordID = ckRecordID
-        self.cardData = cardData
-    }
-    
-    public func encode(with aCoder: NSCoder) {
-        aCoder.setValue(name, forKey: Card.nameKey)
-        aCoder.setValue(avatarData, forKey: Card.avatarDataKey)
-        aCoder.setValue(cell, forKey: Card.cellKey)
-        aCoder.setValue(companyName, forKey: Card.companyNameKey)
-        aCoder.setValue(email, forKey: Card.emailKey)
-        aCoder.setValue(note, forKey: Card.noteKey)
-        aCoder.setValue(address, forKey: Card.addressKey)
-        aCoder.setValue(logoData, forKey: Card.logoDataKey)
-        aCoder.setValue(other, forKey: Card.otherKey)
-        aCoder.setValue(officeNumber, forKey: Card.officeNumberKey)
-        aCoder.setValue(title, forKey: Card.titleKey)
-        aCoder.setValue(ckRecordID, forKey: Card.ckRecordIDKey)
-        aCoder.setValue(cardData, forKey: Card.imageKey)
+        record.setValue(parentCKReference, forKey: Card.parentKey)
+        
+        self.ckRecordID = record.recordID
     }
 }
 

@@ -62,11 +62,13 @@ public class Person {
         self.cKRecordID = CKRecord.recordID
     }
     
-    public func updateCKRecord(record: inout CKRecord) {
+    public func updateCKRecordLocally(record: inout CKRecord) {
         record[Person.nameKey] = name as CKRecordValue?
         record[Person.appleUserReferenceKey] = userCKReference as CKRecordValue?
         
-        if !receivedCards.isEmpty {
+        if receivedCards.isEmpty {
+            record[Person.receivedCardsKey] = nil
+        } else {
             record[Person.receivedCardsKey] = receivedCards as CKRecordValue?
         }
     }
