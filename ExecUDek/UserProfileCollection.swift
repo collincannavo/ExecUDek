@@ -59,6 +59,9 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+       let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
+        self.collectionView.addGestureRecognizer(longPressGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +79,28 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return overlap
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+    }
+    
+    func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        switch(gesture.state) {
+        case .began:
+            guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else { break }
+        
+        collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        
+        case .changed:
+            guard let view = gesture.view else { break }
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: view))
+            
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
     }
     
     // MARK: MCBrowserViewControllerDelegate
