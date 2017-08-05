@@ -142,24 +142,17 @@ extension UserProfileTableViewController {
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             self.sendData(to: peerID)
         }
-        let noAction = UIAlertAction(title: "No", style: .default) { (_) in
-            // Completion stuff
-        }
+        let noAction = UIAlertAction(title: "No", style: .default) { (_) in }
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
-        present(alertController, animated: true) { 
-            // Completion stuff
-        }
+        present(alertController, animated: true) {}
     }
     
     func sendData(to peerID: MCPeerID) {
         guard let selectedCard = selectedCard,
             let cardRecordID = selectedCard.ckRecordID,
             let data = cardRecordID.recordName.data(using: .utf8) else { return }
-//        let cardData = NSKeyedArchiver.archivedData(withRootObject: selectedCard)
-        
-        
-        
+
         do {
             try session.send(data, toPeers: [peerID], with: .reliable)
         } catch {
