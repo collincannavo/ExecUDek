@@ -103,7 +103,7 @@ public class Card: NSObject {
         record.setValue(logoData, forKey: Card.logoDataKey)
         record.setValue(other, forKey: Card.otherKey)
         
-        //record.setValue(parentCKReference, forKey: Card.parentKey)
+        record.setValue(parentCKReference, forKey: Card.parentKey)
         
         self.ckRecordID = record.recordID
         

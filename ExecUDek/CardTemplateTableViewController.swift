@@ -54,14 +54,20 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let email = emailTextField.text, !email.isEmpty else {
             if emailTextField.text == "" {
-                saveCardToCloudKit()
-                dismiss(animated: true, completion: nil)
+                saveCardToCloudKit { (success) in
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
             }
             return
         }
         if isValidEmail(stringValue: email) == true {
-            saveCardToCloudKit()
-            dismiss(animated: true, completion: nil)
+            saveCardToCloudKit { (success) in
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         } else {
                 presentAlert()
         }
@@ -176,7 +182,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         return emailTest.evaluate(with: stringValue)
     }
     
-    func saveCardToCloudKit() {
+    func saveCardToCloudKit(with completion: @escaping (Bool) -> Void) {
         
         guard let name = nameTextField.text else { return }
         
@@ -191,13 +197,33 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         switch (cardSenderIsMainScene, card == nil) {
         case (true, true):
-            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { _ in }
+            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+            
+                if success {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
         case (false, true):
-            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil)
+            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+                if success {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+            
         case (_, false):
             guard let card = card else { return }
             
-            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { _ in }
+            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+                if success {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
         }
     }
     

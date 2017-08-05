@@ -16,9 +16,9 @@ public class CardController {
     
     // CRUD
     
-    public func createPersonalCardWith(name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func createPersonalCardWith(name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
-        guard let person = PersonController.shared.currentPerson else { return }
+        guard let person = PersonController.shared.currentPerson else { completion(false); return }
         
         let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
@@ -28,8 +28,11 @@ public class CardController {
         CloudKitContoller.shared.save(record: card.ckRecord) { (record, error) in
             if let error = error {
                 NSLog("Error encountered while saving personal card to CK: \(error.localizedDescription)")
+                completion(false)
                 return
             }
+            
+            completion(true)
         }
     }
     
