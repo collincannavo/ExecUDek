@@ -33,28 +33,28 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pDB-5c-6OU">
-                                        <rect key="frame" x="182" y="14" width="118" height="117"/>
+                                        <rect key="frame" x="160" y="14" width="130" height="117"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eT-Qv-iXm">
-                                                <rect key="frame" x="0.0" y="0.0" width="118" height="29.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eT-Qv-iXm">
+                                                <rect key="frame" x="0.0" y="0.0" width="130" height="29.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7V-IQ-WyO">
+                                                <rect key="frame" x="0.0" y="29.5" width="130" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7V-IQ-WyO">
-                                                <rect key="frame" x="0.0" y="29.5" width="118" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wn-eY-n2H">
+                                                <rect key="frame" x="0.0" y="58.5" width="130" height="29.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wn-eY-n2H">
-                                                <rect key="frame" x="0.0" y="58.5" width="118" height="29.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nb-05-igc">
-                                                <rect key="frame" x="0.0" y="88" width="118" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nb-05-igc">
+                                                <rect key="frame" x="0.0" y="88" width="130" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -65,8 +65,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="pDB-5c-6OU" secondAttribute="bottom" constant="14" id="7By-Km-e5H"/>
-                                    <constraint firstItem="pDB-5c-6OU" firstAttribute="leading" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="82" id="GDR-r8-Y8y"/>
-                                    <constraint firstAttribute="trailing" secondItem="pDB-5c-6OU" secondAttribute="trailing" id="Our-SN-y7H"/>
+                                    <constraint firstItem="pDB-5c-6OU" firstAttribute="leading" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="60" id="GDR-r8-Y8y"/>
+                                    <constraint firstAttribute="trailing" secondItem="pDB-5c-6OU" secondAttribute="trailing" constant="10" id="Our-SN-y7H"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="leading" secondItem="xdG-C8-AHZ" secondAttribute="leading" constant="10" id="c81-Hc-Of2"/>
                                     <constraint firstAttribute="bottom" secondItem="jqp-Ft-owW" secondAttribute="bottom" constant="35" id="cKc-Ea-1DZ"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="20" id="dnc-Ia-hr2"/>
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shareIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Zyx-IF-og9">
-                                <rect key="frame" x="159" y="161" width="16" height="19"/>
+                                <rect key="frame" x="159" y="145" width="16" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1H-al-o2r">
