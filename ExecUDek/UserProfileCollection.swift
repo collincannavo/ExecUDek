@@ -56,6 +56,9 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         self.session.delegate = self
         browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
         browserView.delegate = self
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -247,17 +250,3 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
