@@ -22,7 +22,7 @@ public class MessageController {
         conversation.insertAttachment(URL(fileURLWithPath: path), withAlternateFilename: nil, completionHandler: nil)
     }
     
-    public static func prepareToSendCard(with recordID: CKRecordID, from cell: CommonCardTableViewCell, in conversation: MSConversation) {
+    public static func prepareToSendCard(with recordID: CKRecordID, from cell: CardCollectionViewCell, in conversation: MSConversation) {
         guard let messageURL = urlForMessage(with: recordID) else { return }
         
         let message = MSMessage()
@@ -40,7 +40,7 @@ public class MessageController {
         }
     }
     
-    public static func createMessage(with recordID: CKRecordID, from cell: CommonCardTableViewCell) -> MSMessage? {
+    public static func createMessage(with recordID: CKRecordID, from cell: CardCollectionViewCell) -> MSMessage? {
         guard let messageURL = urlForMessage(with: recordID) else { return nil }
         
         let message = MSMessage()

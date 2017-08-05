@@ -13,7 +13,7 @@ import Messages
 class CardReceivedViewController: UIViewController {
     
     var card: Card?
-    var cardView: CommonCardTableViewCell?
+    var cardView: CardCollectionViewCell?
     var delegate: CardReceivedViewControllerDelegate?
     
     @IBOutlet weak var receivedCardPlaceholder: UIView!
@@ -43,7 +43,7 @@ class CardReceivedViewController: UIViewController {
     
     func loadCardView() {
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
-        cardView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell
+        cardView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CardCollectionViewCell
     }
     
     func setupCardView() {

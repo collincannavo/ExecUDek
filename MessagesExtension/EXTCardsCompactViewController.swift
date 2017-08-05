@@ -38,7 +38,7 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell else { return CommonCardTableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CardCollectionViewCell else { return CardCollectionViewCell() }
         
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
         
@@ -59,7 +59,7 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     // MARK: - Photo selector cell delegate
-    func entireCardWasTapped(card: Card, cell: CommonCardTableViewCell) {
+    func entireCardWasTapped(card: Card, cell: CardCollectionViewCell) {
         guard let conversation = conversation,
             let cardRecordID = card.ckRecordID else { return }
         MessageController.prepareToSendCard(with: cardRecordID, from: cell, in: conversation)

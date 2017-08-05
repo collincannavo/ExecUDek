@@ -36,7 +36,7 @@
                                         <rect key="frame" x="38.5" y="0.0" width="298" height="161"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="299" height="161"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="298" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                         <connections>
@@ -68,6 +68,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cardSearchBar" destination="YYi-rq-xwI" id="YYQ-hx-bTd"/>
+                        <outlet property="collectionView" destination="ilN-BY-8MX" id="XoH-sX-ppy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceX-oV-VUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
