@@ -31,7 +31,7 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Cell tapped! \n\n\n\n\n")
+        
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
         
