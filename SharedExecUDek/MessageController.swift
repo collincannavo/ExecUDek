@@ -100,14 +100,10 @@ public class MessageController {
         guard let cardRecordID = card.ckRecordID,
             !currentReceivedCardsRecordIDs.contains(cardRecordID) else { completion(false); return }
         
-        PersonController.shared.addCard(card, to: currentPerson)
-        
-        guard let reference = card.ckReference else { completion(false); return }
-        PersonController.shared.addCardReference(reference, to: currentPerson)
-        
-        guard let personRecordID = currentPerson.cKRecordID else { completion(false); return }
-        
-        CloudKitContoller.shared.updateRecord(recordID: personRecordID)
-        completion(true)
+        CardController.shared.copyCard(card) { (success) in
+            if success {
+                completion(true)
+            }
+        }
     }
 }

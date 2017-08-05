@@ -16,9 +16,9 @@ public class CardController {
     
     // CRUD
     
-    public func createPersonalCardWith(name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func createPersonalCardWith(name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
-        guard let person = PersonController.shared.currentPerson else { return }
+        guard let person = PersonController.shared.currentPerson else { completion(false); return }
         
         let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
@@ -28,39 +28,45 @@ public class CardController {
         CloudKitContoller.shared.save(record: card.ckRecord) { (record, error) in
             if let error = error {
                 NSLog("Error encountered while saving personal card to CK: \(error.localizedDescription)")
+                completion(false)
                 return
             }
+            
+            completion(true)
         }
     }
     
-    public func createCardWith(cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func createCardWith(cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
         let template = Template.one
         
-        guard let person = PersonController.shared.currentPerson else { return }
+        guard let person = PersonController.shared.currentPerson else { completion(false); return }
         
         let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
-        PersonController.shared.addCard(card, to: person)
         card.cardData = cardData
         
         CloudKitContoller.shared.save(record: card.ckRecord) { (record, error) in
-            if let error = error {
-                NSLog("Error encountered while saving card to CK: \(error.localizedDescription)")
-                return
-            }
+            if let error = error { NSLog("Error encountered while saving card to CK: \(error.localizedDescription)"); completion(false); return }
             
-            guard let personCKRecordID = person.cKRecordID,
-                let record = record else { return }
+            guard let record = record else { completion(false); return }
             
             let reference = CKReference(recordID: record.recordID, action: .none)
             
+            PersonController.shared.addCard(card, to: person)
             PersonController.shared.addCardReference(reference, to: person)
-            CloudKitContoller.shared.updateRecord(recordID: personCKRecordID)
+            
+            PersonController.shared.updateRecord(for: person, completion: { (success) in
+                if !success {
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            })
         }
     }
     
-    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?) {
+    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
         card.cardData = cardData
         card.name = name
@@ -76,7 +82,17 @@ public class CardController {
         card.logoData = logoData
         card.other = other
         
-        //CloudKitContoller.shared.updateRecord(record: <#T##CKRecord#>)
+        updateRecord(for: card) { (success) in
+            if success {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
+    public func removeParentFrom(card: Card) {
+        card.parentCKReference = nil
     }
     
     public func fetchPersonalCards(with completion: @escaping (Bool) -> Void) {
@@ -117,6 +133,40 @@ public class CardController {
             
             newCards.forEach({ PersonController.shared.addCard($0, to: currentPerson) })
             success = true
+        }
+    }
+    
+    public func updateRecord(for card: Card, completion: @escaping (Bool) -> Void) {
+        
+        guard let recordID = card.ckRecordID else { completion(false); return }
+        
+        CloudKitContoller.shared.fetchRecord(with: recordID) { (record, error) in
+            if let error = error { NSLog("Error encountered while fetching record to update: \(error.localizedDescription)"); completion(false); return }
+            guard var record = record else { NSLog("Record returned for update operation is nil"); completion(false); return }
+            card.updateCKRecordLocally(record: &record)
+            
+            CloudKitContoller.shared.updateRecord(record, with: { (records, recordIDs, error) in
+                if let error = error {
+                    NSLog("Error encountered fetching the Person record to modify: \(error.localizedDescription)")
+                    completion(false)
+                    return
+                }
+                
+                guard (records?.first != nil) else { NSLog("Did not successfully return the modified Card record"); completion(false); return }
+                
+                completion(true)
+            })
+        }
+    }
+    
+    public func copyCard(_ card: Card, with completion: @escaping (Bool) -> Void) {
+        createCardWith(cardData: card.cardData, name: card.name, title: card.title, cell: card.cell, officeNumber: card.officeNumber, email: card.email, companyName: card.companyName, note: card.note, address: card.address, avatarData: card.avatarData, logoData: card.logoData, other: card.other) { (success) in
+        
+            if success {
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
 }
