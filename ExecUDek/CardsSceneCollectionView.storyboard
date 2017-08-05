@@ -40,7 +40,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                         <connections>
-                                            <segue destination="94f-hd-ma1" kind="presentation" id="GJY-xY-jHV"/>
+                                            <segue destination="94f-hd-ma1" kind="presentation" identifier="editCardFromMain" id="GJY-xY-jHV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -64,7 +64,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4xW-yI-j1x">
                             <connections>
-                                <segue destination="94f-hd-ma1" kind="presentation" id="ge0-tS-Cqn"/>
+                                <segue destination="94f-hd-ma1" kind="presentation" identifier="addCardFromMain" id="ge0-tS-Cqn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -116,6 +116,6 @@
         <image name="profileIcon" width="15" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ge0-tS-Cqn"/>
+        <segue reference="GJY-xY-jHV"/>
     </inferredMetricsTieBreakers>
 </document>

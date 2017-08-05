@@ -27,7 +27,7 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
-        let yourXIBName = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
+        let yourXIBName = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
         collectionView.register(yourXIBName, forCellWithReuseIdentifier: "cardCell")
         
