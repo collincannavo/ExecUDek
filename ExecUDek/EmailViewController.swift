@@ -10,7 +10,7 @@ import Foundation
 import MessageUI
 
 
-extension UserProfileTableViewController {
+extension UserProfileCollectionViewController {
     
     func sendEmail(attachment data: Data) {
         if MFMailComposeViewController.canSendMail() {

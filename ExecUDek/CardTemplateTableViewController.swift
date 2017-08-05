@@ -44,7 +44,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     // MARK: - Properties
     var cardSenderIsMainScene: Bool = false
     var card: Card?
-    var commonCardXIB: CommonCardTableViewCell?
+    var commonCardXIB: CardCollectionViewCell?
     
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -216,7 +216,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         }
         
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
-        if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CommonCardTableViewCell {
+        if let customView = bundle?.loadNibNamed("CommonCardTableViewCell", owner: self, options: nil)?.first as? CardCollectionViewCell {
             commonCardXIB = customView
             commonCardXIB?.delegate = self
             commonCardXIB?.card = card
