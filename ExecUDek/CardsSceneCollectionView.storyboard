@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cards View Controller-->
+        <!--Contacts' Cards-->
         <scene sceneID="D04-K5-BGb">
             <objects>
                 <viewController id="79B-8T-VtH" customClass="CardsViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                                         <rect key="frame" x="38.5" y="0.0" width="298" height="161"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="298" height="161"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="299" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                         <connections>
@@ -56,7 +56,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PdI-NL-uJZ">
+                    <navigationItem key="navigationItem" title="Contacts' Cards" id="PdI-NL-uJZ">
                         <barButtonItem key="leftBarButtonItem" image="profileIcon" id="p8K-9s-asx">
                             <connections>
                                 <segue destination="jSH-yE-W7Y" kind="presentation" id="pNg-HB-WJW"/>
