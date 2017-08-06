@@ -29,21 +29,19 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let yourXIBName = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
-        collectionView.register(yourXIBName, forCellWithReuseIdentifier: "cardCell")
+        collectionView.register(yourXIBName, forCellWithReuseIdentifier: "collectionCardCell")
         
+        setupViews()
     }
-
-    // MARK: - Table view data source
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return PersonController.shared.currentPerson?.personalCards.count ?? 0
-//    }
     
+    // MARK: - Collection view data source
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return PersonController.shared.currentPerson?.personalCards.count ?? 0
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardCollectionViewCell else { return CardCollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell else { return CardCollectionViewCell() }
         
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
         
@@ -60,29 +58,21 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         cell.photoButton.setImage(logoImage, for: .disabled)
         cell.photoButton.setTitle("", for: .normal)
         
+        setupCardTableViewCellShadow(cell)
+        setupCardTableViewCellBorderColor(cell)
+        
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CardCollectionViewCell else { return CardCollectionViewCell() }
-//        
-//        let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
-//        
-//        cell.card = card
-//        cell.nameLabel.text = card?.name
-//        cell.enableEntireCardButton()
-//        cell.hideShareButton()
-//        cell.hideShareImage()
-//        cell.delegate = self
-//        guard let logoData = card?.logoData,
-//            let logoImage = UIImage(data: logoData) else { return cell }
-//        
-//        cell.photoButton.setImage(logoImage, for: .normal)
-//        cell.photoButton.setImage(logoImage, for: .disabled)
-//        cell.photoButton.setTitle("", for: .normal)
-//        
-//        return cell
-//    }
+    // MARK: - Collection view delegate
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let collectionViewWidth = collectionView.frame.width
+        
+        return CGSize(width: collectionViewWidth, height: (collectionViewWidth * 0.518731988472622))
+        
+    }
     
     // MARK: - Photo selector cell delegate
     func entireCardWasTapped(card: Card, cell: CardCollectionViewCell) {
@@ -94,5 +84,22 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
     // MARK: - Helper methods
     func refresh() {
         collectionView.reloadData()
+    }
+    
+    func setupViews() {
+        collectionView.backgroundColor = UIColor.lightGray
+    }
+    
+    func setupCardTableViewCellShadow(_ cell: CardCollectionViewCell) {
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.shadowRadius = 5
+        cell.layer.shadowOffset = CGSize(width: 0, height: 4)
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+    }
+    
+    func setupCardTableViewCellBorderColor(_ cell: CardCollectionViewCell) {
+        cell.layer.borderWidth = 10
+        cell.layer.borderColor = UIColor.clear.cgColor
+        
     }
 }
