@@ -7,42 +7,55 @@
 //
 
 import UIKit
+import NotificationCenter
+import SharedExecUDek
 
 class CustomNavigationController: UINavigationController {
     
     let multipeerToolbar = UIToolbar()
-    var toolbarIsVisible = false
+    var wirelessBarButtonItem: UIBarButtonItem!
+    var statusBarButtonItem: UIBarButtonItem!
+    
+    var toolbarIsVisible = false {
+        didSet {
+            toggleMultipeerToolbarVisibility()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        createMultipeerNavBarItem()
         createMultipeerToolbar()
-    }
-    
-    func createMultipeerNavBarItem() {
-        let wirelessBarButtonItem = UIBarButtonItem(image: UIImage(named: "wirelessIconWhite"), style: .plain, target: self, action: #selector(multipeerNavBarItemTapped))
         
-        if let rightNavBarItems = navigationItem.rightBarButtonItems {
-            navigationItem.setRightBarButtonItems(rightNavBarItems + [wirelessBarButtonItem], animated: false)
-        } else if let rightNavBarItem = navigationItem.rightBarButtonItem {
-            navigationItem.setRightBarButtonItems([rightNavBarItem, wirelessBarButtonItem], animated: false)
-        } else {
-            navigationItem.setRightBarButton(wirelessBarButtonItem, animated: false)
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(multipeerNavBarItemTapped), name: Constants.multipeerNavBarItemTappedNotification, object: nil)
     }
     
     func multipeerNavBarItemTapped() {
-        toggleMultipeerToolbarVisibility()
+        
+        let title: String
+        let message: String
+        
+        if !toolbarIsVisible {
+            title = "Confirm Multipeer Advertise"
+            message = "Would you like to advertise your device for Multipeer sharing?"
+        } else {
+            title = "Confirm End of Multipeer Advertise"
+            message = "Would you like to stop advertising your device for Multipeer sharing?"
+        }
+        confirmMultipeerAdvertiseAlert(with: title, message: message) {
+            self.toolbarIsVisible = !self.toolbarIsVisible
+        }
     }
     
     func createMultipeerToolbar() {
         
-        let wirelessBarButtonItem = UIBarButtonItem(image: UIImage(named: "wirelessIconWhite"), style: .plain, target: nil, action: nil)
+        wirelessBarButtonItem = UIBarButtonItem(image: UIImage(named: "wirelessIconWhite"), style: .plain, target: nil, action: nil)
+        statusBarButtonItem = UIBarButtonItem(title: "Not connected", style: .plain, target: nil, action: nil)
         
-        multipeerToolbar.setItems([wirelessBarButtonItem], animated: false)
+        multipeerToolbar.setItems([wirelessBarButtonItem, statusBarButtonItem], animated: false)
         self.view.addSubview(multipeerToolbar)
         view.bringSubview(toFront: multipeerToolbar)
+        view.bringSubview(toFront: navigationBar)
         setToolbarFrame(toolbar: multipeerToolbar)
     }
     
@@ -54,21 +67,36 @@ class CustomNavigationController: UINavigationController {
         multipeerToolbar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         multipeerToolbar.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor).isActive = true
         
-        multipeerToolbar.transform = CGAffineTransform(translationX: 0.0, y: -multipeerToolbar.frame.size.height)
+        multipeerToolbar.transform = CGAffineTransform(translationX: 0.0, y: -40.0)
     }
     
     func updateMultipeerToolbar(with text: String) {
-        
+        statusBarButtonItem.title = text
+        multipeerToolbar.setItems([wirelessBarButtonItem, statusBarButtonItem], animated: false)
     }
     
     func toggleMultipeerToolbarVisibility() {
         UIView.animate(withDuration: 0.4, animations: { 
-            if self.toolbarIsVisible {
+            if !self.toolbarIsVisible {
                 self.multipeerToolbar.transform = CGAffineTransform(translationX: 0.0, y: -self.multipeerToolbar.frame.size.height)
+                self.topViewController?.view.transform = CGAffineTransform.identity
             } else {
                 self.multipeerToolbar.transform = CGAffineTransform.identity
+                self.topViewController?.view.transform = CGAffineTransform(translationX: 0.0, y: self.multipeerToolbar.frame.size.height)
             }
             
         }) { (success) in }
+    }
+    
+    func confirmMultipeerAdvertiseAlert(with title: String, message: String, completion: @escaping () -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            completion()
+        }
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

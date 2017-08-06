@@ -14,4 +14,5 @@ public struct Constants {
     // Notification center notification names
     public static let cardsFetchedNotification: Notification.Name = Notification.Name(rawValue: "cardsFetched")
     public static let personalCardsFetchedNotification: Notification.Name = Notification.Name(rawValue: "personalCardsFetched")
+    public static let multipeerNavBarItemTappedNotification: Notification.Name = Notification.Name(rawValue: "multipeerNavBarItemTapped")
 }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -68,12 +69,19 @@
                                 <segue destination="QdL-lu-vMj" kind="show" id="5gj-7G-xwc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2JZ-n0-JOG">
-                            <connections>
-                                <action selector="addCardButtonTapped:" destination="hTB-Na-Z53" id="QlL-jz-RW3"/>
-                                <segue destination="Cae-fc-eRE" kind="presentation" identifier="addCardFromMain" id="wN2-1Z-zdg"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="2JZ-n0-JOG">
+                                <connections>
+                                    <action selector="addCardButtonTapped:" destination="hTB-Na-Z53" id="QlL-jz-RW3"/>
+                                    <segue destination="Cae-fc-eRE" kind="presentation" identifier="addCardFromMain" id="wN2-1Z-zdg"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="wirelessIconBlue" id="SeR-RJ-bXe">
+                                <connections>
+                                    <action selector="multipeerButtonTapped:" destination="hTB-Na-Z53" id="1Vn-Bk-UZ7"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="cardSearchBar" destination="EDT-hj-MDs" id="zfa-WY-tPA"/>
@@ -122,6 +130,7 @@
     </scenes>
     <resources>
         <image name="profileIcon" width="15" height="23"/>
+        <image name="wirelessIconBlue" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7jU-Ne-aOc"/>

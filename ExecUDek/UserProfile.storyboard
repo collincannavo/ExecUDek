@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZV9-Qh-vwd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZV9-Qh-vwd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,11 +39,18 @@
                                 <action selector="cancelButtonTapped:" destination="1tB-em-BzF" id="8z3-Xo-5jC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vs1-Bu-KHi">
-                            <connections>
-                                <segue destination="eHL-w7-I70" kind="presentation" identifier="addCardFromUser" id="Ynt-sf-JnY"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="vs1-Bu-KHi">
+                                <connections>
+                                    <segue destination="eHL-w7-I70" kind="presentation" identifier="addCardFromUser" id="Ynt-sf-JnY"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="wirelessIconBlue" id="kbs-3f-3yo">
+                                <connections>
+                                    <action selector="multipeerButtonTapped:" destination="1tB-em-BzF" id="Xl2-wS-Qep"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="eHL-w7-I70" kind="presentation" identifier="editCardFromUser" id="keZ-q2-XV8"/>
@@ -79,6 +87,9 @@
             <point key="canvasLocation" x="-74.400000000000006" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="wirelessIconBlue" width="25" height="23"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="keZ-q2-XV8"/>
     </inferredMetricsTieBreakers>

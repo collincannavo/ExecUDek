@@ -16,10 +16,16 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cardSearchBar: UISearchBar!
     
+    
+    // MARK: - Action methods
     @IBAction func profileIconTapped(_ sender: Any) {
     }
     
     @IBAction func addCardButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
+        NotificationCenter.default.post(name: Constants.multipeerNavBarItemTappedNotification, object: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {

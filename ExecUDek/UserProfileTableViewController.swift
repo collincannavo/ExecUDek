@@ -26,6 +26,10 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
+        NotificationCenter.default.post(name: Constants.multipeerNavBarItemTappedNotification, object: self)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let cell = tableView.cellForRow(at: indexPath) as? CommonCardTableViewCell else { return }
