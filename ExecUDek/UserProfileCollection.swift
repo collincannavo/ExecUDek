@@ -148,6 +148,8 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
+        collectionView.bringSubview(toFront: cell)
+        
         return cell
         
     }

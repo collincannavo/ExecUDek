@@ -108,6 +108,8 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionVi
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
         
+        collectionView.bringSubview(toFront: cell)
+        
         return cell
     }
     
