@@ -150,6 +150,8 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         
         collectionView.bringSubview(toFront: cell)
         
+        cell.actionSheetDelegate = self
+        
         return cell
         
     }

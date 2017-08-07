@@ -12,7 +12,7 @@ import CloudKit
 import SharedExecUDek
 import NotificationCenter
 
-class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate, UICollectionViewDelegate, UICollectionViewDataSource  {
+class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
     var conversation: MSConversation?
     
