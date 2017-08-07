@@ -20,6 +20,8 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
     var browserView: MCBrowserViewController!
     var card = CommonCardTableViewCell()
     
+    var isMultipeerSender = false
+    
     var selectedCard: Card?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -45,6 +47,8 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startAdvertising), name: Constants.advertiseMultipeerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelSession), name: Constants.endAdvertiseMultipeerNotification, object: nil)
 
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
@@ -54,8 +58,6 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         self.session.delegate = self
         browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
         browserView.delegate = self
-        
-        //tableView.refreshControl?.addTarget(self, action: #selector(fetchPersonalCards), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -226,6 +228,4 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
     func tableViewBackgroundColor() {
         self.tableView.backgroundColor = UIColor.lightGray
     }
-    
-   }
-
+}

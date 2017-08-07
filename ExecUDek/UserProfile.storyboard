@@ -68,10 +68,10 @@
             </objects>
             <point key="canvasLocation" x="1446" y="77"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="y71-aG-2BU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZV9-Qh-vwd" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZV9-Qh-vwd" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2gw-uy-4At">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

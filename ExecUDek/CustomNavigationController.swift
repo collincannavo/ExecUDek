@@ -28,21 +28,29 @@ class CustomNavigationController: UINavigationController {
         createMultipeerToolbar()
         
         NotificationCenter.default.addObserver(self, selector: #selector(multipeerNavBarItemTapped), name: Constants.multipeerNavBarItemTappedNotification, object: nil)
+        
+        view.backgroundColor = .white
     }
     
     func multipeerNavBarItemTapped() {
         
         let title: String
         let message: String
+        //let completion: () -> Void
+        let completion = {}
         
         if !toolbarIsVisible {
             title = "Confirm Multipeer Advertise"
             message = "Would you like to advertise your device for Multipeer sharing?"
+            //completion = { NotificationCenter.default.post(name: Constants.advertiseMultipeerNotification, object: self) }
+            
         } else {
             title = "Confirm End of Multipeer Advertise"
             message = "Would you like to stop advertising your device for Multipeer sharing?"
+            //completion = { NotificationCenter.default.post(name: Constants.endAdvertiseMultipeerNotification, object: self) }
         }
         confirmMultipeerAdvertiseAlert(with: title, message: message) {
+            completion()
             self.toolbarIsVisible = !self.toolbarIsVisible
         }
     }
@@ -56,6 +64,7 @@ class CustomNavigationController: UINavigationController {
         self.view.addSubview(multipeerToolbar)
         view.bringSubview(toFront: multipeerToolbar)
         view.bringSubview(toFront: navigationBar)
+        
         setToolbarFrame(toolbar: multipeerToolbar)
     }
     
@@ -68,6 +77,7 @@ class CustomNavigationController: UINavigationController {
         multipeerToolbar.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor).isActive = true
         
         multipeerToolbar.transform = CGAffineTransform(translationX: 0.0, y: -40.0)
+        multipeerToolbar.alpha = 0.0
     }
     
     func updateMultipeerToolbar(with text: String) {
@@ -80,9 +90,11 @@ class CustomNavigationController: UINavigationController {
             if !self.toolbarIsVisible {
                 self.multipeerToolbar.transform = CGAffineTransform(translationX: 0.0, y: -self.multipeerToolbar.frame.size.height)
                 self.topViewController?.view.transform = CGAffineTransform.identity
+                self.multipeerToolbar.alpha = 0.0
             } else {
                 self.multipeerToolbar.transform = CGAffineTransform.identity
                 self.topViewController?.view.transform = CGAffineTransform(translationX: 0.0, y: self.multipeerToolbar.frame.size.height)
+                self.multipeerToolbar.alpha = 1.0
             }
             
         }) { (success) in }
