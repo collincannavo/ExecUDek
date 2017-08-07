@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="347" height="180"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdG-C8-AHZ">
-                                <rect key="frame" x="24" y="0.0" width="300" height="180"/>
+                                <rect key="frame" x="24" y="13" width="300" height="151"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-Ft-owW">
                                         <rect key="frame" x="10" y="20" width="90" height="90"/>
@@ -61,32 +61,32 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyJ-DN-Ex3">
+                                        <rect key="frame" x="93" y="118" width="99" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="shareButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="F8y-pl-XRO"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="pDB-5c-6OU" secondAttribute="bottom" constant="49" id="7By-Km-e5H"/>
+                                    <constraint firstAttribute="bottom" secondItem="pDB-5c-6OU" secondAttribute="bottom" constant="20" id="7By-Km-e5H"/>
                                     <constraint firstItem="pDB-5c-6OU" firstAttribute="leading" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="60" id="GDR-r8-Y8y"/>
                                     <constraint firstAttribute="trailing" secondItem="pDB-5c-6OU" secondAttribute="trailing" constant="10" id="Our-SN-y7H"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="leading" secondItem="xdG-C8-AHZ" secondAttribute="leading" constant="10" id="c81-Hc-Of2"/>
-                                    <constraint firstAttribute="bottom" secondItem="jqp-Ft-owW" secondAttribute="bottom" constant="70" id="cKc-Ea-1DZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="jqp-Ft-owW" secondAttribute="bottom" constant="41" id="cKc-Ea-1DZ"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="20" id="dnc-Ia-hr2"/>
                                     <constraint firstAttribute="trailing" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="200" id="fR7-MI-pCb"/>
                                     <constraint firstItem="pDB-5c-6OU" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="14" id="uvR-ec-EnW"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyJ-DN-Ex3">
-                                <rect key="frame" x="118" y="136" width="99" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="shareButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="F8y-pl-XRO"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shareIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Zyx-IF-og9">
                                 <rect key="frame" x="159" y="145" width="16" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1H-al-o2r">
-                                <rect key="frame" x="0.0" y="0.0" width="347" height="180"/>
+                                <rect key="frame" x="1" y="0.0" width="347" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="entireCardButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Uei-mn-kGT"/>
@@ -95,9 +95,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xdG-C8-AHZ" firstAttribute="top" secondItem="KSr-5B-XEh" secondAttribute="top" id="274-Sh-hol"/>
+                            <constraint firstItem="xdG-C8-AHZ" firstAttribute="top" secondItem="KSr-5B-XEh" secondAttribute="top" constant="13" id="274-Sh-hol"/>
                             <constraint firstAttribute="trailing" secondItem="xdG-C8-AHZ" secondAttribute="trailing" constant="23" id="73v-DZ-nNf"/>
-                            <constraint firstAttribute="bottom" secondItem="xdG-C8-AHZ" secondAttribute="bottom" id="9QF-GL-Y8z"/>
+                            <constraint firstAttribute="bottom" secondItem="xdG-C8-AHZ" secondAttribute="bottom" constant="16" id="9QF-GL-Y8z"/>
                             <constraint firstItem="xdG-C8-AHZ" firstAttribute="leading" secondItem="KSr-5B-XEh" secondAttribute="leading" constant="24" id="ift-zV-R46"/>
                         </constraints>
                     </view>
@@ -120,7 +120,7 @@
                 <outlet property="titleLabel" destination="m7V-IQ-WyO" id="WsH-Kd-Fyn"/>
                 <outlet property="view" destination="xdG-C8-AHZ" id="eMU-JZ-tfc"/>
             </connections>
-            <point key="canvasLocation" x="32.5" y="59"/>
+            <point key="canvasLocation" x="34.5" y="82"/>
         </collectionViewCell>
     </objects>
     <resources>
