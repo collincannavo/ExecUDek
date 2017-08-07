@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -55,11 +56,18 @@
                                 <action selector="cancelButtonTapped:" destination="fWQ-kh-1Xy" id="u53-YP-nV5"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qzw-Qg-gRd">
-                            <connections>
-                                <segue destination="uLA-cr-IvU" kind="presentation" identifier="addCardFromUser" id="LDS-N2-S8F"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Qzw-Qg-gRd">
+                                <connections>
+                                    <segue destination="uLA-cr-IvU" kind="presentation" identifier="addCardFromUser" id="LDS-N2-S8F"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="wirelessIconBlue" id="e4B-TR-UwS">
+                                <connections>
+                                    <action selector="multipeerButtonTapped:" destination="fWQ-kh-1Xy" id="cuG-KK-9rl"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Y33-wq-iao" id="geO-Pr-atm"/>
@@ -77,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="1810" y="12"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="Fqd-Zn-EJh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a43-OQ-Lrr" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a43-OQ-Lrr" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JlB-30-rZ0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -96,6 +104,9 @@
             <point key="canvasLocation" x="216.80000000000001" y="129.98500749625188"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="wirelessIconBlue" width="25" height="23"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wcH-Ob-Fsg"/>
     </inferredMetricsTieBreakers>

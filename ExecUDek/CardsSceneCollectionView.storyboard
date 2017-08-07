@@ -69,7 +69,11 @@
                                     <segue destination="94f-hd-ma1" kind="presentation" identifier="addCardFromMain" id="ge0-tS-Cqn"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem id="L9C-IL-kc7"/>
+                            <barButtonItem image="wirelessIconBlue" id="L9C-IL-kc7">
+                                <connections>
+                                    <action selector="multipeerButtonTapped:" destination="79B-8T-VtH" id="xfR-BL-Nl2"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -97,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="1762" y="133"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="x1S-5d-TFb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QYA-OX-WhK" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QYA-OX-WhK" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q0Q-hK-Fkh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -118,6 +122,7 @@
     </scenes>
     <resources>
         <image name="profileIcon" width="15" height="23"/>
+        <image name="wirelessIconBlue" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GJY-xY-jHV"/>

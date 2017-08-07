@@ -24,10 +24,16 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
     var browserView: MCBrowserViewController!
     var card = CardCollectionViewCell()
     
+    var isMultipeerSender = false
+    
     var selectedCard: Card?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
+        NotificationCenter.default.post(name: Constants.multipeerNavBarItemTappedNotification, object: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -47,6 +53,8 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startAdvertising), name: Constants.advertiseMultipeerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelSession), name: Constants.endAdvertiseMultipeerNotification, object: nil)
         
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
