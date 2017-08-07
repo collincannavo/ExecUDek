@@ -11,26 +11,27 @@ import ContactsUI
 
 extension UserProfileCollectionViewController {
     func addContact(){
+        guard let selectedCard = selectedCard,
+            let job = selectedCard.title,
+            let organizationName = selectedCard.title else { return }
+        
         let store = CNContactStore()
         let newContact = CNMutableContact()
         
-        newContact.givenName = "Superman"
-        newContact.familyName = "Spiderman"
-        newContact.nickname = "Apple"
+        let name = selectedCard.name
+        newContact.givenName = name
+        newContact.jobTitle = job
+        newContact.organizationName = organizationName
+        newContact.departmentName = selectedCard.address!
+        let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue: "+441234567890"))
+        newContact.phoneNumbers = [phone]
+        //        let email = CNLabeledValue(label: CNLabelWork, value: "contact@appsfoundation.com")
+        //        newContact.emailAddresses = [email]
         
 //        if let image = UIImage(named: "logo-apps-foundation.jpg"),
 //            let data = UIImagePNGRepresentation(image){
 //            newContact.imageData = data
 //        }
-        
-        let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue: "+441234567890"))
-        newContact.phoneNumbers = [phone]
-        
-//        let email = CNLabeledValue(label: CNLabelWork, value: "contact@appsfoundation.com")
-//        newContact.emailAddresses = [email]
-        newContact.jobTitle = "iOS Developer"
-        newContact.organizationName = "DevMountain"
-        newContact.departmentName = "Mobile"
         
         let request = CNSaveRequest()
         request.add(newContact, toContainerWithIdentifier: nil)

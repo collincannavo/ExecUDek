@@ -24,11 +24,6 @@ extension UserProfileCollectionViewController {
         })
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
-        //self.present(browserView, animated: true, completion: nil)
-    }
-    
-    func disconnectAction() {
-        self.session.disconnect()
     }
     
     // MARK:- Private
@@ -157,9 +152,6 @@ extension UserProfileCollectionViewController {
             let cardRecordID = selectedCard.ckRecordID,
             let data = cardRecordID.recordName.data(using: .utf8) else { return }
 //        let cardData = NSKeyedArchiver.archivedData(withRootObject: selectedCard)
-        
-        
-        
         do {
             try session.send(data, toPeers: [peerID], with: .reliable)
         } catch {
