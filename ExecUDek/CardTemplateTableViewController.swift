@@ -21,6 +21,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         officeNumberTextField.delegate = self
         updateViews()
         setupCardDisplay()
+        navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
     }
 
     // TableView TextFields
@@ -279,13 +280,13 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     
     weak var delegate: PhotoSelectViewControllerDelegate?
     
-    func collectionView(_ headerView: UITableViewHeaderFooterView) -> CGSize {
-        
-        let headerViewWidth = headerView.frame.width
-        
-        return CGSize(width: headerViewWidth, height: (headerViewWidth * 0.518731988472622))
-        
-    }
+//    func collectionView(_ headerView: UITableViewHeaderFooterView) -> CGSize {
+//        
+//        let headerViewWidth = headerView.frame.width
+//        
+//        return CGSize(width: headerViewWidth, height: (headerViewWidth * 0.518731988472622))
+//        
+//    }
 }
 
 // MARK:

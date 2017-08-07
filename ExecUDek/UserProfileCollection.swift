@@ -70,6 +70,8 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         
        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
         self.collectionView.addGestureRecognizer(longPressGesture)
+        
+        navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -279,6 +281,19 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         cell.layer.borderWidth = 10
         cell.layer.borderColor = UIColor.clear.cgColor
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let customCell = cell as? CardCollectionViewCell else { return }
+        
+        if indexPath.row % 3 == 0 {
+            customCell.changeBackgroundToBlue()
+        } else if indexPath.row % 3 == 1 {
+            customCell.changeBackgroundToRed()
+        } else if indexPath.row % 3 == 2 {
+            customCell.changeBackgroundToOrange()
+        }
     }
     
 //    func tableViewBackgroundColor() {

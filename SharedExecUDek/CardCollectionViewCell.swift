@@ -114,6 +114,21 @@ public class CardCollectionViewCell: UICollectionViewCell {
         photoButton.isEnabled = false
     }
     
+    public func changeBackgroundToBlue() {
+        view.backgroundColor = appBlue
+    }
+    
+    public func changeBackgroundToRed() {
+        view.backgroundColor = appRed
+    }
+    
+    public func changeBackgroundToOrange() {
+        view.backgroundColor = appOrange
+    }
+    
+    let appBlue = UIColor(red: 32/255, green: 195/255, blue: 224/255, alpha: 1)
+    let appRed = UIColor(red: 251/255, green: 100/255, blue: 112/255, alpha: 1)
+    let appOrange = UIColor(red: 251/255, green: 191/255, blue: 88/255, alpha: 1)
     
     // MARK: - Delegate properties
     

@@ -12,6 +12,8 @@ import NotificationCenter
 
 class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    var filteredCardsArray: [Card] = []
+    
     let overlap: CGFloat = -120.0
     
     // MARK: - Outlets
@@ -46,6 +48,10 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionVi
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
 //        collectionViewBackgroundColor()
+        navigationController?.navigationBar.barTintColor = UIColor(red: 83/255, green: 92/255, blue: 102/255, alpha: 1)
+        
+        guard let array = PersonController.shared.currentPerson?.cards else { return }
+        filteredCardsArray = array
         
     }
     
@@ -65,10 +71,37 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionVi
         }
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+//    }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        
+        searchBar.resignFirstResponder()
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        guard let searchTerm = searchBar.text else { return }
+        
+        guard let cardArray = PersonController.shared.currentPerson?.cards else { return }
+        
+        let filteredCards = cardArray.filter ({$0.name.contains(searchTerm)})
+        
+        self.filteredCardsArray = filteredCards
+        
+        inSearchMode = false
+        
+        collectionView.reloadData()
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        collectionView.reloadData()
     }
     
     // MARK: - Collection view data source
@@ -201,5 +234,22 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionVi
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let customCell = cell as? CardCollectionViewCell else { return }
+        
+        if indexPath.row % 3 == 0 {
+            customCell.changeBackgroundToBlue()
+        } else if indexPath.row % 3 == 1 {
+            customCell.changeBackgroundToRed()
+        } else if indexPath.row % 3 == 2 {
+            customCell.changeBackgroundToOrange()
+        }
+    }
+    
+    let appBlue = UIColor(red: 32/255, green: 195/255, blue: 224/255, alpha: 1)
+    let appRed = UIColor(red: 251/255, green: 100/255, blue: 112/255, alpha: 1)
+    let appOrange = UIColor(red: 251/255, green: 191/255, blue: 88/255, alpha: 1)
     
 }
