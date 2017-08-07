@@ -24,7 +24,7 @@
                         <view key="tableHeaderView" contentMode="scaleToFill" id="9dI-CJ-teh">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="202"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.32430070640000003" green="0.3601639271" blue="0.40180695059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <sections>
                             <tableViewSection id="5Dj-u1-XyA">

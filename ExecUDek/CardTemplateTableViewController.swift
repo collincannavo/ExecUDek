@@ -278,6 +278,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     weak var delegate: PhotoSelectViewControllerDelegate?
+    
+    func collectionView(_ headerView: UITableViewHeaderFooterView) -> CGSize {
+        
+        let headerViewWidth = headerView.frame.width
+        
+        return CGSize(width: headerViewWidth, height: (headerViewWidth * 0.518731988472622))
+        
+    }
 }
 
 // MARK:
