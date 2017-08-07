@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181524641F39060C00BEF20D /* ConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181524631F39060C00BEF20D /* ConnectionStatus.swift */; };
 		182B5AC51F2E7ABE00C901E8 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188F23321F2957F8007B9F20 /* Messages.framework */; };
 		182B5AC81F2E835500C901E8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182B5AC71F2E835500C901E8 /* CloudKit.framework */; };
 		187EC0A21F2EBBA400F326E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EC0A11F2EBBA400F326E3 /* Constants.swift */; };
@@ -99,6 +100,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		181524631F39060C00BEF20D /* ConnectionStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionStatus.swift; sourceTree = "<group>"; };
 		182143191F2AB89200CCF3B5 /* ExecUDek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExecUDek.entitlements; sourceTree = "<group>"; };
 		182B5AC61F2E834900C901E8 /* MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesExtension.entitlements; sourceTree = "<group>"; };
 		182B5AC71F2E835500C901E8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -356,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				B6A28A681F27DF4300786B97 /* ExecUDek.xcdatamodeld */,
+				181524631F39060C00BEF20D /* ConnectionStatus.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */,
 				F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */,
 				188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */,
+				181524641F39060C00BEF20D /* ConnectionStatus.swift in Sources */,
 				F04EDF081F2FC9CD00E8DB82 /* StringFormatter.swift in Sources */,
 				B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */,
 				F09DFFC21F33D25900D2AE23 /* AddToContacts.swift in Sources */,

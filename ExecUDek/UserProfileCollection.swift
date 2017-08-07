@@ -54,7 +54,7 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(startAdvertising), name: Constants.advertiseMultipeerNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelSession), name: Constants.endAdvertiseMultipeerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelSession), name: Constants.endMultipeerNotification, object: nil)
         
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CardCollectionViewCell", bundle: bundle)

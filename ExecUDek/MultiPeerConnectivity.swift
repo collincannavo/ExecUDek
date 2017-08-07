@@ -16,11 +16,13 @@ extension UserProfileCollectionViewController {
     // MARK:- Action
     func searchAction() {
         isMultipeerSender = true
+        NotificationCenter.default.post(name: Constants.browseMultipeerNotification, object: self)
         self.startBrowsing()
     }
     
     func disconnectAction() {
         self.session.disconnect()
+        
         isMultipeerSender = false
     }
     
@@ -50,37 +52,35 @@ extension UserProfileCollectionViewController {
         self.advertiser?.stopAdvertisingPeer()
         self.advertiser = nil
     }
-    
-    enum State {
-        case notConnected
-        case browsing
-        case advertising
-        case connecting
-        case connected
-    }
-    
-    func updateState(_ state: State, peerName: String? = nil) {
+
+    func updateState(_ state: ConnectionStatus, peerName: String? = nil) {
         DispatchQueue.main.async {
             switch state {
             case .notConnected:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let navigationController = self.navigationController as? CustomNavigationController {
                     navigationController.updateMultipeerToolbar(with: "Not connected")
+                    navigationController.connectionStatus = .notConnected
+                    
+                    NotificationCenter.default.post(name: Constants.hideMultipeerToolbarNotification, object: self)
                 }
                 self.isMultipeerSender = false
             case .browsing:
                 if let navigationController = self.navigationController as? CustomNavigationController {
                     navigationController.updateMultipeerToolbar(with: "Browsing...")
+                    navigationController.connectionStatus = .browsing
                 }
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .advertising:
                 if let navigationController = self.navigationController as? CustomNavigationController {
                     navigationController.updateMultipeerToolbar(with: "Advertising...")
+                    navigationController.connectionStatus = .advertising
                 }
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .connecting:
                 if let navigationController = self.navigationController as? CustomNavigationController {
                     navigationController.updateMultipeerToolbar(with: "Connecting...")
+                    navigationController.connectionStatus = .connecting
                 }
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .connected:
@@ -90,6 +90,7 @@ extension UserProfileCollectionViewController {
                 if let navigationController = self.navigationController as? CustomNavigationController {
                     let peerNameUnwrapped = peerName ?? "Unknown Name"
                     navigationController.updateMultipeerToolbar(with: "Connected to \(peerNameUnwrapped)")
+                    navigationController.connectionStatus = .connected
                 }
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
@@ -120,7 +121,7 @@ extension UserProfileCollectionViewController {
     // MARK; - MCNearbyServiceBrowserDelegate
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         presentDiscoveredPeerAlert(peerName: peerID.displayName) {
-            if self.isMultipeerSender { browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10) }
+            if self.isMultipeerSender { browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 20) }
         }
     }
     
@@ -192,6 +193,8 @@ extension UserProfileCollectionViewController {
                 if !success {
                     self.presentUnableToSaveAlert {}
                 }
+                
+                self.cancelSession()
             }
         }
     }
@@ -202,14 +205,18 @@ extension UserProfileCollectionViewController {
             completion()
         }
         alertController.addAction(dismissAction)
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true) { (success) in
+            self.cancelSession()
+        }
     }
     
     func presentFailedCardReceiveAlert() {
         let alertController = UIAlertController(title: "Failed to Receive Card", message: "The Card object could not be properly received", preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alertController.addAction(dismissAction)
-        present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true) { (success) in
+            self.cancelSession()
+        }
     }
     
     func presentDiscoveredPeerAlert(peerName: String, completion: @escaping () -> Void) {
@@ -232,5 +239,6 @@ extension UserProfileCollectionViewController {
         disconnectAction()
         stopBrowsing()
         stopAdvertising()
+        self.updateState(.notConnected)
     }
 }
