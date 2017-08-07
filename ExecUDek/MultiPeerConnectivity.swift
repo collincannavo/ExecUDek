@@ -15,6 +15,7 @@ extension UserProfileCollectionViewController {
     
     // MARK:- Action
     func searchAction() {
+<<<<<<< HEAD
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Look for devices", style: .default) { action in
             self.startBrowsing()
@@ -24,10 +25,19 @@ extension UserProfileCollectionViewController {
         })
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
+=======
+        isMultipeerSender = true
+        self.startBrowsing()
+    }
+    
+    func disconnectAction() {
+        self.session.disconnect()
+        isMultipeerSender = false
+>>>>>>> develop
     }
     
     // MARK:- Private
-    fileprivate func startBrowsing() {
+    func startBrowsing() {
         self.startAdvertising()
         self.browser = MCNearbyServiceBrowser(peer: self.session.myPeerID, serviceType: "sending-card")
         self.browser?.delegate = self
@@ -35,12 +45,12 @@ extension UserProfileCollectionViewController {
         self.updateState(.browsing)
     }
     
-    fileprivate func stopBrowsing() {
+    func stopBrowsing() {
         self.browser?.stopBrowsingForPeers()
         self.browser = nil
     }
     
-    fileprivate func startAdvertising() {
+    func startAdvertising() {
         self.stopBrowsing()
         self.advertiser = MCNearbyServiceAdvertiser(peer: self.session.myPeerID, discoveryInfo: nil, serviceType: "sending-card")
         self.advertiser?.delegate = self
@@ -48,7 +58,7 @@ extension UserProfileCollectionViewController {
         self.updateState(.advertising)
     }
     
-    fileprivate func stopAdvertising() {
+    func stopAdvertising() {
         self.advertiser?.stopAdvertisingPeer()
         self.advertiser = nil
     }
@@ -65,21 +75,34 @@ extension UserProfileCollectionViewController {
         DispatchQueue.main.async {
             switch state {
             case .notConnected:
-                self.navigationItem.title = "Not Connected"
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                if let navigationController = self.navigationController as? CustomNavigationController {
+                    navigationController.updateMultipeerToolbar(with: "Not connected")
+                }
+                self.isMultipeerSender = false
             case .browsing:
-                self.navigationItem.title = "Browsing..."
+                if let navigationController = self.navigationController as? CustomNavigationController {
+                    navigationController.updateMultipeerToolbar(with: "Browsing...")
+                }
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .advertising:
-                self.navigationItem.title = "Advertising..."
+                if let navigationController = self.navigationController as? CustomNavigationController {
+                    navigationController.updateMultipeerToolbar(with: "Advertising...")
+                }
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .connecting:
-                self.navigationItem.title = "Connecting..."
+                if let navigationController = self.navigationController as? CustomNavigationController {
+                    navigationController.updateMultipeerToolbar(with: "Connecting...")
+                }
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .connected:
                 self.stopBrowsing()
                 self.stopAdvertising()
-                self.navigationItem.title = peerName ?? "(Unknown Name)"
+                
+                if let navigationController = self.navigationController as? CustomNavigationController {
+                    let peerNameUnwrapped = peerName ?? "Unknown Name"
+                    navigationController.updateMultipeerToolbar(with: "Connected to \(peerNameUnwrapped)")
+                }
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
         }
@@ -94,8 +117,7 @@ extension UserProfileCollectionViewController {
             self.updateState(.connecting)
         case .connected:
             self.updateState(.connected, peerName: peerID.displayName)
-            presentSendCardAlert(for: peerID)
-            
+            if isMultipeerSender { presentSendCardAlert(for: peerID) }
         }
     }
     
@@ -103,21 +125,19 @@ extension UserProfileCollectionViewController {
         presentReceiveCardAlert(for: data, from: peerID)
     }
     
-    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-    }
-    
-    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-    }
-    
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
-    }
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {}
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {}
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {}
     
     // MARK; - MCNearbyServiceBrowserDelegate
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+        presentDiscoveredPeerAlert(peerName: peerID.displayName) {
+            if self.isMultipeerSender { browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10) }
+        }
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        isMultipeerSender = false
     }
     
     // MARK:- MCNearbyServiceAdvertiserDelegate
@@ -137,21 +157,21 @@ extension UserProfileCollectionViewController {
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             self.sendData(to: peerID)
         }
-        let noAction = UIAlertAction(title: "No", style: .default) { (_) in
-            // Completion stuff
-        }
+        let noAction = UIAlertAction(title: "No", style: .default) { (_) in }
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
-        present(alertController, animated: true) { 
-            // Completion stuff
-        }
+        present(alertController, animated: true) {}
     }
     
     func sendData(to peerID: MCPeerID) {
         guard let selectedCard = selectedCard,
             let cardRecordID = selectedCard.ckRecordID,
             let data = cardRecordID.recordName.data(using: .utf8) else { return }
+<<<<<<< HEAD
 //        let cardData = NSKeyedArchiver.archivedData(withRootObject: selectedCard)
+=======
+
+>>>>>>> develop
         do {
             try session.send(data, toPeers: [peerID], with: .reliable)
         } catch {
@@ -206,5 +226,27 @@ extension UserProfileCollectionViewController {
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alertController.addAction(dismissAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentDiscoveredPeerAlert(peerName: String, completion: @escaping () -> Void) {
+        let title = "Discovered a Peer!"
+        let message = "Would you like to connect with \(peerName)?"
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            completion()
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func cancelSession() {
+        disconnectAction()
+        stopBrowsing()
+        stopAdvertising()
     }
 }

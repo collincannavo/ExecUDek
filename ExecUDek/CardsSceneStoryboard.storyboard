@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tfc-dc-0Rk">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Contacts' Cards-->
+        <scene sceneID="Njf-Gj-lyg">
+            <objects>
+                <viewController id="hTB-Na-Z53" customClass="CardsViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PhN-xb-YJE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rss-e1-3gy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BoN-Fz-02c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="220" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kg8-08-Y7X">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="F9e-Yp-squ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="EDT-hj-MDs">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="EDT-hj-MDs" firstAttribute="top" secondItem="F9e-Yp-squ" secondAttribute="top" id="KhU-26-iP3"/>
+                                        <constraint firstAttribute="bottom" secondItem="EDT-hj-MDs" secondAttribute="bottom" id="dth-Qb-HAH"/>
+                                        <constraint firstItem="EDT-hj-MDs" firstAttribute="leading" secondItem="F9e-Yp-squ" secondAttribute="leading" id="fMq-KW-cBt"/>
+                                        <constraint firstAttribute="trailing" secondItem="EDT-hj-MDs" secondAttribute="trailing" id="wuI-DD-E46"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cardCell" id="Evh-K6-CAE" customClass="CardTableViewCell" customModule="ExecUDek" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="220"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Evh-K6-CAE" id="wEU-pI-QHl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="219.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kg8-08-Y7X" firstAttribute="leading" secondItem="BoN-Fz-02c" secondAttribute="leading" id="Q4d-so-5dZ"/>
+                            <constraint firstItem="Rss-e1-3gy" firstAttribute="top" secondItem="kg8-08-Y7X" secondAttribute="bottom" id="prk-Xv-mE6"/>
+                            <constraint firstItem="kg8-08-Y7X" firstAttribute="top" secondItem="BoN-Fz-02c" secondAttribute="top" id="qbE-Xu-B0b"/>
+                            <constraint firstAttribute="trailing" secondItem="kg8-08-Y7X" secondAttribute="trailing" id="sFh-Dv-vjx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Contacts' Cards" id="FJt-d4-hrh">
+                        <barButtonItem key="leftBarButtonItem" image="profileIcon" id="LR2-fi-hFl">
+                            <connections>
+                                <action selector="profileIconTapped:" destination="hTB-Na-Z53" id="9ID-xh-6li"/>
+                                <segue destination="QdL-lu-vMj" kind="show" id="5gj-7G-xwc"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="2JZ-n0-JOG">
+                                <connections>
+                                    <action selector="addCardButtonTapped:" destination="hTB-Na-Z53" id="QlL-jz-RW3"/>
+                                    <segue destination="Cae-fc-eRE" kind="presentation" identifier="addCardFromMain" id="wN2-1Z-zdg"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="wirelessIconBlue" id="SeR-RJ-bXe">
+                                <connections>
+                                    <action selector="multipeerButtonTapped:" destination="hTB-Na-Z53" id="1Vn-Bk-UZ7"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cardSearchBar" destination="EDT-hj-MDs" id="zfa-WY-tPA"/>
+                        <outlet property="tableView" destination="kg8-08-Y7X" id="R15-7Q-VxN"/>
+                        <segue destination="Cae-fc-eRE" kind="presentation" identifier="editCardFromMain" id="7jU-Ne-aOc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MGx-5k-C37" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1108" y="155.17241379310346"/>
+        </scene>
+        <!--CardTemplate-->
+        <scene sceneID="VUe-nt-xtM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CardTemplate" id="Cae-fc-eRE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TI1-wS-Uaj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2080" y="-116"/>
+        </scene>
+        <!--UserProfile-->
+        <scene sceneID="CDV-Bh-awB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserProfile" id="QdL-lu-vMj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jUo-1m-5Hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2115" y="64"/>
+        </scene>
+        <!--Custom Navigation Controller-->
+        <scene sceneID="4EO-Ey-wEH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tfc-dc-0Rk" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="txN-bn-N5G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hTB-Na-Z53" kind="relationship" relationship="rootViewController" id="qQA-Ga-3Q2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvc-dN-faL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168.80000000000001" y="155.17241379310346"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="profileIcon" width="15" height="23"/>
+        <image name="wirelessIconBlue" width="25" height="23"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="7jU-Ne-aOc"/>
+    </inferredMetricsTieBreakers>
+</document>
