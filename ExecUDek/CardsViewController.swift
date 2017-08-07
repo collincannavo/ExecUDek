@@ -23,6 +23,10 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionVi
         collectionView.reloadData()
     }
     
+    @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
+        NotificationCenter.default.post(name: Constants.multipeerNavBarItemTappedNotification, object: self)
+    }
+    
     var selectedCard: Card?
     var refreshControl = UIRefreshControl()
     

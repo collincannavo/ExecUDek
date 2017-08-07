@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -62,11 +63,14 @@
                                 <segue destination="jSH-yE-W7Y" kind="presentation" id="pNg-HB-WJW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4xW-yI-j1x">
-                            <connections>
-                                <segue destination="94f-hd-ma1" kind="presentation" identifier="addCardFromMain" id="ge0-tS-Cqn"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="4xW-yI-j1x">
+                                <connections>
+                                    <segue destination="94f-hd-ma1" kind="presentation" identifier="addCardFromMain" id="ge0-tS-Cqn"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem id="L9C-IL-kc7"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="cardSearchBar" destination="YYi-rq-xwI" id="YYQ-hx-bTd"/>
