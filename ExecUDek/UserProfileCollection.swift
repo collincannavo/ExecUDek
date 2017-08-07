@@ -153,7 +153,7 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
-        tableViewBackgroundColor()
+//        tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
         collectionView.bringSubview(toFront: cell)
@@ -281,9 +281,9 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         
     }
     
-    func tableViewBackgroundColor() {
-        self.collectionView.backgroundColor = UIColor.lightGray
-    }
+//    func tableViewBackgroundColor() {
+//        self.collectionView.backgroundColor = UIColor.lightGray
+//    }
     
     
 }

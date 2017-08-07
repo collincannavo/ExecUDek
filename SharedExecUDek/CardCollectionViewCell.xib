@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="347" height="180"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdG-C8-AHZ">
-                                <rect key="frame" x="24" y="17" width="300" height="145"/>
+                                <rect key="frame" x="24" y="0.0" width="300" height="180"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-Ft-owW">
                                         <rect key="frame" x="10" y="20" width="90" height="90"/>
@@ -64,11 +64,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="pDB-5c-6OU" secondAttribute="bottom" constant="14" id="7By-Km-e5H"/>
+                                    <constraint firstAttribute="bottom" secondItem="pDB-5c-6OU" secondAttribute="bottom" constant="49" id="7By-Km-e5H"/>
                                     <constraint firstItem="pDB-5c-6OU" firstAttribute="leading" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="60" id="GDR-r8-Y8y"/>
                                     <constraint firstAttribute="trailing" secondItem="pDB-5c-6OU" secondAttribute="trailing" constant="10" id="Our-SN-y7H"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="leading" secondItem="xdG-C8-AHZ" secondAttribute="leading" constant="10" id="c81-Hc-Of2"/>
-                                    <constraint firstAttribute="bottom" secondItem="jqp-Ft-owW" secondAttribute="bottom" constant="35" id="cKc-Ea-1DZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="jqp-Ft-owW" secondAttribute="bottom" constant="70" id="cKc-Ea-1DZ"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="20" id="dnc-Ia-hr2"/>
                                     <constraint firstAttribute="trailing" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="200" id="fR7-MI-pCb"/>
                                     <constraint firstItem="pDB-5c-6OU" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="14" id="uvR-ec-EnW"/>
@@ -95,9 +95,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xdG-C8-AHZ" firstAttribute="top" secondItem="KSr-5B-XEh" secondAttribute="top" constant="17" id="274-Sh-hol"/>
+                            <constraint firstItem="xdG-C8-AHZ" firstAttribute="top" secondItem="KSr-5B-XEh" secondAttribute="top" id="274-Sh-hol"/>
                             <constraint firstAttribute="trailing" secondItem="xdG-C8-AHZ" secondAttribute="trailing" constant="23" id="73v-DZ-nNf"/>
-                            <constraint firstAttribute="bottom" secondItem="xdG-C8-AHZ" secondAttribute="bottom" constant="18" id="9QF-GL-Y8z"/>
+                            <constraint firstAttribute="bottom" secondItem="xdG-C8-AHZ" secondAttribute="bottom" id="9QF-GL-Y8z"/>
                             <constraint firstItem="xdG-C8-AHZ" firstAttribute="leading" secondItem="KSr-5B-XEh" secondAttribute="leading" constant="24" id="ift-zV-R46"/>
                         </constraints>
                     </view>

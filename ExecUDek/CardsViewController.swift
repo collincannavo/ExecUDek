@@ -45,7 +45,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionVi
         collectionView.register(cardXIB, forCellWithReuseIdentifier: "collectionCardCell")
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
-        collectionViewBackgroundColor()
+//        collectionViewBackgroundColor()
         
     }
     
@@ -178,10 +178,10 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionVi
         
     }
     
-    func collectionViewBackgroundColor() {
-        self.collectionView.backgroundColor = UIColor.lightGray
-        
-    }
+//    func collectionViewBackgroundColor() {
+//        self.collectionView.backgroundColor = UIColor.lightGray
+//        
+//    }
     
     func fetchCards() {
         guard refreshControl.isRefreshing else { return }

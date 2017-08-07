@@ -63,6 +63,8 @@ public class CardCollectionViewCell: UICollectionViewCell {
         view.backgroundColor = UIColor.clear
         
         shareButton.superview?.bringSubview(toFront: view)
+        
+        
     }
     
     public func updateViews() {
