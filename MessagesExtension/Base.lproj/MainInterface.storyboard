@@ -31,48 +31,53 @@
             </objects>
         </scene>
         <!--Cards Compact View Controller-->
-        <scene sceneID="eSN-28-umx">
+        <scene sceneID="Kqe-Bf-gxW">
             <objects>
-                <viewController storyboardIdentifier="extCardsCompactVC" id="KgJ-fi-FQV" customClass="EXTCardsCompactViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="extCardsCompactVC" id="zde-Ys-1tb" customClass="EXTCardsCompactViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fTY-d3-9Ky"/>
-                        <viewControllerLayoutGuide type="bottom" id="v6c-hU-mcY"/>
+                        <viewControllerLayoutGuide type="top" id="qcX-0A-abf"/>
+                        <viewControllerLayoutGuide type="bottom" id="5pX-yE-tkg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xnY-Az-yrT">
+                    <view key="view" contentMode="scaleToFill" id="2Cc-IC-A8e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="175" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ez9-1K-2Mq">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CAX-aK-qMF">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="extCardCell" id="WXk-Q4-pGR" customClass="CommonCardTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="175"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WXk-Q4-pGR" id="6cs-jx-ZDK">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="66c-zZ-amb">
+                                    <size key="itemSize" width="298" height="161"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCardCell" id="jGB-8l-j5X" customClass="CardCollectionViewCell">
+                                        <rect key="frame" x="38.5" y="0.0" width="298" height="161"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="298" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <gestureRecognizers/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="v6c-hU-mcY" firstAttribute="top" secondItem="ez9-1K-2Mq" secondAttribute="bottom" id="86z-jv-hiz"/>
-                            <constraint firstItem="ez9-1K-2Mq" firstAttribute="leading" secondItem="xnY-Az-yrT" secondAttribute="leading" id="Aqu-I5-uiS"/>
-                            <constraint firstAttribute="trailing" secondItem="ez9-1K-2Mq" secondAttribute="trailing" id="CIB-zh-83S"/>
-                            <constraint firstItem="ez9-1K-2Mq" firstAttribute="top" secondItem="xnY-Az-yrT" secondAttribute="top" id="dQF-NZ-dxH"/>
+                            <constraint firstItem="CAX-aK-qMF" firstAttribute="leading" secondItem="2Cc-IC-A8e" secondAttribute="leading" id="20c-q9-pOY"/>
+                            <constraint firstItem="5pX-yE-tkg" firstAttribute="top" secondItem="CAX-aK-qMF" secondAttribute="bottom" id="F86-Cj-6My"/>
+                            <constraint firstItem="CAX-aK-qMF" firstAttribute="top" secondItem="qcX-0A-abf" secondAttribute="bottom" id="LuI-QD-qg6"/>
+                            <constraint firstAttribute="trailing" secondItem="CAX-aK-qMF" secondAttribute="trailing" id="PfM-KL-N4C"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="ez9-1K-2Mq" id="onE-MM-CFY"/>
+                        <outlet property="collectionView" destination="CAX-aK-qMF" id="1W9-tG-2DH"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cBe-DK-gR6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XtA-gI-bYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="925.60000000000002" y="137.18140929535232"/>
+            <point key="canvasLocation" x="1004" y="137"/>
         </scene>
         <!--Card Received View Controller-->
         <scene sceneID="ghU-hq-49D">
@@ -91,7 +96,6 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kn7-8A-yPX">
                                 <rect key="frame" x="0.0" y="80" width="375" height="175"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="175" id="nU9-2M-DNn"/>
                                 </constraints>

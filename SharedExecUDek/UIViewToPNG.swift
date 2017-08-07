@@ -12,7 +12,7 @@ import UIKit
 public struct UIViewToPNG {
     public static func uiViewToPNG(for uiView: UIView) -> Data? {
         
-        if let cardView = uiView as? CommonCardTableViewCell {
+        if let cardView = uiView as? CardCollectionViewCell {
             cardView.hideShareButton()
             cardView.hideShareImage()
         }

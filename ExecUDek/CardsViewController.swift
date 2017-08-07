@@ -10,11 +10,14 @@ import UIKit
 import SharedExecUDek
 import NotificationCenter
 
-class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    let overlap: CGFloat = -120.0
     
     // MARK: - Outlets
-    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var cardSearchBar: UISearchBar!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     
     // MARK: - Action methods
@@ -29,7 +32,7 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     var selectedCard: Card?
@@ -37,20 +40,21 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         cardSearchBar.delegate = self
         cardSearchBar.returnKeyType = UIReturnKeyType.done
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.cardsFetchedNotification, object: nil)
         
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
-        let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
+        let cardXIB = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
-        tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
-        
-        tableView.refreshControl = refreshControl
+        collectionView.register(cardXIB, forCellWithReuseIdentifier: "collectionCardCell")
+        collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
+        collectionViewBackgroundColor()
+        
     }
     
     // MARK: - Search bar delegate
@@ -61,11 +65,11 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         if searchBar.text == nil || searchBar.text == "" {
             inSearchMode = false
             view.endEditing(true)
-            tableView.reloadData()
+            collectionView.reloadData()
         } else {
             inSearchMode = true
             filteredData = data.filter({$0 == searchBar.text})
-            tableView.reloadData()
+            collectionView.reloadData()
         }
     }
     
@@ -75,17 +79,19 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
     }
     
-    // MARK: - Table view data source
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // MARK: - Collection view data source
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return PersonController.shared.currentPerson?.cards.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let card = PersonController.shared.currentPerson?.cards[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell,
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell,
             let newCard = card
-          
-            else { return CommonCardTableViewCell()
+            
+            else { return CardCollectionViewCell()
         }
         
         if let cellPhone = newCard.cell {
@@ -113,22 +119,34 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
         
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
-        tableViewBackgroundColor()
-        setupCardTableViewCell(cell)
+        
+        collectionView.bringSubview(toFront: cell)
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Cell tapped! \n\n\n\n\n")
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        guard let cell = tableView.cellForRow(at: indexPath) as? CommonCardTableViewCell else { return }
+        let collectionViewWidth = collectionView.frame.width
+        
+        return CGSize(width: collectionViewWidth, height: (collectionViewWidth * 0.518731988472622))
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return overlap
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
         
         if let card = cell.card {
             selectedCard = card
             
             performSegue(withIdentifier: "editCardFromMain", sender: nil)
         }
+        
     }
     
     // MARK: - Navigation
@@ -150,29 +168,27 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
     }
     
     // MARK: - Helper methods
-    func setupCardTableViewCell(_ cell: CommonCardTableViewCell) {
-        cell.layer.cornerRadius = 20.0
-    }
     
     func refresh() {
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
-    func setupCardTableViewCellShadow(_ cell: CommonCardTableViewCell) {
+    func setupCardTableViewCellShadow(_ cell: CardCollectionViewCell) {
         cell.layer.shadowOpacity = 1.0
-        cell.layer.shadowRadius = 4
-        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+        cell.layer.shadowRadius = 5
+        cell.layer.shadowOffset = CGSize(width: 0, height: 4)
         cell.layer.shadowColor = UIColor.darkGray.cgColor
     }
     
-    func setupCardTableViewCellBorderColor(_ cell: CommonCardTableViewCell) {
+    func setupCardTableViewCellBorderColor(_ cell: CardCollectionViewCell) {
         cell.layer.borderWidth = 10
         cell.layer.borderColor = UIColor.clear.cgColor
         
     }
     
-    func tableViewBackgroundColor() {
-        self.tableView.backgroundColor = UIColor.lightGray
+    func collectionViewBackgroundColor() {
+        self.collectionView.backgroundColor = UIColor.lightGray
+        
     }
     
     func fetchCards() {
@@ -193,4 +209,5 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UITableViewDat
             }
         }
     }
+    
 }

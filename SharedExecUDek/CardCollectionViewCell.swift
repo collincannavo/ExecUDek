@@ -1,14 +1,20 @@
 //
-//  CommonCardTableViewCell.swift
+//  CardCollectionViewCell.swift
 //  ExecUDek
 //
-//  Created by Collin Cannavo on 7/27/17.
+//  Created by Collin Cannavo on 8/3/17.
 //  Copyright © 2017 Collin Cannavo. All rights reserved.
 //
 
 import UIKit
 
-public class CommonCardTableViewCell: UITableViewCell {
+public class CardCollectionViewCell: UICollectionViewCell {
+    
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        view.layer.cornerRadius = 12
+        
+    }
     
     public var card: Card?
     
@@ -35,6 +41,12 @@ public class CommonCardTableViewCell: UITableViewCell {
         actionSheetDelegate?.actionSheetSelected(cellButtonTapped: sender, cell: self)
     }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        return UICollectionViewCell()
+    }
+    
     public func updateCell(withCardImage: UIImage) {
         guard let name = nameLabel.text,
             let title = titleLabel.text,
@@ -48,8 +60,8 @@ public class CommonCardTableViewCell: UITableViewCell {
         card?.title = title
         
         layer.cornerRadius = 20.0
+        view.backgroundColor = UIColor.clear
         
-
         shareButton.superview?.bringSubview(toFront: view)
     }
     
@@ -100,19 +112,21 @@ public class CommonCardTableViewCell: UITableViewCell {
         photoButton.isEnabled = false
     }
     
+    
     // MARK: - Delegate properties
     
     public weak var delegate: PhotoSelctorCellDelegate?
     public weak var actionSheetDelegate: ActionSheetDelegate?
 }
 
-    // MARK: - Protocols
+// MARK: - Protocols
 
 @objc public protocol PhotoSelctorCellDelegate : class, NSObjectProtocol {
     @objc optional func photoSelectCellSelected(cellButtonTapped: UIButton)
-    @objc optional func entireCardWasTapped(card: Card, cell: CommonCardTableViewCell)
+    @objc optional func entireCardWasTapped(card: Card, cell: CardCollectionViewCell)
 }
 
 public protocol ActionSheetDelegate : class {
-    func actionSheetSelected(cellButtonTapped: UIButton, cell: CommonCardTableViewCell)
+    func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell)
 }
+

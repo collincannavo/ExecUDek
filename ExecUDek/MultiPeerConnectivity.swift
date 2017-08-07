@@ -11,7 +11,7 @@ import MultipeerConnectivity
 import SharedExecUDek
 import CloudKit
 
-extension UserProfileTableViewController {
+extension UserProfileCollectionViewController {
     
     // MARK:- Action
     func searchAction() {

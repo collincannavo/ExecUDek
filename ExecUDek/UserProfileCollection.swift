@@ -1,8 +1,8 @@
 //
-//  UserProfileTableViewController.swift
+//  UserProfileCollectionViewController.swift
 //  ExecUDek
 //
-//  Created by Arnold Mukasa on 7/26/17.
+//  Created by Collin Cannavo on 8/4/17.
 //  Copyright © 2017 Collin Cannavo. All rights reserved.
 //
 
@@ -12,13 +12,17 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileTableViewController: UITableViewController, ActionSheetDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate, MCBrowserViewControllerDelegate {
+class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate, MCBrowserViewControllerDelegate {
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    let overlap: CGFloat = -120.0
     
     let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name), securityIdentity: nil, encryptionPreference: .none)
     var browser: MCNearbyServiceBrowser?
     var advertiser: MCNearbyServiceAdvertiser?
     var browserView: MCBrowserViewController!
-    var card = CommonCardTableViewCell()
+    var card = CardCollectionViewCell()
     
     var isMultipeerSender = false
     
@@ -33,14 +37,17 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let cell = tableView.cellForRow(at: indexPath) as? CommonCardTableViewCell else { return }
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
         
         if let card = cell.card {
             selectedCard = card
             
             performSegue(withIdentifier: "editCardFromUser", sender: nil)
         }
+        
     }
     
     override func viewDidLoad() {
@@ -51,19 +58,58 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(cancelSession), name: Constants.endAdvertiseMultipeerNotification, object: nil)
 
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
-        let cardXIB = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
+        let cardXIB = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
-        tableView.register(cardXIB, forCellReuseIdentifier: "cardCell")
+        collectionView.register(cardXIB, forCellWithReuseIdentifier: "collectionCardCell")
         
         self.session.delegate = self
         browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
         browserView.delegate = self
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+       let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
+        self.collectionView.addGestureRecognizer(longPressGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.reloadData()
+        collectionView.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let collectionViewWidth = collectionView.frame.width
+        
+        return CGSize(width: collectionViewWidth, height: (collectionViewWidth * 0.518731988472622))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return overlap
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+    }
+    
+    func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        switch(gesture.state) {
+        case .began:
+            guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else { break }
+        
+        collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        
+        case .changed:
+            guard let view = gesture.view else { break }
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: view))
+            
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
     }
     
     // MARK: MCBrowserViewControllerDelegate
@@ -76,16 +122,17 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         browserView.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+    // MARK: - Collection view data source
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return PersonController.shared.currentPerson?.personalCards.count ?? 0
+        
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell,
-            let newCard = card else { return CommonCardTableViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell,
+            let newCard = card else { return CardCollectionViewCell() }
         
         if let cellPhone = newCard.cell {
             cell.cellLabel.text = cellPhone
@@ -110,7 +157,12 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
+        collectionView.bringSubview(toFront: cell)
+        
+        cell.actionSheetDelegate = self
+        
         return cell
+        
     }
     
     // MARK: - MF message view controller delegate
@@ -121,44 +173,49 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCardFromUser" {
             if let destinationNavController = segue.destination as? UINavigationController,
-                let destinationVC = destinationNavController.viewControllers.first as? CardTemplateTableViewController {
+                let destinationVC = destinationNavController.viewControllers.first as?
+                CardTemplateTableViewController {
                 destinationVC.cardSenderIsMainScene = false
             }
         }
+        
         if segue.identifier == "editCardFromUser" {
             if let destinationNavController = segue.destination as? UINavigationController,
-                let destinationVC = destinationNavController.viewControllers.first as? CardTemplateTableViewController {
+                let destinationVC = destinationNavController.viewControllers.first as?
+                CardTemplateTableViewController {
                 destinationVC.cardSenderIsMainScene = false
                 destinationVC.card = selectedCard
             }
         }
+        
     }
     
-    func setupCardTableViewCell(_ cell: CommonCardTableViewCell) {
+    func setupCardTableViewCell(_ cell: CardCollectionViewCell) {
         cell.layer.cornerRadius = 20.0
     }
     
     func refresh() {
-        tableView.reloadData()
+        collectionView.reloadData()
     }
-    func actionSheetSelected(cellButtonTapped: UIButton, cell: CommonCardTableViewCell) {
+    
+    func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell) {
         
         let alertController = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
         
         let iMessagesButton = UIAlertAction(title: "iMessage", style: .default) { (_) in
-            guard let indexPath = self.tableView.indexPath(for: cell),
+            guard let indexPath = self.collectionView.indexPath(for: cell),
                 let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
             
             self.presentSMSInterface(for: card, with: cell)
         }
         
         let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
-
-            guard let indexPath = self.tableView.indexPath(for: cell),
+            
+            guard let indexPath = self.collectionView.indexPath(for: cell),
                 let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
             
             self.selectedCard = card
-
+            
             self.searchAction()
         }
         
@@ -189,11 +246,11 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
         present(alertController, animated: true, completion: nil)
     }
     
-    func presentSMSInterface(for card: Card, with cell: CommonCardTableViewCell) {
+    func presentSMSInterface(for card: Card, with cell: CardCollectionViewCell) {
         guard MFMessageComposeViewController.canSendText(),
             let cardRecordID = card.ckRecordID,
             let message = MessageController.createMessage(with: cardRecordID, from: cell) else { presentSMSUnavailableAlert(); return }
-    
+        
         let composeVC = MFMessageComposeViewController()
         composeVC.messageComposeDelegate = self
         composeVC.message = message
@@ -201,31 +258,31 @@ class UserProfileTableViewController: UITableViewController, ActionSheetDelegate
     }
     
     func fetchPersonalCards() {
-        self.tableView.refreshControl?.beginRefreshing()
+        self.collectionView.refreshControl?.beginRefreshing()
         
         CardController.shared.fetchPersonalCards { (success) in
             if success {
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.tableView.refreshControl?.endRefreshing()
+                    self.collectionView.reloadData()
+                    self.collectionView.refreshControl?.endRefreshing()
                 }
             }
         }
     }
-    func setupCardTableViewCellShadow(_ cell: CommonCardTableViewCell) {
+    func setupCardTableViewCellShadow(_ cell: CardCollectionViewCell) {
         cell.layer.shadowOpacity = 1.0
         cell.layer.shadowRadius = 4
         cell.layer.shadowOffset = CGSize(width: 0, height: 2)
         cell.layer.shadowColor = UIColor.darkGray.cgColor
     }
     
-    func setupCardTableViewCellBorderColor(_ cell: CommonCardTableViewCell) {
+    func setupCardTableViewCellBorderColor(_ cell: CardCollectionViewCell) {
         cell.layer.borderWidth = 10
         cell.layer.borderColor = UIColor.clear.cgColor
         
     }
     
     func tableViewBackgroundColor() {
-        self.tableView.backgroundColor = UIColor.lightGray
+        self.collectionView.backgroundColor = UIColor.lightGray
     }
 }

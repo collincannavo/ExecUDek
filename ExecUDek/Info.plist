@@ -17,17 +17,19 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>ExecUDek needs access to your camera if you would like to post photos to your timeline.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>ExecUDek would like to add a new contact</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>ExecUDek needs access to your photo library if you would like to post photos to your timeline.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>CardsSceneStoryboard</string>
+	<string>CardsSceneCollectionView</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -36,7 +38,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSContactsUsageDescription</key>
-	<string>ExecUDek would like to add a new contact</string>
 </dict>
 </plist>

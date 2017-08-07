@@ -12,33 +12,36 @@ import CloudKit
 import SharedExecUDek
 import NotificationCenter
 
-class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PhotoSelctorCellDelegate {
+class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     
     var conversation: MSConversation?
     
     // MARK: - Outlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
-        let yourXIBName = UINib(nibName: "CommonCardTableViewCell", bundle: bundle)
+        let yourXIBName = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
-        tableView.register(yourXIBName, forCellReuseIdentifier: "cardCell")
+        collectionView.register(yourXIBName, forCellWithReuseIdentifier: "collectionCardCell")
+        
+        setupViews()
     }
+    
+    // MARK: - Collection view data source
 
-    // MARK: - Table view data source
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return PersonController.shared.currentPerson?.personalCards.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CommonCardTableViewCell else { return CommonCardTableViewCell() }
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell else { return CardCollectionViewCell() }
         
         let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
         
@@ -55,11 +58,24 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
         cell.photoButton.setImage(logoImage, for: .disabled)
         cell.photoButton.setTitle("", for: .normal)
         
+        setupCardTableViewCellShadow(cell)
+        setupCardTableViewCellBorderColor(cell)
+        
         return cell
     }
     
+    // MARK: - Collection view delegate
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let collectionViewWidth = collectionView.frame.width
+        
+        return CGSize(width: collectionViewWidth, height: (collectionViewWidth * 0.518731988472622))
+        
+    }
+    
     // MARK: - Photo selector cell delegate
-    func entireCardWasTapped(card: Card, cell: CommonCardTableViewCell) {
+    func entireCardWasTapped(card: Card, cell: CardCollectionViewCell) {
         guard let conversation = conversation,
             let cardRecordID = card.ckRecordID else { return }
         MessageController.prepareToSendCard(with: cardRecordID, from: cell, in: conversation)
@@ -67,6 +83,23 @@ class EXTCardsCompactViewController: UIViewController, UITableViewDelegate, UITa
     
     // MARK: - Helper methods
     func refresh() {
-        tableView.reloadData()
+        collectionView.reloadData()
+    }
+    
+    func setupViews() {
+        collectionView.backgroundColor = UIColor.lightGray
+    }
+    
+    func setupCardTableViewCellShadow(_ cell: CardCollectionViewCell) {
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.shadowRadius = 5
+        cell.layer.shadowOffset = CGSize(width: 0, height: 4)
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+    }
+    
+    func setupCardTableViewCellBorderColor(_ cell: CardCollectionViewCell) {
+        cell.layer.borderWidth = 10
+        cell.layer.borderColor = UIColor.clear.cgColor
+        
     }
 }

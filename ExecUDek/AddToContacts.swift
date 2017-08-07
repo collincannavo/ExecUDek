@@ -9,7 +9,7 @@
 import UIKit
 import ContactsUI
 
-extension UserProfileTableViewController {
+extension UserProfileCollectionViewController {
     func addContact(){
         let store = CNContactStore()
         let newContact = CNMutableContact()
