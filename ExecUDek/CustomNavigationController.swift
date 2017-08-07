@@ -36,18 +36,17 @@ class CustomNavigationController: UINavigationController {
         
         let title: String
         let message: String
-        //let completion: () -> Void
-        let completion = {}
+        let completion: () -> Void
         
         if !toolbarIsVisible {
             title = "Confirm Multipeer Advertise"
             message = "Would you like to advertise your device for Multipeer sharing?"
-            //completion = { NotificationCenter.default.post(name: Constants.advertiseMultipeerNotification, object: self) }
+            completion = { NotificationCenter.default.post(name: Constants.advertiseMultipeerNotification, object: self) }
             
         } else {
             title = "Confirm End of Multipeer Advertise"
             message = "Would you like to stop advertising your device for Multipeer sharing?"
-            //completion = { NotificationCenter.default.post(name: Constants.endAdvertiseMultipeerNotification, object: self) }
+            completion = { NotificationCenter.default.post(name: Constants.endAdvertiseMultipeerNotification, object: self) }
         }
         confirmMultipeerAdvertiseAlert(with: title, message: message) {
             completion()
