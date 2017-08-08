@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Personal Cards-->
+        <!--My Cards-->
         <scene sceneID="IDg-L1-LZg">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="fWQ-kh-1Xy" customClass="UserProfileCollectionViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,8 +62,8 @@
                             <constraint firstItem="RLr-GF-mh8" firstAttribute="top" secondItem="6Bm-O9-DrF" secondAttribute="bottom" id="pF3-xp-pxF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Personal Cards" id="gmQ-aI-zKZ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AJj-u1-fvv">
+                    <navigationItem key="navigationItem" title="My Cards" id="gmQ-aI-zKZ">
+                        <barButtonItem key="leftBarButtonItem" image="HomeIcon" id="AJj-u1-fvv">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="fWQ-kh-1Xy" id="u53-YP-nV5"/>
                             </connections>
@@ -117,6 +117,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="HomeIcon" width="29" height="23"/>
         <image name="antenna1" width="24" height="24"/>
         <image name="skylineDarkened" width="833" height="1209"/>
     </resources>

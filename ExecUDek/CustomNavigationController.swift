@@ -109,6 +109,12 @@ class CustomNavigationController: UINavigationController {
         }
     }
     
+    func showMultipeerToolbar() {
+        if !toolbarIsVisible {
+            toolbarIsVisible = true
+        }
+    }
+    
     func confirmMultipeerAdvertiseAlert(with title: String, message: String, completion: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in

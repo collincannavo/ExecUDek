@@ -265,13 +265,9 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             customCell.changeBackgroundToOrange()
         }
     }
-<<<<<<< HEAD
-=======
     
 //    func tableViewBackgroundColor() {
 //        self.collectionView.backgroundColor = UIColor.lightGray
 //    }
-    
-    
->>>>>>> develop
+
 }
