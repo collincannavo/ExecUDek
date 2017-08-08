@@ -41,6 +41,7 @@ class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, 
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.cardsFetchedNotification, object: nil)
         
+        
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
@@ -48,7 +49,7 @@ class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, 
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
 //        collectionViewBackgroundColor()
-        navigationController?.navigationBar.barTintColor = UIColor(red: 83/255, green: 92/255, blue: 102/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
         
         guard let array = PersonController.shared.currentPerson?.cards else { return }
         filteredCardsArray = array

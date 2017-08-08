@@ -25,7 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if success {
                             DispatchQueue.main.async {
                                 NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
+                                
+                                
                             }
+                        } else {
+                            
                         }
                     })
                     CardController.shared.fetchReceivedCards(with: { (success) in
