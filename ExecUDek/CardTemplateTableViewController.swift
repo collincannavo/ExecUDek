@@ -48,6 +48,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     var card: Card?
     var commonCardXIB: CardCollectionViewCell?
     
+    override func viewWillAppear(_ animated: Bool) {
+        let backgroundImage = UIImage(named: "skylineDarkened.png")
+        let imageView = UIImageView(image: backgroundImage)
+        imageView.frame = CGRect(x: 0, y: 0, width: 365, height: 645)
+        self.tableView.backgroundView = imageView
+        
+        
+    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -259,6 +267,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             commonCardXIB?.updateViews()
             commonCardXIB?.hideShareButton()
             commonCardXIB?.hideShareImage()
+            cardHeaderView.layer.cornerRadius = 12.0
             
             commonCardXIB?.bounds = cardHeaderView.bounds
             
