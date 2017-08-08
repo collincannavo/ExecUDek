@@ -25,6 +25,7 @@
 		188F23441F2959F7007B9F20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		18B376FB1F2D499100FC6A91 /* SharedExecUDek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B70A011F2985B5002DDB17 /* SharedExecUDek.framework */; };
 		18B5538E1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5538D1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift */; };
+		18B553921F3A4D9400CEBA0E /* UIImage+orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B553911F3A4D9400CEBA0E /* UIImage+orientation.swift */; };
 		18B709F71F296F60002DDB17 /* EXTCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */; };
 		18B709F91F296FA0002DDB17 /* EXTCardsCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B709F81F296FA0002DDB17 /* EXTCardsCompactViewController.swift */; };
 		18B70A051F2985B5002DDB17 /* SharedExecUDek.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B70A031F2985B5002DDB17 /* SharedExecUDek.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +50,8 @@
 		B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
 		B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */; };
+		B6E23C1E1F3A4929006CBBE6 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6E23C1D1F3A4929006CBBE6 /* OnBoarding.storyboard */; };
+		B6E23C201F3A4AAA006CBBE6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C1F1F3A4AAA006CBBE6 /* OnboardingViewController.swift */; };
 		CA641DA81F34DAAC003D9B0D /* CardReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641DA71F34DAAB003D9B0D /* CardReceived.swift */; };
 		CA641DAA1F34DD92003D9B0D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641DA91F34DD92003D9B0D /* Button.swift */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
@@ -120,6 +123,7 @@
 		188F233A1F2957F8007B9F20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		188F233C1F2957F8007B9F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B5538D1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerEnabledViewController.swift; sourceTree = "<group>"; };
+		18B553911F3A4D9400CEBA0E /* UIImage+orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+orientation.swift"; sourceTree = "<group>"; };
 		18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTCardTableViewCell.swift; sourceTree = "<group>"; };
 		18B709F81F296FA0002DDB17 /* EXTCardsCompactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTCardsCompactViewController.swift; sourceTree = "<group>"; };
 		18B70A011F2985B5002DDB17 /* SharedExecUDek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedExecUDek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +150,8 @@
 		B6A28A6E1F27DF4300786B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6A28A701F27DF4300786B97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerConnectivity.swift; sourceTree = "<group>"; };
+		B6E23C1D1F3A4929006CBBE6 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
+		B6E23C1F1F3A4AAA006CBBE6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CA641DA71F34DAAB003D9B0D /* CardReceived.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardReceived.swift; sourceTree = "<group>"; };
 		CA641DA91F34DD92003D9B0D /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTemplateTableViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +233,7 @@
 			children = (
 				18B9C6AE1F2D2CAC00F7BB03 /* UIViewToPNG.swift */,
 				187EC0A11F2EBBA400F326E3 /* Constants.swift */,
+				18B553911F3A4D9400CEBA0E /* UIImage+orientation.swift */,
 			);
 			name = SharedResources;
 			sourceTree = "<group>";
@@ -354,6 +361,7 @@
 				B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */,
 				B6459F9E1F361B3F000DD526 /* UserProfileCollection.storyboard */,
 				B6459FA01F361BF9000DD526 /* CardsSceneCollectionView.storyboard */,
+				B6E23C1D1F3A4929006CBBE6 /* OnBoarding.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -389,6 +397,7 @@
 		B6A28A9D1F290D8900786B97 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B6E23C1F1F3A4AAA006CBBE6 /* OnboardingViewController.swift */,
 				F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */,
 				188F23241F2914F7007B9F20 /* CardsViewController.swift */,
 				B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */,
@@ -511,7 +520,7 @@
 					};
 					B6A28A5D1F27DF4300786B97 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 692KVU5J3B;
+						DevelopmentTeam = X458A5BXZ4;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -572,6 +581,7 @@
 				F06281A71F28F15800106424 /* CardTemplate.storyboard in Resources */,
 				B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */,
 				B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */,
+				B6E23C1E1F3A4929006CBBE6 /* OnBoarding.storyboard in Resources */,
 				B6459FA11F361BF9000DD526 /* CardsSceneCollectionView.storyboard in Resources */,
 				B6A28A671F27DF4300786B97 /* Main.storyboard in Resources */,
 			);
@@ -599,6 +609,7 @@
 			files = (
 				18B9C6B11F2D2CB900F7BB03 /* CardController.swift in Sources */,
 				1881BC061F2D03890070C1F4 /* Template.swift in Sources */,
+				18B553921F3A4D9400CEBA0E /* UIImage+orientation.swift in Sources */,
 				18B9C6AF1F2D2CAC00F7BB03 /* UIViewToPNG.swift in Sources */,
 				B6459F9A1F3615B3000DD526 /* CardCollectionViewCell.swift in Sources */,
 				18B9C6B51F2D2CCB00F7BB03 /* CloudKitController.swift in Sources */,
@@ -625,6 +636,7 @@
 				B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */,
 				F09DFFC21F33D25900D2AE23 /* AddToContacts.swift in Sources */,
 				B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */,
+				B6E23C201F3A4AAA006CBBE6 /* OnboardingViewController.swift in Sources */,
 				B6459F511F314C62000DD526 /* EmailViewController.swift in Sources */,
 				B6459F9D1F361AA9000DD526 /* UserProfileCollection.swift in Sources */,
 				18B5538E1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift in Sources */,
@@ -855,7 +867,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
-				DEVELOPMENT_TEAM = 692KVU5J3B;
+				DEVELOPMENT_TEAM = X458A5BXZ4;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;
@@ -871,7 +883,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExecUDek/ExecUDek.entitlements;
-				DEVELOPMENT_TEAM = 692KVU5J3B;
+				DEVELOPMENT_TEAM = X458A5BXZ4;
 				INFOPLIST_FILE = ExecUDek/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ganleyApps.ExecUDek;

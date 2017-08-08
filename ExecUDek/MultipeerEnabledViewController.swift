@@ -20,6 +20,25 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         MultipeerController.shared.delegate = self
+        
+        switch MultipeerController.shared.connectionStatus {
+        case .notConnected:
+            customNavigationController.hideMultipeerToolbar()
+            customNavigationController.updateMultipeerToolbar(with: "Not connected")
+        case .advertising:
+            customNavigationController.showMultipeerToolbar()
+            customNavigationController.updateMultipeerToolbar(with: "Advertising...")
+        case .browsing:
+            customNavigationController.showMultipeerToolbar()
+            customNavigationController.updateMultipeerToolbar(with: "Browsing...")
+        case .connecting:
+            customNavigationController.showMultipeerToolbar()
+            customNavigationController.updateMultipeerToolbar(with: "Connecting...")
+        case .connected:
+            let peerID = MultipeerController.shared.connectedPeer?.displayName ?? "Unknown device"
+            customNavigationController.showMultipeerToolbar()
+            customNavigationController.updateMultipeerToolbar(with: "Connected to \(peerID)")
+        }
     }
 
     func didReceiveData(_ data: Data, from peerID: MCPeerID) {

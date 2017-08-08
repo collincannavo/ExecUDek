@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Contacts' Cards-->
+        <!--Wallet-->
         <scene sceneID="D04-K5-BGb">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="79B-8T-VtH" customClass="CardsViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,11 +22,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="S8X-tE-Hnk">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-yE-WXN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ilN-BY-8MX">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jya-H8-rRs">
@@ -49,42 +49,35 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="YYi-rq-xwI">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="79B-8T-VtH" id="eri-fq-UPH"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="S8X-tE-Hnk" secondAttribute="trailing" id="2dh-nN-bV0"/>
-                            <constraint firstItem="YYi-rq-xwI" firstAttribute="trailing" secondItem="S8X-tE-Hnk" secondAttribute="trailing" id="Ezh-Wg-dBp"/>
-                            <constraint firstItem="YYi-rq-xwI" firstAttribute="leading" secondItem="S8X-tE-Hnk" secondAttribute="leading" id="GiE-Hd-giI"/>
-                            <constraint firstItem="YYi-rq-xwI" firstAttribute="bottom" secondItem="ilN-BY-8MX" secondAttribute="top" id="OBu-tq-iQZ"/>
-                            <constraint firstItem="S8X-tE-Hnk" firstAttribute="leading" secondItem="ewq-yN-V4o" secondAttribute="leading" id="Q6Y-25-Fdq"/>
-                            <constraint firstItem="YYi-rq-xwI" firstAttribute="leading" secondItem="ilN-BY-8MX" secondAttribute="leading" id="SZ8-p4-Z0y"/>
+                            <constraint firstItem="ilN-BY-8MX" firstAttribute="leading" secondItem="z7M-yE-WXN" secondAttribute="leading" id="4n8-K3-2sf"/>
+                            <constraint firstItem="z7M-yE-WXN" firstAttribute="leading" secondItem="ewq-yN-V4o" secondAttribute="leading" id="Iab-C7-VLt"/>
+                            <constraint firstAttribute="trailing" secondItem="z7M-yE-WXN" secondAttribute="trailing" id="Mst-0x-qRU"/>
                             <constraint firstItem="ilN-BY-8MX" firstAttribute="bottom" secondItem="THK-hY-ReU" secondAttribute="top" id="VWN-XV-gIr"/>
-                            <constraint firstItem="YYi-rq-xwI" firstAttribute="trailing" secondItem="ilN-BY-8MX" secondAttribute="trailing" id="hf8-yh-nGH"/>
-                            <constraint firstAttribute="bottom" secondItem="S8X-tE-Hnk" secondAttribute="bottom" id="hhU-LA-kOR"/>
-                            <constraint firstItem="S8X-tE-Hnk" firstAttribute="top" secondItem="YYi-rq-xwI" secondAttribute="bottom" id="xIm-fl-XqX"/>
-                            <constraint firstItem="YYi-rq-xwI" firstAttribute="top" secondItem="jRz-S2-dc8" secondAttribute="bottom" id="yEu-5J-tRS"/>
+                            <constraint firstItem="ilN-BY-8MX" firstAttribute="top" secondItem="jRz-S2-dc8" secondAttribute="bottom" id="a5a-cW-HUy"/>
+                            <constraint firstItem="z7M-yE-WXN" firstAttribute="top" secondItem="jRz-S2-dc8" secondAttribute="bottom" constant="-64" id="ddh-UF-vtI"/>
+                            <constraint firstItem="ilN-BY-8MX" firstAttribute="trailing" secondItem="z7M-yE-WXN" secondAttribute="trailing" id="jpu-7Z-kl9"/>
+                            <constraint firstItem="THK-hY-ReU" firstAttribute="top" secondItem="z7M-yE-WXN" secondAttribute="bottom" id="xOc-AE-9JW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Contacts' Cards" id="PdI-NL-uJZ">
+                    <navigationItem key="navigationItem" title="Wallet" id="PdI-NL-uJZ">
                         <barButtonItem key="leftBarButtonItem" image="profileIcon4" id="p8K-9s-asx">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="jSH-yE-W7Y" kind="presentation" id="pNg-HB-WJW"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="4xW-yI-j1x">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="94f-hd-ma1" kind="presentation" identifier="addCardFromMain" id="ge0-tS-Cqn"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="antenna1" id="L9C-IL-kc7">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="multipeerButtonTapped:" destination="79B-8T-VtH" id="xfR-BL-Nl2"/>
                                 </connections>
@@ -92,7 +85,6 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="cardSearchBar" destination="YYi-rq-xwI" id="YYQ-hx-bTd"/>
                         <outlet property="collectionView" destination="ilN-BY-8MX" id="XoH-sX-ppy"/>
                     </connections>
                 </viewController>

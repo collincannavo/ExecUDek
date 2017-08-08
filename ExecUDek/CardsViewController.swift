@@ -10,7 +10,7 @@ import UIKit
 import SharedExecUDek
 import NotificationCenter
 
-class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var filteredCardsArray: [Card] = []
     
@@ -18,7 +18,7 @@ class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, 
     
     // MARK: - Outlets
     
-    @IBOutlet weak var cardSearchBar: UISearchBar!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,10 +36,10 @@ class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, 
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-        cardSearchBar.delegate = self
-        cardSearchBar.returnKeyType = UIReturnKeyType.done
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.cardsFetchedNotification, object: nil)
+        
         
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
@@ -47,71 +47,28 @@ class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, 
         collectionView.register(cardXIB, forCellWithReuseIdentifier: "collectionCardCell")
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
-//        collectionViewBackgroundColor()
-        navigationController?.navigationBar.barTintColor = UIColor(red: 83/255, green: 92/255, blue: 102/255, alpha: 1)
+
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UIApplication.shared.statusBarStyle = .lightContent
+       
         
         guard let array = PersonController.shared.currentPerson?.cards else { return }
         filteredCardsArray = array
         
     }
     
-    // MARK: - Search bar delegate
-    var inSearchMode = false
-    var filteredData = [String]()
-    var data = [String]()
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text == nil || searchBar.text == "" {
-            inSearchMode = false
-            view.endEditing(true)
-            collectionView.reloadData()
-        } else {
-            inSearchMode = true
-            filteredData = data.filter({$0 == searchBar.text})
-            collectionView.reloadData()
-        }
-    }
-    
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-//    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        
-        searchBar.resignFirstResponder()
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        guard let searchTerm = searchBar.text else { return }
-        
-        guard let cardArray = PersonController.shared.currentPerson?.cards else { return }
-        
-        let filteredCards = cardArray.filter ({$0.name.contains(searchTerm)})
-        
-        self.filteredCardsArray = filteredCards
-        
-        inSearchMode = false
-        
-        collectionView.reloadData()
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-        collectionView.reloadData()
-    }
-    
     // MARK: - Collection view data source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PersonController.shared.currentPerson?.cards.count ?? 0
+        return PersonController.shared.currentPerson?.sortedCards.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let card = PersonController.shared.currentPerson?.cards[indexPath.row]
+        let card = PersonController.shared.currentPerson?.sortedCards[indexPath.row]
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell,
             let newCard = card
@@ -129,11 +86,11 @@ class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, 
         
         cell.card = newCard
         
-        if let data = card?.logoData {
-            let image = UIImage(data: data)
+        if let data = card?.logoData,
+            let image = UIImage(data: data) {
             
-            cell.photoButton.setBackgroundImage(image, for: .normal)
-            cell.photoButton.setBackgroundImage(image, for: .disabled)
+            cell.photoButton.setBackgroundImage(image.fixOrientation(), for: .normal)
+            cell.photoButton.setBackgroundImage(image.fixOrientation(), for: .disabled)
             cell.photoButton.setTitle("", for: .normal)
             
         }

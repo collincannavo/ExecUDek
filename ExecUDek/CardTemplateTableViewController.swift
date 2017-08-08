@@ -22,6 +22,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         updateViews()
         setupCardDisplay()
         navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
+        
     }
 
     // TableView TextFields
@@ -48,6 +49,19 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     var card: Card?
     var commonCardXIB: CardCollectionViewCell?
     
+    override func viewWillAppear(_ animated: Bool) {
+        let backgroundImage = UIImage(named: "skylineDarkened.png")
+        let imageView = UIImageView(image: backgroundImage)
+        imageView.frame = CGRect(x: 0, y: 0, width: 365, height: 645)
+        self.tableView.backgroundView = imageView
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -194,7 +208,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         let officeNumber = officeNumberTextField.text
         let template = Template.one
         let address = addressTextField.text
-        let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState()) ?? UIImage()
+        let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState())?.fixOrientation() ?? UIImage()
         let logoData = UIImagePNGRepresentation(logoImage)
         
         switch (cardSenderIsMainScene, card == nil) {
@@ -259,6 +273,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             commonCardXIB?.updateViews()
             commonCardXIB?.hideShareButton()
             commonCardXIB?.hideShareImage()
+            cardHeaderView.layer.cornerRadius = 12.0
             
             commonCardXIB?.bounds = cardHeaderView.bounds
             

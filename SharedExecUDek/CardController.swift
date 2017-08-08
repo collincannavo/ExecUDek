@@ -169,4 +169,16 @@ public class CardController {
             }
         }
     }
+    
+    public func createCKAsset(for data: Data?) -> CKAsset? {
+        guard let data = data,
+            let directory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return nil }
+        let directoryAsNSString = directory as NSString
+        let path = directoryAsNSString.appendingPathComponent("asset.txt")
+        
+        FileManager.default.createFile(atPath: path, contents: data, attributes: nil)
+        let fileURL = URL(fileURLWithPath: path)
+        
+        return CKAsset(fileURL: fileURL)
+    }
 }

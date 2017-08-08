@@ -21,6 +21,7 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
     let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name), securityIdentity: nil, encryptionPreference: .none)
     var browser: MCNearbyServiceBrowser?
     var advertiser: MCNearbyServiceAdvertiser?
+    var connectedPeer: MCPeerID?
     
     override init() {
         super.init()
@@ -95,10 +96,13 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
         case .notConnected:
             self.updateState(.notConnected)
             delegate?.sessionDidBecomeNotConnected()
+            connectedPeer = nil
         case .connecting:
             self.updateState(.connecting)
+            connectedPeer = nil
         case .connected:
             self.updateState(.connected, peerName: peerID.displayName)
+            connectedPeer = peerID
             if isMultipeerSender { delegate?.presentSendCardAlert(for: peerID) }
         }
     }
