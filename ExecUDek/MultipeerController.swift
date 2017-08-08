@@ -71,17 +71,20 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
             switch state {
             case .notConnected:
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                self.delegate?.connectionStatusDidChange(to: state)
+                self.delegate?.connectionStatusDidChange(to: state, with: nil)
                 self.isMultipeerSender = false
+                self.connectionStatus = state
             case .browsing, .advertising, .connecting:
-                self.delegate?.connectionStatusDidChange(to: state)
+                self.delegate?.connectionStatusDidChange(to: state, with: nil)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                self.connectionStatus = state
             case .connected:
                 let peerNameUnwrapped = peerName ?? "Unknown device"
                 self.stopBrowsing()
                 self.stopAdvertising()
                 self.delegate?.connectionStatusDidChange(to: state, with: peerNameUnwrapped)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.connectionStatus = state
             }
         }
     }
@@ -101,12 +104,16 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        delegate?.didReceiveData(data, from: peerID)
+        DispatchQueue.main.async {
+            self.delegate?.didReceiveData(data, from: peerID)
+        }
     }
     
     // MARK; - MCNearbyServiceBrowserDelegate
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        delegate?.didDiscoverPeer(peerID)
+        DispatchQueue.main.async {
+            self.delegate?.didDiscoverPeer(peerID)
+        }
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -115,8 +122,9 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
     
     // MARK:- MCNearbyServiceAdvertiserDelegate
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        
-        delegate?.didReceiveInvitation(from: peerID, in: session, with: invitationHandler)
+        DispatchQueue.main.async {
+            self.delegate?.didReceiveInvitation(from: peerID, in: self.session, with: invitationHandler)
+        }
     }
     
     func sendData(to peerID: MCPeerID) {
@@ -186,34 +194,7 @@ protocol MultipeerControllerDelegate: class {
     func presentUnableToSaveAlert(with completion: @escaping () -> Void)
     func presentFailedCardReceiveAlert()
     func didFinishReceivingCard(from peerID: MCPeerID)
-}
-
-extension MultipeerControllerDelegate {
-    func connectionStatusDidChange(to connectionStatus: ConnectionStatus, with peerIDName: String = "Unknown device") {
-        
-        let toolBarText: String
-        
-        switch connectionStatus {
-        case .notConnected:
-            toolBarText = "Not connected"
-        case .advertising:
-            toolBarText = "Advertising..."
-        case .browsing:
-            toolBarText = "Browsing..."
-        case .connecting:
-            toolBarText = "Connecting..."
-        case .connected:
-            toolBarText = "Connected to \(peerIDName)"
-        }
-        
-        customNavigationController.updateMultipeerToolbar(with: toolBarText)
-    }
-    
-    func browseMultipeer() {
-        customNavigationController.browseSelected()
-    }
-    
-    func sessionDidBecomeNotConnected() {
-        customNavigationController.hideMultipeerToolbar()
-    }
+    func connectionStatusDidChange(to connectionStatus: ConnectionStatus, with peerIDName: String?)
+    func browseMultipeer()
+    func sessionDidBecomeNotConnected()
 }

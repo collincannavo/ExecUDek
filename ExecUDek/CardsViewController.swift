@@ -10,7 +10,7 @@ import UIKit
 import SharedExecUDek
 import NotificationCenter
 
-class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let overlap: CGFloat = -120.0
     
@@ -20,14 +20,14 @@ class CardsViewController: UIViewController, UISearchBarDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         collectionView.reloadData()
     }
     
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
-        
+        customNavigationController.confirmChangeOfMultipeer()
     }
-    
-    var selectedCard: Card?
+
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
