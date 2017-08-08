@@ -75,11 +75,11 @@ public class CardCollectionViewCell: UICollectionViewCell {
         cellLabel.text = card.cell
         emailLabel.text = card.email
         
-        if let data = card.logoData {
-            let image = UIImage(data: data)
+        if let data = card.logoData,
+            let image = UIImage(data: data) {
             
-            photoButton.setBackgroundImage(image, for: .normal)
-            photoButton.setBackgroundImage(image, for: .disabled)
+            photoButton.setBackgroundImage(image.fixOrientation(), for: .normal)
+            photoButton.setBackgroundImage(image.fixOrientation(), for: .disabled)
             photoButton.setTitle("", for: .normal)
         }
     }

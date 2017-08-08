@@ -202,7 +202,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         let officeNumber = officeNumberTextField.text
         let template = Template.one
         let address = addressTextField.text
-        let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState()) ?? UIImage()
+        let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState())?.fixOrientation() ?? UIImage()
         let logoData = UIImagePNGRepresentation(logoImage)
         
         switch (cardSenderIsMainScene, card == nil) {

@@ -25,6 +25,7 @@
 		188F23441F2959F7007B9F20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		18B376FB1F2D499100FC6A91 /* SharedExecUDek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B70A011F2985B5002DDB17 /* SharedExecUDek.framework */; };
 		18B5538E1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5538D1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift */; };
+		18B553921F3A4D9400CEBA0E /* UIImage+orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B553911F3A4D9400CEBA0E /* UIImage+orientation.swift */; };
 		18B709F71F296F60002DDB17 /* EXTCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */; };
 		18B709F91F296FA0002DDB17 /* EXTCardsCompactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B709F81F296FA0002DDB17 /* EXTCardsCompactViewController.swift */; };
 		18B70A051F2985B5002DDB17 /* SharedExecUDek.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B70A031F2985B5002DDB17 /* SharedExecUDek.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,6 +121,7 @@
 		188F233A1F2957F8007B9F20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		188F233C1F2957F8007B9F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B5538D1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerEnabledViewController.swift; sourceTree = "<group>"; };
+		18B553911F3A4D9400CEBA0E /* UIImage+orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+orientation.swift"; sourceTree = "<group>"; };
 		18B709F61F296F60002DDB17 /* EXTCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTCardTableViewCell.swift; sourceTree = "<group>"; };
 		18B709F81F296FA0002DDB17 /* EXTCardsCompactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTCardsCompactViewController.swift; sourceTree = "<group>"; };
 		18B70A011F2985B5002DDB17 /* SharedExecUDek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedExecUDek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +229,7 @@
 			children = (
 				18B9C6AE1F2D2CAC00F7BB03 /* UIViewToPNG.swift */,
 				187EC0A11F2EBBA400F326E3 /* Constants.swift */,
+				18B553911F3A4D9400CEBA0E /* UIImage+orientation.swift */,
 			);
 			name = SharedResources;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 			files = (
 				18B9C6B11F2D2CB900F7BB03 /* CardController.swift in Sources */,
 				1881BC061F2D03890070C1F4 /* Template.swift in Sources */,
+				18B553921F3A4D9400CEBA0E /* UIImage+orientation.swift in Sources */,
 				18B9C6AF1F2D2CAC00F7BB03 /* UIViewToPNG.swift in Sources */,
 				B6459F9A1F3615B3000DD526 /* CardCollectionViewCell.swift in Sources */,
 				18B9C6B51F2D2CCB00F7BB03 /* CloudKitController.swift in Sources */,
