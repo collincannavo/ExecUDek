@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,8 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="6Bm-O9-DrF">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="407-Gv-9gw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y33-wq-iao">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
@@ -54,27 +54,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6Bm-O9-DrF" firstAttribute="top" secondItem="cup-fJ-0SO" secondAttribute="bottom" id="6MK-t2-bBS"/>
-                            <constraint firstItem="6Bm-O9-DrF" firstAttribute="leading" secondItem="gwA-EH-qi2" secondAttribute="leading" id="7bQ-51-GFf"/>
-                            <constraint firstAttribute="trailing" secondItem="6Bm-O9-DrF" secondAttribute="trailing" id="GNK-2b-C1z"/>
-                            <constraint firstItem="RLr-GF-mh8" firstAttribute="top" secondItem="6Bm-O9-DrF" secondAttribute="bottom" id="Iyk-FD-Zjo"/>
-                            <constraint firstItem="6Bm-O9-DrF" firstAttribute="top" secondItem="cup-fJ-0SO" secondAttribute="bottom" id="Uuq-iZ-aht"/>
-                            <constraint firstItem="RLr-GF-mh8" firstAttribute="top" secondItem="6Bm-O9-DrF" secondAttribute="bottom" id="pF3-xp-pxF"/>
+                            <constraint firstItem="RLr-GF-mh8" firstAttribute="top" secondItem="407-Gv-9gw" secondAttribute="bottom" id="22k-ux-X3W"/>
+                            <constraint firstItem="407-Gv-9gw" firstAttribute="leading" secondItem="gwA-EH-qi2" secondAttribute="leading" id="oot-sb-KFe"/>
+                            <constraint firstItem="407-Gv-9gw" firstAttribute="top" secondItem="cup-fJ-0SO" secondAttribute="bottom" constant="-64" id="pBR-wL-zzP"/>
+                            <constraint firstAttribute="trailing" secondItem="407-Gv-9gw" secondAttribute="trailing" id="wex-XR-IZa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Cards" id="gmQ-aI-zKZ">
                         <barButtonItem key="leftBarButtonItem" image="HomeIcon" id="AJj-u1-fvv">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="fWQ-kh-1Xy" id="u53-YP-nV5"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="Qzw-Qg-gRd">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="uLA-cr-IvU" kind="presentation" identifier="addCardFromUser" id="LDS-N2-S8F"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="antenna1" id="e4B-TR-UwS">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="multipeerButtonTapped:" destination="fWQ-kh-1Xy" id="cuG-KK-9rl"/>
                                 </connections>

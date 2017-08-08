@@ -52,7 +52,11 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
         self.collectionView.addGestureRecognizer(longPressGesture)
         
-        navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
