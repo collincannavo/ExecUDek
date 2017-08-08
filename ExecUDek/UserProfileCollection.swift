@@ -51,6 +51,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
         self.collectionView.addGestureRecognizer(longPressGesture)
+        
+        navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,7 +125,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
-        tableViewBackgroundColor()
+//        tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
         collectionView.bringSubview(toFront: cell)
@@ -251,7 +253,25 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
     }
     
-    func tableViewBackgroundColor() {
-        self.collectionView.backgroundColor = UIColor.lightGray
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let customCell = cell as? CardCollectionViewCell else { return }
+        
+        if indexPath.row % 3 == 0 {
+            customCell.changeBackgroundToBlue()
+        } else if indexPath.row % 3 == 1 {
+            customCell.changeBackgroundToRed()
+        } else if indexPath.row % 3 == 2 {
+            customCell.changeBackgroundToOrange()
+        }
     }
+<<<<<<< HEAD
+=======
+    
+//    func tableViewBackgroundColor() {
+//        self.collectionView.backgroundColor = UIColor.lightGray
+//    }
+    
+    
+>>>>>>> develop
 }

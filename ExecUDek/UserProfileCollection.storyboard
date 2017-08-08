@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,10 +22,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="6Bm-O9-DrF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y33-wq-iao">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Y7O-xK-DZB">
                                     <size key="itemSize" width="307" height="160"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -49,6 +53,14 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Bm-O9-DrF" firstAttribute="top" secondItem="cup-fJ-0SO" secondAttribute="bottom" id="6MK-t2-bBS"/>
+                            <constraint firstItem="6Bm-O9-DrF" firstAttribute="leading" secondItem="gwA-EH-qi2" secondAttribute="leading" id="7bQ-51-GFf"/>
+                            <constraint firstAttribute="trailing" secondItem="6Bm-O9-DrF" secondAttribute="trailing" id="GNK-2b-C1z"/>
+                            <constraint firstItem="RLr-GF-mh8" firstAttribute="top" secondItem="6Bm-O9-DrF" secondAttribute="bottom" id="Iyk-FD-Zjo"/>
+                            <constraint firstItem="6Bm-O9-DrF" firstAttribute="top" secondItem="cup-fJ-0SO" secondAttribute="bottom" id="Uuq-iZ-aht"/>
+                            <constraint firstItem="RLr-GF-mh8" firstAttribute="top" secondItem="6Bm-O9-DrF" secondAttribute="bottom" id="pF3-xp-pxF"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Personal Cards" id="gmQ-aI-zKZ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AJj-u1-fvv">
@@ -62,7 +74,7 @@
                                     <segue destination="uLA-cr-IvU" kind="presentation" identifier="addCardFromUser" id="LDS-N2-S8F"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="wirelessIconBlue" id="e4B-TR-UwS">
+                            <barButtonItem image="antenna1" id="e4B-TR-UwS">
                                 <connections>
                                     <action selector="multipeerButtonTapped:" destination="fWQ-kh-1Xy" id="cuG-KK-9rl"/>
                                 </connections>
@@ -105,7 +117,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="wirelessIconBlue" width="25" height="23"/>
+        <image name="antenna1" width="24" height="24"/>
+        <image name="skylineDarkened" width="833" height="1209"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wcH-Ob-Fsg"/>

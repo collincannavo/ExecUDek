@@ -21,6 +21,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         officeNumberTextField.delegate = self
         updateViews()
         setupCardDisplay()
+        navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
     }
 
     // TableView TextFields
@@ -33,6 +34,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     //@IBOutlet weak var cardContentView: UIView!
     @IBOutlet weak var websiteTextField: UITextField!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var cardHeaderView: UIView!
     
     // UIView Labels
     @IBOutlet weak var nameLabel: UILabel!
@@ -246,7 +248,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     func setupCardDisplay() {
         if let windowWidth = UIApplication.shared.keyWindow?.frame.size.width {
             let headerHeight = windowWidth * 175.0 / 300.0
-            headerView.frame = CGRect(x: 0.0, y: 0.0, width: windowWidth, height: headerHeight)
+            cardHeaderView.frame = CGRect(x: 0.0, y: 0.0, width: windowWidth, height: headerHeight)
         }
         
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
@@ -258,26 +260,34 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             commonCardXIB?.hideShareButton()
             commonCardXIB?.hideShareImage()
             
-            commonCardXIB?.bounds = headerView.bounds
+            commonCardXIB?.bounds = cardHeaderView.bounds
             
             if let commonCardXIB = commonCardXIB, let view = commonCardXIB.view {
                 
                 view.translatesAutoresizingMaskIntoConstraints = false
-                headerView.addSubview(view)
+                cardHeaderView.addSubview(view)
                 
-                let leadingConstraint = NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: headerView, attribute: .leading, multiplier: 1.0, constant: 0.0)
+                let leadingConstraint = NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: cardHeaderView, attribute: .leading, multiplier: 1.0, constant: 0.0)
                 
-                let trailingConstraint = NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: headerView, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+                let trailingConstraint = NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: cardHeaderView, attribute: .trailing, multiplier: 1.0, constant: 0.0)
                 
-                let topConstraint = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: headerView, attribute: .top, multiplier: 1.0, constant: 0.0)
-                let bottomConstraint = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: headerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+                let topConstraint = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: cardHeaderView, attribute: .top, multiplier: 1.0, constant: 0.0)
+                let bottomConstraint = NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: cardHeaderView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
                 
-                headerView.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+                cardHeaderView.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
             }
         }
     }
     
     weak var delegate: PhotoSelectViewControllerDelegate?
+    
+//    func collectionView(_ headerView: UITableViewHeaderFooterView) -> CGSize {
+//        
+//        let headerViewWidth = headerView.frame.width
+//        
+//        return CGSize(width: headerViewWidth, height: (headerViewWidth * 0.518731988472622))
+//        
+//    }
 }
 
 // MARK:
