@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYA-OX-WhK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYA-OX-WhK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Contacts' Cards-->
+        <!--Wallet-->
         <scene sceneID="D04-K5-BGb">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="79B-8T-VtH" customClass="CardsViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3q9-Wl-zof">
-                                        <rect key="frame" x="39" y="16" width="298" height="161"/>
+                                        <rect key="frame" x="38.5" y="16" width="298" height="161"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="298" height="161"/>
@@ -72,7 +72,7 @@
                             <constraint firstItem="YYi-rq-xwI" firstAttribute="top" secondItem="jRz-S2-dc8" secondAttribute="bottom" id="yEu-5J-tRS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Contacts' Cards" id="PdI-NL-uJZ">
+                    <navigationItem key="navigationItem" title="Wallet" id="PdI-NL-uJZ">
                         <barButtonItem key="leftBarButtonItem" image="profileIcon4" id="p8K-9s-asx">
                             <connections>
                                 <segue destination="jSH-yE-W7Y" kind="presentation" id="pNg-HB-WJW"/>

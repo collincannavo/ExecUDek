@@ -7,30 +7,38 @@
 //
 
 import UIKit
-import ContactsUI
+import Contacts
 
 extension UserProfileCollectionViewController {
     func addContact(){
         let store = CNContactStore()
         let newContact = CNMutableContact()
-        
-        newContact.givenName = "Superman"
-        newContact.familyName = "Spiderman"
-        newContact.nickname = "Apple"
-        
-//        if let image = UIImage(named: "logo-apps-foundation.jpg"),
-//            let data = UIImagePNGRepresentation(image){
-//            newContact.imageData = data
-//        }
-        
-        let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue: "+441234567890"))
-        newContact.phoneNumbers = [phone]
-        
-//        let email = CNLabeledValue(label: CNLabelWork, value: "contact@appsfoundation.com")
-//        newContact.emailAddresses = [email]
-        newContact.jobTitle = "iOS Developer"
-        newContact.organizationName = "DevMountain"
-        newContact.departmentName = "Mobile"
+        let contact = selectedCard
+        if let name = contact?.name {
+            newContact.givenName = name
+        }
+        if let cell = contact?.cell {
+            let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue:cell))
+            newContact.phoneNumbers = [phone]
+        }
+        if let title = contact?.title {
+            newContact.jobTitle = title
+        }
+        if let company = contact?.companyName {
+            newContact.organizationName = company
+        }
+        if let homeAddress = contact?.address {
+            let address = CNMutablePostalAddress()
+            address.street = homeAddress
+        }
+        if let email = contact?.email {
+            let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
+            newContact.emailAddresses = [workEmail]
+        }
+        newContact.imageData = Data()
+        if let imageData = contact?.logoData {
+            newContact.imageData = imageData
+        }
         
         let request = CNSaveRequest()
         request.add(newContact, toContainerWithIdentifier: nil)
