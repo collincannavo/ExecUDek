@@ -16,8 +16,6 @@ class CustomNavigationController: UINavigationController {
     var wirelessBarButtonItem: UIBarButtonItem!
     var statusBarButtonItem: UIBarButtonItem!
     
-    var connectionStatus = ConnectionStatus.notConnected
-    
     var toolbarIsVisible = false {
         didSet {
             toggleMultipeerToolbarVisibility()
@@ -28,7 +26,6 @@ class CustomNavigationController: UINavigationController {
         super.viewDidLoad()
         
         createMultipeerToolbar()
-        addNotificationObserver()
         view.backgroundColor = .white
     }
     
@@ -38,15 +35,15 @@ class CustomNavigationController: UINavigationController {
         let message: String
         let completion: () -> Void
         
-        switch connectionStatus {
+        switch MultipeerController.shared.connectionStatus {
         case .notConnected:
             title = "Confirm Multipeer Advertise"
             message = "Would you like to advertise your device for Multipeer sharing?"
-            completion = { NotificationCenter.default.post(name: Constants.advertiseMultipeerNotification, object: self) }
+            completion = { MultipeerController.shared.startAdvertising() }
         case .advertising, .browsing, .connected, .connecting:
             title = "Confirm End of Multipeer Session"
             message = "Would you like to end this Multipeer session?"
-            completion = { NotificationCenter.default.post(name: Constants.endMultipeerNotification, object: self) }
+            completion = { MultipeerController.shared.cancelSession() }
         }
         
         confirmMultipeerAdvertiseAlert(with: title, message: message) {
@@ -122,11 +119,5 @@ class CustomNavigationController: UINavigationController {
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
         present(alertController, animated: true, completion: nil)
-    }
-    
-    func addNotificationObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(confirmChangeOfMultipeer), name: Constants.multipeerNavBarItemTappedNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(browseSelected), name: Constants.browseMultipeerNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideMultipeerToolbar), name: Constants.hideMultipeerToolbarNotification, object: nil)
     }
 }

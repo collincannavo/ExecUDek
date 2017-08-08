@@ -8,10 +8,10 @@
 
 import Foundation
 
-enum ConnectionStatus {
-    case notConnected
-    case browsing
-    case advertising
-    case connecting
-    case connected
+enum ConnectionStatus: String {
+    case notConnected = "Not connected"
+    case browsing = "Browsing..."
+    case advertising = "Advertising..."
+    case connecting = "Connecting..."
+    case connected = "Connected"
 }

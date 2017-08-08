@@ -13,6 +13,7 @@
 		187EC0A21F2EBBA400F326E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EC0A11F2EBBA400F326E3 /* Constants.swift */; };
 		1881BC041F2D028D0070C1F4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BC031F2D028D0070C1F4 /* Card.swift */; };
 		1881BC061F2D03890070C1F4 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881BC051F2D03890070C1F4 /* Template.swift */; };
+		188838F11F39289700059D60 /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188838F01F39289700059D60 /* MultipeerController.swift */; };
 		188E9E641F2FE23500598710 /* CardReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188E9E631F2FE23500598710 /* CardReceivedViewController.swift */; };
 		188E9E671F2FF9DC00598710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23241F2914F7007B9F20 /* CardsViewController.swift */; };
@@ -107,6 +108,7 @@
 		187EC0A11F2EBBA400F326E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1881BC031F2D028D0070C1F4 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		1881BC051F2D03890070C1F4 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		188838F01F39289700059D60 /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
 		188E9E631F2FE23500598710 /* CardReceivedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardReceivedViewController.swift; sourceTree = "<group>"; };
 		188F23241F2914F7007B9F20 /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		188F23261F291607007B9F20 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 		B6A28A9C1F290D8000786B97 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				188838F01F39289700059D60 /* MultipeerController.swift */,
 			);
 			name = ModelControllers;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DD51E11F38DA2F00F6EA7C /* CustomNavigationController.swift in Sources */,
+				188838F11F39289700059D60 /* MultipeerController.swift in Sources */,
 				B6A28A6A1F27DF4300786B97 /* ExecUDek.xcdatamodeld in Sources */,
 				188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */,
 				F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */,

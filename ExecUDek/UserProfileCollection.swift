@@ -12,28 +12,24 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate, MCBrowserViewControllerDelegate {
+class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate, MultipeerControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     let overlap: CGFloat = -120.0
-    
-    let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name), securityIdentity: nil, encryptionPreference: .none)
-    var browser: MCNearbyServiceBrowser?
-    var advertiser: MCNearbyServiceAdvertiser?
-    var browserView: MCBrowserViewController!
     var card = CardCollectionViewCell()
-    
-    var isMultipeerSender = false
-    
+
     var selectedCard: Card?
+    var customNavigationController: CustomNavigationController {
+        return self.navigationController as? CustomNavigationController ?? CustomNavigationController()
+    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
-        NotificationCenter.default.post(name: Constants.multipeerNavBarItemTappedNotification, object: self)
+        customNavigationController.confirmChangeOfMultipeer()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -46,25 +42,15 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
             
             performSegue(withIdentifier: "editCardFromUser", sender: nil)
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(startAdvertising), name: Constants.advertiseMultipeerNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelSession), name: Constants.endMultipeerNotification, object: nil)
-        
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
         collectionView.register(cardXIB, forCellWithReuseIdentifier: "collectionCardCell")
-        
-        self.session.delegate = self
-        browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
-        browserView.delegate = self
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -76,6 +62,7 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         super.viewWillAppear(animated)
         
         collectionView.reloadData()
+        MultipeerController.shared.delegate = self
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -109,16 +96,6 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         default:
             collectionView.cancelInteractiveMovement()
         }
-    }
-    
-    // MARK: MCBrowserViewControllerDelegate
-    
-    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
-        browserView.dismiss(animated: true, completion: nil)
-    }
-    
-    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
-        browserView.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Collection view data source
@@ -215,7 +192,7 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
             
             self.selectedCard = card
             
-            self.searchAction()
+            MultipeerController.shared.searchAction()
         }
         
         
@@ -284,6 +261,79 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
     func tableViewBackgroundColor() {
         self.collectionView.backgroundColor = UIColor.lightGray
     }
+}
+
+extension UserProfileCollectionViewController {
     
+    func didReceiveData(_ data: Data, from peerID: MCPeerID) {
+        
+        let alertController = UIAlertController(title: "Received Card", message: "You've received a Card. Would you like to accept it?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            MultipeerController.shared.receiveData(data, from: peerID)
+        }
+        let noAction = UIAlertAction(title: "No", style: .default) { (_) in
+            // Completion stuff
+        }
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true) {}
+    }
     
+    func didDiscoverPeer(_ peerID: MCPeerID) {
+        let title = "Discovered a Peer!"
+        let message = "Would you like to connect with \(peerID.displayName)?"
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            MultipeerController.shared.invitePeer(peerID)
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func didReceiveInvitation(from peerID: MCPeerID, in session: MCSession, with invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        let alert = UIAlertController(title: "Invitation for a business card", message: "from \(peerID.displayName)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Accept", style: .default) { action in
+            invitationHandler(true, session)
+        })
+        alert.addAction(UIAlertAction(title: "Decline", style: .cancel) { action in
+            invitationHandler(false, session)
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func presentSendCardAlert(for peerID: MCPeerID) {
+        let alertController = UIAlertController(title: "Send Card", message: "Would you like to send the selected Card?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            MultipeerController.shared.sendData(to: peerID)
+        }
+        let noAction = UIAlertAction(title: "No", style: .default) { (_) in }
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true) {}
+    }
+    
+    func presentUnableToSaveAlert(with completion: @escaping () -> Void) {
+        let alertController = UIAlertController(title: "Unable to Save Card", message: "This card already exists in your wallet", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in
+            completion()
+        }
+        alertController.addAction(dismissAction)
+        self.present(alertController, animated: true) { (success) in
+            MultipeerController.shared.cancelSession()
+        }
+    }
+    
+    func presentFailedCardReceiveAlert() {
+        let alertController = UIAlertController(title: "Failed to Receive Card", message: "The Card object could not be properly received", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true) { (success) in
+            MultipeerController.shared.cancelSession()
+        }
+    }
 }
