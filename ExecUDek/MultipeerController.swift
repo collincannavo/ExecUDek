@@ -77,9 +77,10 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
                 self.delegate?.connectionStatusDidChange(to: state)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             case .connected:
+                let peerNameUnwrapped = peerName ?? "Unknown device"
                 self.stopBrowsing()
                 self.stopAdvertising()
-                self.delegate?.connectionStatusDidChange(to: state)
+                self.delegate?.connectionStatusDidChange(to: state, with: peerNameUnwrapped)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
         }
@@ -90,6 +91,7 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
         switch state {
         case .notConnected:
             self.updateState(.notConnected)
+            delegate?.sessionDidBecomeNotConnected()
         case .connecting:
             self.updateState(.connecting)
         case .connected:
@@ -142,6 +144,8 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
             MessageController.save(card) { (success) in
                 if !success {
                     self.delegate?.presentUnableToSaveAlert {}
+                } else {
+                    self.delegate?.didFinishReceivingCard(from: peerID)
                 }
                 
                 self.cancelSession()
@@ -181,14 +185,35 @@ protocol MultipeerControllerDelegate: class {
     func presentSendCardAlert(for peerID: MCPeerID)
     func presentUnableToSaveAlert(with completion: @escaping () -> Void)
     func presentFailedCardReceiveAlert()
+    func didFinishReceivingCard(from peerID: MCPeerID)
 }
 
 extension MultipeerControllerDelegate {
-    func connectionStatusDidChange(to connectionStatus: ConnectionStatus) {
-        customNavigationController.updateMultipeerToolbar(with: connectionStatus.rawValue)
+    func connectionStatusDidChange(to connectionStatus: ConnectionStatus, with peerIDName: String = "Unknown device") {
+        
+        let toolBarText: String
+        
+        switch connectionStatus {
+        case .notConnected:
+            toolBarText = "Not connected"
+        case .advertising:
+            toolBarText = "Advertising..."
+        case .browsing:
+            toolBarText = "Browsing..."
+        case .connecting:
+            toolBarText = "Connecting..."
+        case .connected:
+            toolBarText = "Connected to \(peerIDName)"
+        }
+        
+        customNavigationController.updateMultipeerToolbar(with: toolBarText)
     }
     
     func browseMultipeer() {
         customNavigationController.browseSelected()
+    }
+    
+    func sessionDidBecomeNotConnected() {
+        customNavigationController.hideMultipeerToolbar()
     }
 }

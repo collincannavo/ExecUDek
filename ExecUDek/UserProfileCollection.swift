@@ -336,4 +336,13 @@ extension UserProfileCollectionViewController {
             MultipeerController.shared.cancelSession()
         }
     }
+    
+    func didFinishReceivingCard(from peerID: MCPeerID) {
+        let title = "Successfully Received Card!"
+        let message = "Card was successfully received from \(peerID.displayName)"
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in }
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true) {}
+    }
 }
