@@ -60,7 +60,7 @@ class CustomNavigationController: UINavigationController {
     
     func createMultipeerToolbar() {
         
-        wirelessBarButtonItem = UIBarButtonItem(image: UIImage(named: "wirelessIconWhite"), style: .plain, target: nil, action: nil)
+        wirelessBarButtonItem = UIBarButtonItem(image: UIImage(named: "antenna1"), style: .plain, target: nil, action: nil)
         statusBarButtonItem = UIBarButtonItem(title: "Not connected", style: .plain, target: nil, action: nil)
         
         multipeerToolbar.setItems([wirelessBarButtonItem, statusBarButtonItem], animated: false)
@@ -68,7 +68,17 @@ class CustomNavigationController: UINavigationController {
         view.bringSubview(toFront: multipeerToolbar)
         view.bringSubview(toFront: navigationBar)
         
+        customizeToolbarAppearance()
         setToolbarFrame(toolbar: multipeerToolbar)
+    }
+    
+    func customizeToolbarAppearance() {
+        multipeerToolbar.backgroundColor = UIColor.clear
+        multipeerToolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        wirelessBarButtonItem.tintColor = UIColor.white
+        
+        wirelessBarButtonItem.tintColor = .white
+        statusBarButtonItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .normal)
     }
     
     func setToolbarFrame(toolbar: UIToolbar) {
@@ -92,12 +102,22 @@ class CustomNavigationController: UINavigationController {
         UIView.animate(withDuration: 0.4, animations: {
             if !self.toolbarIsVisible {
                 self.multipeerToolbar.transform = CGAffineTransform(translationX: 0.0, y: -self.multipeerToolbar.frame.size.height)
-                self.topViewController?.view.transform = CGAffineTransform.identity
-                self.multipeerToolbar.alpha = 0.0
+                if let topViewController = self.topViewController as? CardsViewController {
+                    topViewController.collectionView.transform = CGAffineTransform.identity
+                    self.multipeerToolbar.alpha = 0.0
+                } else if let topViewController = self.topViewController as? UserProfileCollectionViewController {
+                    topViewController.collectionView.transform = CGAffineTransform.identity
+                    self.multipeerToolbar.alpha = 0.0
+                }
             } else {
                 self.multipeerToolbar.transform = CGAffineTransform.identity
-                self.topViewController?.view.transform = CGAffineTransform(translationX: 0.0, y: self.multipeerToolbar.frame.size.height)
-                self.multipeerToolbar.alpha = 1.0
+                if let topViewController = self.topViewController as? CardsViewController {
+                    topViewController.collectionView.transform = CGAffineTransform(translationX: 0.0, y: self.multipeerToolbar.frame.size.height)
+                    self.multipeerToolbar.alpha = 1.0
+                } else if let topViewController = self.topViewController as? UserProfileCollectionViewController {
+                    topViewController.collectionView.transform = CGAffineTransform(translationX: 0.0, y: self.multipeerToolbar.frame.size.height)
+                    self.multipeerToolbar.alpha = 1.0
+                }
             }
             
         }) { (success) in }
