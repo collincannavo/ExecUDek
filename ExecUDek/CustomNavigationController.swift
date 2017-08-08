@@ -26,31 +26,35 @@ class CustomNavigationController: UINavigationController {
         super.viewDidLoad()
         
         createMultipeerToolbar()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(multipeerNavBarItemTapped), name: Constants.multipeerNavBarItemTappedNotification, object: nil)
-        
         view.backgroundColor = .white
     }
     
-    func multipeerNavBarItemTapped() {
+    func confirmChangeOfMultipeer() {
         
         let title: String
         let message: String
         let completion: () -> Void
         
-        if !toolbarIsVisible {
+        switch MultipeerController.shared.connectionStatus {
+        case .notConnected:
             title = "Confirm Multipeer Advertise"
             message = "Would you like to advertise your device for Multipeer sharing?"
-            completion = { NotificationCenter.default.post(name: Constants.advertiseMultipeerNotification, object: self) }
-            
-        } else {
-            title = "Confirm End of Multipeer Advertise"
-            message = "Would you like to stop advertising your device for Multipeer sharing?"
-            completion = { NotificationCenter.default.post(name: Constants.endAdvertiseMultipeerNotification, object: self) }
+            completion = { MultipeerController.shared.startAdvertising() }
+        case .advertising, .browsing, .connected, .connecting:
+            title = "Confirm End of Multipeer Session"
+            message = "Would you like to end this Multipeer session?"
+            completion = { MultipeerController.shared.cancelSession() }
         }
+        
         confirmMultipeerAdvertiseAlert(with: title, message: message) {
             completion()
             self.toolbarIsVisible = !self.toolbarIsVisible
+        }
+    }
+    
+    func browseSelected() {
+        if !toolbarIsVisible {
+            toolbarIsVisible = true
         }
     }
     
@@ -97,6 +101,18 @@ class CustomNavigationController: UINavigationController {
             }
             
         }) { (success) in }
+    }
+    
+    func hideMultipeerToolbar() {
+        if toolbarIsVisible {
+            toolbarIsVisible = false
+        }
+    }
+    
+    func showMultipeerToolbar() {
+        if !toolbarIsVisible {
+            toolbarIsVisible = true
+        }
     }
     
     func confirmMultipeerAdvertiseAlert(with title: String, message: String, completion: @escaping () -> Void) {
