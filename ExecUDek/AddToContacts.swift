@@ -35,16 +35,17 @@ extension UserProfileCollectionViewController {
             let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
             newContact.emailAddresses = [workEmail]
         }
-        newContact.imageData = Data()
         if let imageData = contact?.logoData {
             newContact.imageData = imageData
         }
-        
+        newContact.note = "Business Card"
+
         let request = CNSaveRequest()
         request.add(newContact, toContainerWithIdentifier: nil)
         do {
             try store.execute(request)
-            let alert = UIAlertController(title: "ExecUDek", message: "New contact has been created", preferredStyle: UIAlertControllerStyle.alert)
+            guard let name = contact?.name else {return}
+            let alert = UIAlertController(title: "ExecUDek", message: "\(name) Contact has been created", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         } catch let error{
