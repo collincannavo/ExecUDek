@@ -23,7 +23,7 @@ public class Card: NSObject {
     public static let noteKey = "note"
     public static let addressKey = "address"
     public static let avatarDataKey = "avatarData"
-    public static let logoDataKey = "logoData"
+    public static let logoDataKey = "logoAsset"
     public static let otherKey = "other"
     public static let parentKey = "parent"
     public static let imageKey = "image"
@@ -100,7 +100,8 @@ public class Card: NSObject {
         record.setValue(note, forKey: Card.noteKey)
         record.setValue(address, forKey: Card.addressKey)
         record.setValue(avatarData, forKey: Card.avatarDataKey)
-        record.setValue(logoData, forKey: Card.logoDataKey)
+        let logoDataAsset = CardController.shared.createCKAsset(for: logoData)
+        record.setValue(logoDataAsset, forKey: Card.logoDataKey)
         record.setValue(other, forKey: Card.otherKey)
         
         record.setValue(parentCKReference, forKey: Card.parentKey)
@@ -123,7 +124,12 @@ public class Card: NSObject {
         let note = ckRecord[Card.noteKey] as? String
         let address = ckRecord[Card.addressKey] as? String
         let avatarData = ckRecord[Card.avatarDataKey] as? Data
-        let logoData = ckRecord[Card.logoDataKey] as? Data
+        let logoAsset = ckRecord[Card.logoDataKey] as? CKAsset
+        var logoData: Data?
+        if let logoDataURL = logoAsset?.fileURL {
+            logoData = try? Data(contentsOf: logoDataURL, options: .mappedIfSafe)
+        }
+        
         let other = ckRecord[Card.otherKey] as? String
         let parentCKReference = ckRecord[Card.parentKey] as? CKReference
         let imageData = ckRecord[Card.imageKey] as? Data
@@ -149,7 +155,8 @@ public class Card: NSObject {
         record.setValue(note, forKey: Card.noteKey)
         record.setValue(address, forKey: Card.addressKey)
         record.setValue(avatarData, forKey: Card.avatarDataKey)
-        record.setValue(logoData, forKey: Card.logoDataKey)
+        let logoDataAsset = CardController.shared.createCKAsset(for: logoData)
+        record.setValue(logoDataAsset, forKey: Card.logoDataKey)
         record.setValue(other, forKey: Card.otherKey)
         
         record.setValue(parentCKReference, forKey: Card.parentKey)

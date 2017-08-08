@@ -114,10 +114,10 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         cell.cellLabel.text = newCard.cell
         cell.emailLabel.text = newCard.email
         cell.card = newCard
-        if let data = card?.logoData {
-            let image = UIImage(data: data)
+        if let data = card?.logoData,
+            let image = UIImage(data: data) {
             
-            cell.photoButton.setBackgroundImage(image, for: .disabled)
+            cell.photoButton.setBackgroundImage(image.fixOrientation(), for: .disabled)
             cell.photoButton.setTitle("", for: .disabled)
         }
         
