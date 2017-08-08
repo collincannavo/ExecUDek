@@ -10,6 +10,9 @@ import UIKit
 
 class OnboardingViewController: UIPageViewController, UIPageViewControllerDelegate {
 
+    var pageArray = ["page1", "page2", "page3"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
