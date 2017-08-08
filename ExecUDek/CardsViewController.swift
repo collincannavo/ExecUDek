@@ -108,11 +108,11 @@ class CardsViewController: MultipeerEnabledViewController, UISearchBarDelegate, 
     // MARK: - Collection view data source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PersonController.shared.currentPerson?.cards.count ?? 0
+        return PersonController.shared.currentPerson?.sortedCards.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let card = PersonController.shared.currentPerson?.cards[indexPath.row]
+        let card = PersonController.shared.currentPerson?.sortedCards[indexPath.row]
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell,
             let newCard = card

@@ -24,6 +24,14 @@ public class Person {
     public var personalCards: [Card] = []
     public var cards: [Card] = []
     
+    public var sortedPersonalCards: [Card] {
+        return personalCards.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
+    }
+    
+    public var sortedCards: [Card] {
+        return cards.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
+    }
+    
     public var ckReference: CKReference? {
         guard let ckRecordID = cKRecordID else { return nil }
         return CKReference(recordID: ckRecordID, action: .none)
