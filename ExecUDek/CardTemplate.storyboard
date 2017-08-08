@@ -329,11 +329,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Card" id="a6u-12-DUm">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="I0W-uM-FNW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="b4I-kL-vHe" id="giR-1j-9Wj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="rSF-iq-KHg">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveButtonTapped:" destination="b4I-kL-vHe" id="Qbh-8i-yJk"/>
                             </connections>
