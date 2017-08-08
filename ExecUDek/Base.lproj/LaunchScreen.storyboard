@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-OB-o9P">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo1" translatesAutoresizingMaskIntoConstraints="NO" id="h8M-j2-fHE">
                                 <rect key="frame" x="67" y="331" width="240" height="128"/>
@@ -49,7 +49,7 @@
                         <constraints>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="uIh-OB-o9P" secondAttribute="bottom" id="9Oa-9l-ctn"/>
                             <constraint firstAttribute="trailing" secondItem="uIh-OB-o9P" secondAttribute="trailing" id="YZN-Pi-ZFq"/>
-                            <constraint firstItem="uIh-OB-o9P" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="doZ-RG-7n7"/>
+                            <constraint firstItem="uIh-OB-o9P" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="doZ-RG-7n7"/>
                             <constraint firstItem="uIh-OB-o9P" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="s6j-xL-lDe"/>
                         </constraints>
                     </view>
