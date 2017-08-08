@@ -100,12 +100,12 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
     // MARK: - Collection view data source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PersonController.shared.currentPerson?.personalCards.count ?? 0
+        return PersonController.shared.currentPerson?.sortedPersonalCards.count ?? 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+        let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell,
             let newCard = card else { return CardCollectionViewCell() }
         
@@ -179,7 +179,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
         let iMessagesButton = UIAlertAction(title: "iMessage", style: .default) { (_) in
             guard let indexPath = self.collectionView.indexPath(for: cell),
-                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
             
             self.presentSMSInterface(for: card, with: cell)
         }
@@ -187,7 +187,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
             
             guard let indexPath = self.collectionView.indexPath(for: cell),
-                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
             
             self.selectedCard = card
             

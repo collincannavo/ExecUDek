@@ -35,11 +35,11 @@ extension UserProfileCollectionViewController {
             let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
             newContact.emailAddresses = [workEmail]
         }
-        newContact.imageData = Data()
         if let imageData = contact?.logoData {
             newContact.imageData = imageData
         }
-        
+        newContact.note = "Business Card"
+
         let request = CNSaveRequest()
         request.add(newContact, toContainerWithIdentifier: nil)
         do {
