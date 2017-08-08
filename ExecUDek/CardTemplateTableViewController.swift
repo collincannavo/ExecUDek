@@ -55,6 +55,11 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         imageView.frame = CGRect(x: 0, y: 0, width: 365, height: 645)
         self.tableView.backgroundView = imageView
         
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UIApplication.shared.statusBarStyle = .lightContent
         
     }
     
