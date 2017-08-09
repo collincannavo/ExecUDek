@@ -199,10 +199,10 @@
             </objects>
             <point key="canvasLocation" x="4169" y="173"/>
         </scene>
-        <!--View Controller-->
+        <!--Launch Screen View Controller-->
         <scene sceneID="ZeZ-kC-Fet">
             <objects>
-                <viewController id="16y-YG-f8u" sceneMemberID="viewController">
+                <viewController id="16y-YG-f8u" customClass="LaunchScreenViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pHI-s1-lZg"/>
                         <viewControllerLayoutGuide type="bottom" id="tOx-HM-7Yw"/>

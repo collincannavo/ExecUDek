@@ -44,6 +44,10 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="fpf-wA-HnI">
+                                <rect key="frame" x="-4" y="0.0" width="379" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -60,6 +64,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LogoFinal" width="833" height="1209"/>
         <image name="logo1" width="1327" height="720"/>
         <image name="skylineDarkened" width="833" height="1209"/>
     </resources>

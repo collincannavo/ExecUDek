@@ -14,6 +14,7 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
     
     var pageArray = [UIViewController()]
     
+    var shared = OnboardingViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,5 +71,13 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
         
         return 0
     }
+    
+    
 
 }
+
+
+
+
+
+
