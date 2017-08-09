@@ -64,15 +64,32 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ABt-dg-dN6">
+                                        <rect key="frame" x="85" y="132" width="19" height="19"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="19" id="DYo-kB-Suh"/>
+                                            <constraint firstAttribute="height" constant="19" id="l9c-m3-5yq"/>
+                                        </constraints>
+                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shareIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Zyx-IF-og9">
-                                        <rect key="frame" x="142" y="132" width="16" height="19"/>
+                                        <rect key="frame" x="199" y="132" width="16" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="16" id="2hD-Uh-QfL"/>
                                             <constraint firstAttribute="height" constant="19" id="xVa-Ba-cfI"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMG-gC-eYI">
+                                        <rect key="frame" x="45" y="120" width="99" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="99" id="hWi-2h-bi3"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="shareButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="UBt-OI-aH6"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyJ-DN-Ex3">
-                                        <rect key="frame" x="101" y="119" width="99" height="44"/>
+                                        <rect key="frame" x="158" y="120" width="99" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="99" id="hYp-LX-CAh"/>
                                         </constraints>
@@ -84,21 +101,26 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="jqp-Ft-owW" secondAttribute="bottom" constant="34" id="0Gw-Sv-wd6"/>
+                                    <constraint firstAttribute="bottom" secondItem="ABt-dg-dN6" secondAttribute="bottom" id="1Fg-mp-ZlT"/>
+                                    <constraint firstItem="ABt-dg-dN6" firstAttribute="leading" secondItem="xdG-C8-AHZ" secondAttribute="leading" constant="85" id="E20-yx-Lav"/>
+                                    <constraint firstItem="KMG-gC-eYI" firstAttribute="centerY" secondItem="ABt-dg-dN6" secondAttribute="centerY" id="Fki-Av-OII"/>
+                                    <constraint firstItem="KMG-gC-eYI" firstAttribute="centerX" secondItem="ABt-dg-dN6" secondAttribute="centerX" id="Ilu-NC-PAv"/>
                                     <constraint firstItem="hyJ-DN-Ex3" firstAttribute="centerX" secondItem="Zyx-IF-og9" secondAttribute="centerX" id="L7t-dD-ik5"/>
-                                    <constraint firstItem="Zyx-IF-og9" firstAttribute="centerX" secondItem="xdG-C8-AHZ" secondAttribute="centerX" id="MEp-9f-EV3"/>
                                     <constraint firstAttribute="trailing" secondItem="pDB-5c-6OU" secondAttribute="trailing" constant="10" id="Tvs-Zn-EZF"/>
                                     <constraint firstAttribute="bottom" secondItem="Zyx-IF-og9" secondAttribute="bottom" id="Voa-WC-tQt"/>
                                     <constraint firstAttribute="bottom" secondItem="pDB-5c-6OU" secondAttribute="bottom" constant="20" id="Wuf-Vf-N0R"/>
                                     <constraint firstAttribute="bottom" secondItem="hyJ-DN-Ex3" secondAttribute="bottom" constant="-12" id="bMm-bV-sjR"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="14" id="gC8-pn-qzv"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="leading" secondItem="xdG-C8-AHZ" secondAttribute="leading" constant="10" id="khE-5L-4Kp"/>
+                                    <constraint firstItem="hyJ-DN-Ex3" firstAttribute="height" secondItem="KMG-gC-eYI" secondAttribute="height" id="nr7-ng-JBO"/>
                                     <constraint firstItem="pDB-5c-6OU" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="14" id="pkn-jU-t6t"/>
                                     <constraint firstItem="pDB-5c-6OU" firstAttribute="leading" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="17" id="r4c-DH-Cq2"/>
                                     <constraint firstItem="hyJ-DN-Ex3" firstAttribute="centerY" secondItem="Zyx-IF-og9" secondAttribute="centerY" id="r5O-e0-oYW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zyx-IF-og9" secondAttribute="trailing" constant="85" id="zSl-bp-OFN"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1H-al-o2r">
-                                <rect key="frame" x="0.0" y="0.0" width="347" height="132"/>
+                                <rect key="frame" x="0.0" y="0.0" width="347" height="133"/>
                                 <connections>
                                     <action selector="entireCardButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Uei-mn-kGT"/>
                                 </connections>
@@ -139,6 +161,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="editIcon" width="28" height="28"/>
         <image name="shareIcon" width="139" height="193"/>
     </resources>
 </document>
