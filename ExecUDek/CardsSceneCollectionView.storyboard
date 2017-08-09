@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYA-OX-WhK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYA-OX-WhK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -37,7 +37,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3q9-Wl-zof">
-                                        <rect key="frame" x="39" y="16" width="298" height="161"/>
+                                        <rect key="frame" x="38.5" y="16" width="298" height="161"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="298" height="161"/>
@@ -51,6 +51,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ilN-BY-8MX" firstAttribute="leading" secondItem="z7M-yE-WXN" secondAttribute="leading" id="4n8-K3-2sf"/>
                             <constraint firstItem="z7M-yE-WXN" firstAttribute="leading" secondItem="ewq-yN-V4o" secondAttribute="leading" id="Iab-C7-VLt"/>
@@ -61,12 +62,15 @@
                             <constraint firstItem="ilN-BY-8MX" firstAttribute="trailing" secondItem="z7M-yE-WXN" secondAttribute="trailing" id="jpu-7Z-kl9"/>
                             <constraint firstItem="THK-hY-ReU" firstAttribute="top" secondItem="z7M-yE-WXN" secondAttribute="bottom" id="xOc-AE-9JW"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="WdM-dw-Pjc" appends="YES" id="E9y-An-w2O"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Wallet" id="PdI-NL-uJZ">
                         <barButtonItem key="leftBarButtonItem" image="profileIcon4" id="p8K-9s-asx">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="jSH-yE-W7Y" kind="presentation" id="pNg-HB-WJW"/>
+                                <segue destination="jSH-yE-W7Y" kind="show" identifier="toMyCards" id="pNg-HB-WJW"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -89,6 +93,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceX-oV-VUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="WdM-dw-Pjc"/>
             </objects>
             <point key="canvasLocation" x="1116" y="118.29085457271366"/>
         </scene>
@@ -106,12 +111,12 @@
                 <viewControllerPlaceholder storyboardName="UserProfileCollection" id="jSH-yE-W7Y" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GT6-CG-8yo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1762" y="133"/>
+            <point key="canvasLocation" x="50" y="559"/>
         </scene>
         <!--Custom Navigation Controller-->
         <scene sceneID="x1S-5d-TFb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QYA-OX-WhK" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CustomNavController" automaticallyAdjustsScrollViewInsets="NO" id="QYA-OX-WhK" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q0Q-hK-Fkh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -124,7 +129,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZ9-pb-PX2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="176.80000000000001" y="118.29085457271366"/>
+            <point key="canvasLocation" x="1116" y="-678"/>
         </scene>
     </scenes>
     <resources>
