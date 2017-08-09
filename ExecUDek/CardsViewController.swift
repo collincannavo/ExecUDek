@@ -199,14 +199,24 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     func fetchCards() {
         guard refreshControl.isRefreshing else { return }
         
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
+        activityIndicator.startAnimating()
+        
+        ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        
         CloudKitContoller.shared.fetchCurrentUser { (success, currentPerson) in
             if success && (currentPerson != nil) {
                 CardController.shared.fetchReceivedCards { (success) in
                     if success {
                         DispatchQueue.main.async {
                             self.refresh()
-                            if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
                         }
+                    }
+                    DispatchQueue.main.async {                        
+                        activityIndicator.stopAnimating()
+                        ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+                        if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
                     }
                 }
                 

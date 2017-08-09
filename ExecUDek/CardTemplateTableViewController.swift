@@ -147,7 +147,19 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         guard let card = card, let person = PersonController.shared.currentPerson else { return }
         
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
+        activityIndicator.startAnimating()
+        
+        ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        
         PersonController.shared.deleteCard(card, from: person) { (success) in
+            
+            DispatchQueue.main.async {
+                activityIndicator.stopAnimating()
+                ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+            }
+            
             if success {
                 self.dismiss(animated: true, completion: nil)
             } else {
@@ -251,6 +263,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         guard let name = nameTextField.text else { return }
         
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
+        activityIndicator.startAnimating()
+        
+        ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        
         let title = titleTextField.text
         let cell = cellTextField.text
         let email = emailTextField.text
@@ -264,6 +282,11 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         case (true, true):
             CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
             
+                DispatchQueue.main.async {
+                    activityIndicator.stopAnimating()
+                    ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+                }
+                
                 if success {
                     completion(true)
                 } else {
@@ -272,6 +295,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             }
         case (false, true):
             CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+                
+                DispatchQueue.main.async {
+                    activityIndicator.stopAnimating()
+                    ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+                }
+                
                 if success {
                     completion(true)
                 } else {
@@ -283,6 +312,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             guard let card = card else { return }
             
             CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+                
+                DispatchQueue.main.async {
+                    activityIndicator.stopAnimating()
+                    ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+                }
+                
                 if success {
                     completion(true)
                 } else {
