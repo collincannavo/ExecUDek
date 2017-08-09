@@ -53,6 +53,8 @@
 		B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */; };
 		B6E23C1E1F3A4929006CBBE6 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6E23C1D1F3A4929006CBBE6 /* OnBoarding.storyboard */; };
 		B6E23C201F3A4AAA006CBBE6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C1F1F3A4AAA006CBBE6 /* OnboardingViewController.swift */; };
+		B6E23C221F3B51C8006CBBE6 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C211F3B51C8006CBBE6 /* LaunchScreenViewController.swift */; };
+		B6E23C241F3B52CD006CBBE6 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C211F3B51C8006CBBE6 /* LaunchScreenViewController.swift */; };
 		CA641DA81F34DAAC003D9B0D /* CardReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641DA71F34DAAB003D9B0D /* CardReceived.swift */; };
 		CA641DAA1F34DD92003D9B0D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641DA91F34DD92003D9B0D /* Button.swift */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
@@ -154,6 +156,7 @@
 		B6A28A9F1F2925C000786B97 /* MultiPeerConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPeerConnectivity.swift; sourceTree = "<group>"; };
 		B6E23C1D1F3A4929006CBBE6 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
 		B6E23C1F1F3A4AAA006CBBE6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		B6E23C211F3B51C8006CBBE6 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		CA641DA71F34DAAB003D9B0D /* CardReceived.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardReceived.swift; sourceTree = "<group>"; };
 		CA641DA91F34DD92003D9B0D /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTemplateTableViewController.swift; sourceTree = "<group>"; };
@@ -409,6 +412,7 @@
 				18DD51E01F38DA2F00F6EA7C /* CustomNavigationController.swift */,
 				18B5538D1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift */,
 				18934C851F3A9A1600DB7081 /* UserProfileCollection+animations.swift */,
+				B6E23C211F3B51C8006CBBE6 /* LaunchScreenViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -620,6 +624,7 @@
 				18B9C6B71F2D2CF500F7BB03 /* Person.swift in Sources */,
 				18ED1F111F30F0BF00F67DB6 /* MessageController.swift in Sources */,
 				1881BC041F2D028D0070C1F4 /* Card.swift in Sources */,
+				B6E23C241F3B52CD006CBBE6 /* LaunchScreenViewController.swift in Sources */,
 				187EC0A21F2EBBA400F326E3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,6 +637,7 @@
 				188838F11F39289700059D60 /* MultipeerController.swift in Sources */,
 				B6A28A6A1F27DF4300786B97 /* ExecUDek.xcdatamodeld in Sources */,
 				188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */,
+				B6E23C221F3B51C8006CBBE6 /* LaunchScreenViewController.swift in Sources */,
 				F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */,
 				188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */,
 				18934C861F3A9A1600DB7081 /* UserProfileCollection+animations.swift in Sources */,

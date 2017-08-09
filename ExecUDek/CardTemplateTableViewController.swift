@@ -72,6 +72,48 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func addToContactsTapped(_ sender: UIButton) {
+            let store = CNContactStore()
+            let newContact = CNMutableContact()
+            if let name = nameTextField.text {
+                newContact.givenName = name
+            }
+            if let cell = cellTextField.text {
+                let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue:cell))
+                newContact.phoneNumbers = [phone]
+            }
+            if let title = titleTextField.text {
+                newContact.jobTitle = title
+            }
+            if let company = websiteTextField.text {
+                newContact.organizationName = company
+            }
+            if let workAddress = addressTextField.text {
+                let address = CNMutablePostalAddress()
+                address.street = workAddress
+            }
+            if let email = emailTextField.text {
+                let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
+                newContact.emailAddresses = [workEmail]
+            }
+            if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
+                newContact.imageData = imageData
+            }
+            newContact.note = "ExecUDek App Business Card"
+            
+            let request = CNSaveRequest()
+            request.add(newContact, toContainerWithIdentifier: nil)
+            do {
+                try store.execute(request)
+                guard let name = nameTextField.text else {return}
+                let alert = UIAlertController(title: "ExecUDek", message: "\(name) Contact has been created", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+            } catch let error{
+                print(error)
+            }
+    }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let email = emailTextField.text, !email.isEmpty else {
             if emailTextField.text == "" {

@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         } else {
                             
+                            
+                            
                         }
                     })
                     CardController.shared.fetchReceivedCards(with: { (success) in

@@ -32,6 +32,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserProfile" translatesAutoresizingMaskIntoConstraints="NO" id="E4U-AO-NpM">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="jJV-8U-ifh">
+                                <rect key="frame" x="272" y="65" width="57" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This button allows you to send your business card to someone in close proximity to you" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wg-DV-Xd2">
+                                <rect key="frame" x="191" y="165" width="184" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.27058823529999998" green="0.4591413909" blue="0.77203839870000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -44,12 +56,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmn-h1-CfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="109"/>
+            <point key="canvasLocation" x="1840.8" y="108.39580209895054"/>
         </scene>
-        <!--View Controller-->
+        <!--Onboarding View Controller-->
         <scene sceneID="Eea-8p-buS">
             <objects>
-                <viewController storyboardIdentifier="page1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pnk-7O-GWy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="page1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pnk-7O-GWy" customClass="OnboardingViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UYp-yN-5lI"/>
                         <viewControllerLayoutGuide type="bottom" id="HJ0-QS-BSB"/>
@@ -62,9 +74,36 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="fBK-0j-7eJ">
+                                <rect key="frame" x="0.0" y="61" width="57" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-gI-f2R">
+                                <rect key="frame" x="318" y="52" width="57" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click here to add more business cards, either to your own collection or manually add an existing card from someone else" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgA-hN-jIa">
+                                <rect key="frame" x="185" y="161" width="184" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.27058823529999998" green="0.4591413909" blue="0.77203839870000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click here to access your own business cards" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUR-5T-e4M">
+                                <rect key="frame" x="0.0" y="161" width="122" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.27058823529411763" green="0.45914139093137252" blue="0.77203839869281043" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="arrow" destination="fBK-0j-7eJ" id="Pfo-xP-E9e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5g-n5-aeh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,17 +120,89 @@
                     <view key="view" contentMode="scaleToFill" id="8ki-Qz-6v4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CardTemplate" translatesAutoresizingMaskIntoConstraints="NO" id="b5b-Sw-Yw9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="i8b-on-Cgs">
+                                <rect key="frame" x="90" y="170" width="57" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xe-Ag-KnU">
+                                <rect key="frame" x="26" y="287" width="184" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.27058823529999998" green="0.4591413909" blue="0.77203839870000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">For best quality, make sure your business logo is a PNG format and 130 width and 100 height. A photo that looks like this "photo.jpg" or "photo.jpeg" will give you a white background. </string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="b5b-Sw-Yw9" secondAttribute="trailing" id="1p9-Wt-Tup"/>
+                            <constraint firstItem="9xN-et-RwM" firstAttribute="top" secondItem="b5b-Sw-Yw9" secondAttribute="bottom" id="FU6-ly-O7L"/>
+                            <constraint firstItem="b5b-Sw-Yw9" firstAttribute="top" secondItem="h0F-ma-7Ct" secondAttribute="bottom" constant="-20" id="vWa-ZV-xpu"/>
+                            <constraint firstItem="b5b-Sw-Yw9" firstAttribute="leading" secondItem="8ki-Qz-6v4" secondAttribute="leading" id="wac-05-vBJ"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZA-cc-Gx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2695" y="110"/>
+            <point key="canvasLocation" x="2693.5999999999999" y="109.29535232383809"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="DqT-F4-4X4">
+            <objects>
+                <viewController storyboardIdentifier="page4" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gOF-Sg-scO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zfO-kD-kZm"/>
+                        <viewControllerLayoutGuide type="bottom" id="pzS-pZ-aG5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ssA-y7-wE7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Wallet" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-7C-2Mw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzf-Ym-dDt">
+                                <rect key="frame" x="16" y="444" width="343" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0050816729404496008" blue="0.52639197335025378" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <state key="normal" title="I'm Ready To Go!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="yFU-aG-jTF" kind="presentation" id="WNb-6q-b47"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rZg-yg-lbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wallet" id="jtE-D6-BWS">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </objects>
+            <point key="canvasLocation" x="3520.8000000000002" y="111.99400299850076"/>
+        </scene>
+        <!--CardsSceneCollectionView-->
+        <scene sceneID="nGE-lW-jRH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CardsSceneCollectionView" id="yFU-aG-jTF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0hg-1Y-2LL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4169" y="173"/>
+        </scene>
+        <!--Launch Screen View Controller-->
         <scene sceneID="ZeZ-kC-Fet">
             <objects>
-                <viewController id="16y-YG-f8u" sceneMemberID="viewController">
+                <viewController id="16y-YG-f8u" customClass="LaunchScreenViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pHI-s1-lZg"/>
                         <viewControllerLayoutGuide type="bottom" id="tOx-HM-7Yw"/>
@@ -131,6 +242,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Arrow" width="191" height="382"/>
+        <image name="CardTemplate" width="1835" height="3242"/>
         <image name="LogoFinal" width="833" height="1209"/>
         <image name="UserProfile" width="374" height="665"/>
         <image name="Wallet" width="1435" height="2551"/>
