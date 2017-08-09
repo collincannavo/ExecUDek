@@ -169,7 +169,6 @@
                     </view>
                     <connections>
                         <outlet property="addArrow" destination="dSb-gI-f2R" id="QJw-IZ-zfz"/>
-                        <outlet property="arrow" destination="fBK-0j-7eJ" id="Pfo-xP-E9e"/>
                         <outlet property="profileArrow" destination="fBK-0j-7eJ" id="r1c-5x-Glc"/>
                     </connections>
                 </viewController>
