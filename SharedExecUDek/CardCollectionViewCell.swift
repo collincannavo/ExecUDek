@@ -78,9 +78,9 @@ public class CardCollectionViewCell: UICollectionViewCell {
         guard let card = card else { return }
         
         nameLabel.text = card.name
-        titleLabel.text = card.title
-        cellLabel.text = card.cell
-        emailLabel.text = card.email
+        titleLabel.text = card.title ?? ""
+        cellLabel.text = card.cell ?? ""
+        emailLabel.text = card.email ?? ""
         
         if let data = card.logoData,
             let image = UIImage(data: data) {
