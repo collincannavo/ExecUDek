@@ -194,18 +194,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     // MARK: UITextfieldDelegate
-<<<<<<< HEAD
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        nameTextField.resignFirstResponder()
-//        cellTextField.resignFirstResponder()
-//        titleTextField.resignFirstResponder()
-//        emailTextField.resignFirstResponder()
-//        return true
-//    }
-    
-=======
->>>>>>> NiceNewTouches
     func textFieldDidEndEditing(_ textField: UITextField) {
         // Text
         guard let name = nameTextField.text, !name.isEmpty,
