@@ -26,6 +26,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
 
     // TableView TextFields
+    @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var cellTextField: UITextField!
@@ -60,6 +61,10 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UIApplication.shared.statusBarStyle = .lightContent
+        cardHeaderView.layer.shadowOpacity = 1.0
+        cardHeaderView.layer.shadowRadius = 4
+        cardHeaderView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        cardHeaderView.layer.shadowColor = UIColor.black.cgColor
         
     }
     

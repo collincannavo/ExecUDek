@@ -25,9 +25,9 @@
                                 <rect key="frame" x="24" y="13" width="300" height="151"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-Ft-owW">
-                                        <rect key="frame" x="10" y="20" width="90" height="90"/>
+                                        <rect key="frame" x="10" y="14" width="133" height="103"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="H20-uf-RSM"/>
+                                            <constraint firstAttribute="width" constant="133" id="H20-uf-RSM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <state key="normal" title="Add Company Logo"/>
@@ -83,17 +83,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="jqp-Ft-owW" secondAttribute="bottom" constant="41" id="0Gw-Sv-wd6"/>
+                                    <constraint firstAttribute="bottom" secondItem="jqp-Ft-owW" secondAttribute="bottom" constant="34" id="0Gw-Sv-wd6"/>
                                     <constraint firstItem="hyJ-DN-Ex3" firstAttribute="centerX" secondItem="Zyx-IF-og9" secondAttribute="centerX" id="L7t-dD-ik5"/>
                                     <constraint firstItem="Zyx-IF-og9" firstAttribute="centerX" secondItem="xdG-C8-AHZ" secondAttribute="centerX" id="MEp-9f-EV3"/>
                                     <constraint firstAttribute="trailing" secondItem="pDB-5c-6OU" secondAttribute="trailing" constant="10" id="Tvs-Zn-EZF"/>
                                     <constraint firstAttribute="bottom" secondItem="Zyx-IF-og9" secondAttribute="bottom" id="Voa-WC-tQt"/>
                                     <constraint firstAttribute="bottom" secondItem="pDB-5c-6OU" secondAttribute="bottom" constant="20" id="Wuf-Vf-N0R"/>
                                     <constraint firstAttribute="bottom" secondItem="hyJ-DN-Ex3" secondAttribute="bottom" constant="-12" id="bMm-bV-sjR"/>
-                                    <constraint firstItem="jqp-Ft-owW" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="20" id="gC8-pn-qzv"/>
+                                    <constraint firstItem="jqp-Ft-owW" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="14" id="gC8-pn-qzv"/>
                                     <constraint firstItem="jqp-Ft-owW" firstAttribute="leading" secondItem="xdG-C8-AHZ" secondAttribute="leading" constant="10" id="khE-5L-4Kp"/>
                                     <constraint firstItem="pDB-5c-6OU" firstAttribute="top" secondItem="xdG-C8-AHZ" secondAttribute="top" constant="14" id="pkn-jU-t6t"/>
-                                    <constraint firstItem="pDB-5c-6OU" firstAttribute="leading" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="60" id="r4c-DH-Cq2"/>
+                                    <constraint firstItem="pDB-5c-6OU" firstAttribute="leading" secondItem="jqp-Ft-owW" secondAttribute="trailing" constant="17" id="r4c-DH-Cq2"/>
                                     <constraint firstItem="hyJ-DN-Ex3" firstAttribute="centerY" secondItem="Zyx-IF-og9" secondAttribute="centerY" id="r5O-e0-oYW"/>
                                 </constraints>
                             </view>
