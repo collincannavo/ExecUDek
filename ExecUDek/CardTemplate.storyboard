@@ -321,7 +321,6 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="addToContactsTapped:" destination="b4I-kL-vHe" eventType="touchUpInside" id="6he-4E-bNn"/>
-                                                        <action selector="deleteButtonTapped:" destination="b4I-kL-vHe" eventType="touchUpInside" id="YQ9-yl-fth"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v47-hg-aoJ">
