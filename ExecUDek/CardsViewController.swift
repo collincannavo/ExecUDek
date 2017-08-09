@@ -29,7 +29,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
         customNavigationController.confirmChangeOfMultipeer()
     }
-
+    
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -47,17 +47,25 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         collectionView.register(cardXIB, forCellWithReuseIdentifier: "collectionCardCell")
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
-
+        
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UIApplication.shared.statusBarStyle = .lightContent
-       
+        
         
         guard let array = PersonController.shared.currentPerson?.cards else { return }
         filteredCardsArray = array
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
         
     }
     
@@ -183,10 +191,10 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         
     }
     
-//    func collectionViewBackgroundColor() {
-//        self.collectionView.backgroundColor = UIColor.lightGray
-//        
-//    }
+    //    func collectionViewBackgroundColor() {
+    //        self.collectionView.backgroundColor = UIColor.lightGray
+    //
+    //    }
     
     func fetchCards() {
         guard refreshControl.isRefreshing else { return }
@@ -224,4 +232,13 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     let appRed = UIColor(red: 251/255, green: 100/255, blue: 112/255, alpha: 1)
     let appOrange = UIColor(red: 251/255, green: 191/255, blue: 88/255, alpha: 1)
     
+    func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizerDirection.right {
+            print("Swipe Right")
+            self.performSegue(withIdentifier: "toMyCards", sender: self)
+        } else if gesture.direction == UISwipeGestureRecognizerDirection.left {
+            print("Swipe left")
+            self.performSegue(withIdentifier: "addCardFromMain", sender: self)
+        }
+    }
 }
