@@ -10,7 +10,7 @@ import UIKit
 import SharedExecUDek
 import NotificationCenter
 
-class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ActionSheetDelegate {
     
     var filteredCardsArray: [Card] = []
     
@@ -95,14 +95,14 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
             
         }
         
-        cell.hideShareButton()
-        cell.hideShareImage()
         cell.disablePhotoButton()
         
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
         
         collectionView.bringSubview(toFront: cell)
+        
+        cell.actionSheetDelegate = self
         
         return cell
     }
@@ -120,15 +120,30 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
         
         if let card = cell.card {
             selectedCard = card
             
-            performSegue(withIdentifier: "editCardFromMain", sender: nil)
+            if cell.isCurrentlyFocused {
+                returnCard(card, cell: cell, to: collectionView)
+            } else {
+                guard collectionView.numberOfItems(inSection: 0) > 1,
+                    let indexPath = collectionView.indexPath(for: cell),
+                    indexPath.row < (collectionView.numberOfItems(inSection: 0) - 1) else { return }
+                popCard(card, cell: cell, from: collectionView)
+            }
         }
-        
+    }
+    
+    // Card cell action sheet delegate
+    func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell) {}
+    
+    func cardCellEditButtonWasTapped(cell: CardCollectionViewCell) {
+        selectedCard = cell.card
+        cell.isCurrentlyFocused = false
+        enableInteractionInVisibleCells(for: collectionView)
+        performSegue(withIdentifier: "editCardFromMain", sender: nil)
     }
     
     // MARK: - Navigation

@@ -82,6 +82,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Y33-wq-iao" id="geO-Pr-atm"/>
+                        <segue destination="uLA-cr-IvU" kind="presentation" identifier="editCardFromUser" id="SpU-ao-PUJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4d-XN-b4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -120,4 +121,7 @@
         <image name="antenna1" width="24" height="24"/>
         <image name="skylineDarkened" width="833" height="1209"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="SpU-ao-PUJ"/>
+    </inferredMetricsTieBreakers>
 </document>

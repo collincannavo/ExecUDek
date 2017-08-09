@@ -17,7 +17,6 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
     @IBOutlet weak var collectionView: UICollectionView!
 
     let overlap: CGFloat = -120.0
-    var card = CardCollectionViewCell()
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -33,15 +32,13 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         if let card = cell.card {
             selectedCard = card
             
-            //performSegue(withIdentifier: "editCardFromUser", sender: nil)
-            
             if cell.isCurrentlyFocused {
-                returnCard(card, cell: cell)
+                returnCard(card, cell: cell, to: collectionView)
             } else {
                 guard collectionView.numberOfItems(inSection: 0) > 1,
                     let indexPath = collectionView.indexPath(for: cell),
                     indexPath.row < (collectionView.numberOfItems(inSection: 0) - 1) else { return }
-                popCard(card, cell: cell)
+                popCard(card, cell: cell, from: collectionView)
             }
         }
     }
@@ -181,6 +178,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         collectionView.reloadData()
     }
     
+    // MARK: Card cell action sheet delegate
+    
     func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell) {
         
         let alertController = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
@@ -220,6 +219,13 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         alertController.addAction(emailButton)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func cardCellEditButtonWasTapped(cell: CardCollectionViewCell) {
+        selectedCard = cell.card
+        cell.isCurrentlyFocused = false
+        enableInteractionInVisibleCells(for: collectionView)
+        performSegue(withIdentifier: "editCardFromUser", sender: nil)
     }
     
     func presentSMSUnavailableAlert() {
@@ -275,65 +281,6 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             customCell.changeBackgroundToRed()
         } else if indexPath.row % 3 == 2 {
             customCell.changeBackgroundToOrange()
-        }
-    }
-    
-    func popCard(_ card: Card, cell: CardCollectionViewCell) {
-        yPositionAnimation(for: cell, withTranslation: -0.5 * cell.frame.size.height, duration: 0.3, startingTransform: CATransform3DIdentity) { (_) in
-            self.bringForwardAnimation(for: cell, withScale: 1.08, zPosition: 1.0, duration: 0.2, shadowRadius: 15.0, shadowOpacity: 0.7, completion: { (_) in
-                self.yPositionAnimation(for: cell,
-                                        withTranslation: 0.5 * cell.frame.size.height,
-                                        duration: 0.3,
-                                        startingTransform: cell.layer.transform,
-                                        completion: { (_) in
-                                            
-                                            self.collectionView.visibleCells.forEach({ (cell) in
-                                                if let cardCell = cell as? CardCollectionViewCell {
-                                                    cardCell.isUserInteractionEnabled = false
-                                                }
-                                            })
-                                            
-                                            cell.isCurrentlyFocused = true
-                                            cell.isUserInteractionEnabled = true
-                                            self.collectionView.bringSubview(toFront: cell)
-                                            cell.shareButton.layer.transform = cell.layer.transform
-                                            cell.bringSubview(toFront: cell.shareButton)
-                                            
-                                            if let indexPath = self.collectionView.indexPath(for: cell) {
-                                                cell.returnIndex = indexPath.row
-                                            }
-                                            
-                })
-            })
-        }
-    }
-    
-    func returnCard(_ card: Card, cell: CardCollectionViewCell) {
-        if let returnIndex = cell.returnIndex {
-            for i in returnIndex...self.collectionView.numberOfItems(inSection: 0) {
-                let indexPath = IndexPath(row: i, section: 0)
-                guard let newTopCell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { continue }
-                collectionView.bringSubview(toFront: newTopCell)
-            }
-        }
-        
-        yPositionAnimation(for: cell, withTranslation: -0.5 * cell.frame.size.height, duration: 0.3, startingTransform: cell.layer.transform) { (_) in
-            self.bringForwardAnimation(for: cell, withScale: 1 / 1.08, zPosition: -1.0, duration: 0.2, shadowRadius: 0.0, shadowOpacity: 0.0, completion: { (_) in
-                self.yPositionAnimation(for: cell,
-                                        withTranslation: 0.5 * cell.frame.size.height,
-                                        duration: 0.3,
-                                        startingTransform: cell.layer.transform,
-                                        completion: { (_) in
-                                            
-                                            self.collectionView.visibleCells.forEach({ (cell) in
-                                                if let cardCell = cell as? CardCollectionViewCell {
-                                                    cardCell.isUserInteractionEnabled = true
-                                                }
-                                            })
-                                            
-                                            cell.isCurrentlyFocused = false
-                })
-            })
         }
     }
 }
