@@ -103,7 +103,7 @@ public class CloudKitContoller {
                 
                 if let error = error { print(error.localizedDescription); completion(false); return }
                 
-                self.currentUser = user
+                PersonController.shared.currentPerson = user
                 
                 completion(true)
             })
