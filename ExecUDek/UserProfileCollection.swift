@@ -63,6 +63,10 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         UIApplication.shared.statusBarStyle = .lightContent
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -281,6 +285,13 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             customCell.changeBackgroundToRed()
         } else if indexPath.row % 3 == 2 {
             customCell.changeBackgroundToOrange()
+        }
+    }
+    
+    func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizerDirection.left {
+            print("Swipe left")
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
