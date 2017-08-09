@@ -12,10 +12,10 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileCollectionViewController: MultipeerEnabledViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
+class UserProfileCollectionViewController: MultipeerEnabledViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate, PhotoSelctorCellDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     let overlap: CGFloat = -120.0
     var card = CardCollectionViewCell()
     
@@ -26,16 +26,14 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
         customNavigationController.confirmChangeOfMultipeer()
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
         guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
         
         if let card = cell.card {
             selectedCard = card
             
-            performSegue(withIdentifier: "editCardFromUser", sender: nil)
+            //performSegue(withIdentifier: "editCardFromUser", sender: nil)
         }
     }
     
@@ -134,6 +132,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
         collectionView.bringSubview(toFront: cell)
         
+        cell.delegate = self
+        cell.enableEntireCardButton()
         cell.actionSheetDelegate = self
         
         return cell
@@ -270,8 +270,80 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         }
     }
     
+    func popCard(_ card: Card, cell: CardCollectionViewCell) {
+        yPositionAnimation(for: cell, withTranslation: -0.5 * cell.frame.size.height, duration: 0.3, startingTransform: CATransform3DIdentity) { (_) in
+            self.bringForwardAnimation(for: cell, withScale: 1.08, zPosition: 1.0, duration: 0.2, shadowRadius: 15.0, shadowOpacity: 0.7, completion: { (_) in
+                self.yPositionAnimation(for: cell,
+                                        withTranslation: 0.5 * cell.frame.size.height,
+                                        duration: 0.3,
+                                        startingTransform: cell.layer.transform,
+                                        completion: { (_) in
+                                            
+                                            self.collectionView.visibleCells.forEach({ (cell) in
+                                                if let cardCell = cell as? CardCollectionViewCell {
+                                                    cardCell.disableEntireCardButton()
+                                                }
+                                            })
+                                            
+                                            cell.isCurrentlyFocused = true
+                                            cell.enableEntireCardButton()
+                                            self.collectionView.bringSubview(toFront: cell)
+                                            cell.shareButton.layer.transform = cell.layer.transform
+                                            cell.bringSubview(toFront: cell.shareButton)
+                                            
+                                            if let indexPath = self.collectionView.indexPath(for: cell) {
+                                                cell.returnIndex = indexPath.row
+                                            }
+                                            
+                })
+            })
+        }
+    }
+    
+    func returnCard(_ card: Card, cell: CardCollectionViewCell) {
+        if let returnIndex = cell.returnIndex {
+            for i in returnIndex...self.collectionView.numberOfItems(inSection: 0) {
+                let indexPath = IndexPath(row: i, section: 0)
+                guard let newTopCell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { continue }
+                collectionView.bringSubview(toFront: newTopCell)
+            }
+        }
+        
+        yPositionAnimation(for: cell, withTranslation: -0.5 * cell.frame.size.height, duration: 0.3, startingTransform: cell.layer.transform) { (_) in
+            self.bringForwardAnimation(for: cell, withScale: 1 / 1.08, zPosition: -1.0, duration: 0.2, shadowRadius: 0.0, shadowOpacity: 0.0, completion: { (_) in
+                self.yPositionAnimation(for: cell,
+                                        withTranslation: 0.5 * cell.frame.size.height,
+                                        duration: 0.3,
+                                        startingTransform: cell.layer.transform,
+                                        completion: { (_) in
+                                            
+                                            self.collectionView.visibleCells.forEach({ (cell) in
+                                                if let cardCell = cell as? CardCollectionViewCell {
+                                                    cardCell.enableEntireCardButton()
+                                                }
+                                            })
+                                            
+                                            cell.isCurrentlyFocused = false
+                })
+            })
+        }
+    }
+    
 //    func tableViewBackgroundColor() {
 //        self.collectionView.backgroundColor = UIColor.lightGray
 //    }
 
+}
+
+extension UserProfileCollectionViewController {
+    func entireCardWasTapped(card: Card, cell: CardCollectionViewCell) {
+        if cell.isCurrentlyFocused {
+            returnCard(card, cell: cell)
+        } else {
+            guard collectionView.numberOfItems(inSection: 0) > 1,
+                let indexPath = collectionView.indexPath(for: cell),
+                indexPath.row < (collectionView.numberOfItems(inSection: 0) - 1) else { return }
+            popCard(card, cell: cell)
+        }
+    }
 }

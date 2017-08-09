@@ -17,6 +17,8 @@ public class CardCollectionViewCell: UICollectionViewCell {
     }
     
     public var card: Card?
+    public var isCurrentlyFocused = false
+    public var returnIndex: Int?
     
     @IBOutlet public weak var photoButton: UIButton!
     @IBOutlet public weak var nameLabel: UILabel!
@@ -100,6 +102,10 @@ public class CardCollectionViewCell: UICollectionViewCell {
     
     public func enableEntireCardButton() {
         entireCardButton.isEnabled = true
+    }
+    
+    public func disableEntireCardButton() {
+        entireCardButton.isEnabled = false
     }
     
     public func hideShareButton() {

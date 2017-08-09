@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -98,7 +98,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1H-al-o2r">
-                                <rect key="frame" x="0.0" y="0.0" width="347" height="180"/>
+                                <rect key="frame" x="0.0" y="0.0" width="347" height="132"/>
                                 <connections>
                                     <action selector="entireCardButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Uei-mn-kGT"/>
                                 </connections>
@@ -106,12 +106,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hyJ-DN-Ex3" firstAttribute="top" secondItem="O1H-al-o2r" secondAttribute="bottom" id="7bd-2o-5lX"/>
                             <constraint firstAttribute="trailing" secondItem="O1H-al-o2r" secondAttribute="trailing" id="JDA-cW-eeT"/>
                             <constraint firstItem="O1H-al-o2r" firstAttribute="leading" secondItem="KSr-5B-XEh" secondAttribute="leading" id="KJe-2d-HYO"/>
                             <constraint firstItem="xdG-C8-AHZ" firstAttribute="top" secondItem="KSr-5B-XEh" secondAttribute="top" constant="13" id="Q4i-YP-dbw"/>
                             <constraint firstItem="xdG-C8-AHZ" firstAttribute="leading" secondItem="KSr-5B-XEh" secondAttribute="leading" constant="24" id="YAB-mE-swI"/>
                             <constraint firstItem="O1H-al-o2r" firstAttribute="top" secondItem="KSr-5B-XEh" secondAttribute="top" id="fS7-WL-GDd"/>
-                            <constraint firstAttribute="bottom" secondItem="O1H-al-o2r" secondAttribute="bottom" id="hkF-Ax-Mch"/>
                             <constraint firstAttribute="bottom" secondItem="xdG-C8-AHZ" secondAttribute="bottom" constant="16" id="nYV-Jq-oZS"/>
                             <constraint firstItem="O1H-al-o2r" firstAttribute="centerX" secondItem="xdG-C8-AHZ" secondAttribute="centerX" id="xfC-wa-fnc"/>
                         </constraints>
