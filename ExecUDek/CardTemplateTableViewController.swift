@@ -20,6 +20,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         cellTextField.delegate = self
         emailTextField.delegate = self
         officeNumberTextField.delegate = self
+        addressTextField.delegate = self
+        cityTextField.delegate = self
         updateViews()
         setupCardDisplay()
         navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
@@ -194,14 +196,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     // MARK: UITextfieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        nameTextField.resignFirstResponder()
-        cellTextField.resignFirstResponder()
-        titleTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        nameTextField.resignFirstResponder()
+//        cellTextField.resignFirstResponder()
+//        titleTextField.resignFirstResponder()
+//        emailTextField.resignFirstResponder()
+//        return true
+//    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         // Text
