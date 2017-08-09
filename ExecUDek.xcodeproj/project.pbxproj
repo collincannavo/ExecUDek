@@ -55,6 +55,8 @@
 		B6E23C201F3A4AAA006CBBE6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C1F1F3A4AAA006CBBE6 /* OnboardingViewController.swift */; };
 		B6E23C221F3B51C8006CBBE6 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C211F3B51C8006CBBE6 /* LaunchScreenViewController.swift */; };
 		B6E23C241F3B52CD006CBBE6 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C211F3B51C8006CBBE6 /* LaunchScreenViewController.swift */; };
+		B6E23C4D1F3B77C0006CBBE6 /* OnboardingPage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C4C1F3B77C0006CBBE6 /* OnboardingPage2ViewController.swift */; };
+		B6E23C4F1F3B7954006CBBE6 /* OnboardingPage3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E23C4E1F3B7954006CBBE6 /* OnboardingPage3ViewController.swift */; };
 		CA641DA81F34DAAC003D9B0D /* CardReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641DA71F34DAAB003D9B0D /* CardReceived.swift */; };
 		CA641DAA1F34DD92003D9B0D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA641DA91F34DD92003D9B0D /* Button.swift */; };
 		F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */; };
@@ -157,6 +159,8 @@
 		B6E23C1D1F3A4929006CBBE6 /* OnBoarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoarding.storyboard; sourceTree = "<group>"; };
 		B6E23C1F1F3A4AAA006CBBE6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B6E23C211F3B51C8006CBBE6 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		B6E23C4C1F3B77C0006CBBE6 /* OnboardingPage2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage2ViewController.swift; sourceTree = "<group>"; };
+		B6E23C4E1F3B7954006CBBE6 /* OnboardingPage3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPage3ViewController.swift; sourceTree = "<group>"; };
 		CA641DA71F34DAAB003D9B0D /* CardReceived.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardReceived.swift; sourceTree = "<group>"; };
 		CA641DA91F34DD92003D9B0D /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTemplateTableViewController.swift; sourceTree = "<group>"; };
@@ -402,6 +406,8 @@
 		B6A28A9D1F290D8900786B97 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B6E23C4E1F3B7954006CBBE6 /* OnboardingPage3ViewController.swift */,
+				B6E23C4C1F3B77C0006CBBE6 /* OnboardingPage2ViewController.swift */,
 				B6E23C1F1F3A4AAA006CBBE6 /* OnboardingViewController.swift */,
 				F003898A1F28FEED00CBEDCF /* CardTemplateTableViewController.swift */,
 				188F23241F2914F7007B9F20 /* CardsViewController.swift */,
@@ -637,10 +643,12 @@
 				188838F11F39289700059D60 /* MultipeerController.swift in Sources */,
 				B6A28A6A1F27DF4300786B97 /* ExecUDek.xcdatamodeld in Sources */,
 				188F23251F2914F7007B9F20 /* CardsViewController.swift in Sources */,
+				B6E23C4F1F3B7954006CBBE6 /* OnboardingPage3ViewController.swift in Sources */,
 				B6E23C221F3B51C8006CBBE6 /* LaunchScreenViewController.swift in Sources */,
 				F003898B1F28FEED00CBEDCF /* CardTemplateTableViewController.swift in Sources */,
 				188F23271F291607007B9F20 /* CardTableViewCell.swift in Sources */,
 				18934C861F3A9A1600DB7081 /* UserProfileCollection+animations.swift in Sources */,
+				B6E23C4D1F3B77C0006CBBE6 /* OnboardingPage2ViewController.swift in Sources */,
 				181524641F39060C00BEF20D /* ConnectionStatus.swift in Sources */,
 				F04EDF081F2FC9CD00E8DB82 /* StringFormatter.swift in Sources */,
 				B6A28AA01F2925C000786B97 /* MultiPeerConnectivity.swift in Sources */,
