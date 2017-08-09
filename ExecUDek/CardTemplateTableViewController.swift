@@ -20,6 +20,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         cellTextField.delegate = self
         emailTextField.delegate = self
         officeNumberTextField.delegate = self
+        addressTextField.delegate = self
+        cityTextField.delegate = self
         updateViews()
         setupCardDisplay()
         navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
@@ -38,6 +40,10 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         cardHeaderView.layer.shadowRadius = 4
         cardHeaderView.layer.shadowOffset = CGSize(width: 0, height: 4)
         cardHeaderView.layer.shadowColor = UIColor.black.cgColor
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
     }
 
     // TableView TextFields
@@ -190,14 +196,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     // MARK: UITextfieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        nameTextField.resignFirstResponder()
-        cellTextField.resignFirstResponder()
-        titleTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        nameTextField.resignFirstResponder()
+//        cellTextField.resignFirstResponder()
+//        titleTextField.resignFirstResponder()
+//        emailTextField.resignFirstResponder()
+//        return true
+//    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         // Text
@@ -346,6 +352,44 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
 //        return CGSize(width: headerViewWidth, height: (headerViewWidth * 0.518731988472622))
 //        
 //    }
+    
+    func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizerDirection.right {
+            print("Swipe right")
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameTextField {
+            nameTextField.resignFirstResponder()
+            titleTextField.becomeFirstResponder()
+        } else if textField == titleTextField {
+            titleTextField.resignFirstResponder()
+            cellTextField.becomeFirstResponder()
+        } else if textField == cellTextField {
+            cellTextField.resignFirstResponder()
+            emailTextField.becomeFirstResponder()
+        } else if textField == emailTextField {
+            emailTextField.resignFirstResponder()
+            addressTextField.becomeFirstResponder()
+        } else if textField == addressTextField {
+            addressTextField.resignFirstResponder()
+            officeNumberTextField.becomeFirstResponder()
+        } else if textField == officeNumberTextField {
+            officeNumberTextField.resignFirstResponder()
+            cityTextField.becomeFirstResponder()
+        } else if textField == cityTextField {
+            cityTextField.resignFirstResponder()
+            websiteTextField.becomeFirstResponder()
+        } else if textField == websiteTextField {
+            websiteTextField.resignFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
 }
 
 // MARK:
