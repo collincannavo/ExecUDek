@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserProfile" translatesAutoresizingMaskIntoConstraints="NO" id="E4U-AO-NpM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This button allows you to send your business card to someone in close proximity to you" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wg-DV-Xd2">
                                 <rect key="frame" x="191" y="192" width="184" height="140"/>
@@ -70,7 +70,7 @@
                             <constraint firstItem="jJV-8U-ifh" firstAttribute="top" secondItem="afh-ct-TeV" secondAttribute="bottom" constant="72" id="Yc4-Sa-Hxb"/>
                             <constraint firstItem="E4U-AO-NpM" firstAttribute="leading" secondItem="beO-9g-0EH" secondAttribute="leading" id="akO-pi-fCx"/>
                             <constraint firstItem="E4U-AO-NpM" firstAttribute="bottom" secondItem="cHq-fD-yeg" secondAttribute="top" id="qgc-QQ-rPg"/>
-                            <constraint firstItem="E4U-AO-NpM" firstAttribute="top" secondItem="afh-ct-TeV" secondAttribute="bottom" constant="-20" id="wv3-pP-POP"/>
+                            <constraint firstItem="E4U-AO-NpM" firstAttribute="top" secondItem="afh-ct-TeV" secondAttribute="bottom" id="wv3-pP-POP"/>
                             <constraint firstItem="7wg-DV-Xd2" firstAttribute="top" secondItem="jJV-8U-ifh" secondAttribute="bottom" constant="8" symbolic="YES" id="ykx-dB-w4D"/>
                         </constraints>
                     </view>
@@ -95,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wallet" translatesAutoresizingMaskIntoConstraints="NO" id="9B9-0D-rpW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-gI-f2R">
                                 <rect key="frame" x="318" y="82" width="57" height="92"/>
@@ -157,7 +157,7 @@
                             <constraint firstItem="9B9-0D-rpW" firstAttribute="leading" secondItem="ysq-0q-T6W" secondAttribute="leading" id="Wb3-wd-Afm"/>
                             <constraint firstItem="fBK-0j-7eJ" firstAttribute="bottom" secondItem="dSb-gI-f2R" secondAttribute="bottom" id="aGm-PO-Cq1"/>
                             <constraint firstItem="fBK-0j-7eJ" firstAttribute="top" secondItem="dSb-gI-f2R" secondAttribute="top" id="dga-gf-X79"/>
-                            <constraint firstItem="9B9-0D-rpW" firstAttribute="top" secondItem="UYp-yN-5lI" secondAttribute="bottom" constant="-20" id="eXC-ix-dKC"/>
+                            <constraint firstItem="9B9-0D-rpW" firstAttribute="top" secondItem="UYp-yN-5lI" secondAttribute="bottom" id="eXC-ix-dKC"/>
                             <constraint firstItem="fBK-0j-7eJ" firstAttribute="leading" secondItem="MUR-5T-e4M" secondAttribute="leading" id="f30-dW-2jZ"/>
                             <constraint firstItem="dSb-gI-f2R" firstAttribute="trailing" secondItem="xgA-hN-jIa" secondAttribute="trailing" id="hpH-dS-WiW"/>
                             <constraint firstItem="9B9-0D-rpW" firstAttribute="trailing" secondItem="xgA-hN-jIa" secondAttribute="trailing" id="jzb-EF-eMs"/>
@@ -189,7 +189,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CardTemplate" translatesAutoresizingMaskIntoConstraints="NO" id="b5b-Sw-Yw9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xe-Ag-KnU">
                                 <rect key="frame" x="26" y="287" width="343" height="231"/>
@@ -229,7 +229,7 @@
                             <constraint firstItem="b5b-Sw-Yw9" firstAttribute="leading" secondItem="8ki-Qz-6v4" secondAttribute="leading" id="48x-uu-6EI"/>
                             <constraint firstItem="i8b-on-Cgs" firstAttribute="leading" secondItem="8ki-Qz-6v4" secondAttribute="leadingMargin" constant="74" id="A70-OG-Ofm"/>
                             <constraint firstItem="b5b-Sw-Yw9" firstAttribute="bottom" secondItem="9xN-et-RwM" secondAttribute="top" id="OQO-85-YeZ"/>
-                            <constraint firstItem="b5b-Sw-Yw9" firstAttribute="top" secondItem="h0F-ma-7Ct" secondAttribute="bottom" constant="-20" id="VF4-vQ-ASg"/>
+                            <constraint firstItem="b5b-Sw-Yw9" firstAttribute="top" secondItem="h0F-ma-7Ct" secondAttribute="bottom" id="VF4-vQ-ASg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9bS-XI-BkZ" secondAttribute="trailing" constant="91" id="Vof-Uc-FRn"/>
                             <constraint firstItem="9xN-et-RwM" firstAttribute="top" secondItem="9bS-XI-BkZ" secondAttribute="bottom" constant="89" id="WIt-gR-mtq"/>
                             <constraint firstAttribute="trailing" secondItem="b5b-Sw-Yw9" secondAttribute="trailing" id="cTv-jC-o04"/>
@@ -259,7 +259,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wallet" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-7C-2Mw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzf-Ym-dDt">
                                 <rect key="frame" x="16" y="524" width="343" height="54"/>
@@ -280,7 +280,7 @@
                             <constraint firstItem="Nzf-Ym-dDt" firstAttribute="top" secondItem="zfO-kD-kZm" secondAttribute="bottom" constant="504" id="KaN-qB-4mU"/>
                             <constraint firstItem="pzS-pZ-aG5" firstAttribute="top" secondItem="Nzf-Ym-dDt" secondAttribute="bottom" constant="89" id="WlI-Yb-dGx"/>
                             <constraint firstItem="2hH-7C-2Mw" firstAttribute="bottom" secondItem="pzS-pZ-aG5" secondAttribute="top" id="Ygj-L3-ST1"/>
-                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="top" secondItem="zfO-kD-kZm" secondAttribute="bottom" constant="-20" id="cA4-GU-TnK"/>
+                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="top" secondItem="zfO-kD-kZm" secondAttribute="bottom" id="cA4-GU-TnK"/>
                             <constraint firstItem="2hH-7C-2Mw" firstAttribute="leading" secondItem="ssA-y7-wE7" secondAttribute="leading" id="rCl-Rt-WLv"/>
                             <constraint firstItem="Nzf-Ym-dDt" firstAttribute="leading" secondItem="ssA-y7-wE7" secondAttribute="leadingMargin" id="ycv-gF-nBG"/>
                         </constraints>
@@ -329,7 +329,7 @@
                     <connections>
                         <segue destination="OYD-kt-U0x" kind="presentation" identifier="toCardsSceneCollectionView" id="mlv-kL-Prv"/>
                         <segue destination="Pnk-7O-GWy" kind="presentation" identifier="toOnboarding" id="s83-r8-sNK"/>
-                        <segue destination="vy1-r9-uJK" kind="presentation" identifier="showDeadScene" id="wNZ-h8-Mi9"/>
+                        <segue destination="vtn-0j-Mlh" kind="presentation" identifier="showDeadScene" id="tf8-hf-bkL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bak-wH-JfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -337,33 +337,33 @@
             <point key="canvasLocation" x="-36" y="-671.51424287856082"/>
         </scene>
         <!--Dead View Controller-->
-        <scene sceneID="4dg-Ks-mCf">
+        <scene sceneID="MJj-Ym-CMX">
             <objects>
-                <viewController id="vy1-r9-uJK" customClass="DeadViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vtn-0j-Mlh" customClass="DeadViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SsN-hK-c6y"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qne-3L-IfB"/>
+                        <viewControllerLayoutGuide type="top" id="rJ7-Fn-tnC"/>
+                        <viewControllerLayoutGuide type="bottom" id="PBu-yr-zKB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="u4N-Ku-UMr">
+                    <view key="view" contentMode="scaleToFill" id="t9v-y1-3K8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="utF-ks-cON">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="OWP-KO-DTR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="utF-ks-cON" secondAttribute="trailing" id="PbA-ab-ICb"/>
-                            <constraint firstItem="Qne-3L-IfB" firstAttribute="top" secondItem="utF-ks-cON" secondAttribute="bottom" id="SCM-gC-d4L"/>
-                            <constraint firstItem="utF-ks-cON" firstAttribute="leading" secondItem="u4N-Ku-UMr" secondAttribute="leading" id="b23-YT-Z3g"/>
-                            <constraint firstItem="utF-ks-cON" firstAttribute="top" secondItem="u4N-Ku-UMr" secondAttribute="top" id="fXo-t3-fhC"/>
+                            <constraint firstItem="OWP-KO-DTR" firstAttribute="leading" secondItem="t9v-y1-3K8" secondAttribute="leading" id="4nT-rs-kdO"/>
+                            <constraint firstAttribute="trailing" secondItem="OWP-KO-DTR" secondAttribute="trailing" id="PtQ-el-4va"/>
+                            <constraint firstItem="PBu-yr-zKB" firstAttribute="top" secondItem="OWP-KO-DTR" secondAttribute="bottom" id="d1O-oW-iZB"/>
+                            <constraint firstItem="OWP-KO-DTR" firstAttribute="top" secondItem="t9v-y1-3K8" secondAttribute="top" id="hrN-Bp-tkh"/>
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wFZ-y3-Zae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1M-fC-pnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="887" y="-1424"/>
+            <point key="canvasLocation" x="1094" y="-1243"/>
         </scene>
         <!--CardsSceneCollectionView-->
         <scene sceneID="iK8-gt-NMw">
