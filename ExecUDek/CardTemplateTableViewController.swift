@@ -74,6 +74,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     
     @IBAction func addToContactsTapped(_ sender: UIButton) {
         let newContact = CNMutableContact()
+        newContact.note = "ExecUDek App Business Card"
         if let name = nameTextField.text {
             newContact.givenName = name
         }
@@ -95,10 +96,11 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
             newContact.emailAddresses = [workEmail]
         }
-//        if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
-//            newContact.imageData = imageData
-//        }
-        newContact.note = "ExecUDek App Business Card"
+        
+        guard let image = photoButton.currentBackgroundImage?.images?.first else {return}
+        let imageData = UIImagePNGRepresentation(image)
+        newContact.imageData = imageData
+        
         let store = CNContactStore()
         let request = CNSaveRequest()
         request.add(newContact, toContainerWithIdentifier: nil)
@@ -194,15 +196,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     // MARK: UITextfieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        nameTextField.resignFirstResponder()
-        cellTextField.resignFirstResponder()
-        titleTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        return true
-    }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         // Text
         guard let name = nameTextField.text, !name.isEmpty,
