@@ -262,7 +262,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         cell.layer.shadowOpacity = 1.0
         cell.layer.shadowRadius = 4
         cell.layer.shadowOffset = CGSize(width: 0, height: 2)
-        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowColor = UIColor.black.cgColor
     }
     
     func setupCardTableViewCellBorderColor(_ cell: CardCollectionViewCell) {
