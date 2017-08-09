@@ -12,7 +12,7 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileCollectionViewController: MultipeerEnabledViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate, PhotoSelctorCellDelegate {
+class UserProfileCollectionViewController: MultipeerEnabledViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -34,6 +34,15 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             selectedCard = card
             
             //performSegue(withIdentifier: "editCardFromUser", sender: nil)
+            
+            if cell.isCurrentlyFocused {
+                returnCard(card, cell: cell)
+            } else {
+                guard collectionView.numberOfItems(inSection: 0) > 1,
+                    let indexPath = collectionView.indexPath(for: cell),
+                    indexPath.row < (collectionView.numberOfItems(inSection: 0) - 1) else { return }
+                popCard(card, cell: cell)
+            }
         }
     }
     
@@ -55,6 +64,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,13 +138,10 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
-//        tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
         collectionView.bringSubview(toFront: cell)
         
-        cell.delegate = self
-        cell.enableEntireCardButton()
         cell.actionSheetDelegate = self
         
         return cell
@@ -281,12 +289,12 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
                                             
                                             self.collectionView.visibleCells.forEach({ (cell) in
                                                 if let cardCell = cell as? CardCollectionViewCell {
-                                                    cardCell.disableEntireCardButton()
+                                                    cardCell.isUserInteractionEnabled = false
                                                 }
                                             })
                                             
                                             cell.isCurrentlyFocused = true
-                                            cell.enableEntireCardButton()
+                                            cell.isUserInteractionEnabled = true
                                             self.collectionView.bringSubview(toFront: cell)
                                             cell.shareButton.layer.transform = cell.layer.transform
                                             cell.bringSubview(toFront: cell.shareButton)
@@ -319,31 +327,13 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
                                             
                                             self.collectionView.visibleCells.forEach({ (cell) in
                                                 if let cardCell = cell as? CardCollectionViewCell {
-                                                    cardCell.enableEntireCardButton()
+                                                    cardCell.isUserInteractionEnabled = true
                                                 }
                                             })
                                             
                                             cell.isCurrentlyFocused = false
                 })
             })
-        }
-    }
-    
-//    func tableViewBackgroundColor() {
-//        self.collectionView.backgroundColor = UIColor.lightGray
-//    }
-
-}
-
-extension UserProfileCollectionViewController {
-    func entireCardWasTapped(card: Card, cell: CardCollectionViewCell) {
-        if cell.isCurrentlyFocused {
-            returnCard(card, cell: cell)
-        } else {
-            guard collectionView.numberOfItems(inSection: 0) > 1,
-                let indexPath = collectionView.indexPath(for: cell),
-                indexPath.row < (collectionView.numberOfItems(inSection: 0) - 1) else { return }
-            popCard(card, cell: cell)
         }
     }
 }
