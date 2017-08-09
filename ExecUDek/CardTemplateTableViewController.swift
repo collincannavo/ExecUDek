@@ -61,6 +61,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UIApplication.shared.statusBarStyle = .lightContent
         
+        nameTextField.attributedPlaceholder = NSAttributedString(string: "Name Goes here", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

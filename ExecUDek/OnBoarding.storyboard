@@ -12,7 +12,7 @@
         <!--Onboarding View Controller-->
         <scene sceneID="Wtz-f2-R8T">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="RZF-SG-bzD" customClass="OnboardingViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="pageController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="RZF-SG-bzD" customClass="OnboardingViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLb-1X-sz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-36" y="104"/>
@@ -20,7 +20,7 @@
         <!--View Controller-->
         <scene sceneID="ZO9-ly-ucn">
             <objects>
-                <viewController storyboardIdentifier="page1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f4C-ry-qD7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="page2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f4C-ry-qD7" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="afh-ct-TeV"/>
                         <viewControllerLayoutGuide type="bottom" id="cHq-fD-yeg"/>
@@ -28,17 +28,28 @@
                     <view key="view" contentMode="scaleToFill" id="beO-9g-0EH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserProfile" translatesAutoresizingMaskIntoConstraints="NO" id="E4U-AO-NpM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E4U-AO-NpM" firstAttribute="leading" secondItem="beO-9g-0EH" secondAttribute="leading" id="1up-JN-Ewa"/>
+                            <constraint firstAttribute="trailing" secondItem="E4U-AO-NpM" secondAttribute="trailing" id="ISl-9q-UxW"/>
+                            <constraint firstItem="cHq-fD-yeg" firstAttribute="top" secondItem="E4U-AO-NpM" secondAttribute="bottom" id="k5z-MV-ftr"/>
+                            <constraint firstItem="E4U-AO-NpM" firstAttribute="top" secondItem="beO-9g-0EH" secondAttribute="top" id="nT3-s0-Sjr"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmn-h1-CfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="107"/>
+            <point key="canvasLocation" x="1841" y="109"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Eea-8p-buS">
             <objects>
-                <viewController storyboardIdentifier="page2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pnk-7O-GWy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="page1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pnk-7O-GWy" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UYp-yN-5lI"/>
                         <viewControllerLayoutGuide type="bottom" id="HJ0-QS-BSB"/>
@@ -46,12 +57,18 @@
                     <view key="view" contentMode="scaleToFill" id="ysq-0q-T6W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Wallet" translatesAutoresizingMaskIntoConstraints="NO" id="9B9-0D-rpW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5g-n5-aeh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="109"/>
+            <point key="canvasLocation" x="904.79999999999995" y="108.39580209895054"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="EU4-Gq-oWc">
@@ -83,29 +100,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="mlt-nk-JYN">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="mlt-nk-JYN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo1" translatesAutoresizingMaskIntoConstraints="NO" id="tfU-Cm-03F">
-                                <rect key="frame" x="67" y="331" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Organize Your Business Cards" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MBS-Tm-lKa">
-                                <rect key="frame" x="83" y="119" width="213" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="with" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WQC-TQ-gck">
-                                <rect key="frame" x="139" y="216" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Baskerville-BoldItalic" family="Baskerville" pointSize="34"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -134,7 +131,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo1" width="1327" height="720"/>
-        <image name="skylineDarkened" width="833" height="1209"/>
+        <image name="LogoFinal" width="833" height="1209"/>
+        <image name="UserProfile" width="374" height="665"/>
+        <image name="Wallet" width="1435" height="2551"/>
     </resources>
 </document>
