@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qiv-AY-TNN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qiv-AY-TNN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -302,28 +302,44 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v47-hg-aoJ">
-                                                    <rect key="frame" x="97" y="6" width="181" height="30"/>
-                                                    <color key="backgroundColor" red="0.98611611129999999" green="0.39019757510000003" blue="0.44103625419999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Delete">
-                                                        <color key="titleColor" red="1" green="0.98323563609999998" blue="0.98503135529999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="15"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="deleteButtonTapped:" destination="b4I-kL-vHe" eventType="touchUpInside" id="LiD-hR-Lgv"/>
-                                                    </connections>
-                                                </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Lp-IL-wpv">
+                                                    <rect key="frame" x="97" y="6" width="234" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v47-hg-aoJ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="112" height="30"/>
+                                                            <color key="backgroundColor" red="0.98611611129999999" green="0.39019757510000003" blue="0.44103625419999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <state key="normal" title="Delete">
+                                                                <color key="titleColor" red="1" green="0.98323563609999998" blue="0.98503135529999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="deleteButtonTapped:" destination="b4I-kL-vHe" eventType="touchUpInside" id="LiD-hR-Lgv"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhz-O5-auA">
+                                                            <rect key="frame" x="122" y="0.0" width="112" height="30"/>
+                                                            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <state key="normal" title="Add to Contacts">
+                                                                <color key="titleColor" red="1" green="0.98323563609999998" blue="0.98503135529999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="addToContactsTapped:" destination="b4I-kL-vHe" eventType="touchUpInside" id="6he-4E-bNn"/>
+                                                                <action selector="deleteButtonTapped:" destination="b4I-kL-vHe" eventType="touchUpInside" id="YQ9-yl-fth"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="v47-hg-aoJ" firstAttribute="centerX" secondItem="O9f-Xn-Aua" secondAttribute="centerX" id="BSe-g1-oIy"/>
-                                                <constraint firstAttribute="bottom" secondItem="v47-hg-aoJ" secondAttribute="bottom" constant="7.5" id="E5L-l9-8cI"/>
-                                                <constraint firstAttribute="trailing" secondItem="v47-hg-aoJ" secondAttribute="trailing" constant="97" id="KEa-R9-xoA"/>
-                                                <constraint firstItem="v47-hg-aoJ" firstAttribute="leading" secondItem="O9f-Xn-Aua" secondAttribute="leading" constant="97" id="eQb-Ry-t6s"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
