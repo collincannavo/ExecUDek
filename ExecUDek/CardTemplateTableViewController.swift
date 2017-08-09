@@ -9,6 +9,7 @@
 import UIKit
 import CloudKit
 import SharedExecUDek
+import Contacts
 
 class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate {
     
@@ -96,9 +97,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
                 let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
                 newContact.emailAddresses = [workEmail]
             }
-            if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
-                newContact.imageData = imageData
-            }
+//            if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
+//                newContact.imageData = imageData
+//            }
             newContact.note = "ExecUDek App Business Card"
             
             let request = CNSaveRequest()
