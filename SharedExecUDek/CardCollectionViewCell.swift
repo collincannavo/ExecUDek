@@ -45,7 +45,9 @@ public class CardCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func editButtonTapped(_ sender: UIButton) {
+        actionSheetDelegate?.cardCellEditButtonWasTapped(cell: self)
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
@@ -76,9 +78,9 @@ public class CardCollectionViewCell: UICollectionViewCell {
         guard let card = card else { return }
         
         nameLabel.text = card.name
-        titleLabel.text = card.title
-        cellLabel.text = card.cell
-        emailLabel.text = card.email
+        titleLabel.text = card.title ?? ""
+        cellLabel.text = card.cell ?? ""
+        emailLabel.text = card.email ?? ""
         
         if let data = card.logoData,
             let image = UIImage(data: data) {
@@ -101,6 +103,9 @@ public class CardCollectionViewCell: UICollectionViewCell {
         titleLabel.text = ""
         cellLabel.text = ""
         emailLabel.text = ""
+        
+        isCurrentlyFocused = false
+        returnIndex = nil
     }
     
     public func enableEntireCardButton() {
@@ -154,5 +159,6 @@ public class CardCollectionViewCell: UICollectionViewCell {
 
 public protocol ActionSheetDelegate : class {
     func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell)
+    func cardCellEditButtonWasTapped(cell: CardCollectionViewCell)
 }
 
