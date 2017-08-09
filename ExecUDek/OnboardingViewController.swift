@@ -10,6 +10,8 @@ import UIKit
 
 class OnboardingViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
+    @IBOutlet weak var arrow: UIImageView!
+    
     var pageArray = [UIViewController()]
     
     
