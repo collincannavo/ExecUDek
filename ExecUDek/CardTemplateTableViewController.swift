@@ -19,9 +19,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         titleTextField.delegate = self
         cellTextField.delegate = self
         emailTextField.delegate = self
-        officeNumberTextField.delegate = self
         addressTextField.delegate = self
-        cityTextField.delegate = self
         updateViews()
         setupCardDisplay()
         navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
@@ -47,11 +45,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
 
     // TableView TextFields
-    @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var cellTextField: UITextField!
-    @IBOutlet weak var officeNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
@@ -214,10 +210,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             textField.text = lastText.format("(NNN) NNN-NNNN", oldString: text)
             return false
         }
-        if officeNumberTextField == textField {
-            textField.text = lastText.format("(NNN) NNN-NNNN", oldString: text)
-            return false
-        }
         return true
     }
  
@@ -243,7 +235,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         let title = titleTextField.text
         let cell = cellTextField.text
         let email = emailTextField.text
-        let officeNumber = officeNumberTextField.text
         let template = Template.one
         let address = addressTextField.text
         let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState())?.fixOrientation() ?? UIImage()
@@ -251,7 +242,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         switch (cardSenderIsMainScene, card == nil) {
         case (true, true):
-            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
             
                 if success {
                     completion(true)
@@ -260,7 +251,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
                 }
             }
         case (false, true):
-            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
                 if success {
                     completion(true)
                 } else {
@@ -271,7 +262,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         case (_, false):
             guard let card = card else { return }
             
-            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
                 if success {
                     completion(true)
                 } else {
@@ -285,7 +276,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         nameTextField.text = card?.name
         titleTextField.text = card?.title
         emailTextField.text = card?.email
-        officeNumberTextField.text = card?.officeNumber
         cellTextField.text = card?.cell
         addressTextField.text = card?.address
     }
@@ -364,12 +354,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             addressTextField.becomeFirstResponder()
         } else if textField == addressTextField {
             addressTextField.resignFirstResponder()
-            officeNumberTextField.becomeFirstResponder()
-        } else if textField == officeNumberTextField {
-            officeNumberTextField.resignFirstResponder()
-            cityTextField.becomeFirstResponder()
-        } else if textField == cityTextField {
-            cityTextField.resignFirstResponder()
             websiteTextField.becomeFirstResponder()
         } else if textField == websiteTextField {
             websiteTextField.resignFirstResponder()

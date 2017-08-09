@@ -16,7 +16,6 @@ public class Card: NSObject {
     public static let nameKey = "name"
     public static let titleKey = "title"
     public static let cellKey = "cell"
-    public static let officeNumberKey = "officeNumber"
     public static let emailKey = "email"
     public static let templateKey = "template"
     public static let companyNameKey = "companyName"
@@ -48,7 +47,6 @@ public class Card: NSObject {
     public var name: String
     public var title: String?
     public var cell: String?
-    public var officeNumber: String?
     public var email: String?
     public var template: Template
     public var companyName: String?
@@ -63,7 +61,6 @@ public class Card: NSObject {
     public init(name: String,
          title: String? = nil,
          cell: String? = nil,
-         officeNumber: String? = nil,
          email: String? = nil,
          template: Template,
          companyName: String? = nil,
@@ -76,7 +73,6 @@ public class Card: NSObject {
         self.name = name
         self.title = title
         self.cell = cell
-        self.officeNumber = officeNumber
         self.email = email
         self.template = template
         self.companyName = companyName
@@ -93,7 +89,6 @@ public class Card: NSObject {
         record.setValue(name, forKey: Card.nameKey)
         record.setValue(title, forKey: Card.titleKey)
         record.setValue(cell, forKey: Card.cellKey)
-        record.setValue(officeNumber, forKey: Card.officeNumberKey)
         record.setValue(email, forKey: Card.emailKey)
         record.setValue(template.rawValue, forKey: Card.templateKey)
         record.setValue(companyName, forKey: Card.companyNameKey)
@@ -118,7 +113,6 @@ public class Card: NSObject {
         
         let title = ckRecord[Card.titleKey] as? String
         let cell = ckRecord[Card.cellKey] as? String
-        let officeNumber = ckRecord[Card.officeNumberKey] as? String
         let email = ckRecord[Card.emailKey] as? String
         let companyName = ckRecord[Card.companyNameKey] as? String
         let note = ckRecord[Card.noteKey] as? String
@@ -134,7 +128,7 @@ public class Card: NSObject {
         let parentCKReference = ckRecord[Card.parentKey] as? CKReference
         let imageData = ckRecord[Card.imageKey] as? Data
         
-        self.init(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
+        self.init(name: name, title: title, cell: cell, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
         if let imageDataUnwrapped = imageData {
             self.cardData = imageDataUnwrapped
@@ -148,7 +142,6 @@ public class Card: NSObject {
         record.setValue(name, forKey: Card.nameKey)
         record.setValue(title, forKey: Card.titleKey)
         record.setValue(cell, forKey: Card.cellKey)
-        record.setValue(officeNumber, forKey: Card.officeNumberKey)
         record.setValue(email, forKey: Card.emailKey)
         record.setValue(template.rawValue, forKey: Card.templateKey)
         record.setValue(companyName, forKey: Card.companyNameKey)
@@ -169,7 +162,6 @@ func ==(lhs: Card, rhs: Card) -> Bool {
     if lhs.name != rhs.name { return false }
     if lhs.title != rhs.title { return false }
     if lhs.cell != rhs.cell { return false }
-    if lhs.officeNumber != rhs.officeNumber { return false }
     if lhs.email != rhs.email { return false }
     if lhs.template != rhs.template { return false }
     if lhs.companyName != rhs.companyName { return false }

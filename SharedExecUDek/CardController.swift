@@ -16,11 +16,11 @@ public class CardController {
     
     // CRUD
     
-    public func createPersonalCardWith(name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
+    public func createPersonalCardWith(name: String, title: String?, cell: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
         guard let person = PersonController.shared.currentPerson else { completion(false); return }
         
-        let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
+        let card = Card(name: name, title: title, cell: cell, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
         PersonController.shared.addPersonalCard(card, to: person)
         card.parentCKReference = PersonController.shared.currentPerson?.ckReference
@@ -36,13 +36,13 @@ public class CardController {
         }
     }
     
-    public func createCardWith(cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
+    public func createCardWith(cardData: Data?, name: String, title: String?, cell: String?, email: String?, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
         let template = Template.one
         
         guard let person = PersonController.shared.currentPerson else { completion(false); return }
         
-        let card = Card(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
+        let card = Card(name: name, title: title, cell: cell, email: email, template: template, companyName: companyName, note: note, address: address, avatarData: avatarData, logoData: logoData, other: other)
         
         card.cardData = cardData
         
@@ -66,13 +66,12 @@ public class CardController {
         }
     }
     
-    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: String?, officeNumber: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
+    public func updateCard(_ card: Card, withCardData cardData: Data?, name: String, title: String?, cell: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
         card.cardData = cardData
         card.name = name
         card.title = title
         card.cell = cell
-        card.officeNumber = officeNumber
         card.email = email
         card.template = template
         card.companyName = companyName
@@ -160,7 +159,7 @@ public class CardController {
     }
     
     public func copyCard(_ card: Card, with completion: @escaping (Bool) -> Void) {
-        createCardWith(cardData: card.cardData, name: card.name, title: card.title, cell: card.cell, officeNumber: card.officeNumber, email: card.email, companyName: card.companyName, note: card.note, address: card.address, avatarData: card.avatarData, logoData: card.logoData, other: card.other) { (success) in
+        createCardWith(cardData: card.cardData, name: card.name, title: card.title, cell: card.cell, email: card.email, companyName: card.companyName, note: card.note, address: card.address, avatarData: card.avatarData, logoData: card.logoData, other: card.other) { (success) in
         
             if success {
                 completion(true)
