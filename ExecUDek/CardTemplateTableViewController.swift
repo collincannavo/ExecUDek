@@ -23,7 +23,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         updateViews()
         setupCardDisplay()
         navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
-        
     }
 
     // TableView TextFields
