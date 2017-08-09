@@ -38,6 +38,7 @@
 		18B9C6B71F2D2CF500F7BB03 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9C6B61F2D2CF500F7BB03 /* Person.swift */; };
 		18DD51E11F38DA2F00F6EA7C /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD51E01F38DA2F00F6EA7C /* CustomNavigationController.swift */; };
 		18E4A6EB1F3B6F3200141956 /* MultipeerEnabledViewController+animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E4A6EA1F3B6F3200141956 /* MultipeerEnabledViewController+animations.swift */; };
+		18E4A6ED1F3BBC9B00141956 /* DeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E4A6EC1F3BBC9B00141956 /* DeadViewController.swift */; };
 		18ED1F111F30F0BF00F67DB6 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ED1F101F30F0BF00F67DB6 /* MessageController.swift */; };
 		B6459F511F314C62000DD526 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6459F501F314C62000DD526 /* EmailViewController.swift */; };
 		B6459F9A1F3615B3000DD526 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6459F981F3615B3000DD526 /* CardCollectionViewCell.swift */; };
@@ -141,6 +142,7 @@
 		18B9C6B61F2D2CF500F7BB03 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		18DD51E01F38DA2F00F6EA7C /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		18E4A6EA1F3B6F3200141956 /* MultipeerEnabledViewController+animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipeerEnabledViewController+animations.swift"; sourceTree = "<group>"; };
+		18E4A6EC1F3BBC9B00141956 /* DeadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeadViewController.swift; sourceTree = "<group>"; };
 		18ED1F101F30F0BF00F67DB6 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		B6459F501F314C62000DD526 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		B6459F981F3615B3000DD526 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				18B5538D1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift */,
 				B6E23C211F3B51C8006CBBE6 /* LaunchScreenViewController.swift */,
 				18E4A6EA1F3B6F3200141956 /* MultipeerEnabledViewController+animations.swift */,
+				18E4A6EC1F3BBC9B00141956 /* DeadViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -659,6 +662,7 @@
 				B6459F9D1F361AA9000DD526 /* UserProfileCollection.swift in Sources */,
 				18B5538E1F3A14DC00CEBA0E /* MultipeerEnabledViewController.swift in Sources */,
 				F0C8BA8B1F2A383F00B9E0DA /* UserProfileTableViewCell.swift in Sources */,
+				18E4A6ED1F3BBC9B00141956 /* DeadViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

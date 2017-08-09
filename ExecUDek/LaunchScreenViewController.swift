@@ -16,29 +16,51 @@ class LaunchScreenViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        cloudKitManager.shared.fetchCurrentUser { (_, user) in
-            
-            DispatchQueue.main.async {
-                
-                if let currentUser = user {
-                    PersonController.shared.currentPerson = currentUser
+        CloudKitContoller.shared.verifyCloudKitLogin { (success) in
+            if success {
+                self.fetchData()
+            } else {
+                self.performSegue(withIdentifier: "showDeadScene", sender: self)
+            }
+        }
+    }
+    
+    func fetchData() {
+        CloudKitContoller.shared.fetchCurrentUser { (success, person) in
+            if success {
+                if person != nil {
+                    CardController.shared.fetchPersonalCards(with: { (success) in
+                        if success {
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
+                            }
+                        }
+                    })
+                    CardController.shared.fetchReceivedCards(with: { (success) in
+                        if success {
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: Constants.cardsFetchedNotification, object: self)
+                            }
+                        }
+                    })
                     
                     self.performSegue(withIdentifier: "toCardsSceneCollectionView", sender: self)
+                    
                 } else {
-                    self.performSegue(withIdentifier: "toOnboarding", sender: self)
+                    CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in
+                        self.performSegue(withIdentifier: "toOnboarding", sender: self)
+                    })
                 }
             }
-            
         }
-        
-        
     }
-
 }

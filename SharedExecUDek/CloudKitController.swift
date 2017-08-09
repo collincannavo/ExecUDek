@@ -18,6 +18,23 @@ public class CloudKitContoller {
     
     public var currentUser: Person?
     
+    public func verifyCloudKitLogin(with completion: @escaping (Bool) -> Void) {
+        container.status(forApplicationPermission: .userDiscoverability) { (permissionStatus, error) in
+            if let error = error {
+                NSLog("Could not complete Cloud Kit status check: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            
+            if permissionStatus == .couldNotComplete {
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
+    }
+    
     public func save(record: CKRecord, withCompletion completion: @escaping (CKRecord?, Error?) -> Void) {
         
         container.publicCloudDatabase.save(record) { (record, error) in
