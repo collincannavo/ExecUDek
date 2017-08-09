@@ -11,7 +11,7 @@ import CloudKit
 import SharedExecUDek
 import ContactsUI
 
-class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate, CNContactViewControllerDelegate {
+class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,21 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         updateViews()
         setupCardDisplay()
         navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
+        
+        let backgroundImage = UIImage(named: "skylineDarkened.png")
+        let imageView = UIImageView(image: backgroundImage)
+        imageView.frame = CGRect(x: 0, y: 0, width: 365, height: 645)
+        self.tableView.backgroundView = imageView
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UIApplication.shared.statusBarStyle = .lightContent
+        cardHeaderView.layer.shadowOpacity = 1.0
+        cardHeaderView.layer.shadowRadius = 4
+        cardHeaderView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        cardHeaderView.layer.shadowColor = UIColor.black.cgColor
     }
 
     // TableView TextFields
@@ -48,23 +63,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     var cardSenderIsMainScene: Bool = false
     var card: Card?
     var commonCardXIB: CardCollectionViewCell?
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let backgroundImage = UIImage(named: "skylineDarkened.png")
-        let imageView = UIImageView(image: backgroundImage)
-        imageView.frame = CGRect(x: 0, y: 0, width: 365, height: 645)
-        self.tableView.backgroundView = imageView
-        
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        UIApplication.shared.statusBarStyle = .lightContent
-        cardHeaderView.layer.shadowOpacity = 1.0
-        cardHeaderView.layer.shadowRadius = 4
-        cardHeaderView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        cardHeaderView.layer.shadowColor = UIColor.black.cgColor
-    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -93,17 +91,10 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
             newContact.emailAddresses = [workEmail]
         }
-        //            if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
-        //                newContact.imageData = imageData
-        //            }
+//        if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
+//            newContact.imageData = imageData
+//        }
         newContact.note = "ExecUDek App Business Card"
-        let contactView = CNContactViewController(for: newContact)
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
-        contactView.navigationItem.leftBarButtonItem = dismissButton
-        let nav = UINavigationController(rootViewController: contactView)
-        present(nav,animated: true, completion: nil)
-        
-        // Store to Contacts
         let store = CNContactStore()
         let request = CNSaveRequest()
         request.add(newContact, toContainerWithIdentifier: nil)
@@ -112,20 +103,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         } catch let error{
             print(error)
         }
+        let contactView = CNContactViewController(for: newContact)
+        let navigationView = UINavigationController(rootViewController: contactView)
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
+        contactView.navigationItem.leftBarButtonItem = dismissButton
+        present(navigationView,animated: true, completion: nil)
     }
     
     func dismissView(){
-        dismiss(animated: true, completion: nil)
-    }
-    
-//    func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty) {
-//        if contactProperty.key == "emailAddresses"{
-//            print("yaaaaa")
-//        }
-//    }
-    
-    // MARK : - CNContactViewControllerDelegate
-    func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
         dismiss(animated: true, completion: nil)
     }
     
@@ -207,6 +192,10 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     // MARK: UITextfieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
+        cellTextField.resignFirstResponder()
+        titleTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
         return true
     }
     
