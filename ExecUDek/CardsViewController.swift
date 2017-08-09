@@ -157,9 +157,9 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     
     func setupCardTableViewCellShadow(_ cell: CardCollectionViewCell) {
         cell.layer.shadowOpacity = 1.0
-        cell.layer.shadowRadius = 5
+        cell.layer.shadowRadius = 4
         cell.layer.shadowOffset = CGSize(width: 0, height: 4)
-        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowColor = UIColor.black.cgColor
     }
     
     func setupCardTableViewCellBorderColor(_ cell: CardCollectionViewCell) {
