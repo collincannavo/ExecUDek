@@ -97,10 +97,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             newContact.emailAddresses = [workEmail]
         }
         
-        guard let image = photoButton.currentBackgroundImage?.images?.first else {return}
-        let imageData = UIImagePNGRepresentation(image)
-        newContact.imageData = imageData
-        
         let store = CNContactStore()
         let request = CNSaveRequest()
         request.add(newContact, toContainerWithIdentifier: nil)
