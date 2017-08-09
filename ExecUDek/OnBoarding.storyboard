@@ -128,10 +128,11 @@
                                 <rect key="frame" x="90" y="170" width="57" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="For best quality, make sure your business logo is a PNG format and 130 width and 100 height" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xe-Ag-KnU">
-                                <rect key="frame" x="26" y="287" width="184" height="140"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xe-Ag-KnU">
+                                <rect key="frame" x="26" y="287" width="184" height="231"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.27058823529999998" green="0.4591413909" blue="0.77203839870000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">For best quality, make sure your business logo is a PNG format and 130 width and 100 height. A photo that looks like this "photo.jpg" or "photo.jpeg" will give you a white background. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -153,7 +154,7 @@
         <!--View Controller-->
         <scene sceneID="DqT-F4-4X4">
             <objects>
-                <viewController id="gOF-Sg-scO" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="page4" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gOF-Sg-scO" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zfO-kD-kZm"/>
                         <viewControllerLayoutGuide type="bottom" id="pzS-pZ-aG5"/>
@@ -161,6 +162,24 @@
                     <view key="view" contentMode="scaleToFill" id="ssA-y7-wE7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Wallet" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-7C-2Mw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzf-Ym-dDt">
+                                <rect key="frame" x="16" y="444" width="343" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0050816729404496008" blue="0.52639197335025378" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <state key="normal" title="I'm Ready To Go!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="yFU-aG-jTF" kind="presentation" id="WNb-6q-b47"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -170,7 +189,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="3522" y="112"/>
+            <point key="canvasLocation" x="3520.8000000000002" y="111.99400299850076"/>
         </scene>
         <!--CardsSceneCollectionView-->
         <scene sceneID="nGE-lW-jRH">
@@ -178,7 +197,7 @@
                 <viewControllerPlaceholder storyboardName="CardsSceneCollectionView" id="yFU-aG-jTF" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hg-1Y-2LL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4041" y="100"/>
+            <point key="canvasLocation" x="4169" y="173"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ZeZ-kC-Fet">

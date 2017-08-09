@@ -24,17 +24,20 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
         let page1: UIViewController? = storyboard?.instantiateViewController(withIdentifier: "page1")
         let page2: UIViewController? = storyboard?.instantiateViewController(withIdentifier: "page2")
         let page3: UIViewController? = storyboard?.instantiateViewController(withIdentifier: "page3")
+        let page4: UIViewController? = storyboard?.instantiateViewController(withIdentifier: "page4")
         
         guard let newPage1 = page1 else { return }
         guard let newPage2 = page2 else { return }
         guard let newPage3 = page3 else { return }
+        guard let newPage4 = page4 else { return }
         
         pageArray.append(newPage1)
         pageArray.append(newPage2)
         pageArray.append(newPage3)
+        pageArray.append(newPage4)
         
         
-        setViewControllers([page1!], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        setViewControllers([newPage1], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         
     }
 
