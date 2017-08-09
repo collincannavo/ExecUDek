@@ -195,7 +195,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xe-Ag-KnU">
                                 <rect key="frame" x="26" y="287" width="343" height="231"/>
                                 <color key="backgroundColor" red="0.27058823529999998" green="0.4591413909" blue="0.77203839870000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">For best quality, make sure your business logo is a PNG format and 130 width and 100 height. A photo that looks like this "photo.jpg" or "photo.jpeg" will give you a white background. </string>
+                                <string key="text">For best quality, make sure your business logo is a PNG format and 130 width and 100 height. A photo that looks like this "photo.jpg" or "photo.jpeg" will give you a solid background, most of the time it will be white. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>

@@ -17,12 +17,14 @@ class OnboardingPage2ViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 1, delay: 0.25,
+                       options: [.autoreverse, .repeat],
+                       animations: {
+                        self.arrow.frame.origin.y -= 20
+        })
+    }
 
     
 
