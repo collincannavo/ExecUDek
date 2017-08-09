@@ -192,15 +192,15 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             self.presentSMSInterface(for: card, with: cell)
         }
         
-//        let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
-//            
-//            guard let indexPath = self.collectionView.indexPath(for: cell),
-//                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
-//            
-//            self.selectedCard = card
-//            
-//            MultipeerController.shared.searchAction()
-//        }
+        let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
+            
+            guard let indexPath = self.collectionView.indexPath(for: cell),
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
+            
+            self.selectedCard = card
+            
+            MultipeerController.shared.searchAction()
+        }
         
         
         let emailButton = UIAlertAction(title: "Email", style: .default) { (_) in
@@ -208,14 +208,14 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             self.sendEmail(attachment: card)
         }
         
-        let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
-            self.addContact()
-        }
+//        let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
+//            self.addContact()
+//        }
         
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(iMessagesButton)
-//        alertController.addAction(multiShareButton)
-        alertController.addAction(contactButton)
+        alertController.addAction(multiShareButton)
+//        alertController.addAction(contactButton)
         alertController.addAction(cancelButton)
         alertController.addAction(emailButton)
         
