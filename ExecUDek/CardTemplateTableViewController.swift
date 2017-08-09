@@ -9,9 +9,9 @@
 import UIKit
 import CloudKit
 import SharedExecUDek
-import Contacts
+import ContactsUI
 
-class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate {
+class CardTemplateTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, PhotoSelctorCellDelegate, CNContactViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var officeNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
-    //@IBOutlet weak var cardContentView: UIView!
     @IBOutlet weak var websiteTextField: UITextField!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var cardHeaderView: UIView!
@@ -65,7 +64,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         cardHeaderView.layer.shadowRadius = 4
         cardHeaderView.layer.shadowOffset = CGSize(width: 0, height: 4)
         cardHeaderView.layer.shadowColor = UIColor.black.cgColor
-        
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -73,45 +71,62 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     @IBAction func addToContactsTapped(_ sender: UIButton) {
-            let store = CNContactStore()
-            let newContact = CNMutableContact()
-            if let name = nameTextField.text {
-                newContact.givenName = name
-            }
-            if let cell = cellTextField.text {
-                let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue:cell))
-                newContact.phoneNumbers = [phone]
-            }
-            if let title = titleTextField.text {
-                newContact.jobTitle = title
-            }
-            if let company = websiteTextField.text {
-                newContact.organizationName = company
-            }
-            if let workAddress = addressTextField.text {
-                let address = CNMutablePostalAddress()
-                address.street = workAddress
-            }
-            if let email = emailTextField.text {
-                let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
-                newContact.emailAddresses = [workEmail]
-            }
-//            if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
-//                newContact.imageData = imageData
-//            }
-            newContact.note = "ExecUDek App Business Card"
-            
-            let request = CNSaveRequest()
-            request.add(newContact, toContainerWithIdentifier: nil)
-            do {
-                try store.execute(request)
-                guard let name = nameTextField.text else {return}
-                let alert = UIAlertController(title: "ExecUDek", message: "\(name) Contact has been created", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-            } catch let error{
-                print(error)
-            }
+        let newContact = CNMutableContact()
+        if let name = nameTextField.text {
+            newContact.givenName = name
+        }
+        if let cell = cellTextField.text {
+            let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue:cell))
+            newContact.phoneNumbers = [phone]
+        }
+        if let title = titleTextField.text {
+            newContact.jobTitle = title
+        }
+        if let company = websiteTextField.text {
+            newContact.organizationName = company
+        }
+        if let workAddress = addressTextField.text {
+            let address = CNMutablePostalAddress()
+            address.street = workAddress
+        }
+        if let email = emailTextField.text {
+            let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
+            newContact.emailAddresses = [workEmail]
+        }
+        //            if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
+        //                newContact.imageData = imageData
+        //            }
+        newContact.note = "ExecUDek App Business Card"
+        let contactView = CNContactViewController(for: newContact)
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
+        contactView.navigationItem.leftBarButtonItem = dismissButton
+        let nav = UINavigationController(rootViewController: contactView)
+        present(nav,animated: true, completion: nil)
+        
+        // Store to Contacts
+        let store = CNContactStore()
+        let request = CNSaveRequest()
+        request.add(newContact, toContainerWithIdentifier: nil)
+        do {
+            try store.execute(request)
+        } catch let error{
+            print(error)
+        }
+    }
+    
+    func dismissView(){
+        dismiss(animated: true, completion: nil)
+    }
+    
+//    func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty) {
+//        if contactProperty.key == "emailAddresses"{
+//            print("yaaaaa")
+//        }
+//    }
+    
+    // MARK : - CNContactViewControllerDelegate
+    func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -191,14 +206,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     
     // MARK: UITextfieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let name = nameTextField.text, !name.isEmpty,
-                    let cell = cellTextField.text,
-                    let title = titleTextField.text,
-                    let email = emailTextField.text else {return false}
-        commonCardXIB?.nameLabel.text = name
-        commonCardXIB?.titleLabel.text = title
-        commonCardXIB?.cellLabel.text = cell
-        commonCardXIB?.emailLabel.text = email
         textField.resignFirstResponder()
         return true
     }
