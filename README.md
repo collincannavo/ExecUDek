@@ -5,21 +5,16 @@ ExecUDek solves a simple problem: it provides an easy and convenient process for
 
 Features:
 CloudKit:
-
 Ability to persist your cards across all your apple devices through iCloud.
 
 MultiPeer Connectivity:
-
 Ability to share cards to other users through wifi and bluetooth.
 
 Messages:
-
 Ability to share cards to other users through iMessage or text message. 
 
 Email:
-
 Ability to share cards to other users through attaching them to an email.
 
 Contacts:
-
 Ability to add your received cards to your device’s Contact’s list. 
