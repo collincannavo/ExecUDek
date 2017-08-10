@@ -161,6 +161,9 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         
         let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
             guard let card = cell.card else { return }
+            if cell.isCurrentlyFocused {
+                self.returnCard(card, cell: cell, to: self.collectionView)
+            }
             self.addContact(for: card)
         }
         

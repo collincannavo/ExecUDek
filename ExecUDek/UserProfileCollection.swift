@@ -197,7 +197,9 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         let iMessagesButton = UIAlertAction(title: "iMessage", style: .default) { (_) in
             guard let indexPath = self.collectionView.indexPath(for: cell),
                 let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
-            
+            if cell.isCurrentlyFocused {
+                self.returnCard(card, cell: cell, to: self.collectionView)
+            }
             self.presentSMSInterface(for: card, with: cell)
         }
         
@@ -213,11 +215,27 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
         
         let emailButton = UIAlertAction(title: "Email", style: .default) { (_) in
-            guard let card = UIViewToPNG.uiViewToPNG(for: cell) else { return }
-            self.sendEmail(attachment: card)
+            guard let indexPath = self.collectionView.indexPath(for: cell),
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
+            
+            if cell.isCurrentlyFocused {
+                self.returnCard(card, cell: cell, to: self.collectionView)
+            }
+            
+            guard let cardData = UIViewToPNG.uiViewToPNG(for: cell) else { return }
+            
+            self.sendEmail(attachment: cardData)
         }
   
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+            
+            guard let indexPath = self.collectionView.indexPath(for: cell),
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
+        
+            if cell.isCurrentlyFocused {
+                self.returnCard(card, cell: cell, to: self.collectionView)
+            }
+        })
         alertController.addAction(iMessagesButton)
         alertController.addAction(multiShareButton)
         alertController.addAction(cancelButton)
