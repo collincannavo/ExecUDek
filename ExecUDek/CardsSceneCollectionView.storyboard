@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYA-OX-WhK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYA-OX-WhK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -67,7 +67,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Wallet" id="PdI-NL-uJZ">
-                        <barButtonItem key="leftBarButtonItem" image="profileIcon4" id="p8K-9s-asx">
+                        <barButtonItem key="leftBarButtonItem" image="profileIcon2" id="p8K-9s-asx">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="jSH-yE-W7Y" kind="show" identifier="toMyCards" id="pNg-HB-WJW"/>
@@ -80,7 +80,7 @@
                                     <segue destination="94f-hd-ma1" kind="presentation" identifier="addCardFromMain" id="ge0-tS-Cqn"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="antenna1" id="L9C-IL-kc7">
+                            <barButtonItem image="antennaFinal" id="L9C-IL-kc7">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="multipeerButtonTapped:" destination="79B-8T-VtH" id="xfR-BL-Nl2"/>
@@ -133,8 +133,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="antenna1" width="24" height="24"/>
-        <image name="profileIcon4" width="28" height="28"/>
+        <image name="antennaFinal" width="27" height="28"/>
+        <image name="profileIcon2" width="28" height="28"/>
         <image name="skylineDarkened" width="833" height="1209"/>
     </resources>
     <inferredMetricsTieBreakers>
