@@ -45,10 +45,10 @@ extension MultipeerEnabledViewController {
     }
     
     func popCard(_ card: Card, cell: CardCollectionViewCell, from collectionView: UICollectionView) {
-        yPositionAnimation(for: cell, withTranslation: -0.5 * cell.frame.size.height, duration: 0.3, startingTransform: CATransform3DIdentity) { (_) in
+        yPositionAnimation(for: cell, withTranslation: -0.6 * cell.frame.size.height, duration: 0.3, startingTransform: CATransform3DIdentity) { (_) in
             self.bringForwardAnimation(for: cell, withScale: 1.08, zPosition: 1.0, duration: 0.2, shadowRadius: 5.0, shadowOpacity: 0.9, completion: { (_) in
                 self.yPositionAnimation(for: cell,
-                                        withTranslation: 0.5 * cell.frame.size.height,
+                                        withTranslation: 0.6 * cell.frame.size.height,
                                         duration: 0.3,
                                         startingTransform: cell.layer.transform,
                                         completion: { (_) in
@@ -83,10 +83,10 @@ extension MultipeerEnabledViewController {
             }
         }
         
-        yPositionAnimation(for: cell, withTranslation: -0.5 * cell.frame.size.height, duration: 0.3, startingTransform: cell.layer.transform) { (_) in
+        yPositionAnimation(for: cell, withTranslation: -0.6 * cell.frame.size.height, duration: 0.3, startingTransform: cell.layer.transform) { (_) in
             self.bringForwardAnimation(for: cell, withScale: 1 / 1.08, zPosition: -1.0, duration: 0.2, shadowRadius: 0.0, shadowOpacity: 0.0, completion: { (_) in
                 self.yPositionAnimation(for: cell,
-                                        withTranslation: 0.5 * cell.frame.size.height,
+                                        withTranslation: 0.6 * cell.frame.size.height,
                                         duration: 0.3,
                                         startingTransform: cell.layer.transform,
                                         completion: { (_) in

@@ -329,7 +329,7 @@
                     <connections>
                         <segue destination="OYD-kt-U0x" kind="presentation" identifier="toCardsSceneCollectionView" id="mlv-kL-Prv"/>
                         <segue destination="Pnk-7O-GWy" kind="presentation" identifier="toOnboarding" id="s83-r8-sNK"/>
-                        <segue destination="vtn-0j-Mlh" kind="presentation" identifier="showDeadScene" id="tf8-hf-bkL"/>
+                        <segue destination="vtn-0j-Mlh" kind="presentation" identifier="showDeadScene" animates="NO" id="tf8-hf-bkL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bak-wH-JfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
