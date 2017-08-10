@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -59,7 +59,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Cards" id="gmQ-aI-zKZ">
-                        <barButtonItem key="leftBarButtonItem" image="HomeIcon" id="AJj-u1-fvv">
+                        <barButtonItem key="leftBarButtonItem" image="profileIcon4" id="AJj-u1-fvv">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="fWQ-kh-1Xy" id="u53-YP-nV5"/>
@@ -72,7 +72,7 @@
                                     <segue destination="uLA-cr-IvU" kind="presentation" identifier="addCardFromUser" id="LDS-N2-S8F"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="antenna1" id="e4B-TR-UwS">
+                            <barButtonItem image="antennaFinal" id="e4B-TR-UwS">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="multipeerButtonTapped:" destination="fWQ-kh-1Xy" id="cuG-KK-9rl"/>
@@ -117,8 +117,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="HomeIcon" width="29" height="23"/>
-        <image name="antenna1" width="24" height="24"/>
+        <image name="antennaFinal" width="27" height="28"/>
+        <image name="profileIcon4" width="28" height="28"/>
         <image name="skylineDarkened" width="833" height="1209"/>
     </resources>
     <inferredMetricsTieBreakers>
