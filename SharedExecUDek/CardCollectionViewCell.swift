@@ -97,6 +97,8 @@ public class CardCollectionViewCell: UICollectionViewCell {
         shareButton.isHidden = false
         photoButton.isEnabled = true
         shareImage.isHidden = false
+        editButton.isHidden = false
+        editImage.isHidden = false
         
         photoButton.setBackgroundImage(nil, for: .normal)
         photoButton.setBackgroundImage(nil, for: .disabled)
@@ -123,6 +125,11 @@ public class CardCollectionViewCell: UICollectionViewCell {
     
     public func hideShareImage() {
         shareImage.isHidden = true
+    }
+    
+    public func hideEditButton() {
+        editButton.isHidden = true
+        editImage.isHidden = true
     }
     
     public func disablePhotoButton() {

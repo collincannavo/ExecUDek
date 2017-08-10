@@ -56,6 +56,7 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         }
         
         cell.photoButton.setTitle("", for: .normal)
+        cell.hideEditButton()
         
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)

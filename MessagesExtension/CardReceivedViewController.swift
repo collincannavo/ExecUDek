@@ -64,6 +64,7 @@ class CardReceivedViewController: UIViewController {
         cardView.titleLabel.text = card?.title
         cardView.emailLabel.text = card?.email
         cardView.card = card
+        cardView.hideEditButton()
         
         if let data = card?.logoData {
             let image = UIImage(data: data)
