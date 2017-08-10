@@ -119,6 +119,8 @@ public class CardController {
         
         guard let currentPerson = PersonController.shared.currentPerson else { completion(false); return }
         
+        PersonController.shared.removalAllCards(from: currentPerson)
+        
         let receivedCardsRecordIDs = currentPerson.receivedCards.map({ $0.recordID })
         
         CloudKitContoller.shared.fetchRecords(for: receivedCardsRecordIDs) { (recordsDictionary, error) in
@@ -130,10 +132,7 @@ public class CardController {
             
             if let error = error { NSLog("Error encountered fetching received cards: \(error.localizedDescription)") }
             guard let cardRecordsDictionary = recordsDictionary else { NSLog("Records returned for received card fetch is nil"); return }
-            let currentCardRecordIDs = currentPerson.cards.flatMap { $0.ckRecordID }
-            let newCardsDictionary = cardRecordsDictionary.filter { !currentCardRecordIDs.contains($0.key) }
-            let newCardRecords = newCardsDictionary.map({ $0.value })
-            let newCards = newCardRecords.flatMap({ Card(ckRecord: $0) })
+            let newCards = cardRecordsDictionary.flatMap({ Card(ckRecord: $0.value) })
             
             newCards.forEach({ PersonController.shared.addCard($0, to: currentPerson) })
             success = true

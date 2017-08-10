@@ -80,12 +80,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmn-h1-CfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="80.50974512743629"/>
+            <point key="canvasLocation" x="1735.2" y="80.50974512743629"/>
         </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="Eea-8p-buS">
             <objects>
-                <viewController storyboardIdentifier="page1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pnk-7O-GWy" customClass="OnboardingViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="page1" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pnk-7O-GWy" customClass="OnboardingViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UYp-yN-5lI"/>
                         <viewControllerLayoutGuide type="bottom" id="HJ0-QS-BSB"/>
@@ -167,6 +167,7 @@
                             <constraint firstItem="9B9-0D-rpW" firstAttribute="leading" secondItem="fBK-0j-7eJ" secondAttribute="leading" id="tjn-Du-ELW"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="yU2-2W-9E4"/>
                     <connections>
                         <outlet property="addArrow" destination="dSb-gI-f2R" id="QJw-IZ-zfz"/>
                         <outlet property="profileArrow" destination="fBK-0j-7eJ" id="r1c-5x-Glc"/>
@@ -174,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5g-n5-aeh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="81.409295352323838"/>
+            <point key="canvasLocation" x="903.20000000000005" y="81.409295352323838"/>
         </scene>
         <!--Onboarding Page3 View Controller-->
         <scene sceneID="EU4-Gq-oWc">
@@ -244,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZA-cc-Gx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1661.5999999999999" y="80.50974512743629"/>
+            <point key="canvasLocation" x="2600.8000000000002" y="80.50974512743629"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DqT-F4-4X4">
@@ -292,7 +293,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="2528.8000000000002" y="80.50974512743629"/>
+            <point key="canvasLocation" x="3468" y="80.50974512743629"/>
         </scene>
         <!--CardsSceneCollectionView-->
         <scene sceneID="nGE-lW-jRH">
@@ -300,7 +301,7 @@
                 <viewControllerPlaceholder storyboardName="CardsSceneCollectionView" id="yFU-aG-jTF" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hg-1Y-2LL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3257" y="80"/>
+            <point key="canvasLocation" x="4196" y="79.160419790104953"/>
         </scene>
         <!--Launch Screen View Controller-->
         <scene sceneID="ZeZ-kC-Fet">
@@ -328,7 +329,7 @@
                     </view>
                     <connections>
                         <segue destination="OYD-kt-U0x" kind="presentation" identifier="toCardsSceneCollectionView" id="mlv-kL-Prv"/>
-                        <segue destination="Pnk-7O-GWy" kind="presentation" identifier="toOnboarding" id="s83-r8-sNK"/>
+                        <segue destination="NgF-RF-Lu0" kind="presentation" identifier="toOnboarding" id="s83-r8-sNK"/>
                         <segue destination="vtn-0j-Mlh" kind="presentation" identifier="showDeadScene" animates="NO" id="tf8-hf-bkL"/>
                     </connections>
                 </viewController>
@@ -372,6 +373,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hlF-8C-uaF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="631" y="-671"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Tf8-dR-aDe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="NgF-RF-Lu0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RcJ-1I-tRU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Pnk-7O-GWy" kind="relationship" relationship="rootViewController" id="s5v-js-d4g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ML-hR-mVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-36" y="81.409295352323838"/>
         </scene>
     </scenes>
     <resources>

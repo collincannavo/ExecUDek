@@ -16,22 +16,36 @@ class CardReceivedViewController: UIViewController {
     var cardView: CardCollectionViewCell?
     var delegate: CardReceivedViewControllerDelegate?
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    var indicatorView: UIView!
+    
     @IBOutlet weak var receivedCardPlaceholder: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCardView()
         setupCardView()
+        
+        indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
     }
     
     @IBAction func acceptButtonTapped(_ sender: UIButton) {
+        activityIndicator.startAnimating()
+        ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        
         guard let card = card else { return }
         MessageController.save(card) { (success) in
-            if success {
-                self.delegate?.userDidHandleReceivedCard()
-            } else {
-                self.presentUnableToSaveAlert {
+            
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                ActivityIndicator.animateAndRemoveIndicator(self.indicatorView, from: self.view)
+                
+                if success {
                     self.delegate?.userDidHandleReceivedCard()
+                } else {
+                    self.presentUnableToSaveAlert {
+                        self.delegate?.userDidHandleReceivedCard()
+                    }
                 }
             }
         }
@@ -63,13 +77,15 @@ class CardReceivedViewController: UIViewController {
         cardView.nameLabel.text = card?.name
         cardView.titleLabel.text = card?.title
         cardView.emailLabel.text = card?.email
+        cardView.cellLabel.text = card?.cell
         cardView.card = card
+        cardView.hideEditButton()
         
         if let data = card?.logoData {
             let image = UIImage(data: data)
             cardView.photoButton.setBackgroundImage(image, for: .normal)
-            cardView.photoButton.setTitle("", for: .normal)
         }
+        cardView.photoButton.setTitle("", for: .normal)
         
         cardView.layer.cornerRadius = 20.0
     }

@@ -13,11 +13,7 @@ public class CloudKitContoller {
     
     public static let shared = CloudKitContoller()
     private let container = CKContainer(identifier: "iCloud.com.ganleyApps.ExecUDek")
-    
-    public var cards: [Card] = []
-    
-    public var currentUser: Person?
-    
+
     public func verifyCloudKitLogin(with completion: @escaping (Bool) -> Void) {
         container.status(forApplicationPermission: .userDiscoverability) { (permissionStatus, error) in
             if let error = error {

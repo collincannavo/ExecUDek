@@ -73,7 +73,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.collectionView.reloadData()
+        refresh()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -147,6 +147,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
         cell.actionSheetDelegate = self
         
+        //placeCardInOrder(forIndex: indexPath.row)
+        
         return cell
         
     }
@@ -199,7 +201,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             self.presentSMSInterface(for: card, with: cell)
         }
         
-        let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
+        let multiShareButton = UIAlertAction(title: "Connect with Nearby", style: .default) { (_) in
             
             guard let indexPath = self.collectionView.indexPath(for: cell),
                 let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
@@ -298,6 +300,16 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             customCell.changeBackgroundToRed()
         } else if indexPath.row % 3 == 2 {
             customCell.changeBackgroundToOrange()
+        }
+        
+        placeCardInOrder(forIndex: indexPath.row)
+    }
+    
+    func placeCardInOrder(forIndex index: Int) {
+        for i in index...(collectionView.numberOfItems(inSection: 0) - 1) {
+            let indexPath = IndexPath(row: i, section: 0)
+            guard let newTopCell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { continue }
+            collectionView.bringSubview(toFront: newTopCell)
         }
     }
     
