@@ -48,7 +48,6 @@
 		B6459F9F1F361B3F000DD526 /* UserProfileCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6459F9E1F361B3F000DD526 /* UserProfileCollection.storyboard */; };
 		B6459FA11F361BF9000DD526 /* CardsSceneCollectionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6459FA01F361BF9000DD526 /* CardsSceneCollectionView.storyboard */; };
 		B6A28A621F27DF4300786B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A611F27DF4300786B97 /* AppDelegate.swift */; };
-		B6A28A671F27DF4300786B97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A651F27DF4300786B97 /* Main.storyboard */; };
 		B6A28A6A1F27DF4300786B97 /* ExecUDek.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6A28A681F27DF4300786B97 /* ExecUDek.xcdatamodeld */; };
 		B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6B1F27DF4300786B97 /* Assets.xcassets */; };
 		B6A28A6F1F27DF4300786B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */; };
@@ -151,7 +150,6 @@
 		B6459FA01F361BF9000DD526 /* CardsSceneCollectionView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardsSceneCollectionView.storyboard; sourceTree = "<group>"; };
 		B6A28A5E1F27DF4300786B97 /* ExecUDek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExecUDek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A28A611F27DF4300786B97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6A28A661F27DF4300786B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B6A28A691F27DF4300786B97 /* ExecUDek.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExecUDek.xcdatamodel; sourceTree = "<group>"; };
 		B6A28A6B1F27DF4300786B97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6A28A6E1F27DF4300786B97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -348,7 +346,6 @@
 		B6A28A991F290D4000786B97 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				B6A28A651F27DF4300786B97 /* Main.storyboard */,
 				F06281A61F28F15800106424 /* CardTemplate.storyboard */,
 				B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */,
 				B6459F9E1F361B3F000DD526 /* UserProfileCollection.storyboard */,
@@ -577,7 +574,6 @@
 				B6A28A6C1F27DF4300786B97 /* Assets.xcassets in Resources */,
 				B6E23C1E1F3A4929006CBBE6 /* OnBoarding.storyboard in Resources */,
 				B6459FA11F361BF9000DD526 /* CardsSceneCollectionView.storyboard in Resources */,
-				B6A28A671F27DF4300786B97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,14 +660,6 @@
 				188F23381F2957F8007B9F20 /* Base */,
 			);
 			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		B6A28A651F27DF4300786B97 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B6A28A661F27DF4300786B97 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		B6A28A6D1F27DF4300786B97 /* LaunchScreen.storyboard */ = {
