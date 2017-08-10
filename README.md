@@ -1,7 +1,7 @@
 # ExecUDek - Your digital business Card Wallet 
 
 Description:
-ExecUDek solves a simple problem: it provides an easy and convenient process for business owners and professionals to create and share business cards. No need to carry a large stack of business cards to your next business meeting, event, or meet-and-greet. You can easily create as many different cards as you like for different occasions. ExecUDek also allows you to store business contacts outside of your personal Contact’s List, if you choose.
+ExecUDek solves a simple problem: it provides an easy and convenient process for business owners and professionals to create and share business cards. No need to carry a large stack of business cards to your next business meeting, event or meet-and-greet. You can easily create as many different cards as you like for different occasions. ExecUDek also allows you to store business contacts outside of your personal Contact’s List, if you choose.
 
 Features:
 CloudKit:
