@@ -17,6 +17,23 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
         return self.navigationController as? CustomNavigationController ?? CustomNavigationController()
     }
     
+    var waitingOnCardTransmissionStep = false {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateActivityIndicator()
+            }
+        }
+    }
+    
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    var indicatorView: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         MultipeerController.shared.delegate = self
@@ -46,13 +63,18 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
         let alertController = UIAlertController(title: "Received Card", message: "You've received a Card. Would you like to accept it?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             MultipeerController.shared.receiveData(data, from: peerID)
+            self.waitingOnCardTransmissionStep = true
         }
         let noAction = UIAlertAction(title: "No", style: .default) { (_) in
             // Completion stuff
+            self.waitingOnCardTransmissionStep = false
         }
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
-        present(alertController, animated: true) {}
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true) {}
+        }
     }
     
     func didDiscoverPeer(_ peerID: MCPeerID) {
@@ -62,39 +84,50 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             MultipeerController.shared.invitePeer(peerID)
+            self.waitingOnCardTransmissionStep = true
         }
         let noAction = UIAlertAction(title: "No", style: .cancel) { (_) in
             MultipeerController.shared.cancelSession()
             self.customNavigationController.hideMultipeerToolbar()
+            self.waitingOnCardTransmissionStep = false
         }
         
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
         
-        present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func didReceiveInvitation(from peerID: MCPeerID, in session: MCSession, with invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         let alert = UIAlertController(title: "Invitation for a business card", message: "from \(peerID.displayName)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Accept", style: .default) { action in
             invitationHandler(true, session)
+            self.waitingOnCardTransmissionStep = true
         })
         alert.addAction(UIAlertAction(title: "Decline", style: .cancel) { action in
             invitationHandler(false, session)
             MultipeerController.shared.cancelSession()
             self.customNavigationController.hideMultipeerToolbar()
+            self.waitingOnCardTransmissionStep = false
         })
-        self.present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func presentSendCardAlert(for peerID: MCPeerID) {
         let alertController = UIAlertController(title: "Send Card", message: "Would you like to send the selected Card?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             MultipeerController.shared.sendData(to: peerID)
+            self.waitingOnCardTransmissionStep = true
         }
         let noAction = UIAlertAction(title: "No", style: .default) { (_) in
             MultipeerController.shared.cancelSession()
             self.customNavigationController.hideMultipeerToolbar()
+            self.waitingOnCardTransmissionStep = false
         }
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
@@ -107,29 +140,40 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
             completion()
         }
         alertController.addAction(dismissAction)
-        self.present(alertController, animated: true) { (success) in
-            MultipeerController.shared.cancelSession()
-            self.customNavigationController.hideMultipeerToolbar()
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true) { (success) in
+                MultipeerController.shared.cancelSession()
+                self.customNavigationController.hideMultipeerToolbar()
+            }
         }
     }
     
     func presentFailedCardReceiveAlert() {
+        self.waitingOnCardTransmissionStep = false
         let alertController = UIAlertController(title: "Failed to Receive Card", message: "The Card object could not be properly received", preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alertController.addAction(dismissAction)
-        present(alertController, animated: true) { (success) in
-            MultipeerController.shared.cancelSession()
-            self.customNavigationController.hideMultipeerToolbar()
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true) { (success) in
+                MultipeerController.shared.cancelSession()
+                self.customNavigationController.hideMultipeerToolbar()
+            }
         }
     }
     
     func didFinishReceivingCard(from peerID: MCPeerID) {
+        self.waitingOnCardTransmissionStep = false
         let title = "Successfully Received Card!"
         let message = "Card was successfully received from \(peerID.displayName)"
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in }
         alertController.addAction(dismissAction)
-        present(alertController, animated: true) {}
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true) {}
+        }
     }
     
     func connectionStatusDidChange(to connectionStatus: ConnectionStatus, with peerIDName: String?) {
@@ -140,17 +184,22 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
         switch connectionStatus {
         case .notConnected:
             toolBarText = "Not connected"
+            waitingOnCardTransmissionStep = false
         case .advertising:
             toolBarText = "Advertising..."
+            waitingOnCardTransmissionStep = true
         case .browsing:
             toolBarText = "Browsing..."
+            waitingOnCardTransmissionStep = true
         case .connecting:
             toolBarText = "Connecting..."
         case .connected:
             toolBarText = "Connected to \(peerIDNameUnwrapped)"
         }
         
-        customNavigationController.updateMultipeerToolbar(with: toolBarText)
+        DispatchQueue.main.async {
+            self.customNavigationController.updateMultipeerToolbar(with: toolBarText)
+        }
     }
     
     func browseMultipeer() {
@@ -160,6 +209,16 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
     func sessionDidBecomeNotConnected() {
         DispatchQueue.main.async {
             self.customNavigationController.hideMultipeerToolbar()
+        }
+    }
+    
+    func updateActivityIndicator() {
+        if waitingOnCardTransmissionStep {
+            activityIndicator.startAnimating()
+            ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        } else {
+            activityIndicator.stopAnimating()
+            ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
         }
     }
 }
