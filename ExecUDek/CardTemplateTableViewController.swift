@@ -61,6 +61,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var addToContactsButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var buttonsStackView: UIStackView!
     
     // MARK: - Properties
     var cardSenderIsMainScene: Bool = false
@@ -320,6 +323,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         emailTextField.text = card?.email
         cellTextField.text = card?.cell
         addressTextField.text = card?.address
+        
+        if !cardSenderIsMainScene {
+            addToContactsButton.isHidden = true
+            buttonsStackView.axis = .vertical
+            buttonsStackView.alignment = .center
+            deleteButton.translatesAutoresizingMaskIntoConstraints = false
+            deleteButton.widthAnchor.constraint(equalTo: buttonsStackView.widthAnchor, multiplier: 0.5).isActive = true
+        }
     }
     
     func presentFailedDeleteAlert() {
