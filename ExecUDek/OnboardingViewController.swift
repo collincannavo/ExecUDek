@@ -14,6 +14,7 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var addArrow: UIImageView!
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         UIView.animate(withDuration: 1, delay: 0.25,
                        options: [.autoreverse, .repeat],
                        animations: {
