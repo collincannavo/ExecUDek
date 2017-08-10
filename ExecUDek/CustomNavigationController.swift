@@ -37,12 +37,12 @@ class CustomNavigationController: UINavigationController {
         
         switch MultipeerController.shared.connectionStatus {
         case .notConnected:
-            title = "Confirm Multipeer Advertise"
-            message = "Would you like to advertise your device for Multipeer sharing?"
+            title = "Confirm Nearby Advertise"
+            message = "Would you like to advertise your device for nearby sharing?"
             completion = { MultipeerController.shared.startAdvertising() }
         case .advertising, .browsing, .connected, .connecting:
-            title = "Confirm End of Multipeer Session"
-            message = "Would you like to end this Multipeer session?"
+            title = "Confirm End of Nearby Session"
+            message = "Would you like to end this nearby sharing session?"
             completion = { MultipeerController.shared.cancelSession() }
         }
         

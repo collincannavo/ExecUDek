@@ -201,7 +201,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             self.presentSMSInterface(for: card, with: cell)
         }
         
-        let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
+        let multiShareButton = UIAlertAction(title: "Connect with Nearby", style: .default) { (_) in
             
             guard let indexPath = self.collectionView.indexPath(for: cell),
                 let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }

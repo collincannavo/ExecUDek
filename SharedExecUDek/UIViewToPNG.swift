@@ -15,6 +15,7 @@ public struct UIViewToPNG {
         if let cardView = uiView as? CardCollectionViewCell {
             cardView.hideShareButton()
             cardView.hideShareImage()
+            cardView.hideEditButton()
         }
         
         UIGraphicsBeginImageContextWithOptions(uiView.layer.frame.size, false, 1.0)

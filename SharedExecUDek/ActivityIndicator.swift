@@ -11,7 +11,7 @@ import Foundation
 public struct ActivityIndicator {
     public static func indicatorView(with indicator: UIActivityIndicatorView) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 60.0, height: 60.0))
-        view.backgroundColor = UIColor(red: 32/255, green: 195/255, blue: 224/255, alpha: 1)
+        view.backgroundColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
         
         indicator.translatesAutoresizingMaskIntoConstraints = false
         
