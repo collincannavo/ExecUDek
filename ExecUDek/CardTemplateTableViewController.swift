@@ -324,6 +324,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         if let customView = bundle?.loadNibNamed("CardCollectionViewCell", owner: self, options: nil)?.first as? CardCollectionViewCell {
             commonCardXIB = customView
+            commonCardXIB?.hideEditButton()
             commonCardXIB?.delegate = self
             commonCardXIB?.card = card
             commonCardXIB?.updateViews()
