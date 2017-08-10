@@ -72,10 +72,16 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     var newContact: CNMutableContact?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
+        
+        findAndResignFirstResponder()
+        
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addToContactsTapped(_ sender: UIButton) {
+        
+        findAndResignFirstResponder()
+        
         newContact = CNMutableContact()
         newContact?.note = "ExecUDek App Business Card"
         if let name = nameTextField.text {
@@ -104,7 +110,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         let contactView = CNContactViewController(for: newContactUnwrapped)
         let navigationView = UINavigationController(rootViewController: contactView)
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(dismissView))
         contactView.navigationItem.leftBarButtonItem = dismissButton
         present(navigationView,animated: true, completion: nil)
     }
@@ -118,6 +124,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             do {
                 try store.execute(request)
                 print("New Contact created")
+                self.newContact = nil
             } catch let error{
                 print(error.localizedDescription)
             }
@@ -125,6 +132,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        findAndResignFirstResponder()
+        
         guard let email = emailTextField.text, !email.isEmpty else {
             if emailTextField.text == "" {
                 saveCardToCloudKit { (success) in
@@ -148,6 +158,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
+        
+        findAndResignFirstResponder()
         
         guard let card = card, let person = PersonController.shared.currentPerson else { return }
         

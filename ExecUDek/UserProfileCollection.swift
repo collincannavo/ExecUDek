@@ -214,15 +214,10 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             guard let card = UIViewToPNG.uiViewToPNG(for: cell) else { return }
             self.sendEmail(attachment: card)
         }
-        
-//        let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
-//            self.addContact()
-//        }
-        
+  
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(iMessagesButton)
         alertController.addAction(multiShareButton)
-//        alertController.addAction(contactButton)
         alertController.addAction(cancelButton)
         alertController.addAction(emailButton)
         

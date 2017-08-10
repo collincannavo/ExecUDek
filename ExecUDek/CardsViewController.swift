@@ -9,10 +9,12 @@
 import UIKit
 import SharedExecUDek
 import NotificationCenter
+import ContactsUI
 
 class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ActionSheetDelegate {
     
     var filteredCardsArray: [Card] = []
+    var newContact: CNMutableContact?
     
     let overlap: CGFloat = -120.0
     
@@ -142,7 +144,22 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     }
     
     // Card cell action sheet delegate
-    func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell) {}
+    func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell) {
+        
+        let alertController = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
+        
+        let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
+            guard let card = cell.card else { return }
+            self.addContact(for: card)
+        }
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(contactButton)
+        alertController.addAction(cancelButton)
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
     func cardCellEditButtonWasTapped(cell: CardCollectionViewCell) {
         selectedCard = cell.card
@@ -247,6 +264,56 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         } else {
             activityIndicator.stopAnimating()
             ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+        }
+    }
+    
+    func addContact(for card: Card) {
+        
+        newContact = CNMutableContact()
+        newContact?.note = "ExecUDek App Business Card"
+        
+        newContact?.givenName = card.name
+        if let cell = card.cell {
+            let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue:cell))
+            newContact?.phoneNumbers = [phone]
+        }
+        if let title = card.title {
+            newContact?.jobTitle = title
+        }
+        if let website = card.companyName {
+            newContact?.organizationName = website
+        }
+        if let workAddress = card.address {
+            let address = CNMutablePostalAddress()
+            address.street = workAddress
+        }
+        if let email = card.email {
+            let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
+            newContact?.emailAddresses = [workEmail]
+        }
+        
+        guard let newContactUnwrapped = newContact else { return }
+        
+        let contactView = CNContactViewController(for: newContactUnwrapped)
+        let navigationView = UINavigationController(rootViewController: contactView)
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(dismissView))
+        contactView.navigationItem.leftBarButtonItem = dismissButton
+        present(navigationView,animated: true, completion: nil)
+    }
+    
+    func dismissView() {
+        dismiss(animated: true) {
+            guard let newContact = self.newContact else { return }
+            let store = CNContactStore()
+            let request = CNSaveRequest()
+            request.add(newContact, toContainerWithIdentifier: nil)
+            do {
+                try store.execute(request)
+                print("New Contact created")
+                self.newContact = nil
+            } catch let error{
+                print(error.localizedDescription)
+            }
         }
     }
     
