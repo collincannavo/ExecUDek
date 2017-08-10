@@ -26,7 +26,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
+        refresh()
     }
     
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
@@ -270,7 +270,11 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     }
     
     func checkForInitialLoad() {
-        guard let person = PersonController.shared.currentPerson else { return }
+        guard let person = PersonController.shared.currentPerson else {
+            activityIndicator.stopAnimating()
+            ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+            return
+        }
         
         if !person.initialCardsFetchComplete {
             activityIndicator.startAnimating()
