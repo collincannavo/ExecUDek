@@ -105,9 +105,9 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         if let data = card?.logoData,
             let image = UIImage(data: data) {
             
-            cell.photoButton.setBackgroundImage(image.fixOrientation(), for: .normal)
-            cell.photoButton.setBackgroundImage(image.fixOrientation(), for: .disabled)
             cell.photoButton.setTitle("", for: .normal)
+            cell.logoImage.image = image
+            cell.logoImage.contentMode = .scaleAspectFit
             
         }
         
