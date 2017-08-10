@@ -59,7 +59,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Cards" id="gmQ-aI-zKZ">
-                        <barButtonItem key="leftBarButtonItem" image="profileIcon4" id="AJj-u1-fvv">
+                        <barButtonItem key="leftBarButtonItem" image="HomeIcon" id="AJj-u1-fvv">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="fWQ-kh-1Xy" id="u53-YP-nV5"/>
@@ -117,8 +117,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="HomeIcon" width="29" height="23"/>
         <image name="antennaFinal" width="27" height="28"/>
-        <image name="profileIcon4" width="28" height="28"/>
         <image name="skylineDarkened" width="833" height="1209"/>
     </resources>
     <inferredMetricsTieBreakers>
