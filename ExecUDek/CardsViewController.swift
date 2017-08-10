@@ -26,7 +26,9 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refresh()
+        if (PersonController.shared.currentPerson?.initialCardsFetchComplete ?? false) {
+            refresh()
+        }
     }
     
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
