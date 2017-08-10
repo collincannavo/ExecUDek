@@ -24,6 +24,9 @@ public class Person {
     public var personalCards: [Card] = []
     public var cards: [Card] = []
     
+    public var initialCardsFetchComplete = false
+    public var initialPersonalCardsFetchComplete = false
+    
     public var sortedPersonalCards: [Card] {
         return personalCards.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
     }

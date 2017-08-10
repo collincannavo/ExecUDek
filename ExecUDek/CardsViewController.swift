@@ -55,10 +55,6 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UIApplication.shared.statusBarStyle = .lightContent
         
-        
-        guard let array = PersonController.shared.currentPerson?.cards else { return }
-        filteredCardsArray = array
-        
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
@@ -67,6 +63,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
         
+        checkForInitialLoad()
     }
     
     // MARK: - Collection view data source
@@ -175,6 +172,10 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     // MARK: - Helper methods
     
     func refresh() {
+        activityIndicator.stopAnimating()
+        ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+        if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
+        
         collectionView.reloadData()
     }
     
@@ -199,8 +200,6 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     func fetchCards() {
         guard refreshControl.isRefreshing else { return }
         
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        let indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
         activityIndicator.startAnimating()
         
         ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
@@ -214,8 +213,8 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
                         }
                     }
                     DispatchQueue.main.async {                        
-                        activityIndicator.stopAnimating()
-                        ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+                        self.activityIndicator.stopAnimating()
+                        ActivityIndicator.animateAndRemoveIndicator(self.indicatorView, from: self.view)
                         if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
                     }
                 }
@@ -235,6 +234,19 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
             customCell.changeBackgroundToRed()
         } else if indexPath.row % 3 == 2 {
             customCell.changeBackgroundToOrange()
+        }
+    }
+    
+    func checkForInitialLoad() {
+        guard let person = PersonController.shared.currentPerson else { return }
+        
+        if !person.initialCardsFetchComplete {
+            activityIndicator.startAnimating()
+            
+            ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        } else {
+            activityIndicator.stopAnimating()
+            ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
         }
     }
     

@@ -101,6 +101,9 @@ public class CardController {
         let predicate = NSPredicate(format: "\(Card.parentKey) == %@", currentPersonCKReference)
         
         CloudKitContoller.shared.performQuery(with: predicate, completion: { (records, error) in
+            
+            PersonController.shared.currentPerson?.initialPersonalCardsFetchComplete = true
+            
             if let error = error {
                 NSLog("Error encountered while fetching profile cards: \(error.localizedDescription)"); completion(false); return }
             
@@ -120,6 +123,8 @@ public class CardController {
         let receivedCardsRecordIDs = currentPerson.receivedCards.map({ $0.recordID })
         
         CloudKitContoller.shared.fetchRecords(for: receivedCardsRecordIDs) { (recordsDictionary, error) in
+            
+            PersonController.shared.currentPerson?.initialCardsFetchComplete = true
             
             var success = false
             defer { completion(success) }

@@ -67,6 +67,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
+        
+        checkForInitialLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,6 +181,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
     }
     
     func refresh() {
+        activityIndicator.stopAnimating()
+        ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
         collectionView.reloadData()
     }
     
@@ -262,6 +266,20 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             }
         }
     }
+    
+    func checkForInitialLoad() {
+        guard let person = PersonController.shared.currentPerson else { return }
+        
+        if !person.initialCardsFetchComplete {
+            activityIndicator.startAnimating()
+            
+            ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        } else {
+            activityIndicator.stopAnimating()
+            ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+        }
+    }
+    
     func setupCardTableViewCellShadow(_ cell: CardCollectionViewCell) {
         cell.layer.shadowOpacity = 1.0
         cell.layer.shadowRadius = 4
