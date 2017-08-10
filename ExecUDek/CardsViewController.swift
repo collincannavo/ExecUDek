@@ -111,6 +111,8 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         
         cell.actionSheetDelegate = self
         
+        //placeCardInOrder(forIndex: indexPath.row)
+        
         return cell
     }
     
@@ -252,6 +254,8 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         } else if indexPath.row % 3 == 2 {
             customCell.changeBackgroundToOrange()
         }
+        
+        placeCardInOrder(forIndex: indexPath.row)
     }
     
     func checkForInitialLoad() {
@@ -314,6 +318,14 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
             } catch let error{
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func placeCardInOrder(forIndex index: Int) {
+        for i in index...collectionView.numberOfItems(inSection: 0) {
+            let indexPath = IndexPath(row: i, section: 0)
+            guard let newTopCell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { continue }
+            collectionView.bringSubview(toFront: newTopCell)
         }
     }
     

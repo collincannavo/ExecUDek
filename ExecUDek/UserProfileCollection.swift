@@ -147,6 +147,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
         cell.actionSheetDelegate = self
         
+        //placeCardInOrder(forIndex: indexPath.row)
+        
         return cell
         
     }
@@ -298,6 +300,16 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
             customCell.changeBackgroundToRed()
         } else if indexPath.row % 3 == 2 {
             customCell.changeBackgroundToOrange()
+        }
+        
+        placeCardInOrder(forIndex: indexPath.row)
+    }
+    
+    func placeCardInOrder(forIndex index: Int) {
+        for i in index...collectionView.numberOfItems(inSection: 0) {
+            let indexPath = IndexPath(row: i, section: 0)
+            guard let newTopCell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { continue }
+            collectionView.bringSubview(toFront: newTopCell)
         }
     }
     
