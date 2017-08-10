@@ -19,9 +19,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         titleTextField.delegate = self
         cellTextField.delegate = self
         emailTextField.delegate = self
-        officeNumberTextField.delegate = self
         addressTextField.delegate = self
-        cityTextField.delegate = self
         updateViews()
         setupCardDisplay()
         navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
@@ -47,11 +45,9 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
 
     // TableView TextFields
-    @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var cellTextField: UITextField!
-    @IBOutlet weak var officeNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
@@ -69,25 +65,27 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     var cardSenderIsMainScene: Bool = false
     var card: Card?
     var commonCardXIB: CardCollectionViewCell?
+    var newContact: CNMutableContact?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addToContactsTapped(_ sender: UIButton) {
-        let newContact = CNMutableContact()
+        newContact = CNMutableContact()
+        newContact?.note = "ExecUDek App Business Card"
         if let name = nameTextField.text {
-            newContact.givenName = name
+            newContact?.givenName = name
         }
         if let cell = cellTextField.text {
             let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue:cell))
-            newContact.phoneNumbers = [phone]
+            newContact?.phoneNumbers = [phone]
         }
         if let title = titleTextField.text {
-            newContact.jobTitle = title
+            newContact?.jobTitle = title
         }
-        if let company = websiteTextField.text {
-            newContact.organizationName = company
+        if let website = websiteTextField.text {
+            newContact?.organizationName = website
         }
         if let workAddress = addressTextField.text {
             let address = CNMutablePostalAddress()
@@ -95,21 +93,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         }
         if let email = emailTextField.text {
             let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
-            newContact.emailAddresses = [workEmail]
+            newContact?.emailAddresses = [workEmail]
         }
-//        if let image = photoButton.imageView?.image, let imageData = UIImagePNGRepresentation(image) {
-//            newContact.imageData = imageData
-//        }
-        newContact.note = "ExecUDek App Business Card"
-        let store = CNContactStore()
-        let request = CNSaveRequest()
-        request.add(newContact, toContainerWithIdentifier: nil)
-        do {
-            try store.execute(request)
-        } catch let error{
-            print(error)
-        }
-        let contactView = CNContactViewController(for: newContact)
+        
+        guard let newContactUnwrapped = newContact else { return }
+        
+        let contactView = CNContactViewController(for: newContactUnwrapped)
         let navigationView = UINavigationController(rootViewController: contactView)
         let dismissButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
         contactView.navigationItem.leftBarButtonItem = dismissButton
@@ -117,7 +106,18 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     func dismissView(){
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            guard let newContact = self.newContact else { return }
+            let store = CNContactStore()
+            let request = CNSaveRequest()
+            request.add(newContact, toContainerWithIdentifier: nil)
+            do {
+                try store.execute(request)
+                print("New Contact created")
+            } catch let error{
+                print(error.localizedDescription)
+            }
+        }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -208,15 +208,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     // MARK: UITextfieldDelegate
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        nameTextField.resignFirstResponder()
-//        cellTextField.resignFirstResponder()
-//        titleTextField.resignFirstResponder()
-//        emailTextField.resignFirstResponder()
-//        return true
-//    }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         // Text
         guard let name = nameTextField.text, !name.isEmpty,
@@ -234,10 +225,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         guard let text = textField.text else {return true}
         let lastText = (text as NSString).replacingCharacters(in: range, with: string) as String
         if cellTextField == textField {
-            textField.text = lastText.format("(NNN) NNN-NNNN", oldString: text)
-            return false
-        }
-        if officeNumberTextField == textField {
             textField.text = lastText.format("(NNN) NNN-NNNN", oldString: text)
             return false
         }
@@ -272,7 +259,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         let title = titleTextField.text
         let cell = cellTextField.text
         let email = emailTextField.text
-        let officeNumber = officeNumberTextField.text
         let template = Template.one
         let address = addressTextField.text
         let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState())?.fixOrientation() ?? UIImage()
@@ -280,7 +266,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         switch (cardSenderIsMainScene, card == nil) {
         case (true, true):
-            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+            CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
             
                 DispatchQueue.main.async {
                     activityIndicator.stopAnimating()
@@ -331,7 +317,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         nameTextField.text = card?.name
         titleTextField.text = card?.title
         emailTextField.text = card?.email
-        officeNumberTextField.text = card?.officeNumber
         cellTextField.text = card?.cell
         addressTextField.text = card?.address
     }
@@ -410,12 +395,6 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             addressTextField.becomeFirstResponder()
         } else if textField == addressTextField {
             addressTextField.resignFirstResponder()
-            officeNumberTextField.becomeFirstResponder()
-        } else if textField == officeNumberTextField {
-            officeNumberTextField.resignFirstResponder()
-            cityTextField.becomeFirstResponder()
-        } else if textField == cityTextField {
-            cityTextField.resignFirstResponder()
             websiteTextField.becomeFirstResponder()
         } else if textField == websiteTextField {
             websiteTextField.resignFirstResponder()
