@@ -176,7 +176,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         selectedCard = cell.card
         cell.isCurrentlyFocused = false
         enableInteractionInVisibleCells(for: collectionView)
-        if let card = selectedCard {
+        if let card = selectedCard, cell.isCurrentlyFocused {
             returnCard(card, cell: cell, to: collectionView)
         }
         performSegue(withIdentifier: "editCardFromMain", sender: nil)
