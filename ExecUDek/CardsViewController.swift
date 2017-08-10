@@ -15,6 +15,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     
     var filteredCardsArray: [Card] = []
     var newContact: CNMutableContact?
+    var isRefreshing = false
     
     let overlap: CGFloat = -120.0
     
@@ -50,7 +51,6 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(fetchCards), for: .valueChanged)
         
-        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
@@ -75,6 +75,15 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if isRefreshing {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell else {
+                return CardCollectionViewCell()
+            }
+            cell.isHidden = true
+            return cell
+        }
+        
         let card = PersonController.shared.currentPerson?.sortedCards[indexPath.row]
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell,
@@ -112,7 +121,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         cell.actionSheetDelegate = self
         
         //placeCardInOrder(forIndex: indexPath.row)
-        
+        cell.isHidden = false
         return cell
     }
     
@@ -217,6 +226,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     //    }
     
     func fetchCards() {
+        isRefreshing = true
         guard refreshControl.isRefreshing else { return }
         
         activityIndicator.startAnimating()
@@ -228,6 +238,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
                 CardController.shared.fetchReceivedCards { (success) in
                     if success {
                         DispatchQueue.main.async {
+                            self.isRefreshing = false
                             self.refresh()
                         }
                     }
@@ -322,7 +333,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     }
     
     func placeCardInOrder(forIndex index: Int) {
-        for i in index...collectionView.numberOfItems(inSection: 0) {
+        for i in index...(collectionView.numberOfItems(inSection: 0) - 1) {
             let indexPath = IndexPath(row: i, section: 0)
             guard let newTopCell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { continue }
             collectionView.bringSubview(toFront: newTopCell)
