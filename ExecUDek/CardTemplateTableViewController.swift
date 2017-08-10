@@ -65,26 +65,27 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     var cardSenderIsMainScene: Bool = false
     var card: Card?
     var commonCardXIB: CardCollectionViewCell?
+    var newContact: CNMutableContact?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addToContactsTapped(_ sender: UIButton) {
-        let newContact = CNMutableContact()
-        newContact.note = "ExecUDek App Business Card"
+        newContact = CNMutableContact()
+        newContact?.note = "ExecUDek App Business Card"
         if let name = nameTextField.text {
-            newContact.givenName = name
+            newContact?.givenName = name
         }
         if let cell = cellTextField.text {
             let phone = CNLabeledValue(label: CNLabelWork, value: CNPhoneNumber(stringValue:cell))
-            newContact.phoneNumbers = [phone]
+            newContact?.phoneNumbers = [phone]
         }
         if let title = titleTextField.text {
-            newContact.jobTitle = title
+            newContact?.jobTitle = title
         }
-        if let company = websiteTextField.text {
-            newContact.organizationName = company
+        if let website = websiteTextField.text {
+            newContact?.organizationName = website
         }
         if let workAddress = addressTextField.text {
             let address = CNMutablePostalAddress()
@@ -92,18 +93,12 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         }
         if let email = emailTextField.text {
             let workEmail = CNLabeledValue(label:CNLabelWork, value: NSString(string: email))
-            newContact.emailAddresses = [workEmail]
+            newContact?.emailAddresses = [workEmail]
         }
         
-        let store = CNContactStore()
-        let request = CNSaveRequest()
-        request.add(newContact, toContainerWithIdentifier: nil)
-        do {
-            try store.execute(request)
-        } catch let error{
-            print(error)
-        }
-        let contactView = CNContactViewController(for: newContact)
+        guard let newContactUnwrapped = newContact else { return }
+        
+        let contactView = CNContactViewController(for: newContactUnwrapped)
         let navigationView = UINavigationController(rootViewController: contactView)
         let dismissButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
         contactView.navigationItem.leftBarButtonItem = dismissButton
@@ -111,7 +106,18 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
     }
     
     func dismissView(){
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            guard let newContact = self.newContact else { return }
+            let store = CNContactStore()
+            let request = CNSaveRequest()
+            request.add(newContact, toContainerWithIdentifier: nil)
+            do {
+                try store.execute(request)
+                print("New Contact created")
+            } catch let error{
+                print(error.localizedDescription)
+            }
+        }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
