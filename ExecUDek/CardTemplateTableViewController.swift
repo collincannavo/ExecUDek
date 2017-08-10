@@ -22,6 +22,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         addressTextField.delegate = self
         updateViews()
         setupCardDisplay()
+        setupTableViewGestureRecognizer()
         navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
         
         let backgroundImage = UIImage(named: "skylineDarkened.png")
@@ -326,6 +327,15 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alertController.addAction(dismissAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func setupTableViewGestureRecognizer() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(findAndResignFirstResponder))
+        tableView.addGestureRecognizer(recognizer)
+    }
+    
+    func findAndResignFirstResponder() {
+        view.endEditing(true)
     }
     
     func setupCardDisplay() {
