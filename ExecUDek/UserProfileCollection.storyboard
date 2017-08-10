@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a43-OQ-Lrr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,9 +25,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="407-Gv-9gw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y33-wq-iao">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y33-wq-iao">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Y7O-xK-DZB">
@@ -52,7 +51,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Y33-wq-iao" secondAttribute="trailing" id="1fj-U5-hay"/>
                             <constraint firstItem="RLr-GF-mh8" firstAttribute="top" secondItem="407-Gv-9gw" secondAttribute="bottom" id="22k-ux-X3W"/>
+                            <constraint firstItem="RLr-GF-mh8" firstAttribute="top" secondItem="Y33-wq-iao" secondAttribute="bottom" id="Zhn-om-zpy"/>
+                            <constraint firstItem="Y33-wq-iao" firstAttribute="top" secondItem="cup-fJ-0SO" secondAttribute="bottom" id="fbl-Je-LWl"/>
+                            <constraint firstItem="Y33-wq-iao" firstAttribute="leading" secondItem="gwA-EH-qi2" secondAttribute="leading" id="kKw-IM-4PS"/>
                             <constraint firstItem="407-Gv-9gw" firstAttribute="leading" secondItem="gwA-EH-qi2" secondAttribute="leading" id="oot-sb-KFe"/>
                             <constraint firstItem="407-Gv-9gw" firstAttribute="top" secondItem="cup-fJ-0SO" secondAttribute="bottom" constant="-64" id="pBR-wL-zzP"/>
                             <constraint firstAttribute="trailing" secondItem="407-Gv-9gw" secondAttribute="trailing" id="wex-XR-IZa"/>
