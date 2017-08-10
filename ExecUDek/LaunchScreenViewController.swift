@@ -39,17 +39,13 @@ class LaunchScreenViewController: UIPageViewController {
             if success {
                 if person != nil {
                     CardController.shared.fetchPersonalCards(with: { (success) in
-                        if success {
-                            DispatchQueue.main.async {
-                                NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
-                            }
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
                         }
                     })
                     CardController.shared.fetchReceivedCards(with: { (success) in
-                        if success {
-                            DispatchQueue.main.async {
-                                NotificationCenter.default.post(name: Constants.cardsFetchedNotification, object: self)
-                            }
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: Constants.cardsFetchedNotification, object: self)
                         }
                     })
                     

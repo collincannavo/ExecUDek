@@ -280,7 +280,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
                 }
             }
         case (false, true):
-            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+            CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
                 
                 DispatchQueue.main.async {
                     activityIndicator.stopAnimating()
@@ -297,7 +297,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         case (_, false):
             guard let card = card else { return }
             
-            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, officeNumber: officeNumber, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
+            CardController.shared.updateCard(card, withCardData: nil, name: name, title: title, cell: cell, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
                 
                 DispatchQueue.main.async {
                     activityIndicator.stopAnimating()
