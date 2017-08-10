@@ -103,7 +103,11 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
         case .connected:
             self.updateState(.connected, peerName: peerID.displayName)
             connectedPeer = peerID
-            if isMultipeerSender { delegate?.presentSendCardAlert(for: peerID) }
+            if isMultipeerSender {
+                DispatchQueue.main.async {
+                    self.delegate?.presentSendCardAlert(for: peerID)
+                }
+            }
         }
     }
     
@@ -144,7 +148,12 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
     }
     
     func receiveData(_ data: Data, from peerID: MCPeerID) {
-        guard let cardRecordIDName = String(data: data, encoding: .utf8) else { presentFailedCardReceiveAlert(); return }
+        guard let cardRecordIDName = String(data: data, encoding: .utf8) else {
+            DispatchQueue.main.async {
+                self.presentFailedCardReceiveAlert()
+            }
+            return
+        }
         
         let cardRecordID = CKRecordID(recordName: cardRecordIDName)
         
@@ -155,7 +164,9 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
             
             MessageController.save(card) { (success) in
                 if !success {
-                    self.delegate?.presentUnableToSaveAlert {}
+                    DispatchQueue.main.async {
+                        self.delegate?.presentUnableToSaveAlert {}
+                    }
                 } else {
                     self.delegate?.didFinishReceivingCard(from: peerID)
                 }

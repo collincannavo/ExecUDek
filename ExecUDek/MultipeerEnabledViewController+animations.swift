@@ -11,7 +11,6 @@ import SharedExecUDek
 
 extension MultipeerEnabledViewController {
     
-    
     func yPositionAnimation(for cell: CardCollectionViewCell,
                             withTranslation translation: CGFloat,
                             duration: TimeInterval,
