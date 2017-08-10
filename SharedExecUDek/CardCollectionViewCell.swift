@@ -30,6 +30,7 @@ public class CardCollectionViewCell: UICollectionViewCell {
     @IBOutlet public weak var view: UIView!
     @IBOutlet weak var shareImage: UIImageView!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var editImage: UIImageView!
     
     @IBAction public func addCompanyLogoButtonTapped(_ sender: Any) {
         guard let buttonTapped = sender as? UIButton else { return }
