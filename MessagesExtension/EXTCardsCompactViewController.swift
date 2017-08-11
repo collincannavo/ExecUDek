@@ -16,6 +16,9 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
     
     var conversation: MSConversation?
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    var indicatorView: UIView!
+    
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -30,6 +33,18 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         let yourXIBName = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
         collectionView.register(yourXIBName, forCellWithReuseIdentifier: "collectionCardCell")
+        
+        indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
+        
+        if let person = PersonController.shared.currentPerson {
+            if !person.initialPersonalCardsFetchComplete {
+                activityIndicator.startAnimating()
+                ActivityIndicator.addAndAnimatedIndicatorForMessages(indicatorView, to: view)
+            }
+        } else {
+            activityIndicator.startAnimating()
+            ActivityIndicator.addAndAnimatedIndicatorForMessages(indicatorView, to: view)
+        }
     }
     
     // MARK: - Collection view data source
@@ -51,8 +66,8 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         cell.delegate = self
         if let logoData = card?.logoData {
             let logoImage = UIImage(data: logoData)
-            cell.photoButton.setBackgroundImage(logoImage?.fixOrientation(), for: .normal)
-            cell.photoButton.setBackgroundImage(logoImage?.fixOrientation(), for: .disabled)
+            cell.logoImage.image = logoImage?.fixOrientation()
+            cell.logoImage.contentMode = .scaleAspectFit
         }
         
         cell.photoButton.setTitle("", for: .normal)
@@ -97,6 +112,8 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
     
     // MARK: - Helper methods
     func refresh() {
+        self.activityIndicator.stopAnimating()
+        ActivityIndicator.animateAndRemoveIndicator(self.indicatorView, from: self.view)
         collectionView.reloadData()
     }
     

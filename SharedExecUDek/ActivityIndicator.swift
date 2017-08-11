@@ -40,6 +40,23 @@ public struct ActivityIndicator {
         }
     }
     
+    public static func addAndAnimatedIndicatorForMessages(_ indicatorView: UIView, to view: UIView) {
+        indicatorView.alpha = 0.0
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(indicatorView)
+        
+        indicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        indicatorView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60.0).isActive = true
+        indicatorView.heightAnchor.constraint(equalToConstant: 60.0).isActive = true
+        indicatorView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
+        
+        indicatorView.layer.cornerRadius = 16.0
+        
+        UIView.animate(withDuration: 0.1) {
+            indicatorView.alpha = 1.0
+        }
+    }
+    
     public static func animateAndRemoveIndicator(_ indicatorView: UIView, from view: UIView) {
         UIView.animate(withDuration: 0.1) {
             indicatorView.alpha = 0.0

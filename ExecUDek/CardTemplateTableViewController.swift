@@ -132,8 +132,10 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         let email = emailTextField.text
         let template = Template.one
         let address = addressTextField.text
-        let logoImage = commonCardXIB?.photoButton.backgroundImage(for: UIControlState())?.fixOrientation() ?? UIImage()
-        let logoData = UIImagePNGRepresentation(logoImage)
+        var logoData: Data? = nil
+        if let logoImage = commonCardXIB?.logoImage.image {
+            logoData = UIImagePNGRepresentation(logoImage)
+        }
         switch (cardSenderIsMainScene, card == nil) {
         case (true, true):
             CardController.shared.createCardWith(cardData: nil, name: name, title: title, cell: cell, email: email, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
@@ -141,13 +143,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
                 DispatchQueue.main.async {
                     activityIndicator.stopAnimating()
                     ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+                    
+                    if success {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
                 }
                 
-                if success {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
             }
         case (false, true):
             CardController.shared.createPersonalCardWith(name: name, title: title, cell: cell, email: email, template: template, companyName: nil, note: nil, address: address, avatarData: nil, logoData: logoData, other: nil) { (success) in
@@ -155,13 +158,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
                 DispatchQueue.main.async {
                     activityIndicator.stopAnimating()
                     ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+                    
+                    if success {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
                 }
                 
-                if success {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
             }
             
         case (_, false):
@@ -172,13 +176,14 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
                 DispatchQueue.main.async {
                     activityIndicator.stopAnimating()
                     ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+                    
+                    if success {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
                 }
                 
-                if success {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
             }
         }
     }
@@ -357,8 +362,8 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             delegate?.photoSelectViewControllerSelected(image)
-            commonCardXIB?.photoButton.setTitle("", for: UIControlState())
-            commonCardXIB?.photoButton.setBackgroundImage(image, for: UIControlState())
+            commonCardXIB?.logoImage.image = image.fixOrientation()
+            commonCardXIB?.logoImage.contentMode = .scaleAspectFit
         }
     }
     

@@ -135,8 +135,8 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         if let data = card?.logoData,
             let image = UIImage(data: data) {
             
-            cell.photoButton.setBackgroundImage(image.fixOrientation(), for: .disabled)
-            cell.photoButton.setTitle("", for: .disabled)
+            cell.logoImage.image = image
+            cell.logoImage.contentMode = .scaleAspectFit
         }
         
         cell.disablePhotoButton()

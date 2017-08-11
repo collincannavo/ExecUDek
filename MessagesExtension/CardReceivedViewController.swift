@@ -83,7 +83,8 @@ class CardReceivedViewController: UIViewController {
         
         if let data = card?.logoData {
             let image = UIImage(data: data)
-            cardView.photoButton.setBackgroundImage(image, for: .normal)
+            cardView.logoImage.image = image?.fixOrientation()
+            cardView.logoImage.contentMode = .scaleAspectFit
         }
         cardView.photoButton.setTitle("", for: .normal)
         

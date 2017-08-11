@@ -107,6 +107,7 @@ public class CardCollectionViewCell: UICollectionViewCell {
         
         photoButton.setBackgroundImage(nil, for: .normal)
         photoButton.setBackgroundImage(nil, for: .disabled)
+        logoImage.image = nil
         nameLabel.text = ""
         titleLabel.text = ""
         cellLabel.text = ""

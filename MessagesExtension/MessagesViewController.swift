@@ -25,10 +25,9 @@ class MessagesViewController: MSMessagesAppViewController, CardReceivedViewContr
             if success {
                 if person != nil {
                     CardController.shared.fetchPersonalCards(with: { (success) in
-                        if success {
-                            DispatchQueue.main.async {
-                                NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
-                            }
+                        DispatchQueue.main.async {
+                            person?.initialPersonalCardsFetchComplete = true
+                            NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
                         }
                     })
                 } else {
