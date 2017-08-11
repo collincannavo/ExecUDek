@@ -60,13 +60,13 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UIApplication.shared.statusBarStyle = .lightContent
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
-        
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+//        swipeLeft.direction = .left
+//        self.view.addGestureRecognizer(swipeLeft)
+//        
+//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+//        swipeRight.direction = .right
+//        self.view.addGestureRecognizer(swipeRight)
         
         checkForInitialLoad()
     }
@@ -358,12 +358,12 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     let appOrange = UIColor(red: 251/255, green: 191/255, blue: 88/255, alpha: 1)
     
     func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
-        if gesture.direction == UISwipeGestureRecognizerDirection.right {
-            print("Swipe Right")
-            self.performSegue(withIdentifier: "toMyCards", sender: self)
-        } else if gesture.direction == UISwipeGestureRecognizerDirection.left {
-            print("Swipe left")
-            self.performSegue(withIdentifier: "addCardFromMain", sender: self)
-        }
+//        if gesture.direction == UISwipeGestureRecognizerDirection.right {
+//            print("Swipe Right")
+//            self.performSegue(withIdentifier: "toMyCards", sender: self)
+//        } else if gesture.direction == UISwipeGestureRecognizerDirection.left {
+//            print("Swipe left")
+//            self.performSegue(withIdentifier: "addCardFromMain", sender: self)
+//        }
     }
 }

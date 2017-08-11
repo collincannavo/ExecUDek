@@ -20,7 +20,7 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
     
     var cardsSceneController: CardsViewController!
     var personalCardsSceneController: UserProfileCollectionViewController!
-    var scrollableControllers: [MultipeerEnabledViewController] = []
+    
     var index = 0 {
         didSet {
             self.updateNavigationItem()
@@ -36,7 +36,7 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createMultipeerToolbar()
+        //createMultipeerToolbar()
         view.backgroundColor = .white
         
         setupNavBar()
@@ -45,11 +45,27 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
     
     // MARK: - Page view controller delegate/data source
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return cardsSceneController
+        switch index {
+        case 1: return cardsSceneController
+        default: return nil
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return cardsSceneController
+        switch index {
+        case 0: return personalCardsSceneController
+        default: return nil
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            if index == 0 {
+                index = 1
+            } else if index == 1 {
+                index = 0
+            }
+        }
     }
     
     func confirmChangeOfMultipeer() {
@@ -117,8 +133,8 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
     }
     
     func updateMultipeerToolbar(with text: String) {
-        statusBarButtonItem.title = text
-        multipeerToolbar.setItems([wirelessBarButtonItem, statusBarButtonItem], animated: false)
+        //statusBarButtonItem.title = text
+        //multipeerToolbar.setItems([wirelessBarButtonItem, statusBarButtonItem], animated: false)
     }
     
     func toggleMultipeerToolbarVisibility() {
@@ -169,28 +185,23 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
             fatalError("Could not instantiate the received cards scene")
         }
         
-        scrollableControllers = [page1]
+        guard let page2 = UIStoryboard(name: "UserProfileCollection", bundle: nil).instantiateViewController(withIdentifier: "personalCardsScene") as? UserProfileCollectionViewController else { fatalError("Could not instantiate the personal cards scene") }
+        
+        cardsSceneController = page1
+        personalCardsSceneController = page2
+        
         pageViewController.setViewControllers([page1], direction: .forward, animated: true, completion: nil)
-        
-        //pageViewController.navigationItem.title = "Wallet"
-        
-        self.pushViewController(pageViewController, animated: false)
+        pageViewController.view.frame = view.frame
+        self.pushViewController(pageViewController, animated: true)
     }
     
     func setupNavBar() {
-        navigationBar.backgroundColor = .clear
-        
-        let backgroundImage = UIImage(named: "skylineDarkened")
-        let imageView = UIImageView(image: backgroundImage)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageView)
-        view.sendSubview(toBack: imageView)
-        
-        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//        navigationBar.tintColor = .clear
+        navigationBar.barTintColor = .clear
+//        navigationBar.backgroundColor = .clear
+//        view.backgroundColor = .white
+//        navigationBar.setBackgroundImage(nil, for: .default)
+//        self.navigationBar.isTranslucent = true
     }
     
     func updateNavigationItem() {

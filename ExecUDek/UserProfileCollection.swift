@@ -19,7 +19,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
     let overlap: CGFloat = -120.0
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
     }
     
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
@@ -64,9 +64,9 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+//        swipeLeft.direction = .left
+//        self.view.addGestureRecognizer(swipeLeft)
         
         checkForInitialLoad()
     }
@@ -338,9 +338,9 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
     }
     
     func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
-        if gesture.direction == UISwipeGestureRecognizerDirection.left {
-            print("Swipe left")
-            self.dismiss(animated: true, completion: nil)
-        }
+//        if gesture.direction == UISwipeGestureRecognizerDirection.left {
+//            print("Swipe left")
+//            self.dismiss(animated: true, completion: nil)
+//        }
     }
 }

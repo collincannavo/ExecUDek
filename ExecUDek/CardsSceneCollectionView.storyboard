@@ -108,7 +108,7 @@
         <!--Wallet-->
         <scene sceneID="p9C-m7-N0x">
             <objects>
-                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dGv-pg-eVu" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dGv-pg-eVu" customClass="CustomPageViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Wallet" id="0vS-YD-owE"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fF4-N8-yjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -126,7 +126,7 @@
         <!--Custom Navigation Controller-->
         <scene sceneID="x1S-5d-TFb">
             <objects>
-                <navigationController storyboardIdentifier="CustomNavController" automaticallyAdjustsScrollViewInsets="NO" id="QYA-OX-WhK" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CustomNavController" navigationBarHidden="YES" id="QYA-OX-WhK" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q0Q-hK-Fkh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
