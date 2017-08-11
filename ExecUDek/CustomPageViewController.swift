@@ -38,7 +38,8 @@ class CustomPageViewController: UIPageViewController {
     }
     
     func setupNavBar() {
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        let navBar = UINavigationBar()
+        
         
         let addCardBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
         let multipeerBarButtonItem = UIBarButtonItem(image: UIImage(named: "antennaFinal"), style: .plain, target: self, action: nil)
