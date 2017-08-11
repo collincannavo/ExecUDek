@@ -29,6 +29,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         if (PersonController.shared.currentPerson?.initialCardsFetchComplete ?? false) {
             refresh()
         }
+        collectionView.reloadData()
     }
     
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
@@ -257,7 +258,11 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
                     }
                 }
                 
-                CardController.shared.fetchPersonalCards(with: { (_) in })
+                CardController.shared.fetchPersonalCards(with: { (_) in
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
+                    }
+                })
             }
         }
     }

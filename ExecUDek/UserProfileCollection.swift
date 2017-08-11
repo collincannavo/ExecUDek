@@ -76,6 +76,7 @@ class UserProfileCollectionViewController: MultipeerEnabledViewController, Actio
         if (PersonController.shared.currentPerson?.initialPersonalCardsFetchComplete ?? false) {
             refresh()
         }
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -57,6 +57,7 @@ class LaunchScreenViewController: UIPageViewController {
                             NotificationCenter.default.post(name: Constants.cardsFetchedNotification, object: self)
                             if let person = PersonController.shared.currentPerson {
                                 person.initialCardsFetchComplete = true
+                                person.initialPersonalCardsFetchComplete = true
                             }
                             self.performSegue(withIdentifier: "toOnboarding", sender: self)
                         }
