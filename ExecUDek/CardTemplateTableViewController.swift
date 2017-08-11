@@ -364,6 +364,7 @@ class CardTemplateTableViewController: UITableViewController, UIImagePickerContr
             delegate?.photoSelectViewControllerSelected(image)
             commonCardXIB?.logoImage.image = image.fixOrientation()
             commonCardXIB?.logoImage.contentMode = .scaleAspectFit
+            commonCardXIB?.photoButton.setTitle("", for: .normal)
         }
     }
     
