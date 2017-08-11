@@ -53,7 +53,13 @@ class LaunchScreenViewController: UIPageViewController {
                     
                 } else {
                     CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in
-                        self.performSegue(withIdentifier: "toOnboarding", sender: self)
+                        DispatchQueue.main.async {                            
+                            NotificationCenter.default.post(name: Constants.cardsFetchedNotification, object: self)
+                            if let person = PersonController.shared.currentPerson {
+                                person.initialCardsFetchComplete = true
+                            }
+                            self.performSegue(withIdentifier: "toOnboarding", sender: self)
+                        }
                     })
                 }
             }

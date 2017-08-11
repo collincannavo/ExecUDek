@@ -278,19 +278,15 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     }
     
     func checkForInitialLoad() {
-        guard let person = PersonController.shared.currentPerson else {
-            activityIndicator.stopAnimating()
-            ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
-            return
-        }
         
-        if !person.initialCardsFetchComplete {
-            activityIndicator.startAnimating()
-            
-            ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        if let person = PersonController.shared.currentPerson {
+            if !person.initialCardsFetchComplete {
+                activityIndicator.startAnimating()
+                ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+            }
         } else {
-            activityIndicator.stopAnimating()
-            ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+            activityIndicator.startAnimating()
+            ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
         }
     }
     
