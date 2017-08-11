@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYA-OX-WhK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYA-OX-WhK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Wallet-->
         <scene sceneID="D04-K5-BGb">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="79B-8T-VtH" customClass="CardsViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cardsScene" automaticallyAdjustsScrollViewInsets="NO" id="79B-8T-VtH" customClass="CardsViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jRz-S2-dc8"/>
                         <viewControllerLayoutGuide type="bottom" id="THK-hY-ReU"/>
@@ -22,11 +22,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-yE-WXN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-yE-WXN">
+                                <rect key="frame" x="0.0" y="-44" width="375" height="711"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ilN-BY-8MX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jya-H8-rRs">
@@ -50,7 +50,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ilN-BY-8MX" firstAttribute="leading" secondItem="z7M-yE-WXN" secondAttribute="leading" id="4n8-K3-2sf"/>
@@ -105,6 +105,16 @@
             </objects>
             <point key="canvasLocation" x="1745" y="-75"/>
         </scene>
+        <!--Wallet-->
+        <scene sceneID="p9C-m7-N0x">
+            <objects>
+                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dGv-pg-eVu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Wallet" id="0vS-YD-owE"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fF4-N8-yjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-240" y="27"/>
+        </scene>
         <!--UserProfileCollection-->
         <scene sceneID="3eS-pa-5rm">
             <objects>
@@ -123,9 +133,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="79B-8T-VtH" kind="relationship" relationship="rootViewController" id="x1m-PQ-1Ni"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZ9-pb-PX2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,7 +142,6 @@
     <resources>
         <image name="antennaFinal" width="27" height="28"/>
         <image name="profileIcon2" width="28" height="28"/>
-        <image name="skylineDarkened" width="833" height="1209"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GJY-xY-jHV"/>

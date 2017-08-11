@@ -13,7 +13,7 @@
         <!--My Cards-->
         <scene sceneID="IDg-L1-LZg">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fWQ-kh-1Xy" customClass="UserProfileCollectionViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="personalCardsScene" automaticallyAdjustsScrollViewInsets="NO" id="fWQ-kh-1Xy" customClass="UserProfileCollectionViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cup-fJ-0SO"/>
                         <viewControllerLayoutGuide type="bottom" id="RLr-GF-mh8"/>

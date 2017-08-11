@@ -10,11 +10,22 @@ import UIKit
 import NotificationCenter
 import SharedExecUDek
 
-class CustomNavigationController: UINavigationController {
+class CustomNavigationController: UINavigationController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     let multipeerToolbar = UIToolbar()
     var wirelessBarButtonItem: UIBarButtonItem!
     var statusBarButtonItem: UIBarButtonItem!
+    
+    var pageViewController: UIPageViewController!
+    
+    var cardsSceneController: CardsViewController!
+    var personalCardsSceneController: UserProfileCollectionViewController!
+    var scrollableControllers: [MultipeerEnabledViewController] = []
+    var index = 0 {
+        didSet {
+            self.updateNavigationItem()
+        }
+    }
     
     var toolbarIsVisible = false {
         didSet {
@@ -27,6 +38,18 @@ class CustomNavigationController: UINavigationController {
         
         createMultipeerToolbar()
         view.backgroundColor = .white
+        
+        setupNavBar()
+        setupPageViewController()
+    }
+    
+    // MARK: - Page view controller delegate/data source
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        return cardsSceneController
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        return cardsSceneController
     }
     
     func confirmChangeOfMultipeer() {
@@ -133,6 +156,45 @@ class CustomNavigationController: UINavigationController {
         if !toolbarIsVisible {
             toolbarIsVisible = true
         }
+    }
+    
+    func setupPageViewController() {
+        guard let pageViewControllerFromIB = storyboard?.instantiateViewController(withIdentifier: "pageViewController") as? UIPageViewController else {
+            fatalError("Could not instantiate the page view controller")
+        }
+        pageViewController = pageViewControllerFromIB
+        pageViewController.delegate = self
+        pageViewController.dataSource = self
+        guard let page1 = storyboard?.instantiateViewController(withIdentifier: "cardsScene") as? CardsViewController else {
+            fatalError("Could not instantiate the received cards scene")
+        }
+        
+        scrollableControllers = [page1]
+        pageViewController.setViewControllers([page1], direction: .forward, animated: true, completion: nil)
+        
+        //pageViewController.navigationItem.title = "Wallet"
+        
+        self.pushViewController(pageViewController, animated: false)
+    }
+    
+    func setupNavBar() {
+        navigationBar.backgroundColor = .clear
+        
+        let backgroundImage = UIImage(named: "skylineDarkened")
+        let imageView = UIImageView(image: backgroundImage)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
+        view.sendSubview(toBack: imageView)
+        
+        imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func updateNavigationItem() {
+        
     }
     
     func confirmMultipeerAdvertiseAlert(with title: String, message: String, completion: @escaping () -> Void) {

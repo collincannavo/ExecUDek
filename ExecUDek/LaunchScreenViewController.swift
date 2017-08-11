@@ -49,7 +49,9 @@ class LaunchScreenViewController: UIPageViewController {
                         }
                     })
                     
-                    self.performSegue(withIdentifier: "toCardsSceneCollectionView", sender: self)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "toCardsSceneCollectionView", sender: self)
+                    }
                     
                 } else {
                     CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in
