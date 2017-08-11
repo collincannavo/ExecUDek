@@ -26,29 +26,49 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELb-JB-HsT">
                                 <rect key="frame" x="20" y="5" width="307" height="153"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2s-pQ-dEO">
-                                        <rect key="frame" x="10" y="12" width="135" height="105"/>
+                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="lrh-sK-zdy">
+                                        <rect key="frame" x="16" y="8" width="135" height="103"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2s-pQ-dEO">
+                                                <rect key="frame" x="0.0" y="0.0" width="135" height="103"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="135" id="vFJ-dN-9Vd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <state key="normal" title="Add Logo"/>
+                                                <connections>
+                                                    <action selector="addCompanyLogoButtonTapped:" destination="Tua-uG-gSX" eventType="touchUpInside" id="dP1-cU-xuP"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="asa-1r-RV3" customClass="LogoImageView_Helper" customModule="SharedExecUDek" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="135" height="103"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </imageView>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="135" id="vFJ-dN-9Vd"/>
+                                            <constraint firstItem="Z2s-pQ-dEO" firstAttribute="leading" secondItem="lrh-sK-zdy" secondAttribute="leading" id="5rU-zX-QSv"/>
+                                            <constraint firstItem="Z2s-pQ-dEO" firstAttribute="top" secondItem="lrh-sK-zdy" secondAttribute="top" id="FF3-Az-5Y8"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z2s-pQ-dEO" secondAttribute="trailing" id="Ida-eU-Jfg"/>
+                                            <constraint firstAttribute="bottom" secondItem="Z2s-pQ-dEO" secondAttribute="bottom" id="RKg-se-dip"/>
+                                            <constraint firstItem="asa-1r-RV3" firstAttribute="leading" secondItem="lrh-sK-zdy" secondAttribute="leading" id="X67-JJ-vyQ"/>
+                                            <constraint firstItem="asa-1r-RV3" firstAttribute="top" secondItem="lrh-sK-zdy" secondAttribute="top" id="fCv-Qj-NOa"/>
+                                            <constraint firstAttribute="bottom" secondItem="asa-1r-RV3" secondAttribute="bottom" id="koN-1G-XZz"/>
+                                            <constraint firstAttribute="trailing" secondItem="asa-1r-RV3" secondAttribute="trailing" id="lVw-iq-qtT"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <state key="normal" title="Add Logo"/>
-                                        <connections>
-                                            <action selector="addCompanyLogoButtonTapped:" destination="Tua-uG-gSX" eventType="touchUpInside" id="dP1-cU-xuP"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vo-bv-BNl">
-                                        <rect key="frame" x="153" y="4" width="154" height="113"/>
+                                        <rect key="frame" x="195.5" y="4" width="111.5" height="111.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vmn-cW-3e6">
-                                                <rect key="frame" x="0.0" y="7" width="146" height="28"/>
+                                                <rect key="frame" x="0.0" y="7" width="103.5" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mBL-1i-LSz">
-                                                <rect key="frame" x="0.0" y="35" width="146" height="26"/>
+                                                <rect key="frame" x="0.0" y="33.5" width="103.5" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="0le-pG-CPE"/>
                                                 </constraints>
@@ -57,13 +77,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ncZ-fN-Blz">
-                                                <rect key="frame" x="0.0" y="60" width="146" height="28"/>
+                                                <rect key="frame" x="0.0" y="58.5" width="103.5" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CmQ-xd-Cbj">
-                                                <rect key="frame" x="0.0" y="87" width="146" height="25"/>
+                                                <rect key="frame" x="0.0" y="85.5" width="103.5" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="pyH-KW-v9p"/>
                                                 </constraints>
@@ -136,21 +156,20 @@
                                     <constraint firstItem="gvn-Ee-lAD" firstAttribute="trailing" secondItem="Rbb-Gw-ecq" secondAttribute="trailing" id="2Js-mH-RKu"/>
                                     <constraint firstItem="gvn-Ee-lAD" firstAttribute="leading" secondItem="Rbb-Gw-ecq" secondAttribute="leading" id="3wZ-Du-fOF"/>
                                     <constraint firstItem="2vo-bv-BNl" firstAttribute="trailing" secondItem="Rbb-Gw-ecq" secondAttribute="trailing" id="Djl-eb-bf3"/>
+                                    <constraint firstItem="2vo-bv-BNl" firstAttribute="leading" secondItem="lrh-sK-zdy" secondAttribute="trailing" constant="44.5" id="G5P-4Z-kIL"/>
                                     <constraint firstItem="DjV-w4-Cap" firstAttribute="bottom" secondItem="bDo-7a-2ws" secondAttribute="bottom" id="ITi-n3-sGx"/>
                                     <constraint firstItem="gvn-Ee-lAD" firstAttribute="leading" secondItem="ELb-JB-HsT" secondAttribute="leading" id="JfI-By-asH"/>
                                     <constraint firstItem="gvn-Ee-lAD" firstAttribute="top" secondItem="ELb-JB-HsT" secondAttribute="top" id="KOg-oQ-9RX"/>
-                                    <constraint firstItem="Z2s-pQ-dEO" firstAttribute="leading" secondItem="ELb-JB-HsT" secondAttribute="leading" constant="10" id="LMp-bV-oZj"/>
-                                    <constraint firstItem="Z2s-pQ-dEO" firstAttribute="top" secondItem="ELb-JB-HsT" secondAttribute="top" constant="12" id="OZr-QB-Idc"/>
+                                    <constraint firstItem="lrh-sK-zdy" firstAttribute="top" secondItem="ELb-JB-HsT" secondAttribute="top" constant="8" id="ONl-z4-4Ky"/>
                                     <constraint firstAttribute="trailing" secondItem="gvn-Ee-lAD" secondAttribute="trailing" id="PDF-lN-QZb"/>
-                                    <constraint firstItem="2vo-bv-BNl" firstAttribute="leading" secondItem="Z2s-pQ-dEO" secondAttribute="trailing" constant="8" symbolic="YES" id="QSb-0F-HaV"/>
                                     <constraint firstItem="DjV-w4-Cap" firstAttribute="leading" secondItem="ELb-JB-HsT" secondAttribute="leading" constant="66" id="TG7-1H-11d"/>
                                     <constraint firstAttribute="bottom" secondItem="DjV-w4-Cap" secondAttribute="bottom" constant="5" id="Vil-Ls-tE8"/>
                                     <constraint firstItem="Rbb-Gw-ecq" firstAttribute="top" secondItem="DjV-w4-Cap" secondAttribute="top" id="Vsf-FR-nez"/>
-                                    <constraint firstItem="Z2s-pQ-dEO" firstAttribute="bottom" secondItem="2vo-bv-BNl" secondAttribute="bottom" id="Zmx-E5-g0N"/>
+                                    <constraint firstItem="Rbb-Gw-ecq" firstAttribute="top" secondItem="lrh-sK-zdy" secondAttribute="bottom" constant="12" id="d1H-NO-Uif"/>
                                     <constraint firstItem="2vo-bv-BNl" firstAttribute="top" secondItem="ELb-JB-HsT" secondAttribute="top" constant="4" id="ruN-ER-p8D"/>
                                     <constraint firstItem="DjV-w4-Cap" firstAttribute="top" secondItem="bDo-7a-2ws" secondAttribute="top" id="tkK-Mg-DN7"/>
-                                    <constraint firstItem="DjV-w4-Cap" firstAttribute="top" secondItem="Z2s-pQ-dEO" secondAttribute="bottom" constant="6" id="urV-fs-6aI"/>
                                     <constraint firstItem="gvn-Ee-lAD" firstAttribute="bottom" secondItem="Rbb-Gw-ecq" secondAttribute="bottom" id="wOX-Iw-3iI"/>
+                                    <constraint firstItem="lrh-sK-zdy" firstAttribute="leading" secondItem="ELb-JB-HsT" secondAttribute="leading" constant="16" id="wWa-2A-fjl"/>
                                     <constraint firstAttribute="trailing" secondItem="bDo-7a-2ws" secondAttribute="trailing" constant="60" id="xnq-aG-oPX"/>
                                 </constraints>
                             </view>
@@ -178,6 +197,7 @@
                 <outlet property="editImage" destination="DjV-w4-Cap" id="ZoT-qj-bKA"/>
                 <outlet property="emailLabel" destination="CmQ-xd-Cbj" id="C6h-ln-I62"/>
                 <outlet property="entireCardButton" destination="gvn-Ee-lAD" id="QbT-oT-OiU"/>
+                <outlet property="logoImage" destination="asa-1r-RV3" id="5MW-Sm-W1v"/>
                 <outlet property="nameLabel" destination="Vmn-cW-3e6" id="2eR-c0-Faa"/>
                 <outlet property="photoButton" destination="Z2s-pQ-dEO" id="SRX-Pe-xyh"/>
                 <outlet property="shareButton" destination="Xm7-DK-KFd" id="kLD-LI-ld0"/>

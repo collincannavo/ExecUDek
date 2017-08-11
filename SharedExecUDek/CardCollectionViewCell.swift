@@ -14,6 +14,7 @@ public class CardCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         view.layer.cornerRadius = 12
         
+        updateViews()
     }
     
     public var card: Card?
@@ -31,10 +32,12 @@ public class CardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shareImage: UIImageView!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var editImage: UIImageView!
+    @IBOutlet public weak var logoImage: UIImageView!
     
     @IBAction public func addCompanyLogoButtonTapped(_ sender: Any) {
         guard let buttonTapped = sender as? UIButton else { return }
         delegate?.photoSelectCellSelected?(cellButtonTapped: buttonTapped)
+        
     }
     
     @IBAction public func entireCardButtonTapped(_ sender: UIButton) {
@@ -86,10 +89,12 @@ public class CardCollectionViewCell: UICollectionViewCell {
         if let data = card.logoData,
             let image = UIImage(data: data) {
             
-            photoButton.setBackgroundImage(image.fixOrientation(), for: .normal)
-            photoButton.setBackgroundImage(image.fixOrientation(), for: .disabled)
             photoButton.setTitle("", for: .normal)
+            logoImage.image = image
+            logoImage.contentMode = .scaleAspectFit
         }
+        
+        
     }
     
     public override func prepareForReuse() {
