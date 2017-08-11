@@ -38,9 +38,7 @@ class CustomPageViewController: UIPageViewController {
     }
     
     func setupNavBar() {
-        let navBar = UINavigationBar()
-        
-        
+
         let addCardBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
         let multipeerBarButtonItem = UIBarButtonItem(image: UIImage(named: "antennaFinal"), style: .plain, target: self, action: nil)
         let profileBarButtonItem = UIBarButtonItem(image: UIImage(named: "profileIcon4"), style: .plain, target: self, action: nil)
@@ -54,7 +52,9 @@ class CustomPageViewController: UIPageViewController {
         navigationItem.rightBarButtonItems = [addCardBarButtonItem, multipeerBarButtonItem]
         navigationItem.leftBarButtonItem = profileBarButtonItem
         
-        self.navigationController?.navigationBar.backgroundColor = .clear
-        self.automaticallyAdjustsScrollViewInsets = false
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.barTintColor = .clear
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        automaticallyAdjustsScrollViewInsets = false
     }
 }
