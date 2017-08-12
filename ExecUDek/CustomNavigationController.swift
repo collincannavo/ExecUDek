@@ -196,12 +196,11 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
     }
     
     func setupNavBar() {
-//        navigationBar.tintColor = .clear
         navigationBar.barTintColor = .clear
-//        navigationBar.backgroundColor = .clear
-//        view.backgroundColor = .white
-//        navigationBar.setBackgroundImage(nil, for: .default)
-//        self.navigationBar.isTranslucent = true
+        navigationBar.shadowImage = UIImage()
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
     }
     
     func updateNavigationItem() {
