@@ -11,7 +11,6 @@ import MessageUI
 
 
 extension UserProfileCollectionViewController {
-    
     func sendEmail(attachment data: Data) {
         if MFMailComposeViewController.canSendMail() {
             let email = MFMailComposeViewController()
@@ -69,6 +68,5 @@ extension UserProfileCollectionViewController {
             present(alert, animated: true, completion: nil)
             self.dismiss(animated: true, completion: nil)
         }
-        
     }
 }
