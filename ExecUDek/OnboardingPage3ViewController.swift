@@ -12,12 +12,6 @@ class OnboardingPage3ViewController: UIViewController {
 
     @IBOutlet weak var arrow: UIImageView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 1, delay: 0.25,
@@ -26,5 +20,4 @@ class OnboardingPage3ViewController: UIViewController {
                         self.arrow.frame.origin.y -= 20
         })
     }
-
 }

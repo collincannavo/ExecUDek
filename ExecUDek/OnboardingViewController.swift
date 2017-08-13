@@ -22,11 +22,4 @@ class OnboardingViewController: UIViewController {
                         self.addArrow.frame.origin.y -= 20
         })
     }
-
 }
-
-
-
-
-
-

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="16y-YG-f8u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="16y-YG-f8u">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -263,17 +262,14 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7YS-1B-HWP">
-                                <rect key="frame" x="18.5" y="481" width="337.5" height="166"/>
+                                <rect key="frame" x="19" y="481" width="338" height="166"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FBW-Cx-249">
-                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOX-Cl-Bjd">
-                                                <rect key="frame" x="0.0" y="0.0" width="337.5" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
                                                 <color key="backgroundColor" red="0.93301534652709961" green="0.75911897420883179" blue="0.41175666451454163" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="tWi-Dv-61F"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="I'm ready to create my first Card!"/>
@@ -283,18 +279,15 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="YpH-V1-Wrl"/>
+                                            <constraint firstItem="gOX-Cl-Bjd" firstAttribute="top" secondItem="FBW-Cx-249" secondAttribute="top" id="uta-vE-XRL"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QNQ-4f-Esc">
-                                        <rect key="frame" x="0.0" y="58" width="337.5" height="50"/>
+                                        <rect key="frame" x="0.0" y="58" width="338" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzf-Ym-dDt">
-                                                <rect key="frame" x="0.0" y="0.0" width="337.5" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="79q-Kb-B3e"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="I'll set up my first Card later">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -305,18 +298,15 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="35P-u6-zBx"/>
+                                            <constraint firstItem="Nzf-Ym-dDt" firstAttribute="top" secondItem="QNQ-4f-Esc" secondAttribute="top" id="BRc-ct-VFJ"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g7J-jk-YiJ">
-                                        <rect key="frame" x="0.0" y="116" width="337.5" height="50"/>
+                                        <rect key="frame" x="0.0" y="116" width="338" height="50"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y88-KR-uNj">
-                                                <rect key="frame" x="0.0" y="0.0" width="337.5" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
                                                 <color key="backgroundColor" red="0.3637448251247406" green="0.60533475875854492" blue="0.69809705018997192" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Iht-HZ-PCy"/>
-                                                </constraints>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Take me to my wallet!"/>
                                                 <connections>
@@ -325,24 +315,24 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="ZsG-Jb-tza"/>
+                                            <constraint firstItem="Y88-KR-uNj" firstAttribute="leading" secondItem="g7J-jk-YiJ" secondAttribute="leading" id="Fjx-wO-5uE"/>
+                                            <constraint firstItem="Y88-KR-uNj" firstAttribute="top" secondItem="g7J-jk-YiJ" secondAttribute="top" id="Xws-TQ-PXD"/>
+                                            <constraint firstAttribute="bottom" secondItem="Y88-KR-uNj" secondAttribute="bottom" id="un8-JN-KQd"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="166" id="Dly-TP-8PH"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2hH-7C-2Mw" secondAttribute="trailing" id="BOm-fS-gHs"/>
-                            <constraint firstItem="7YS-1B-HWP" firstAttribute="centerX" secondItem="ssA-y7-wE7" secondAttribute="centerX" id="YOA-AZ-M9l"/>
-                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="bottom" secondItem="pzS-pZ-aG5" secondAttribute="top" id="Ygj-L3-ST1"/>
-                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="top" secondItem="zfO-kD-kZm" secondAttribute="bottom" id="cA4-GU-TnK"/>
-                            <constraint firstItem="7YS-1B-HWP" firstAttribute="width" secondItem="ssA-y7-wE7" secondAttribute="width" multiplier="0.9" id="ldA-SB-Q6X"/>
-                            <constraint firstItem="pzS-pZ-aG5" firstAttribute="top" secondItem="7YS-1B-HWP" secondAttribute="bottom" constant="20" id="mp9-hk-Uhf"/>
-                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="leading" secondItem="ssA-y7-wE7" secondAttribute="leading" id="rCl-Rt-WLv"/>
+                            <constraint firstItem="7YS-1B-HWP" firstAttribute="leading" secondItem="ssA-y7-wE7" secondAttribute="leadingMargin" constant="3" id="9Vz-JV-hZF"/>
+                            <constraint firstAttribute="bottom" secondItem="7YS-1B-HWP" secondAttribute="bottom" constant="20" symbolic="YES" id="JcR-we-Gjq"/>
+                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="bottom" secondItem="pzS-pZ-aG5" secondAttribute="top" id="L3v-Oc-RQW"/>
+                            <constraint firstAttribute="trailing" secondItem="2hH-7C-2Mw" secondAttribute="trailing" id="NBI-TY-y9I"/>
+                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="top" secondItem="zfO-kD-kZm" secondAttribute="bottom" id="Xoj-Mq-I2f"/>
+                            <constraint firstItem="7YS-1B-HWP" firstAttribute="top" secondItem="zfO-kD-kZm" secondAttribute="bottom" constant="461" id="YVY-Tj-37I"/>
+                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="leading" secondItem="ssA-y7-wE7" secondAttribute="leading" id="faf-W2-pil"/>
+                            <constraint firstItem="2hH-7C-2Mw" firstAttribute="centerX" secondItem="7YS-1B-HWP" secondAttribute="centerX" id="gSh-Fd-K3P"/>
                         </constraints>
                     </view>
                     <connections>
