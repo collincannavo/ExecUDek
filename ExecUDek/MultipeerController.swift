@@ -201,7 +201,6 @@ class MultipeerController: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDe
 protocol MultipeerControllerDelegate: class {
     var customNavigationController: CustomNavigationController { get }
     var selectedCard: Card? { get }
-    
     func didReceiveData(_ data: Data, from peerID: MCPeerID)
     func didDiscoverPeer(_ peerID: MCPeerID)
     func didReceiveInvitation(from peerID: MCPeerID, in session: MCSession, with invitationHandler: @escaping (Bool, MCSession?) -> Void)

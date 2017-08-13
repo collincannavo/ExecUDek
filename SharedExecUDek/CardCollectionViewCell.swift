@@ -164,7 +164,7 @@ public class CardCollectionViewCell: UICollectionViewCell {
     public weak var actionSheetDelegate: ActionSheetDelegate?
 }
 
-// MARK: - Protocols
+    // MARK: - Protocols
 
 @objc public protocol PhotoSelctorCellDelegate : class, NSObjectProtocol {
     @objc optional func photoSelectCellSelected(cellButtonTapped: UIButton)

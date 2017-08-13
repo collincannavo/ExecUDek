@@ -12,16 +12,17 @@ import SharedExecUDek
 
 class CustomNavigationController: UINavigationController {
     
+    // MARK: Properties
     let multipeerToolbar = UIToolbar()
     var wirelessBarButtonItem: UIBarButtonItem!
     var statusBarButtonItem: UIBarButtonItem!
-    
     var toolbarIsVisible = false {
         didSet {
             toggleMultipeerToolbarVisibility()
         }
     }
     
+    // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,12 +30,11 @@ class CustomNavigationController: UINavigationController {
         view.backgroundColor = .white
     }
     
+    // MARK: Action Methods
     func confirmChangeOfMultipeer() {
-        
         let title: String
         let message: String
         let completion: () -> Void
-        
         switch MultipeerController.shared.connectionStatus {
         case .notConnected:
             title = "Confirm Nearby Advertise"
@@ -45,7 +45,6 @@ class CustomNavigationController: UINavigationController {
             message = "Would you like to end this nearby sharing session?"
             completion = { MultipeerController.shared.cancelSession() }
         }
-        
         confirmMultipeerAdvertiseAlert(with: title, message: message) {
             completion()
             self.toolbarIsVisible = !self.toolbarIsVisible
@@ -58,8 +57,7 @@ class CustomNavigationController: UINavigationController {
         }
     }
     
-    func createMultipeerToolbar() {
-        
+    fileprivate func createMultipeerToolbar() {
         wirelessBarButtonItem = UIBarButtonItem(image: UIImage(named: "antenna1"), style: .plain, target: nil, action: nil)
         statusBarButtonItem = UIBarButtonItem(title: "Not connected", style: .plain, target: nil, action: nil)
         
@@ -72,7 +70,7 @@ class CustomNavigationController: UINavigationController {
         setToolbarFrame(toolbar: multipeerToolbar)
     }
     
-    func customizeToolbarAppearance() {
+    fileprivate func customizeToolbarAppearance() {
         multipeerToolbar.backgroundColor = UIColor.clear
         multipeerToolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         wirelessBarButtonItem.tintColor = UIColor.white
@@ -81,7 +79,7 @@ class CustomNavigationController: UINavigationController {
         statusBarButtonItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .normal)
     }
     
-    func setToolbarFrame(toolbar: UIToolbar) {
+    fileprivate func setToolbarFrame(toolbar: UIToolbar) {
         multipeerToolbar.translatesAutoresizingMaskIntoConstraints = false
         
         multipeerToolbar.widthAnchor.constraint(equalTo: self.navigationBar.widthAnchor, multiplier: 1.0).isActive = true
@@ -98,7 +96,7 @@ class CustomNavigationController: UINavigationController {
         multipeerToolbar.setItems([wirelessBarButtonItem, statusBarButtonItem], animated: false)
     }
     
-    func toggleMultipeerToolbarVisibility() {
+    fileprivate func toggleMultipeerToolbarVisibility() {
         UIView.animate(withDuration: 0.4, animations: {
             if !self.toolbarIsVisible {
                 self.multipeerToolbar.transform = CGAffineTransform(translationX: 0.0, y: -self.multipeerToolbar.frame.size.height)
@@ -135,7 +133,7 @@ class CustomNavigationController: UINavigationController {
         }
     }
     
-    func confirmMultipeerAdvertiseAlert(with title: String, message: String, completion: @escaping () -> Void) {
+    fileprivate func confirmMultipeerAdvertiseAlert(with title: String, message: String, completion: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             completion()

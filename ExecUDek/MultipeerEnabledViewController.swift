@@ -12,11 +12,11 @@ import SharedExecUDek
 
 class MultipeerEnabledViewController: UIViewController, MultipeerControllerDelegate {
     
+    // MARK: Properties
     var selectedCard: Card?
     var customNavigationController: CustomNavigationController {
         return self.navigationController as? CustomNavigationController ?? CustomNavigationController()
     }
-    
     var waitingOnCardTransmissionStep = false {
         didSet {
             DispatchQueue.main.async {
@@ -24,20 +24,18 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
             }
         }
     }
-    
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     var indicatorView: UIView!
     
+    // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         MultipeerController.shared.delegate = self
-        
         switch MultipeerController.shared.connectionStatus {
         case .notConnected:
             customNavigationController.hideMultipeerToolbar()
@@ -59,7 +57,6 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
     }
 
     func didReceiveData(_ data: Data, from peerID: MCPeerID) {
-        
         let alertController = UIAlertController(title: "Received Card", message: "You've received a Card. Would you like to accept it?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             MultipeerController.shared.receiveData(data, from: peerID)
@@ -71,7 +68,6 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
         }
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
-        
         DispatchQueue.main.async {
             self.present(alertController, animated: true) {}
         }
@@ -91,10 +87,8 @@ class MultipeerEnabledViewController: UIViewController, MultipeerControllerDeleg
             self.customNavigationController.hideMultipeerToolbar()
             self.waitingOnCardTransmissionStep = false
         }
-        
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
-        
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
         }

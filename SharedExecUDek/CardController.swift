@@ -15,7 +15,6 @@ public class CardController {
     public static let shared = CardController()
     
     // CRUD
-    
     public func createPersonalCardWith(name: String, title: String?, cell: String?, email: String?, template: Template, companyName: String?, note: String?, address: String?, avatarData: Data?, logoData: Data?, other: String?, completion: @escaping (Bool) -> Void) {
         
         guard let person = PersonController.shared.currentPerson else { completion(false); return }

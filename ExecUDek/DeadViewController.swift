@@ -9,7 +9,8 @@
 import UIKit
 
 class DeadViewController: UIViewController {
-
+    
+    // MARK: View lifecycle 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,8 +25,6 @@ class DeadViewController: UIViewController {
         let title = "Sign in to iCloud"
         let message = "You must sign in to iCloud in the device's settings to use ExecUDek"
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
         present(alertController, animated: true, completion: nil)
     }
-
 }
