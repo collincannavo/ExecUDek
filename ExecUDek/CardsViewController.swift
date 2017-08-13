@@ -16,12 +16,9 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     var filteredCardsArray: [Card] = []
     var newContact: CNMutableContact?
     var isRefreshing = false
-    
     let overlap: CGFloat = -120.0
     
     // MARK: - Outlets
-    
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +75,6 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if isRefreshing {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell else {
                 return CardCollectionViewCell()
@@ -86,43 +82,31 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
             cell.isHidden = true
             return cell
         }
-        
         let card = PersonController.shared.currentPerson?.sortedCards[indexPath.row]
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell,
             let newCard = card
             
             else { return CardCollectionViewCell()
         }
-        
         if let cellPhone = newCard.cell {
             cell.cellLabel.text = "\(cellPhone)"
         }
-        
         cell.nameLabel.text = newCard.name
         cell.titleLabel.text = newCard.title
         cell.emailLabel.text = newCard.email
-        
         cell.card = newCard
-        
         if let data = card?.logoData,
             let image = UIImage(data: data) {
             
             cell.photoButton.setTitle("", for: .normal)
             cell.logoImage.image = image
             cell.logoImage.contentMode = .scaleAspectFit
-            
         }
-        
         cell.disablePhotoButton()
-        
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
-        
         collectionView.bringSubview(toFront: cell)
-        
         cell.actionSheetDelegate = self
-        
         //placeCardInOrder(forIndex: indexPath.row)
         cell.isHidden = false
         return cell
@@ -131,9 +115,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let collectionViewWidth = collectionView.frame.width
-        
         return CGSize(width: collectionViewWidth, height: (collectionViewWidth * 0.518731988472622))
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -142,10 +124,8 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
-        
         if let card = cell.card {
             selectedCard = card
-            
             if cell.isCurrentlyFocused {
                 returnCard(card, cell: cell, to: collectionView)
             } else {
@@ -159,9 +139,7 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     
     // Card cell action sheet delegate
     func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell) {
-        
         let alertController = UIAlertController(title: "Share Business Card", message: "", preferredStyle: .actionSheet)
-        
         let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
             guard let card = cell.card else { return }
             if cell.isCurrentlyFocused {
@@ -169,12 +147,9 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
             }
             self.addContact(for: card)
         }
-        
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
         alertController.addAction(contactButton)
         alertController.addAction(cancelButton)
-        
         present(alertController, animated: true, completion: nil)
     }
     
@@ -196,7 +171,6 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
                 destinationVC.cardSenderIsMainScene = true
             }
         }
-        
         if segue.identifier == "editCardFromMain" {
             if let destinationNavController = segue.destination as? UINavigationController,
                 let destinationVC = destinationNavController.viewControllers.first as? CardTemplateTableViewController {
@@ -207,7 +181,6 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
     }
     
     // MARK: - Helper methods
-    
     func refresh() {
         activityIndicator.stopAnimating()
         ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
@@ -229,19 +202,11 @@ class CardsViewController: MultipeerEnabledViewController, UICollectionViewDataS
         
     }
     
-    //    func collectionViewBackgroundColor() {
-    //        self.collectionView.backgroundColor = UIColor.lightGray
-    //
-    //    }
-    
     func fetchCards() {
         isRefreshing = true
         guard refreshControl.isRefreshing else { return }
-        
         activityIndicator.startAnimating()
-        
         ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
-        
         CloudKitContoller.shared.fetchCurrentUser { (success, currentPerson) in
             if success && (currentPerson != nil) {
                 CardController.shared.fetchReceivedCards { (success) in
