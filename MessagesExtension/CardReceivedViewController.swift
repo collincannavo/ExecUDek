@@ -27,6 +27,7 @@ class CardReceivedViewController: UIViewController {
         setupCardView()
         
         indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupCardView), name: Constants.receivedMessagesCardFetchedNotification, object: nil)
     }
     
     @IBAction func acceptButtonTapped(_ sender: UIButton) {

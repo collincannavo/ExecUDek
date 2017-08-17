@@ -15,4 +15,5 @@ public struct Constants {
     public static let cardsFetchedNotification: Notification.Name = Notification.Name(rawValue: "cardsFetched")
     public static let personalCardsFetchedNotification: Notification.Name = Notification.Name(rawValue: "personalCardsFetched")
     public static let userFetchSuccessfulNotification: Notification.Name = Notification.Name(rawValue: "userFetchSuccessful")
+    public static let receivedMessagesCardFetchedNotification: Notification.Name = Notification.Name(rawValue: "receivedMessagesCardFetched")
 }

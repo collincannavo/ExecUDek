@@ -38,12 +38,15 @@ class MessagesViewController: MSMessagesAppViewController, CardReceivedViewContr
         
         currentMessage = conversation.selectedMessage
         
+        DispatchQueue.main.async {
+            self.presentViewController(for: conversation, with: .expanded, forReceivedMessage: true)
+        }
+        
         if let currentMessage = currentMessage {
             MessageController.receiveAndParseMessage(currentMessage) { (card) in
                 self.currentCard = card
-                
                 DispatchQueue.main.async {
-                    self.presentViewController(for: conversation, with: .expanded, forReceivedMessage: true)
+                    NotificationCenter.default.post(name: Constants.receivedMessagesCardFetchedNotification, object: self)
                 }
             }
         } else {

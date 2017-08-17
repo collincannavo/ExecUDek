@@ -34,6 +34,7 @@ public struct ActivityIndicator {
         indicatorView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
         
         indicatorView.layer.cornerRadius = 16.0
+        view.bringSubview(toFront: indicatorView)
         
         UIView.animate(withDuration: 0.1) {
             indicatorView.alpha = 1.0
@@ -51,6 +52,7 @@ public struct ActivityIndicator {
         indicatorView.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
         
         indicatorView.layer.cornerRadius = 16.0
+        view.bringSubview(toFront: indicatorView)
         
         UIView.animate(withDuration: 0.1) {
             indicatorView.alpha = 1.0
