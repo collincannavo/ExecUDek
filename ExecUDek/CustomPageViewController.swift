@@ -41,7 +41,7 @@ class CustomPageViewController: UIPageViewController {
 
         let addCardBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
         let multipeerBarButtonItem = UIBarButtonItem(image: UIImage(named: "antennaFinal"), style: .plain, target: self, action: nil)
-        let profileBarButtonItem = UIBarButtonItem(image: UIImage(named: "profileIcon4"), style: .plain, target: self, action: nil)
+        let profileBarButtonItem = UIBarButtonItem(image: UIImage(named: "profileIcon2"), style: .plain, target: self, action: nil)
         let homeBarButtonItem = UIBarButtonItem(image: UIImage(named: "HomeIcon"), style: .plain, target: self, action: nil)
         
         addCardBarButtonItem.tintColor = .white

@@ -10,7 +10,7 @@ import UIKit
 import NotificationCenter
 import SharedExecUDek
 
-class CustomNavigationController: UINavigationController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class CustomNavigationController: UINavigationController {
     
     let multipeerToolbar = UIToolbar()
     var wirelessBarButtonItem: UIBarButtonItem!
@@ -44,29 +44,37 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
     }
     
     // MARK: - Page view controller delegate/data source
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        switch index {
-        case 1: return cardsSceneController
-        default: return nil
-        }
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        switch index {
-        case 0: return personalCardsSceneController
-        default: return nil
-        }
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
-            if index == 0 {
-                index = 1
-            } else if index == 1 {
-                index = 0
-            }
-        }
-    }
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+//        switch index {
+//        case 1: return cardsSceneController
+//        default: return nil
+//        }
+//    }
+//    
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+//        switch index {
+//        case 0: return personalCardsSceneController
+//        default: return nil
+//        }
+//    }
+//    
+//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+//        if completed {
+////            if index == 0 {
+////                index = 1
+////            } else if index == 1 {
+////                index = 0
+////            }
+//            
+//            if let currentVC = pageViewController.viewcontroller {
+//                if currentVC === cardsSceneController {
+//                    index = 0
+//                } else if currentVC === personalCardsSceneController {
+//                    index = 1
+//                }
+//            }
+//        }
+//    }
     
     func confirmChangeOfMultipeer() {
         
@@ -179,8 +187,8 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
             fatalError("Could not instantiate the page view controller")
         }
         pageViewController = pageViewControllerFromIB
-        pageViewController.delegate = self
-        pageViewController.dataSource = self
+//        pageViewController.delegate = self
+//        pageViewController.dataSource = self
         guard let page1 = storyboard?.instantiateViewController(withIdentifier: "cardsScene") as? CardsViewController else {
             fatalError("Could not instantiate the received cards scene")
         }
@@ -190,7 +198,7 @@ class CustomNavigationController: UINavigationController, UIPageViewControllerDe
         cardsSceneController = page1
         personalCardsSceneController = page2
         
-        pageViewController.setViewControllers([page1], direction: .forward, animated: true, completion: nil)
+        pageViewController.setViewControllers([page1, page2], direction: .forward, animated: true, completion: nil)
         pageViewController.view.frame = view.frame
         self.pushViewController(pageViewController, animated: true)
     }
