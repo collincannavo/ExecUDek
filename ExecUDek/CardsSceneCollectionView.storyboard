@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Contacts' Cards-->
+        <!--Wallet-->
         <scene sceneID="D04-K5-BGb">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="79B-8T-VtH" customClass="CardsViewController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,10 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ilN-BY-8MX">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.32430070640000003" green="0.3601639271" blue="0.40180695059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skylineDarkened" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-yE-WXN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ilN-BY-8MX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jya-H8-rRs">
                                     <size key="itemSize" width="298" height="161"/>
@@ -34,7 +36,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3q9-Wl-zof">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cardCell" id="3q9-Wl-zof">
                                         <rect key="frame" x="38.5" y="16" width="298" height="161"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -47,30 +49,39 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYi-rq-xwI">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="79B-8T-VtH" id="eri-fq-UPH"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ilN-BY-8MX" firstAttribute="leading" secondItem="z7M-yE-WXN" secondAttribute="leading" id="4n8-K3-2sf"/>
+                            <constraint firstItem="z7M-yE-WXN" firstAttribute="leading" secondItem="ewq-yN-V4o" secondAttribute="leading" id="Iab-C7-VLt"/>
+                            <constraint firstAttribute="trailing" secondItem="z7M-yE-WXN" secondAttribute="trailing" id="Mst-0x-qRU"/>
+                            <constraint firstItem="ilN-BY-8MX" firstAttribute="bottom" secondItem="THK-hY-ReU" secondAttribute="top" id="VWN-XV-gIr"/>
+                            <constraint firstItem="ilN-BY-8MX" firstAttribute="top" secondItem="jRz-S2-dc8" secondAttribute="bottom" id="a5a-cW-HUy"/>
+                            <constraint firstItem="z7M-yE-WXN" firstAttribute="top" secondItem="jRz-S2-dc8" secondAttribute="bottom" constant="-64" id="ddh-UF-vtI"/>
+                            <constraint firstItem="ilN-BY-8MX" firstAttribute="trailing" secondItem="z7M-yE-WXN" secondAttribute="trailing" id="jpu-7Z-kl9"/>
+                            <constraint firstItem="THK-hY-ReU" firstAttribute="top" secondItem="z7M-yE-WXN" secondAttribute="bottom" id="xOc-AE-9JW"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="WdM-dw-Pjc" appends="YES" id="E9y-An-w2O"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Contacts' Cards" id="PdI-NL-uJZ">
-                        <barButtonItem key="leftBarButtonItem" image="profileIcon" id="p8K-9s-asx">
+                    <navigationItem key="navigationItem" title="Wallet" id="PdI-NL-uJZ">
+                        <barButtonItem key="leftBarButtonItem" image="profileIcon2" id="p8K-9s-asx">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="jSH-yE-W7Y" kind="presentation" id="pNg-HB-WJW"/>
+                                <segue destination="jSH-yE-W7Y" kind="show" identifier="toMyCards" id="pNg-HB-WJW"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="4xW-yI-j1x">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="94f-hd-ma1" kind="presentation" identifier="addCardFromMain" id="ge0-tS-Cqn"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="wirelessIconBlue" id="L9C-IL-kc7">
+                            <barButtonItem image="antennaFinal" id="L9C-IL-kc7">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="multipeerButtonTapped:" destination="79B-8T-VtH" id="xfR-BL-Nl2"/>
                                 </connections>
@@ -78,11 +89,11 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="cardSearchBar" destination="YYi-rq-xwI" id="YYQ-hx-bTd"/>
                         <outlet property="collectionView" destination="ilN-BY-8MX" id="XoH-sX-ppy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceX-oV-VUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="WdM-dw-Pjc"/>
             </objects>
             <point key="canvasLocation" x="1116" y="118.29085457271366"/>
         </scene>
@@ -100,12 +111,12 @@
                 <viewControllerPlaceholder storyboardName="UserProfileCollection" id="jSH-yE-W7Y" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GT6-CG-8yo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1762" y="133"/>
+            <point key="canvasLocation" x="50" y="559"/>
         </scene>
         <!--Custom Navigation Controller-->
         <scene sceneID="x1S-5d-TFb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QYA-OX-WhK" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CustomNavController" automaticallyAdjustsScrollViewInsets="NO" id="QYA-OX-WhK" customClass="CustomNavigationController" customModule="ExecUDek" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q0Q-hK-Fkh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -118,12 +129,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZ9-pb-PX2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="176.80000000000001" y="118.29085457271366"/>
+            <point key="canvasLocation" x="1116" y="-678"/>
         </scene>
     </scenes>
     <resources>
-        <image name="profileIcon" width="15" height="23"/>
-        <image name="wirelessIconBlue" width="25" height="23"/>
+        <image name="antennaFinal" width="27" height="28"/>
+        <image name="profileIcon2" width="28" height="28"/>
+        <image name="skylineDarkened" width="833" height="1209"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GJY-xY-jHV"/>

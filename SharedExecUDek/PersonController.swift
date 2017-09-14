@@ -68,6 +68,10 @@ public class PersonController {
         }
     }
     
+    public func removalAllCards(from person: Person) {
+        person.cards.removeAll()
+    }
+    
     public func updateRecord(for person: Person, completion: @escaping (Bool) -> Void) {
         
         guard let recordID = person.cKRecordID else { completion(false); return }

@@ -17,30 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        CloudKitContoller.shared.fetchCurrentUser { (success, person) in
-            if success {
-                if person != nil {
-                    CardController.shared.fetchPersonalCards(with: { (success) in
-                        if success {
-                            DispatchQueue.main.async {
-                                NotificationCenter.default.post(name: Constants.personalCardsFetchedNotification, object: self)
-                            }
-                        }
-                    })
-                    CardController.shared.fetchReceivedCards(with: { (success) in
-                        if success {
-                            DispatchQueue.main.async {
-                                NotificationCenter.default.post(name: Constants.cardsFetchedNotification, object: self)
-                            }
-                        }
-                    })
-                } else {
-                    CloudKitContoller.shared.createUserWith(name: "Test", completion: { (_) in } )
-                }
-            }
-        }
-
         return true
     }
 

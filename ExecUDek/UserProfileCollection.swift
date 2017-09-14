@@ -12,71 +12,70 @@ import NotificationCenter
 import MultipeerConnectivity
 import MessageUI
 
-class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, MFMailComposeViewControllerDelegate, MCBrowserViewControllerDelegate {
+class UserProfileCollectionViewController: MultipeerEnabledViewController, ActionSheetDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     let overlap: CGFloat = -120.0
-    
-    let session = MCSession(peer: MCPeerID(displayName: UIDevice.current.name), securityIdentity: nil, encryptionPreference: .none)
-    var browser: MCNearbyServiceBrowser?
-    var advertiser: MCNearbyServiceAdvertiser?
-    var browserView: MCBrowserViewController!
-    var card = CardCollectionViewCell()
-    
-    var isMultipeerSender = false
-    
-    var selectedCard: Card?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func multipeerButtonTapped(_ sender: UIBarButtonItem) {
-        NotificationCenter.default.post(name: Constants.multipeerNavBarItemTappedNotification, object: self)
+        customNavigationController.confirmChangeOfMultipeer()
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
         guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
         
         if let card = cell.card {
             selectedCard = card
             
-            performSegue(withIdentifier: "editCardFromUser", sender: nil)
+            if cell.isCurrentlyFocused {
+                returnCard(card, cell: cell, to: collectionView)
+            } else {
+                guard collectionView.numberOfItems(inSection: 0) > 1,
+                    let indexPath = collectionView.indexPath(for: cell),
+                    indexPath.row < (collectionView.numberOfItems(inSection: 0) - 1) else { return }
+                popCard(card, cell: cell, from: collectionView)
+            }
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(startAdvertising), name: Constants.advertiseMultipeerNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelSession), name: Constants.endAdvertiseMultipeerNotification, object: nil)
-        
         let bundle = Bundle(identifier: "com.ganleyApps.SharedExecUDek")
         let cardXIB = UINib(nibName: "CardCollectionViewCell", bundle: bundle)
         
         collectionView.register(cardXIB, forCellWithReuseIdentifier: "collectionCardCell")
-        
-        self.session.delegate = self
-        browserView = MCBrowserViewController(serviceType: "sending-card", session: session)
-        browserView.delegate = self
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         
        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
         self.collectionView.addGestureRecognizer(longPressGesture)
         
-        navigationController?.navigationBar.barTintColor = UIColor(red: 113/255, green: 125/255, blue: 139/255, alpha: 1)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Constants.personalCardsFetchedNotification, object: nil)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        checkForInitialLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if (PersonController.shared.currentPerson?.initialPersonalCardsFetchComplete ?? false) {
+            refresh()
+        }
         collectionView.reloadData()
     }
     
@@ -113,25 +112,15 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         }
     }
     
-    // MARK: MCBrowserViewControllerDelegate
-    
-    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
-        browserView.dismiss(animated: true, completion: nil)
-    }
-    
-    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
-        browserView.dismiss(animated: true, completion: nil)
-    }
-    
     // MARK: - Collection view data source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PersonController.shared.currentPerson?.personalCards.count ?? 0
+        return PersonController.shared.currentPerson?.sortedPersonalCards.count ?? 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+        let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell,
             let newCard = card else { return CardCollectionViewCell() }
         
@@ -144,23 +133,24 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         cell.cellLabel.text = newCard.cell
         cell.emailLabel.text = newCard.email
         cell.card = newCard
-        if let data = card?.logoData {
-            let image = UIImage(data: data)
+        if let data = card?.logoData,
+            let image = UIImage(data: data) {
             
-            cell.photoButton.setBackgroundImage(image, for: .disabled)
-            cell.photoButton.setTitle("", for: .disabled)
+            cell.logoImage.image = image
+            cell.logoImage.contentMode = .scaleAspectFit
         }
         
         cell.disablePhotoButton()
         
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
-//        tableViewBackgroundColor()
         setupCardTableViewCell(cell)
         
         collectionView.bringSubview(toFront: cell)
         
         cell.actionSheetDelegate = self
+        
+        //placeCardInOrder(forIndex: indexPath.row)
         
         return cell
         
@@ -196,8 +186,12 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
     }
     
     func refresh() {
+        activityIndicator.stopAnimating()
+        ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
         collectionView.reloadData()
     }
+    
+    // MARK: Card cell action sheet delegate
     
     func actionSheetSelected(cellButtonTapped: UIButton, cell: CardCollectionViewCell) {
         
@@ -205,39 +199,62 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         
         let iMessagesButton = UIAlertAction(title: "iMessage", style: .default) { (_) in
             guard let indexPath = self.collectionView.indexPath(for: cell),
-                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
-            
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
+            if cell.isCurrentlyFocused {
+                self.returnCard(card, cell: cell, to: self.collectionView)
+            }
             self.presentSMSInterface(for: card, with: cell)
         }
         
-        let multiShareButton = UIAlertAction(title: "MultiPeer Connect", style: .default) { (_) in
+        let multiShareButton = UIAlertAction(title: "Connect with Nearby", style: .default) { (_) in
             
             guard let indexPath = self.collectionView.indexPath(for: cell),
-                let card = PersonController.shared.currentPerson?.personalCards[indexPath.row] else { return }
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
             
             self.selectedCard = card
             
-            self.searchAction()
+            MultipeerController.shared.searchAction()
         }
         
         
         let emailButton = UIAlertAction(title: "Email", style: .default) { (_) in
-            guard let card = UIViewToPNG.uiViewToPNG(for: cell) else { return }
-            self.sendEmail(attachment: card)
+            guard let indexPath = self.collectionView.indexPath(for: cell),
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
+            
+            if cell.isCurrentlyFocused {
+                self.returnCard(card, cell: cell, to: self.collectionView)
+            }
+            
+            guard let cardData = UIViewToPNG.uiViewToPNG(for: cell) else { return }
+            
+            self.sendEmail(attachment: cardData)
         }
+  
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+            
+            guard let indexPath = self.collectionView.indexPath(for: cell),
+                let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row] else { return }
         
-        let contactButton = UIAlertAction(title: "Add to contacts", style: .default) { (_) in
-            self.addContact()
-        }
-        
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            if cell.isCurrentlyFocused {
+                self.returnCard(card, cell: cell, to: self.collectionView)
+            }
+        })
         alertController.addAction(iMessagesButton)
         alertController.addAction(multiShareButton)
-        alertController.addAction(contactButton)
         alertController.addAction(cancelButton)
         alertController.addAction(emailButton)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func cardCellEditButtonWasTapped(cell: CardCollectionViewCell) {
+        selectedCard = cell.card
+        cell.isCurrentlyFocused = false
+        enableInteractionInVisibleCells(for: collectionView)
+        if let card = selectedCard, cell.isCurrentlyFocused {
+            returnCard(card, cell: cell, to: collectionView)
+        }
+        performSegue(withIdentifier: "editCardFromUser", sender: nil)
     }
     
     func presentSMSUnavailableAlert() {
@@ -270,11 +287,25 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
             }
         }
     }
+    
+    func checkForInitialLoad() {
+        guard let person = PersonController.shared.currentPerson else { return }
+        
+        if !person.initialCardsFetchComplete {
+            activityIndicator.startAnimating()
+            
+            ActivityIndicator.addAndAnimateIndicator(indicatorView, to: view)
+        } else {
+            activityIndicator.stopAnimating()
+            ActivityIndicator.animateAndRemoveIndicator(indicatorView, from: self.view)
+        }
+    }
+    
     func setupCardTableViewCellShadow(_ cell: CardCollectionViewCell) {
         cell.layer.shadowOpacity = 1.0
         cell.layer.shadowRadius = 4
         cell.layer.shadowOffset = CGSize(width: 0, height: 2)
-        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowColor = UIColor.black.cgColor
     }
     
     func setupCardTableViewCellBorderColor(_ cell: CardCollectionViewCell) {
@@ -294,11 +325,22 @@ class UserProfileCollectionViewController: UIViewController, ActionSheetDelegate
         } else if indexPath.row % 3 == 2 {
             customCell.changeBackgroundToOrange()
         }
+        
+        placeCardInOrder(forIndex: indexPath.row)
     }
     
-//    func tableViewBackgroundColor() {
-//        self.collectionView.backgroundColor = UIColor.lightGray
-//    }
+    func placeCardInOrder(forIndex index: Int) {
+        for i in index...(collectionView.numberOfItems(inSection: 0) - 1) {
+            let indexPath = IndexPath(row: i, section: 0)
+            guard let newTopCell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { continue }
+            collectionView.bringSubview(toFront: newTopCell)
+        }
+    }
     
-    
+    func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizerDirection.left {
+            print("Swipe left")
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }

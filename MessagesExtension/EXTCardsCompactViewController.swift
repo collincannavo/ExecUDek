@@ -16,6 +16,9 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
     
     var conversation: MSConversation?
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    var indicatorView: UIView!
+    
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -31,19 +34,29 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         
         collectionView.register(yourXIBName, forCellWithReuseIdentifier: "collectionCardCell")
         
-        setupViews()
+        indicatorView = ActivityIndicator.indicatorView(with: activityIndicator)
+        
+        if let person = PersonController.shared.currentPerson {
+            if !person.initialPersonalCardsFetchComplete {
+                activityIndicator.startAnimating()
+                ActivityIndicator.addAndAnimatedIndicatorForMessages(indicatorView, to: view)
+            }
+        } else {
+            activityIndicator.startAnimating()
+            ActivityIndicator.addAndAnimatedIndicatorForMessages(indicatorView, to: view)
+        }
     }
     
     // MARK: - Collection view data source
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PersonController.shared.currentPerson?.personalCards.count ?? 0
+        return PersonController.shared.currentPerson?.sortedPersonalCards.count ?? 0
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCardCell", for: indexPath) as? CardCollectionViewCell else { return CardCollectionViewCell() }
         
-        let card = PersonController.shared.currentPerson?.personalCards[indexPath.row]
+        let card = PersonController.shared.currentPerson?.sortedPersonalCards[indexPath.row]
         
         cell.card = card
         cell.nameLabel.text = card?.name
@@ -51,15 +64,18 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         cell.hideShareButton()
         cell.hideShareImage()
         cell.delegate = self
-        guard let logoData = card?.logoData,
-            let logoImage = UIImage(data: logoData) else { return cell }
+        if let logoData = card?.logoData {
+            let logoImage = UIImage(data: logoData)
+            cell.logoImage.image = logoImage?.fixOrientation()
+            cell.logoImage.contentMode = .scaleAspectFit
+        }
         
-        cell.photoButton.setImage(logoImage, for: .normal)
-        cell.photoButton.setImage(logoImage, for: .disabled)
         cell.photoButton.setTitle("", for: .normal)
+        cell.hideEditButton()
         
         setupCardTableViewCellShadow(cell)
         setupCardTableViewCellBorderColor(cell)
+        cell.updateViews()
         
         return cell
     }
@@ -74,6 +90,19 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let customCell = cell as? CardCollectionViewCell else { return }
+        
+        if indexPath.row % 3 == 0 {
+            customCell.changeBackgroundToBlue()
+        } else if indexPath.row % 3 == 1 {
+            customCell.changeBackgroundToRed()
+        } else if indexPath.row % 3 == 2 {
+            customCell.changeBackgroundToOrange()
+        }
+    }
+    
     // MARK: - Photo selector cell delegate
     func entireCardWasTapped(card: Card, cell: CardCollectionViewCell) {
         guard let conversation = conversation,
@@ -83,11 +112,9 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
     
     // MARK: - Helper methods
     func refresh() {
+        self.activityIndicator.stopAnimating()
+        ActivityIndicator.animateAndRemoveIndicator(self.indicatorView, from: self.view)
         collectionView.reloadData()
-    }
-    
-    func setupViews() {
-        collectionView.backgroundColor = UIColor.lightGray
     }
     
     func setupCardTableViewCellShadow(_ cell: CardCollectionViewCell) {
@@ -100,6 +127,5 @@ class EXTCardsCompactViewController: UIViewController,  PhotoSelctorCellDelegate
     func setupCardTableViewCellBorderColor(_ cell: CardCollectionViewCell) {
         cell.layer.borderWidth = 10
         cell.layer.borderColor = UIColor.clear.cgColor
-        
     }
 }
